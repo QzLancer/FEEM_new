@@ -1,7 +1,7 @@
 shared {
     DEFINES += UTILS_LIBRARY
 } else {
-    DEFINES += QTCREATOR_UTILS_STATIC_LIB
+    DEFINES += FEEM_UTILS_STATIC_LIB
 }
 
 
@@ -12,7 +12,8 @@ SOURCES += \
     $$PWD/stringutils.cpp \
     $$PWD/benchmarker.cpp \
     $$PWD/qtcassert.cpp \
-    $$PWD/synchronousprocess.cpp
+    $$PWD/synchronousprocess.cpp \
+    $$PWD/filename.cpp
 
 HEADERS += \
     $$PWD/utils_global.h \
@@ -21,7 +22,8 @@ HEADERS += \
     $$PWD/executeondestruction.h \
     $$PWD/predicates.h \
     $$PWD/qtcassert.h \
-    $$PWD/synchronousprocess.h
+    $$PWD/synchronousprocess.h \
+    $$PWD/filename.h
 
 include(mimetypes/mimetypes.pri)
 

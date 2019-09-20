@@ -1,13 +1,15 @@
 #ifndef FILENAME_H
 #define FILENAME_H
 
+#include "utils_global.h"
+
 #include <QStringList>
 
 class QDir;
 class QFile;
 class QFileInfo;
 
-class FileName : private QString
+class FEEM_UTILS_EXPORT FileName : private QString
 {
 public:
     FileName();

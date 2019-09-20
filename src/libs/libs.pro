@@ -3,7 +3,6 @@ include(../../feem.pri)
 TEMPLATE  = subdirs
 
 SUBDIRS   += \
-    #aggregation \
     extensionsystem \
     utils \
     qtribbon \

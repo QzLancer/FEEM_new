@@ -1,6 +1,6 @@
 #pragma once
 
-//#include "coreplugin/core_global.h"
+#include "coreplugin/core_global.h"
 #include "constants.h"
 #include "context.h"
 #include "command.h"
@@ -24,7 +24,7 @@ class Context;
 //class MainWindow;
 //} // Internal
 
-class ActionManager : public QObject
+class CORE_EXPORT ActionManager : public QObject
 {
     Q_OBJECT
 public:

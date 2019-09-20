@@ -51,23 +51,16 @@ isEmpty(USE_USER_DESTDIR) {
         DESTDIRAPPNAME = "feem"
         DESTDIRBASE = "$$(LOCALAPPDATA)"
         isEmpty(DESTDIRBASE):DESTDIRBASE="$$(USERPROFILE)\Local Settings\Application Data"
-    } else:macx {
-        DESTDIRAPPNAME = "Qt Creator"
-        DESTDIRBASE = "$$(HOME)/Library/Application Support"
-    } else:unix {
-        DESTDIRAPPNAME = "qtcreator"
-        DESTDIRBASE = "$$(XDG_DATA_HOME)"
-        isEmpty(DESTDIRBASE):DESTDIRBASE = "$$(HOME)/.local/share/data"
-        else:DESTDIRBASE = "$$DESTDIRBASE/data"
     }
     DESTDIR = "$$DESTDIRBASE/$$DESTDIRAPPNAME/plugins/$$FEEM_VERSION"
 }
+
 LIBS += -L$$DESTDIR
 INCLUDEPATH += $$OUT_PWD
 
 # copy the plugin spec
 isEmpty(TARGET) {
-    error("qtcreatorplugin.pri: You must provide a TARGET")
+    error("feemplugin.pri: You must provide a TARGET")
 }
 
 PLUGINJSON = $$_PRO_FILE_PWD_/$${TARGET}.json

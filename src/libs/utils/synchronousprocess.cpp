@@ -169,7 +169,7 @@ QString SynchronousProcessResponse::stdErr() const
     return SynchronousProcess::normalizeNewlines(codec->toUnicode(rawStdErr));
 }
 
-QTCREATOR_UTILS_EXPORT QDebug operator<<(QDebug str, const SynchronousProcessResponse& r)
+FEEM_UTILS_EXPORT QDebug operator<<(QDebug str, const SynchronousProcessResponse& r)
 {
     QDebug nsp = str.nospace();
     nsp << "SynchronousProcessResponse: result=" << r.result << " ex=" << r.exitCode << '\n'

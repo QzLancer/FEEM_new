@@ -1,6 +1,6 @@
 #pragma once
 
-//#include <coreplugin/core_global.h>
+#include <coreplugin/core_global.h>
 #include "id.h"
 
 //#include <utils/hostosinfo.h>
@@ -20,7 +20,7 @@ class Context;
 
 //constexpr bool useMacShortcuts = Utils::HostOsInfo::isMacHost();
 
-class Command : public QObject
+class CORE_EXPORT Command : public QObject
 {
     Q_OBJECT
 public:

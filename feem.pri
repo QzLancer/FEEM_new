@@ -76,7 +76,7 @@ isEmpty(IDE_LIBRARY_BASENAME) {
 }
 # 源代码根目录
 IDE_SOURCE_TREE = $$PWD
-FEEM_PREFIX = $$IDE_BUILD_TREE
+FEEM_PREFIX = $$IDE_SOURCE_TREE
 # build目录
 isEmpty(IDE_BUILD_TREE) {
     sub_dir = $$_PRO_FILE_PWD_
@@ -93,7 +93,7 @@ osx {
     IDE_APP_TARGET   = $$IDE_ID
 
     # target output path if not set manually
-    isEmpty(IDE_OUTPUT_PATH): IDE_OUTPUT_PATH = $$IDE_BUILD_TREE
+    isEmpty(IDE_OUTPUT_PATH): IDE_OUTPUT_PATH = $$IDE_SOURCE_TREE
 
     IDE_LIBRARY_PATH = $$IDE_OUTPUT_PATH/$$IDE_LIBRARY_BASENAME
     IDE_PLUGIN_PATH  = $$IDE_LIBRARY_PATH/plugins

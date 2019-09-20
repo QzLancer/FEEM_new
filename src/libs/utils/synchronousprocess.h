@@ -40,7 +40,7 @@ namespace Utils {
 class SynchronousProcessPrivate;
 
 /* Result of SynchronousProcess execution */
-class QTCREATOR_UTILS_EXPORT SynchronousProcessResponse
+class FEEM_UTILS_EXPORT SynchronousProcessResponse
 {
 public:
     enum Result {
@@ -74,12 +74,12 @@ public:
     QTextCodec *codec = QTextCodec::codecForLocale();
 };
 
-QTCREATOR_UTILS_EXPORT QDebug operator<<(QDebug str, const SynchronousProcessResponse &);
+FEEM_UTILS_EXPORT QDebug operator<<(QDebug str, const SynchronousProcessResponse &);
 
 using ExitCodeInterpreter = std::function<SynchronousProcessResponse::Result(int /*exitCode*/)>;
-QTCREATOR_UTILS_EXPORT SynchronousProcessResponse::Result defaultExitCodeInterpreter(int code);
+FEEM_UTILS_EXPORT SynchronousProcessResponse::Result defaultExitCodeInterpreter(int code);
 
-class QTCREATOR_UTILS_EXPORT SynchronousProcess : public QObject
+class FEEM_UTILS_EXPORT SynchronousProcess : public QObject
 {
     Q_OBJECT
 public:

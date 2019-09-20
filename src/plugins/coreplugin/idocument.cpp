@@ -1,6 +1,6 @@
 #include "idocument.h"
 
-#include "filename.h"
+#include <utils/filename.h>
 
 //#include "infobar.h"
 

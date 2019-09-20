@@ -1,6 +1,6 @@
 #pragma once
 
-//#include "coreplugin/core_global.h"
+#include "coreplugin/core_global.h"
 //#include "coreplugin/icontext.h"
 
 #include <QObject>
@@ -18,7 +18,7 @@ QT_END_NAMESPACE
 
 class Command;
 
-class ActionContainer : public QObject
+class CORE_EXPORT ActionContainer : public QObject
 {
     Q_OBJECT
 

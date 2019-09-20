@@ -101,6 +101,7 @@ int main(int argc, char *argv[])
     PluginSpec *coreplugin = nullptr;
     foreach (PluginSpec *spec, plugins) {
         if (spec->name() == QLatin1String(corePluginNameC)) {
+            qDebug()<<"Load core plugin...";
             coreplugin = spec;
             break;
         }
