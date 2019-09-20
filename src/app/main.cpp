@@ -1,3 +1,5 @@
+#include "QtnRibbonStyle.h"
+
 #include <extensionsystem/iplugin.h>
 #include <extensionsystem/pluginerroroverview.h>
 #include <extensionsystem/pluginmanager.h>
@@ -38,7 +40,7 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-
+    app.setStyle( new Qtitan::RibbonStyle() );
     /** 初始化插件管理器 **/
     PluginManager pluginManager;
     PluginManager::setPluginIID(QLatin1String("org.hit.feem.feemPlugin"));

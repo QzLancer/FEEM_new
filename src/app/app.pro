@@ -7,6 +7,8 @@ VERSION = $$FEEM_VERSION
 
 SOURCES += main.cpp
 
+include($$PWD/../libs/qtribbon/ribbonsample/qtitanribbon.pri)
+
 LIBS *= -l$$feemLibraryName(ExtensionSystem) -l$$feemLibraryName(QtRibbon) -l$$feemLibraryName(Utils)
 
 win32 {

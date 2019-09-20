@@ -49,6 +49,9 @@ void MainWindow::init()
     Qtitan::OfficeStyle* st = (Qtitan::OfficeStyle*)qApp->style();
     Qtitan::OfficeStyle::Theme theme = Qtitan::OfficeStyle::Office2010Silver;
 
+    QWidget* w = new QWidget(this);
+    setCentralWidget(w);
+
     st->setTheme(theme);
 
     updateActionsTheme();

@@ -160,7 +160,9 @@ QObject *CorePlugin::remoteCommand(const QStringList & /* options */,
 //    IDocument *res = m_mainWindow->openFiles(
 //                args, ICore::OpenFilesFlags(ICore::SwitchMode | ICore::CanContainLineAndColumnNumbers | ICore::SwitchSplitIfAlreadyVisible),
 //                workingDirectory);
-//    m_mainWindow->raiseWindow();
+    m_mainWindow->setWindowState(m_mainWindow->windowState() & ~Qt::WindowMinimized);
+    m_mainWindow->raise();
+    m_mainWindow->activateWindow();
 //    return res;
     return nullptr;
 }
