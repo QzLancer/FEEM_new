@@ -79,9 +79,12 @@ contains(QT_CONFIG, reduce_exports):CONFIG += hide_symbols
 
 TEMPLATE = lib
 CONFIG += plugin plugin_with_soname
-
+# 安装的目录，只有在安装的时候才会用到
 target.path = $$INSTALL_PLUGIN_PATH
 INSTALLS += target
-
+# 定义将dll拷贝的位置
+win32 {
+    DLLDESTDIR = $$INSTALL_PLUGIN_PATH
+}
 TARGET = $$feemLibraryTargetName($$TARGET)
 

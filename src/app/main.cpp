@@ -78,7 +78,6 @@ int main(int argc, char *argv[])
 //    }
     /** 载入插件 **/
     const QStringList pluginPaths = getPluginPaths();// + options.customPluginPaths;
-    qDebug()<<pluginPaths;
     PluginManager::setPluginPaths(pluginPaths);
     QMap<QString, QString> foundAppOptions;
 //    if (pluginArguments.size() > 1) {
@@ -103,7 +102,6 @@ int main(int argc, char *argv[])
     PluginSpec *coreplugin = nullptr;
     foreach (PluginSpec *spec, plugins) {
         if (spec->name() == QLatin1String(corePluginNameC)) {
-            qDebug()<<"Load core plugin...";
             coreplugin = spec;
             break;
         }

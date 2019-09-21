@@ -19,6 +19,8 @@
 #include <QMenu>
 #include <QUuid>
 
+#include <QSplashScreen>
+
 #include <cstdlib>
 
 //using namespace Core;
@@ -85,14 +87,14 @@ bool CorePlugin::initialize(const QStringList &arguments, QString *errorMessage)
     /** 创建action管理器，保存所有的actions **/
     new ActionManager(this);
     /** 欢迎页面 **/
-//    QSplashScreen* splash = new QSplashScreen;
+    QSplashScreen* splash = new QSplashScreen;
 
-//    QPixmap pixmap(":/main/splash.png");
-//    splash->setPixmap(pixmap);
-//    splash->setAttribute(Qt::WA_DeleteOnClose);
-//    splash->show();
-//    splash->showMessage(QObject::tr("Loading..."),
-//                        Qt::AlignRight|Qt::AlignBottom,Qt::black);
+    QPixmap pixmap(":/main/splash.png");
+    splash->setPixmap(pixmap);
+    splash->setAttribute(Qt::WA_DeleteOnClose);
+    splash->show();
+    splash->showMessage(QObject::tr("Loading..."),
+                        Qt::AlignRight|Qt::AlignBottom,Qt::black);
 //    QDateTime n=QDateTime::currentDateTime();
 //    QDateTime now;
 //    do{
@@ -103,9 +105,9 @@ bool CorePlugin::initialize(const QStringList &arguments, QString *errorMessage)
     m_mainWindow = new MainWindow;
     m_mainWindow->setWindowTitle("FEEM");
 
-    m_mainWindow->showMaximized();
-    m_mainWindow->show();
-    m_mainWindow->setFocus();
+//    m_mainWindow->showMaximized();
+//    m_mainWindow->show();
+//    m_mainWindow->setFocus();
 
 //    splash->raise();
 //    splash->showMessage(QObject::tr("Loading..."),
@@ -160,9 +162,9 @@ QObject *CorePlugin::remoteCommand(const QStringList & /* options */,
 //    IDocument *res = m_mainWindow->openFiles(
 //                args, ICore::OpenFilesFlags(ICore::SwitchMode | ICore::CanContainLineAndColumnNumbers | ICore::SwitchSplitIfAlreadyVisible),
 //                workingDirectory);
-    m_mainWindow->setWindowState(m_mainWindow->windowState() & ~Qt::WindowMinimized);
-    m_mainWindow->raise();
-    m_mainWindow->activateWindow();
+//    m_mainWindow->setWindowState(m_mainWindow->windowState() & ~Qt::WindowMinimized);
+//    m_mainWindow->raise();
+//    m_mainWindow->activateWindow();
 //    return res;
     return nullptr;
 }
