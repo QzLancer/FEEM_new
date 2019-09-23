@@ -10,3 +10,98 @@
 需要注意的是，必须是MSVC版本的Qt，因为目前某些库对该编译器有依赖，5.0版本以上理论上都可以编译通过。
 \section{编译过程}
 使用Qtcreator或者Visual Studio打开feem.pro文件，全部构建即可。
+\section{插件式开发}
+目前项目的开发，已经逐渐从前期的混乱式的编写，转向插件模块式的开发，希望能够获得更好的代码分离。编写的基础是qt的插件系统，
+\subsection{action的管理}
+对于一个大型的软件，操作动作多到数不胜数，如果还是那种零零散散的进行action的创建，那么对于后期的开发和扩展没有一点好处，也不方便别的开发人员进行调用和维护。所以就需要对action进行很好的管理，比如，需要一个东西来保存所有的action，能够实现基本的添加、删除、查找等基本的操作。重要的是，现在的软件都分为很多不同的模块，而不同的模块有时针对相同的快捷键都有反馈，因此，还需要判断程序当前的状态来确定调用哪一个action。
+
+在这方面，有一些比较好的代码编写习惯。比如，对于一些固定的名称，定义为常变量。
+\subsection{菜单的创建}
+action只是指定了操作的动作，而菜单是一种控件。所以二者具有本质区别，不可直接的转化。但是可以构造。编写的思路是对actioncontainer进行继承。不管是菜单还是菜单栏，都是可以看作是由和多action组成的，那么可以定义一个子类，这个子类利用所拥有的actions创建出菜单。外部想要菜单的时候，只需要访问某个函数即可。
+\subsection{ribbon类型的菜单创建}
+ribbon改写的思路基本上跟菜单创建的原理一致。但是ribbon可能稍微复杂一点。因为ribbon的包含不是菜单，它是由不同的page组成的，不同的page又包含不同的group。有一点比较难处理。菜单可以有子菜单，但是group不能再分了。还有就是ribbon是可以放控件的，这样的话能放widget吗？还需要考虑动作的状态，是隐藏还是不可用还是可用？
+\subsection{插件项目的创建}
+1.如果想要添加一个新的插件，首先是找到plugins目录，然后在该目录下新建一个代表你的插件名称的文件夹；
+
+2.然后，需要在该目录下添加一下文件：插件名.pro（插件的项目文件呢），插件名\_dependencies.pri（描述插件依赖项的文件，参考别的插件的写法），插件名.json.in（描述插件信息的文件），插件名\_global.h（定义导出宏）；
+
+3.然后需要修改上一个目录当中的plugins.pro文件，也就是将本项目添加到SUBDIRS的列表当中；
+
+4.接下来就是开始创建插件的C++源代码了。所有的插件类都继承于iplugin类。具体的写法参考一些已经写好的插件。有一些函数是必须要实现的，例如初始化函数。
+
+大概完成以上步骤就可以开始编写你的插件了，按照上述方法一般情况下你无需再进行别的操作，比如要不要考虑头文件，想要用某个链接库怎么办？只要设置好相关的依赖，qmake就已经自动地添加了相关的东西来保证你能够正常的调用相关的模块。注意，你编译成功的插件一般要于主程序的版本一致，主程序的代码如果发生了改变，一般插件的代码也要重新编译。插件的信息非常重要，如果与主程序定义的不一致，则不能被成功的读取。
+
+\begin{lstlisting}
+%PluginName%Plugin::%PluginName%Plugin()
+{
+    // Create your members
+}
+
+%PluginName%Plugin::~%PluginName%Plugin()
+{
+    // Unregister objects from the plugin manager's object pool
+    // Delete members
+}
+
+bool %PluginName%Plugin::initialize(const QStringList &arguments, QString*errorString)
+{
+    // Register objects in the plugin manager's object pool
+    // Load settings
+    // Add actions to menus
+    // Connect to other plugins' signals
+    // In the initialize function, a plugin can be sure that the plugins it
+    // depends on have initialized their members.
+
+    Q_UNUSED(arguments)
+    Q_UNUSED(errorString)
+
+    auto action = new QAction(tr("%PluginName% Action"), this);
+    Core::Command *cmd = Core::ActionManager::registerAction(action,Constants::ACTION_ID,
+                         Core::Context(Core::Constants::C_GLOBAL));
+    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Alt+Meta+A")));
+    connect(action, &QAction::triggered, this, %PluginName%Plugin::triggerAction);
+
+    Core::ActionContainer *menu = Core::ActionManager::createMen(Constants::MENU_ID);
+    menu->menu()->setTitle(tr("%PluginName%"));
+    menu->addAction(cmd);
+    Core::ActionManager::actionContainer(Core::Constants::M_TOOLS)->addMen(menu);
+
+    return true;
+}
+    
+void %PluginName%Plugin::extensionsInitialized()
+{
+    // Retrieve objects from the plugin manager's object pool
+    // In the extensionsInitialized function, a plugin can be sure that all
+    // plugins that depend on it are completely initialized.
+}
+
+ExtensionSystem::IPlugin::ShutdownFlag %PluginName%Plugin::aboutToShutdown()
+{
+    // Save settings
+    // Disconnect from signals that are not needed during shutdown
+    // Hide UI (if you add UI that is not in the main window directly)
+    return SynchronousShutdown;
+}
+
+void %PluginName%Plugin::triggerAction()
+{
+    QMessageBox::information(Core::ICore::mainWindow(),
+                             tr("Action Triggered"),
+                             tr("This is an action from %PluginName%."));
+}   
+\end{lstlisting}
+\subsection{库文件的创建}
+链接库的创建步骤与插件类似，只是放置在libs文件夹下。库文件也没有什么固定的写法，只需要设置好导出宏，最后就可以生成dll文件。在pro文件当中需要添加宏定义，这样编译的时候才会生成dll。
+\begin{lstlisting}
+#pragma once
+#include <qglobal.h>
+
+#if defined(%YOURLIBNAME%_LIBRARY)
+#  define %YOURLIBNAME%_EXPORT Q_DECL_EXPORT
+#elif defined(%YOURLIBNAME%_STATIC_LIBRARY)
+#  define %YOURLIBNAME%_EXPORT
+#else
+#  define %YOURLIBNAME%_EXPORT Q_DECL_IMPORT
+#endif
+\end{lstlisting}

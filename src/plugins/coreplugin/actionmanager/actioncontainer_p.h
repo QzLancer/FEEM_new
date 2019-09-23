@@ -5,7 +5,7 @@
 #include "actioncontainer.h"
 #include "command.h"
 
-//namespace Core {
+namespace Core {
 //namespace Internal {
 
 struct Group
@@ -114,4 +114,4 @@ private:
 };
 
 //} // namespace Internal
-//} // namespace Core
+} // namespace Core

@@ -33,7 +33,7 @@
     non-file documents.
     \sa setFilePath()
 */
-
+namespace Core {
 class IDocumentPrivate
 {
 public:
@@ -363,3 +363,4 @@ QString IDocument::uniqueDisplayName() const
     return d->uniqueDisplayName;
 }
 
+} // namespace Core

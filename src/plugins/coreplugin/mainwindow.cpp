@@ -21,6 +21,7 @@
 #include "actionmanager/command.h"
 #include "ouptput/messagemanager.h"
 
+namespace Core {
 
 MainWindow::MainWindow(QWidget *parent)
     : RibbonWindow(parent)
@@ -48,9 +49,10 @@ void MainWindow::init()
     /** Qribbon更新主题 **/
     Qtitan::OfficeStyle* st = (Qtitan::OfficeStyle*)qApp->style();
     Qtitan::OfficeStyle::Theme theme = Qtitan::OfficeStyle::Office2010Silver;
-
+    setFixedSize(500,500);
     QWidget* w = new QWidget(this);
     setCentralWidget(w);
+
 
     st->setTheme(theme);
 
@@ -74,3 +76,5 @@ void MainWindow::registerDefaultActions()
 {
 
 }
+
+} // namespace Core

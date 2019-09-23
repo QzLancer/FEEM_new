@@ -1,7 +1,7 @@
 #ifndef CONTEXT_H
 #define CONTEXT_H
 
-//#include <coreplugin/core_global.h>
+#include "core_global.h"
 #include "id.h"
 
 #include <QList>
@@ -11,9 +11,9 @@
 
 #include <functional>
 
-//namespace Core {
+namespace Core {
 
-class Context
+class CORE_EXPORT Context
 {
 public:
     Context() = default;
@@ -41,7 +41,7 @@ private:
     QList<Id> d;
 };
 
-class IContext : public QObject
+class CORE_EXPORT IContext : public QObject
 {
     Q_OBJECT
 public:
@@ -62,5 +62,6 @@ protected:
     QString m_contextHelpId;
 };
 
-QDebug operator<<(QDebug debug, const Context &context);
+} // namespace Core
+QDebug operator<<(QDebug debug, const Core::Context &context);
 #endif // CONTEXT_H

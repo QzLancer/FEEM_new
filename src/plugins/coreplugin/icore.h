@@ -1,7 +1,7 @@
 #ifndef ICORE_H
 #define ICORE_H
 
-//#include "core_global.h"
+#include "core_global.h"
 #include "id.h"
 
 #include <QMainWindow>
@@ -18,7 +18,7 @@ class QWidget;
 template <typename T> class QList;
 QT_END_NAMESPACE
 
-//namespace Core {
+namespace Core {
 //class IWizardFactory;
 class Context;
 class IContext;
@@ -28,7 +28,7 @@ class IContext;
 class MainWindow;
 //}
 
-class ICore : public QObject
+class CORE_EXPORT ICore : public QObject
 {
     Q_OBJECT
 
@@ -139,6 +139,6 @@ private:
 //    static void updateNewItemDialogState();
 };
 
-//} // namespace Core
+} // namespace Core
 
 #endif // ICORE_H

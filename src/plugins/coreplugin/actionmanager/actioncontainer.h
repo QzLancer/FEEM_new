@@ -14,7 +14,7 @@ class QMenuBar;
 class QAction;
 QT_END_NAMESPACE
 
-//namespace Core {
+namespace Core {
 
 class Command;
 
@@ -51,4 +51,4 @@ public:
     virtual void clear() = 0;
 };
 
-//} // namespace Core
+} // namespace Core

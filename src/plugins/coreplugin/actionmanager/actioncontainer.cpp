@@ -15,7 +15,7 @@
 
 //Q_DECLARE_METATYPE(Core::Internal::MenuActionContainer*)
 
-//namespace Core {
+namespace Core {
 //namespace Internal {
 
 /*!
@@ -536,4 +536,4 @@ Command *ActionContainer::addSeparator(Id group)
     return addSeparator(context, group);
 }
 
-//} // namespace Core
+} // namespace Core

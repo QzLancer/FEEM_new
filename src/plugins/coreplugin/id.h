@@ -2,7 +2,7 @@
 #define ID_H
 
 
-//#include "core_global.h"
+#include "core_global.h"
 
 #include <QMetaType>
 #include <QString>
@@ -12,9 +12,9 @@ class QDataStream;
 class QVariant;
 QT_END_NAMESPACE
 
-//namespace Core {
+namespace Core {
 
-class Id
+class CORE_EXPORT Id
 {
 public:
     Id() = default;
@@ -57,15 +57,15 @@ private:
 
 inline uint qHash(Id id) { return static_cast<uint>(id.uniqueIdentifier()); }
 
-//} // namespace Core
+} // namespace Core
 
-Q_DECLARE_METATYPE(Id)
-Q_DECLARE_METATYPE(QList<Id>)
+Q_DECLARE_METATYPE(Core::Id)
+Q_DECLARE_METATYPE(QList<Core::Id>)
 
 QT_BEGIN_NAMESPACE
-QDataStream &operator<<(QDataStream &ds, Id id);
-QDataStream &operator>>(QDataStream &ds, Id &id);
-QDebug operator<<(QDebug dbg, const Id &id);
+QDataStream &operator<<(QDataStream &ds, Core::Id id);
+QDataStream &operator>>(QDataStream &ds, Core::Id &id);
+QDebug operator<<(QDebug dbg, const Core::Id &id);
 QT_END_NAMESPACE
 
 #endif // ID_H

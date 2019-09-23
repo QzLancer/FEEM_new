@@ -14,7 +14,7 @@ class QToolButton;
 QT_END_NAMESPACE
 
 
-//namespace Core {
+namespace Core {
 
 class Context;
 
@@ -66,6 +66,6 @@ signals:
     void activeStateChanged();
 };
 
-//} // namespace Core
+} // namespace Core
 
 //Q_DECLARE_OPERATORS_FOR_FLAGS(Command::CommandAttributes)

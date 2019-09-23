@@ -149,7 +149,7 @@ Command对象表示用户可见操作及其属性。
 可以从脚本调用可编写脚本的命令，而无需用户与其进行交互。
 */
 
-//namespace Core {
+namespace Core {
 //namespace Internal {
 
 /*!
@@ -393,4 +393,4 @@ QToolButton *Command::toolButtonWithAppendedShortcut(QAction *action, Command *c
     return button;
 }
 
-//} // namespace Core
+} // namespace Core

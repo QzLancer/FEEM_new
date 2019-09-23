@@ -1,23 +1,21 @@
 #ifndef IDOCUMENT_H
 #define IDOCUMENT_H
 
-//#include "core_global.h"
+#include "core_global.h"
 
 #include <QObject>
 
-//namespace Utils { class FileName; }
+class FileName;
 
-//namespace Core {
+namespace Core {
 class Id;
 //class InfoBar;
-
-class FileName;
 
 //namespace Internal {
 class IDocumentPrivate;
 //}
 
-class IDocument : public QObject
+class CORE_EXPORT IDocument : public QObject
 {
     Q_OBJECT
 
@@ -128,7 +126,7 @@ private:
     IDocumentPrivate *d;
 };
 
-//} // namespace Core
+} // namespace Core
 
 
 #endif // IDOCUMENT_H

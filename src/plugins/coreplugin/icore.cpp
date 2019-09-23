@@ -265,7 +265,7 @@
 //using namespace Core::Internal;
 //using namespace ExtensionSystem;
 
-//namespace Core {
+namespace Core {
 
 // The Core Singleton
 static ICore *m_instance = nullptr;
@@ -677,4 +677,4 @@ QStatusBar *ICore::statusBar()
 //    emit instance()->newItemDialogStateChanged();
 //}
 
-//} // namespace Core
+} // namespace Core

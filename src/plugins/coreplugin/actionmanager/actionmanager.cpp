@@ -23,7 +23,7 @@ namespace {
 
 static const char kKeyboardSettingsKey[] = "KeyboardShortcuts";
 
-//using namespace Core;
+using namespace Core;
 //using namespace Core::Internal;
 
 /*!

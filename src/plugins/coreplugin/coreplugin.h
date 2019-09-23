@@ -1,7 +1,7 @@
 #pragma once
 
 #include <extensionsystem/iplugin.h>
-
+namespace Core {
 class MainWindow;
 
 class CorePlugin : public ExtensionSystem::IPlugin
@@ -29,3 +29,5 @@ public slots:
 private:
     MainWindow *m_mainWindow = nullptr;
 };
+
+} // namespace Core

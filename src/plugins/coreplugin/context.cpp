@@ -2,11 +2,11 @@
 
 #include <QDebug>
 
-QDebug operator<<(QDebug debug, const Context &context)
+QDebug operator<<(QDebug debug, const Core::Context &context)
 {
     debug.nospace() << "Context(";
-    Context::const_iterator it = context.begin();
-    Context::const_iterator end = context.end();
+    Core::Context::const_iterator it = context.begin();
+    Core::Context::const_iterator end = context.end();
     if (it != end) {
         debug << *it;
         ++it;

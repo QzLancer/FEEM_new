@@ -9,6 +9,9 @@
 
 #include "ribbonwindow.h"
 
+namespace Core {
+
+
 class PF_ActionHandler;
 class PF_WidgetFactory;
 class PF_ActionGroupManager;
@@ -49,5 +52,5 @@ private:
 
     QMap<QWidget *, IContext *> m_contextWidgets;
 };
-
+} //namespace Core
 #endif // MAINWINDOW_H

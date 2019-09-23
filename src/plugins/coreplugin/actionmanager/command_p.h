@@ -13,7 +13,7 @@
 #include <QMap>
 #include <QKeySequence>
 
-//namespace Core {
+namespace Core {
 //namespace Internal {
 
 class Action : public Command
@@ -73,4 +73,4 @@ private:
 };
 
 //} // namespace Internal
-//} // namespace Core
+} // namespace Core

@@ -10,7 +10,7 @@
 #include <QMultiHash>
 #include <QTimer>
 
-//namespace Core {
+namespace Core {
 
 //namespace Internal {
 
@@ -52,4 +52,4 @@ public:
 };
 
 //} // namespace Internal
-//} // namespace Core
+} // namespace Core

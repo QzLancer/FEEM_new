@@ -11,7 +11,7 @@
 
 #include <string.h>
 
-//namespace Core {
+namespace Core {
 
 /*!
     \class Core::Id
@@ -306,24 +306,24 @@ QString Id::suffixAfter(Id baseId) const
     return n.startsWith(b) ? QString::fromUtf8(n.mid(b.size())) : QString();
 }
 
-//} // namespace Core
+} // namespace Core
 
 QT_BEGIN_NAMESPACE
 
-QDataStream &operator<<(QDataStream &ds, Id id)
+QDataStream &operator<<(QDataStream &ds, Core::Id id)
 {
     return ds << id.name();
 }
 
-QDataStream &operator>>(QDataStream &ds, Id &id)
+QDataStream &operator>>(QDataStream &ds, Core::Id &id)
 {
     QByteArray ba;
     ds >> ba;
-    id = Id::fromName(ba);
+    id = Core::Id::fromName(ba);
     return ds;
 }
 
-QDebug operator<<(QDebug dbg, const Id &id)
+QDebug operator<<(QDebug dbg, const Core::Id &id)
 {
     return dbg << id.name();
 }

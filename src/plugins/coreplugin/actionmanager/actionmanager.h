@@ -13,7 +13,7 @@ class QAction;
 class QString;
 QT_END_NAMESPACE
 
-//namespace Core {
+namespace Core {
 
 class ActionContainer;
 class Command;
@@ -63,4 +63,4 @@ public:
     friend class MainWindow;
 };
 
-//} // namespace Core
+} // namespace Core
