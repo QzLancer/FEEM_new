@@ -4,6 +4,7 @@ TEMPLATE  = subdirs
 
 SUBDIRS   = \
     coreplugin \
+	CAD \
 
 for(p, SUBDIRS) {
     FEEM_PLUGIN_DEPENDS =

@@ -1,9 +1,9 @@
 #pragma once
 
 #include "coreplugin/core_global.h"
-#include "constants.h"
-#include "context.h"
-#include "command.h"
+#include "coreplugin/constants.h"
+#include "coreplugin/context.h"
+#include "coreplugin/actionmanager/command.h"
 
 #include <QObject>
 #include <QList>

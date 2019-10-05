@@ -1,7 +1,7 @@
 #pragma once
 
 #include <coreplugin/core_global.h>
-#include "id.h"
+#include "coreplugin/id.h"
 
 //#include <utils/hostosinfo.h>
 
