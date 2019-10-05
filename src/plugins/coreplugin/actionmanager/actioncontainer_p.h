@@ -15,6 +15,10 @@ struct Group
     QList<QObject *> items; // Command * or ActionContainer *
 };
 
+/**
+ * @brief 作为一个中间类，过渡作用，只是作为一个容器，和控件不挂钩。
+ *
+ */
 class ActionContainerPrivate : public ActionContainer
 {
     Q_OBJECT
@@ -30,8 +34,12 @@ public:
     void appendGroup(Id id) override;
     void insertGroup(Id before, Id groupId) override;
     void addAction(Command *action, Id group = Id()) override;
-    void addMenu(ActionContainer *menu, Id group = Id()) override;
-    void addMenu(ActionContainer *before, ActionContainer *menu, Id group = Id()) override;
+    void addMenu(ActionContainer *menu, Id groupId = Id()) override;
+    void addMenu(ActionContainer *before, ActionContainer *menu, Id groupId = Id()) override;
+    void addPage(ActionContainer *page, Id groupId = Id()) override;
+    void addPage(ActionContainer *before, ActionContainer *page, Id groupId = Id()) override;
+    void addGroup(ActionContainer *group, Id groupId = Id()) override;
+    void addGroup(ActionContainer *before, ActionContainer *group, Id groupId = Id()) override;
     Command *addSeparator(const Context &context, Id group = Id(), QAction **outSeparator = nullptr) override;
     void clear() override;
 
@@ -39,9 +47,14 @@ public:
 
     QMenu *menu() const override;
     QMenuBar *menuBar() const override;
+    Qtitan::RibbonBar* ribbonBar() const override;
+    Qtitan::RibbonPage* ribbonPage() const override;
+    Qtitan::RibbonGroup* ribbonGroup() const override;
 
     virtual void insertAction(QAction *before, QAction *action) = 0;
     virtual void insertMenu(QAction *before, QMenu *menu) = 0;
+    virtual void insertPage(int index, Qtitan::RibbonPage* page) = 0;
+    virtual void insertGroup(int index, Qtitan::RibbonGroup* group) = 0;
 
     virtual void removeAction(QAction *action) = 0;
     virtual void removeMenu(QMenu *menu) = 0;
@@ -52,6 +65,8 @@ protected:
     bool canAddAction(Command *action) const;
     bool canAddMenu(ActionContainer *menu) const;
     virtual bool canBeAddedToMenu() const = 0;
+    virtual bool canBeAddedToRibbonBar() const = 0;
+    virtual bool canBeAddedToPage() const = 0;
 
     // groupId --> list of Command* and ActionContainer*
     QList<Group> m_groups;
@@ -79,12 +94,16 @@ public:
 
     void insertAction(QAction *before, QAction *action) override;
     void insertMenu(QAction *before, QMenu *menu) override;
+    void insertPage(int index, Qtitan::RibbonPage* page) override;
+    void insertGroup(int index, Qtitan::RibbonGroup* group) override;
 
     void removeAction(QAction *action) override;
     void removeMenu(QMenu *menu) override;
 
 protected:
     bool canBeAddedToMenu() const override;
+    bool canBeAddedToRibbonBar() const override;
+    bool canBeAddedToPage() const override;
     bool updateInternal() override;
 
 private:
@@ -101,17 +120,110 @@ public:
 
     void insertAction(QAction *before, QAction *action) override;
     void insertMenu(QAction *before, QMenu *menu) override;
+    void insertPage(int index, Qtitan::RibbonPage* page) override;
+    void insertGroup(int index, Qtitan::RibbonGroup* group) override;
 
     void removeAction(QAction *action) override;
     void removeMenu(QMenu *menu) override;
 
 protected:
     bool canBeAddedToMenu() const override;
+    bool canBeAddedToRibbonBar() const override;
+    bool canBeAddedToPage() const override;
     bool updateInternal() override;
 
 private:
     QMenuBar *m_menuBar;
 };
 
+/**
+ * @brief 要构造出RibbonBar控件，只实现必要的部分。
+ *
+ */
+class RibbonBarActionContainer : public ActionContainerPrivate
+{
+public:
+    explicit RibbonBarActionContainer(Id id);
+
+    void setRibbonBar(Qtitan::RibbonBar *ribbonBar);
+    Qtitan::RibbonBar *ribbonBar() const override;
+
+    void insertAction(QAction *before, QAction *action) override;
+    void insertMenu(QAction *before, QMenu *menu) override;
+    void insertPage(int index, Qtitan::RibbonPage* page) override;
+    void insertGroup(int index, Qtitan::RibbonGroup* group) override;
+
+    void removeAction(QAction *action) override;
+    void removeMenu(QMenu *menu) override;
+
+protected:
+    bool canBeAddedToMenu() const override;
+    bool canBeAddedToRibbonBar() const override;
+    bool canBeAddedToPage() const override;
+    bool updateInternal() override;
+
+private:
+    Qtitan::RibbonBar *m_ribbonBar;
+};
+
+/**
+ * @brief 保存RibbonPage的container，通过AM进行创建。
+ *
+ */
+class RibbonPageActionContainer : public ActionContainerPrivate
+{
+public:
+    explicit RibbonPageActionContainer(Id id);
+    ~RibbonPageActionContainer() override;
+
+    Qtitan::RibbonPage *ribbonPage() const override;
+
+    void insertAction(QAction *before, QAction *action) override;
+    void insertMenu(QAction *before, QMenu *menu) override;
+    void insertPage(int index, Qtitan::RibbonPage* page) override;
+    void insertGroup(int index, Qtitan::RibbonGroup* group) override;
+
+    void removeAction(QAction *action) override;
+    void removeMenu(QMenu *menu) override;
+
+protected:
+    bool canBeAddedToMenu() const override;
+    bool canBeAddedToRibbonBar() const override;
+    bool canBeAddedToPage() const override;
+    bool updateInternal() override;
+
+private:
+    Qtitan::RibbonPage *m_ribbonPage;
+};
+
+/**
+ * @brief 保存RibbonGroup的container，通过AM进行创建。
+ *
+ */
+class RibbonGroupActionContainer : public ActionContainerPrivate
+{
+public:
+    explicit RibbonGroupActionContainer(Id id);
+    ~RibbonGroupActionContainer() override;
+
+    Qtitan::RibbonGroup *ribbonGroup() const override;
+
+    void insertAction(QAction *before, QAction *action) override;
+    void insertMenu(QAction *before, QMenu *menu) override;
+    void insertPage(int index, Qtitan::RibbonPage* page) override;
+    void insertGroup(int index, Qtitan::RibbonGroup* group) override;
+
+    void removeAction(QAction *action) override;
+    void removeMenu(QMenu *menu) override;
+
+protected:
+    bool canBeAddedToMenu() const override;
+    bool canBeAddedToRibbonBar() const override;
+    bool canBeAddedToPage() const override;
+    bool updateInternal() override;
+
+private:
+    Qtitan::RibbonGroup *m_ribbonGroup;
+};
 //} // namespace Internal
 } // namespace Core

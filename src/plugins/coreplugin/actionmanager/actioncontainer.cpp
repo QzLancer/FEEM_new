@@ -1,3 +1,6 @@
+#include "QtnRibbonBar.h"
+#include "QtnRibbonGroup.h"
+#include "QtnRibbonPage.h"
 #include "actioncontainer_p.h"
 #include "actionmanager.h"
 
@@ -14,7 +17,7 @@
 #include <QMenuBar>
 
 //Q_DECLARE_METATYPE(Core::Internal::MenuActionContainer*)
-
+using namespace Qtitan;
 namespace Core {
 //namespace Internal {
 
@@ -168,6 +171,13 @@ QAction *ActionContainerPrivate::insertLocation(Id groupId) const
     return insertLocation(it);
 }
 
+/**
+ * @brief 查找位置groupId处的action，并返回。这里大概地思路是，要在groupId的位置插入，
+ * 就要先找它后面是谁，找到第一个action。
+ *
+ * @param group
+ * @return QAction
+ */
 QAction *ActionContainerPrivate::insertLocation(QList<Group>::const_iterator group) const
 {
     if (group == m_groups.constEnd())
@@ -198,9 +208,7 @@ void ActionContainerPrivate::addAction(Command *command, Id groupId)
 
     const Id actualGroupId = groupId.isValid() ? groupId : Id(Constants::G_DEFAULT_TWO);
     QList<Group>::const_iterator groupIt = findGroup(actualGroupId);
-    if(groupIt != m_groups.constEnd())
-        ;
-    else{
+    if(groupIt == m_groups.constEnd()){
         qDebug() << "Can't find group"
                  << groupId.name() << "in container" << id().name();
         return;
@@ -214,6 +222,12 @@ void ActionContainerPrivate::addAction(Command *command, Id groupId)
     scheduleUpdate();
 }
 
+/**
+ * @brief 在当前的container当中添加菜单类的container。
+ *
+ * @param menu
+ * @param groupId
+ */
 void ActionContainerPrivate::addMenu(ActionContainer *menu, Id groupId)
 {
     auto containerPrivate = static_cast<ActionContainerPrivate *>(menu);
@@ -223,9 +237,7 @@ void ActionContainerPrivate::addMenu(ActionContainer *menu, Id groupId)
     auto container = static_cast<MenuActionContainer *>(containerPrivate);
     const Id actualGroupId = groupId.isValid() ? groupId : Id(Constants::G_DEFAULT_TWO);
     QList<Group>::const_iterator groupIt = findGroup(actualGroupId);
-    if(groupIt != m_groups.constEnd())
-        ;
-    else
+    if(groupIt == m_groups.constEnd())
         return;
     QAction *beforeAction = insertLocation(groupIt);
     m_groups[groupIt-m_groups.constBegin()].items.append(menu);
@@ -244,9 +256,7 @@ void ActionContainerPrivate::addMenu(ActionContainer *before, ActionContainer *m
     auto container = static_cast<MenuActionContainer *>(containerPrivate);
     const Id actualGroupId = groupId.isValid() ? groupId : Id(Constants::G_DEFAULT_TWO);
     QList<Group>::const_iterator groupIt = findGroup(actualGroupId);
-    if(groupIt != m_groups.constEnd())
-        ;
-    else
+    if(groupIt == m_groups.constEnd())
         return;
     QAction *beforeAction = before->menu()->menuAction();
     m_groups[groupIt-m_groups.constBegin()].items.append(menu);
@@ -254,6 +264,64 @@ void ActionContainerPrivate::addMenu(ActionContainer *before, ActionContainer *m
     connect(menu, &QObject::destroyed, this, &ActionContainerPrivate::itemDestroyed);
     insertMenu(beforeAction, container->menu());
     scheduleUpdate();
+}
+
+/**
+ * @brief 将page添加到ribbonbar末尾。
+ *
+ * @param page
+ * @param groupId 应当是已有的id
+ */
+void ActionContainerPrivate::addPage(ActionContainer *page, Id groupId)
+{
+    auto containerPrivate = static_cast<ActionContainerPrivate *>(page);
+    if (!containerPrivate->canBeAddedToRibbonBar())
+        return;
+
+    auto container = static_cast<RibbonPageActionContainer *>(containerPrivate);
+    /** 确定groupId不存在 **/
+    const Id actualGroupId = groupId.isValid() ? groupId : Id(Constants::G_DEFAULT_TWO);
+    QList<Group>::const_iterator groupIt = findGroup(actualGroupId);
+    if(groupIt == m_groups.constEnd())
+        return;
+    QList<Group>::const_iterator it = m_groups.constBegin();
+    int insertLocation = 0;
+    while (it != m_groups.constEnd()) {
+        if(!m_groups[it - m_groups.constBegin()].items.isEmpty() && it > groupIt)
+            break;
+        if(!m_groups[it - m_groups.constBegin()].items.isEmpty()){
+            ++insertLocation;
+        }
+        ++it;
+    }
+
+    m_groups[groupIt-m_groups.constBegin()].items.append(page);
+    /** 删除 **/
+    connect(page, &QObject::destroyed, this, &ActionContainerPrivate::itemDestroyed);
+    /** 添加page，主要问题是插在哪个位置 **/
+    insertPage(insertLocation,container->ribbonPage());
+    scheduleUpdate();
+}
+
+void ActionContainerPrivate::addPage(ActionContainer *before, ActionContainer *page, Id groupId)
+{
+    auto containerPrivate = static_cast<ActionContainerPrivate *>(page);
+    if (!containerPrivate->canBeAddedToRibbonBar())
+        return;
+}
+
+void ActionContainerPrivate::addGroup(ActionContainer *group, Id groupId)
+{
+    auto containerPrivate = static_cast<ActionContainerPrivate *>(group);
+    if (!containerPrivate->canBeAddedToPage())
+        return;
+}
+
+void ActionContainerPrivate::addGroup(ActionContainer *before, ActionContainer *group, Id groupId)
+{
+    auto containerPrivate = static_cast<ActionContainerPrivate *>(group);
+    if (!containerPrivate->canBeAddedToPage())
+        return;
 }
 
 /*!
@@ -327,6 +395,21 @@ QMenuBar *ActionContainerPrivate::menuBar() const
     return nullptr;
 }
 
+RibbonBar *ActionContainerPrivate::ribbonBar() const
+{
+    return  nullptr;
+}
+
+RibbonPage *ActionContainerPrivate::ribbonPage() const
+{
+    return nullptr;
+}
+
+RibbonGroup *ActionContainerPrivate::ribbonGroup() const
+{
+    return nullptr;
+}
+
 bool ActionContainerPrivate::canAddAction(Command *action) const
 {
     return action && action->action();
@@ -381,6 +464,16 @@ void MenuActionContainer::insertMenu(QAction *before, QMenu *menu)
 {
     menu->setParent(m_menu, menu->windowFlags()); // work around issues with Qt Wayland (QTBUG-68636)
     m_menu->insertMenu(before, menu);
+}
+
+void MenuActionContainer::insertPage(int index, RibbonPage *page)
+{
+
+}
+
+void MenuActionContainer::insertGroup(int index, RibbonGroup *group)
+{
+
 }
 
 void MenuActionContainer::removeAction(QAction *action)
@@ -456,6 +549,16 @@ bool MenuActionContainer::canBeAddedToMenu() const
     return true;
 }
 
+bool MenuActionContainer::canBeAddedToRibbonBar() const
+{
+    return false;
+}
+
+bool MenuActionContainer::canBeAddedToPage() const
+{
+    return false;
+}
+
 
 // ---------- MenuBarActionContainer ------------
 
@@ -489,6 +592,16 @@ void MenuBarActionContainer::insertMenu(QAction *before, QMenu *menu)
 {
     menu->setParent(m_menuBar, menu->windowFlags()); // work around issues with Qt Wayland (QTBUG-68636)
     m_menuBar->insertMenu(before, menu);
+}
+
+void MenuBarActionContainer::insertPage(int index, RibbonPage *page)
+{
+
+}
+
+void MenuBarActionContainer::insertGroup(int index, RibbonGroup *group)
+{
+
 }
 
 void MenuBarActionContainer::removeAction(QAction *action)
@@ -528,12 +641,227 @@ bool MenuBarActionContainer::canBeAddedToMenu() const
     return false;
 }
 
+bool MenuBarActionContainer::canBeAddedToRibbonBar() const
+{
+    return false;
+}
+
+bool MenuBarActionContainer::canBeAddedToPage() const
+{
+    return false;
+}
+
 //} // namespace Internal
 
 Command *ActionContainer::addSeparator(Id group)
 {
     static const Context context(Constants::C_GLOBAL);
     return addSeparator(context, group);
+}
+
+RibbonBarActionContainer::RibbonBarActionContainer(Id id)
+    : ActionContainerPrivate(id), m_ribbonBar(nullptr)
+{
+    setOnAllDisabledBehavior(Show);
+}
+
+void RibbonBarActionContainer::setRibbonBar(RibbonBar *ribbonBar)
+{
+    m_ribbonBar = ribbonBar;
+}
+
+RibbonBar *RibbonBarActionContainer::ribbonBar() const
+{
+    return m_ribbonBar;
+}
+
+void RibbonBarActionContainer::insertAction(QAction *before, QAction *action)
+{
+
+}
+
+void RibbonBarActionContainer::insertMenu(QAction *before, QMenu *menu)
+{
+
+}
+
+void RibbonBarActionContainer::insertPage(int index, RibbonPage *page)
+{
+    m_ribbonBar->insertPage(index,page);
+}
+
+void RibbonBarActionContainer::insertGroup(int index, RibbonGroup *group)
+{
+
+}
+
+void RibbonBarActionContainer::removeAction(QAction *action)
+{
+
+}
+
+void RibbonBarActionContainer::removeMenu(QMenu *menu)
+{
+
+}
+
+bool RibbonBarActionContainer::canBeAddedToMenu() const
+{
+    return false;
+}
+
+bool RibbonBarActionContainer::canBeAddedToRibbonBar() const
+{
+    return false;
+}
+
+bool RibbonBarActionContainer::canBeAddedToPage() const
+{
+    return false;
+}
+
+bool RibbonBarActionContainer::updateInternal()
+{
+    return true;
+}
+
+RibbonPageActionContainer::RibbonPageActionContainer(Id id)
+    : ActionContainerPrivate(id),
+      m_ribbonPage(new RibbonPage(nullptr))
+{
+    setOnAllDisabledBehavior(Show);
+}
+
+RibbonPageActionContainer::~RibbonPageActionContainer()
+{
+    delete m_ribbonPage;
+}
+
+RibbonPage *RibbonPageActionContainer::ribbonPage() const
+{
+    return m_ribbonPage;
+}
+
+void RibbonPageActionContainer::insertAction(QAction *before, QAction *action)
+{
+
+}
+
+void RibbonPageActionContainer::insertMenu(QAction *before, QMenu *menu)
+{
+
+}
+
+void RibbonPageActionContainer::insertPage(int index, RibbonPage *page)
+{
+
+}
+
+void RibbonPageActionContainer::insertGroup(int index, RibbonGroup *group)
+{
+    m_ribbonPage->insertGroup(index,group);
+}
+
+void RibbonPageActionContainer::removeAction(QAction *action)
+{
+
+}
+
+void RibbonPageActionContainer::removeMenu(QMenu *menu)
+{
+
+}
+
+bool RibbonPageActionContainer::canBeAddedToMenu() const
+{
+    return false;
+}
+
+bool RibbonPageActionContainer::canBeAddedToRibbonBar() const
+{
+    return true;
+}
+
+bool RibbonPageActionContainer::canBeAddedToPage() const
+{
+    return false;
+}
+
+bool RibbonPageActionContainer::updateInternal()
+{
+    return false;
+}
+
+RibbonGroupActionContainer::RibbonGroupActionContainer(Id id)
+    : ActionContainerPrivate(id),
+      m_ribbonGroup(new RibbonGroup(nullptr))
+{
+    setOnAllDisabledBehavior(Show);
+}
+
+RibbonGroupActionContainer::~RibbonGroupActionContainer()
+{
+    delete m_ribbonGroup;
+}
+
+RibbonGroup *RibbonGroupActionContainer::ribbonGroup() const
+{
+    return m_ribbonGroup;
+}
+
+void RibbonGroupActionContainer::insertAction(QAction *before, QAction *action)
+{
+
+}
+
+void RibbonGroupActionContainer::insertMenu(QAction *before, QMenu *menu)
+{
+
+}
+
+void RibbonGroupActionContainer::insertPage(int index, RibbonPage *page)
+{
+
+}
+
+void RibbonGroupActionContainer::insertGroup(int index, RibbonGroup *group)
+{
+
+}
+
+void RibbonGroupActionContainer::removeAction(QAction *action)
+{
+
+}
+
+void RibbonGroupActionContainer::removeMenu(QMenu *menu)
+{
+
+}
+
+bool RibbonGroupActionContainer::canBeAddedToMenu() const
+{
+    return false;
+}
+
+/**
+ * @brief 正常说，一个group是可以添加到ribbonbar的，但是没有指定page位置。
+ *
+ * @return bool
+ */
+bool RibbonGroupActionContainer::canBeAddedToRibbonBar() const
+{
+    return false;
+}
+
+bool RibbonGroupActionContainer::canBeAddedToPage() const
+{
+    return true;
+}
+
+bool RibbonGroupActionContainer::updateInternal()
+{
+    return false;
 }
 
 } // namespace Core

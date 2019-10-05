@@ -1,6 +1,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+namespace Core {
 namespace Constants {
 /** 定义项目中的常量 **/
 
@@ -13,7 +14,7 @@ const char P_GEOMETRY[]                 = "FEEM.Page.Geometry";
 const char P_MATERIAL[]                 = "FEEM.Page.Material";
 const char P_MESH[]                     = "FEEM.Page.Mesh";
 const char P_SOLVER[]                   = "FEEM.Page.Solver";
-const char P_Result[]                   = "FEEM.Page.Result";
+const char P_RESULT[]                   = "FEEM.Page.Result";
 
 // Contexts menu
 const char C_GLOBAL[]                   = "Global Context";
@@ -32,7 +33,13 @@ const char G_DEFAULT_TWO[]              = "FEEM.Group.Default.Two";
 const char G_DEFAULT_THREE[]            = "FEEM.Group.Default.Three";
 
 /** RibbonBar groups **/
-
+const char G_HOME[]                     = "FEEM.Group.Home";
+const char G_DEFINITION[]               = "FEEM.Group.Definition";
+const char G_GEOMETRY[]                 = "FEEM.Group.Geometry";
+const char G_MATERIAL[]                 = "FEEM.Group.Material";
+const char G_MESH[]                     = "FEEM.Group.Mesh";
+const char G_SOLVER[]                   = "FEEM.Group.Solver";
+const char G_RESULT[]                   = "FEEM.Group.Result";
 /** Home RibbonBar page groups **/
 const char G_HOME_PROJECT[]             = "FEEM.Group.Home.Project";
 /** Definition RibbonBar page groups **/
@@ -58,5 +65,6 @@ const char G_SOLVE_SETTING[]            = "FEEM.Group.Solve.Setting";
 const char G_SOLVE_CLEAR[]              = "FEEM.Group.Solve.Clear";
 /** Result RibbonBar page groups **/
 const char G_RESULT_PLOT[]              = "FEEM.Group.Result.Plot";
+}
 }
 #endif // CONSTANTS_H

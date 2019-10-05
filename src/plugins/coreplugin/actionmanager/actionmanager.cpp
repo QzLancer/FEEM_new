@@ -1,3 +1,4 @@
+#include "QtnRibbonBar.h"
 #include "actionmanager.h"
 #include "actionmanager_p.h"
 #include "actioncontainer_p.h"
@@ -24,6 +25,7 @@ namespace {
 static const char kKeyboardSettingsKey[] = "KeyboardShortcuts";
 
 using namespace Core;
+using namespace Qtitan;
 //using namespace Core::Internal;
 
 /*!
@@ -184,6 +186,72 @@ ActionContainer *ActionManager::createMenuBar(Id id)
     connect(mbc, &QObject::destroyed, d, &ActionManagerPrivate::containerDestroyed);
 
     return mbc;
+}
+
+/**
+ * @brief 创建出一个新的RibbonBar，需要注意的是，要在RibbonMainWindow::ribbonBar()
+ * 函数调用之前创建。因为这个函数在没有检测到菜单之后，会默认创建一个。
+ *
+ * @param id
+ * @return ActionContainer
+ */
+ActionContainer *ActionManager::createRibbonBar(Id id)
+{
+    const ActionManagerPrivate::IdContainerMap::const_iterator it = d->m_idContainerMap.constFind(id);
+    if (it !=  d->m_idContainerMap.constEnd())
+        return it.value();
+
+    auto rb = new RibbonBar; // No parent (System menu bar on macOS)
+    rb->setObjectName(id.toString());
+
+    auto rbc = new RibbonBarActionContainer(id);
+    rbc->setRibbonBar(rb);
+
+    d->m_idContainerMap.insert(id, rbc);
+    connect(rbc, &QObject::destroyed, d, &ActionManagerPrivate::containerDestroyed);
+
+    return rbc;
+}
+
+/**
+ * @brief 创建出一个page类型的ActionContainer。所有的container可以说都是由ActionManager
+ * 保存和管理的。
+ *
+ * @param id
+ * @return ActionContainer
+ */
+ActionContainer *ActionManager::createRibbonPage(Id id)
+{
+    /** 首先查找有没有相同ID **/
+    const ActionManagerPrivate::IdContainerMap::const_iterator it = d->m_idContainerMap.constFind(id);
+    if (it !=  d->m_idContainerMap.constEnd())
+        return it.value();
+
+    auto rp = new RibbonPageActionContainer(id);
+
+    d->m_idContainerMap.insert(id, rp);
+    connect(rp, &QObject::destroyed, d, &ActionManagerPrivate::containerDestroyed);
+
+    return rp;
+}
+
+/**
+ * @brief 创建出一个group类型的ActionContainer
+ *
+ * @param id
+ * @return ActionContainer
+ */
+ActionContainer *ActionManager::createRibbonGroup(Id id)
+{
+    const ActionManagerPrivate::IdContainerMap::const_iterator it = d->m_idContainerMap.constFind(id);
+    if (it !=  d->m_idContainerMap.constEnd())
+        return it.value();
+
+    auto rg = new RibbonGroupActionContainer(id);
+    d->m_idContainerMap.insert(id, rg);
+    connect(rg, &QObject::destroyed, d, &ActionManagerPrivate::containerDestroyed);
+
+    return rg;
 }
 
 /*!

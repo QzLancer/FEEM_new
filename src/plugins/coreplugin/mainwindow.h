@@ -38,9 +38,6 @@ public:
     void registerDefaultContainers();
     void registerDefaultActions();
 
-    QMap<QString, QAction*> a_map;/**动作列表**/
-    PF_ActionGroupManager* ag_manager;
-
 public slots:
 
 

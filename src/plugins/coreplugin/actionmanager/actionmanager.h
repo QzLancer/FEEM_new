@@ -32,6 +32,9 @@ public:
 
     static ActionContainer *createMenu(Id id);
     static ActionContainer *createMenuBar(Id id);
+    static ActionContainer* createRibbonBar(Id id);
+    static ActionContainer* createRibbonPage(Id id);
+    static ActionContainer* createRibbonGroup(Id id);
 
     static Command *registerAction(QAction *action, Id id,
                                    const Context &context = Context(Constants::C_GLOBAL),

@@ -13,7 +13,11 @@ class QMenu;
 class QMenuBar;
 class QAction;
 QT_END_NAMESPACE
-
+namespace Qtitan {
+class RibbonBar;
+class RibbonPage;
+class RibbonGroup;
+}
 namespace Core {
 
 class Command;
@@ -36,6 +40,9 @@ public:
 
     virtual QMenu *menu() const = 0;
     virtual QMenuBar *menuBar() const = 0;
+    virtual Qtitan::RibbonBar* ribbonBar() const = 0;
+    virtual Qtitan::RibbonPage* ribbonPage() const = 0;
+    virtual Qtitan::RibbonGroup* ribbonGroup() const = 0;
 
     virtual QAction *insertLocation(Id group) const = 0;
     virtual void appendGroup(Id group) = 0;
@@ -43,6 +50,10 @@ public:
     virtual void addAction(Command *action, Id group = Id()) = 0;
     virtual void addMenu(ActionContainer *menu, Id group = Id()) = 0;
     virtual void addMenu(ActionContainer *before, ActionContainer *menu, Id group = Id()) = 0;
+    virtual void addPage(ActionContainer *page, Id group = Id()) = 0;
+    virtual void addPage(ActionContainer *before, ActionContainer *page, Id group = Id()) = 0;
+    virtual void addGroup(ActionContainer *rgroup, Id group = Id()) = 0;
+    virtual void addGroup(ActionContainer *before, ActionContainer *rgroup, Id group = Id()) = 0;
     Command *addSeparator(Id group = Id());
     virtual Command *addSeparator(const Context &context, Id group = Id(), QAction **outSeparator = nullptr) = 0;
 
