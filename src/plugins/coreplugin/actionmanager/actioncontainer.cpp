@@ -272,7 +272,7 @@ void ActionContainerPrivate::addMenu(ActionContainer *before, ActionContainer *m
  * @param page
  * @param groupId 应当是已有的id
  */
-void ActionContainerPrivate::addPage(ActionContainer *page, Id groupId)
+void ActionContainerPrivate::addRibbonPage(ActionContainer *page, Id groupId)
 {
     auto containerPrivate = static_cast<ActionContainerPrivate *>(page);
     if (!containerPrivate->canBeAddedToRibbonBar())
@@ -299,25 +299,25 @@ void ActionContainerPrivate::addPage(ActionContainer *page, Id groupId)
     /** 删除 **/
     connect(page, &QObject::destroyed, this, &ActionContainerPrivate::itemDestroyed);
     /** 添加page，主要问题是插在哪个位置 **/
-    insertPage(insertLocation,container->ribbonPage());
+    insertRibbonPage(insertLocation,container->ribbonPage());
     scheduleUpdate();
 }
 
-void ActionContainerPrivate::addPage(ActionContainer *before, ActionContainer *page, Id groupId)
+void ActionContainerPrivate::addRibbonPage(ActionContainer *before, ActionContainer *page, Id groupId)
 {
     auto containerPrivate = static_cast<ActionContainerPrivate *>(page);
     if (!containerPrivate->canBeAddedToRibbonBar())
         return;
 }
 
-void ActionContainerPrivate::addGroup(ActionContainer *group, Id groupId)
+void ActionContainerPrivate::addRibbonGroup(ActionContainer *group, Id groupId)
 {
     auto containerPrivate = static_cast<ActionContainerPrivate *>(group);
     if (!containerPrivate->canBeAddedToPage())
         return;
 }
 
-void ActionContainerPrivate::addGroup(ActionContainer *before, ActionContainer *group, Id groupId)
+void ActionContainerPrivate::addRibbonGroup(ActionContainer *before, ActionContainer *group, Id groupId)
 {
     auto containerPrivate = static_cast<ActionContainerPrivate *>(group);
     if (!containerPrivate->canBeAddedToPage())
@@ -466,12 +466,12 @@ void MenuActionContainer::insertMenu(QAction *before, QMenu *menu)
     m_menu->insertMenu(before, menu);
 }
 
-void MenuActionContainer::insertPage(int index, RibbonPage *page)
+void MenuActionContainer::insertRibbonPage(int index, RibbonPage *page)
 {
 
 }
 
-void MenuActionContainer::insertGroup(int index, RibbonGroup *group)
+void MenuActionContainer::insertRibbonGroup(int index, RibbonGroup *group)
 {
 
 }
@@ -594,12 +594,12 @@ void MenuBarActionContainer::insertMenu(QAction *before, QMenu *menu)
     m_menuBar->insertMenu(before, menu);
 }
 
-void MenuBarActionContainer::insertPage(int index, RibbonPage *page)
+void MenuBarActionContainer::insertRibbonPage(int index, RibbonPage *page)
 {
 
 }
 
-void MenuBarActionContainer::insertGroup(int index, RibbonGroup *group)
+void MenuBarActionContainer::insertRibbonGroup(int index, RibbonGroup *group)
 {
 
 }
@@ -685,12 +685,12 @@ void RibbonBarActionContainer::insertMenu(QAction *before, QMenu *menu)
 
 }
 
-void RibbonBarActionContainer::insertPage(int index, RibbonPage *page)
+void RibbonBarActionContainer::insertRibbonPage(int index, RibbonPage *page)
 {
     m_ribbonBar->insertPage(index,page);
 }
 
-void RibbonBarActionContainer::insertGroup(int index, RibbonGroup *group)
+void RibbonBarActionContainer::insertRibbonGroup(int index, RibbonGroup *group)
 {
 
 }
@@ -752,12 +752,12 @@ void RibbonPageActionContainer::insertMenu(QAction *before, QMenu *menu)
 
 }
 
-void RibbonPageActionContainer::insertPage(int index, RibbonPage *page)
+void RibbonPageActionContainer::insertRibbonPage(int index, RibbonPage *page)
 {
 
 }
 
-void RibbonPageActionContainer::insertGroup(int index, RibbonGroup *group)
+void RibbonPageActionContainer::insertRibbonGroup(int index, RibbonGroup *group)
 {
     m_ribbonPage->insertGroup(index,group);
 }
@@ -819,12 +819,12 @@ void RibbonGroupActionContainer::insertMenu(QAction *before, QMenu *menu)
 
 }
 
-void RibbonGroupActionContainer::insertPage(int index, RibbonPage *page)
+void RibbonGroupActionContainer::insertRibbonPage(int index, RibbonPage *page)
 {
 
 }
 
-void RibbonGroupActionContainer::insertGroup(int index, RibbonGroup *group)
+void RibbonGroupActionContainer::insertRibbonGroup(int index, RibbonGroup *group)
 {
 
 }

@@ -36,10 +36,10 @@ public:
     void addAction(Command *action, Id group = Id()) override;
     void addMenu(ActionContainer *menu, Id groupId = Id()) override;
     void addMenu(ActionContainer *before, ActionContainer *menu, Id groupId = Id()) override;
-    void addPage(ActionContainer *page, Id groupId = Id()) override;
-    void addPage(ActionContainer *before, ActionContainer *page, Id groupId = Id()) override;
-    void addGroup(ActionContainer *group, Id groupId = Id()) override;
-    void addGroup(ActionContainer *before, ActionContainer *group, Id groupId = Id()) override;
+    void addRibbonPage(ActionContainer *page, Id groupId = Id()) override;
+    void addRibbonPage(ActionContainer *before, ActionContainer *page, Id groupId = Id()) override;
+    void addRibbonGroup(ActionContainer *group, Id groupId = Id()) override;
+    void addRibbonGroup(ActionContainer *before, ActionContainer *group, Id groupId = Id()) override;
     Command *addSeparator(const Context &context, Id group = Id(), QAction **outSeparator = nullptr) override;
     void clear() override;
 
@@ -53,8 +53,8 @@ public:
 
     virtual void insertAction(QAction *before, QAction *action) = 0;
     virtual void insertMenu(QAction *before, QMenu *menu) = 0;
-    virtual void insertPage(int index, Qtitan::RibbonPage* page) = 0;
-    virtual void insertGroup(int index, Qtitan::RibbonGroup* group) = 0;
+    virtual void insertRibbonPage(int index, Qtitan::RibbonPage* page) = 0;
+    virtual void insertRibbonGroup(int index, Qtitan::RibbonGroup* group) = 0;
 
     virtual void removeAction(QAction *action) = 0;
     virtual void removeMenu(QMenu *menu) = 0;
@@ -94,8 +94,8 @@ public:
 
     void insertAction(QAction *before, QAction *action) override;
     void insertMenu(QAction *before, QMenu *menu) override;
-    void insertPage(int index, Qtitan::RibbonPage* page) override;
-    void insertGroup(int index, Qtitan::RibbonGroup* group) override;
+    void insertRibbonPage(int index, Qtitan::RibbonPage* page) override;
+    void insertRibbonGroup(int index, Qtitan::RibbonGroup* group) override;
 
     void removeAction(QAction *action) override;
     void removeMenu(QMenu *menu) override;
@@ -120,8 +120,8 @@ public:
 
     void insertAction(QAction *before, QAction *action) override;
     void insertMenu(QAction *before, QMenu *menu) override;
-    void insertPage(int index, Qtitan::RibbonPage* page) override;
-    void insertGroup(int index, Qtitan::RibbonGroup* group) override;
+    void insertRibbonPage(int index, Qtitan::RibbonPage* page) override;
+    void insertRibbonGroup(int index, Qtitan::RibbonGroup* group) override;
 
     void removeAction(QAction *action) override;
     void removeMenu(QMenu *menu) override;
@@ -150,8 +150,8 @@ public:
 
     void insertAction(QAction *before, QAction *action) override;
     void insertMenu(QAction *before, QMenu *menu) override;
-    void insertPage(int index, Qtitan::RibbonPage* page) override;
-    void insertGroup(int index, Qtitan::RibbonGroup* group) override;
+    void insertRibbonPage(int index, Qtitan::RibbonPage* page) override;
+    void insertRibbonGroup(int index, Qtitan::RibbonGroup* group) override;
 
     void removeAction(QAction *action) override;
     void removeMenu(QMenu *menu) override;
@@ -180,8 +180,8 @@ public:
 
     void insertAction(QAction *before, QAction *action) override;
     void insertMenu(QAction *before, QMenu *menu) override;
-    void insertPage(int index, Qtitan::RibbonPage* page) override;
-    void insertGroup(int index, Qtitan::RibbonGroup* group) override;
+    void insertRibbonPage(int index, Qtitan::RibbonPage* page) override;
+    void insertRibbonGroup(int index, Qtitan::RibbonGroup* group) override;
 
     void removeAction(QAction *action) override;
     void removeMenu(QMenu *menu) override;
@@ -210,8 +210,8 @@ public:
 
     void insertAction(QAction *before, QAction *action) override;
     void insertMenu(QAction *before, QMenu *menu) override;
-    void insertPage(int index, Qtitan::RibbonPage* page) override;
-    void insertGroup(int index, Qtitan::RibbonGroup* group) override;
+    void insertRibbonPage(int index, Qtitan::RibbonPage* page) override;
+    void insertRibbonGroup(int index, Qtitan::RibbonGroup* group) override;
 
     void removeAction(QAction *action) override;
     void removeMenu(QMenu *menu) override;

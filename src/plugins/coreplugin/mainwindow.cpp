@@ -70,45 +70,41 @@ void MainWindow::registerDefaultContainers()
     /** 添加一些默认的group用来保存Page类型的container **/
     ribbonbar->appendGroup(Constants::G_HOME);
     ribbonbar->appendGroup(Constants::G_DEFINITION);
-    ribbonbar->appendGroup(Constants::G_GEOMETRY);
+//    ribbonbar->appendGroup(Constants::G_GEOMETRY);
     ribbonbar->appendGroup(Constants::G_MATERIAL);
     ribbonbar->appendGroup(Constants::G_MESH);
     ribbonbar->appendGroup(Constants::G_SOLVER);
     ribbonbar->appendGroup(Constants::G_RESULT);
+    ribbonbar->insertGroup(Constants::G_MATERIAL,Constants::G_GEOMETRY);
 
     /** 添加不同的page **/
     ActionContainer* page = ActionManager::createRibbonPage(Constants::P_HOME);
     page->ribbonPage()->setTitle(tr("&Home"));
-    ribbonbar->addPage(page,Constants::G_HOME);
+    ribbonbar->addRibbonPage(page,Constants::G_HOME);
 
     page = ActionManager::createRibbonPage(Constants::P_SOLVER);
     page->ribbonPage()->setTitle(tr("&Solve"));
-    ribbonbar->addPage(page,Constants::G_SOLVER);
+    ribbonbar->addRibbonPage(page,Constants::G_SOLVER);
 
     page = ActionManager::createRibbonPage(Constants::P_DEFINITION);
     page->ribbonPage()->setTitle(tr("&Definitions"));
-    ribbonbar->addPage(page,Constants::G_DEFINITION);
+    ribbonbar->addRibbonPage(page,Constants::G_DEFINITION);
 
     page = ActionManager::createRibbonPage(Constants::P_MATERIAL);
     page->ribbonPage()->setTitle(tr("&Materials"));
-    ribbonbar->addPage(page,Constants::G_MATERIAL);
+    ribbonbar->addRibbonPage(page,Constants::G_MATERIAL);
 
     page = ActionManager::createRibbonPage(Constants::P_MESH);
     page->ribbonPage()->setTitle(tr("&Mesh"));
-    ribbonbar->addPage(page,Constants::G_MESH);
+    ribbonbar->addRibbonPage(page,Constants::G_MESH);
 
     page = ActionManager::createRibbonPage(Constants::P_GEOMETRY);
     page->ribbonPage()->setTitle(tr("&Geometry"));
-    ribbonbar->addPage(page,Constants::G_GEOMETRY);
+    ribbonbar->addRibbonPage(page,Constants::G_GEOMETRY);
 
     page = ActionManager::createRibbonPage(Constants::P_RESULT);
     page->ribbonPage()->setTitle(tr("&Results"));
-    ribbonbar->addPage(page,Constants::G_RESULT);
-
-
-
-
-
+    ribbonbar->addRibbonPage(page,Constants::G_RESULT);
 
 }
 

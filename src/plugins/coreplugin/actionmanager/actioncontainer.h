@@ -50,10 +50,10 @@ public:
     virtual void addAction(Command *action, Id group = Id()) = 0;
     virtual void addMenu(ActionContainer *menu, Id group = Id()) = 0;
     virtual void addMenu(ActionContainer *before, ActionContainer *menu, Id group = Id()) = 0;
-    virtual void addPage(ActionContainer *page, Id group = Id()) = 0;
-    virtual void addPage(ActionContainer *before, ActionContainer *page, Id group = Id()) = 0;
-    virtual void addGroup(ActionContainer *rgroup, Id group = Id()) = 0;
-    virtual void addGroup(ActionContainer *before, ActionContainer *rgroup, Id group = Id()) = 0;
+    virtual void addRibbonPage(ActionContainer *page, Id group = Id()) = 0;
+    virtual void addRibbonPage(ActionContainer *before, ActionContainer *page, Id group = Id()) = 0;
+    virtual void addRibbonGroup(ActionContainer *rgroup, Id group = Id()) = 0;
+    virtual void addRibbonGroup(ActionContainer *before, ActionContainer *rgroup, Id group = Id()) = 0;
     Command *addSeparator(Id group = Id());
     virtual Command *addSeparator(const Context &context, Id group = Id(), QAction **outSeparator = nullptr) = 0;
 
