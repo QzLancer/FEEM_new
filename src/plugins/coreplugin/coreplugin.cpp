@@ -71,6 +71,18 @@ CoreArguments parseArguments(const QStringList &arguments)
     return args;
 }
 
+/**
+ * @brief initialize()函数会在Qt Creator请求插件初始化时被调用，
+ * 常用于初始化插件的内部状态和插件注册actions/objects到QtCreator。
+ * 当插件依赖的所有资源都被加载后，initialize()函数才会被调用。
+ * 初始化成功返回true，用于告诉QtCreator本插件已经初始化成功。
+ * 如果初始化不成功，应该在errMsg中存储可读的错误信息，供QtCreator
+ * 在界面上显示出来。
+ *
+ * @param arguments
+ * @param errorMessage
+ * @return bool
+ */
 bool CorePlugin::initialize(const QStringList &arguments, QString *errorMessage)
 {
     // register all mime types from all plugins
@@ -127,6 +139,12 @@ bool CorePlugin::initialize(const QStringList &arguments, QString *errorMessage)
     return true;
 }
 
+/**
+ * @brief extensionsInitialized()函数在插件初始化后被调用
+ * （例如initialize()函数调用后）。extensionsInitialized()
+ * 函数会由第一个依赖于本插件的其他插件进行调用。
+ *
+ */
 void CorePlugin::extensionsInitialized()
 {
 //    DesignMode::createModeIfRequired();

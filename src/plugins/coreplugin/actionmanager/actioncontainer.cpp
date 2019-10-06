@@ -267,7 +267,8 @@ void ActionContainerPrivate::addMenu(ActionContainer *before, ActionContainer *m
 }
 
 /**
- * @brief 将page添加到ribbonbar末尾。
+ * @brief 将page添加到ribbonbar groupId的位置，但是算是有一点小bug吧，每一个位置上的page
+ * 按道理来说只能有一个，不能像菜单那样嵌套。
  *
  * @param page
  * @param groupId 应当是已有的id
@@ -303,6 +304,13 @@ void ActionContainerPrivate::addRibbonPage(ActionContainer *page, Id groupId)
     scheduleUpdate();
 }
 
+/**
+ * @brief 将page插入到before前面的位置。暂时不实现这个，逻辑上讲不通。
+ *
+ * @param before
+ * @param page
+ * @param groupId
+ */
 void ActionContainerPrivate::addRibbonPage(ActionContainer *before, ActionContainer *page, Id groupId)
 {
     auto containerPrivate = static_cast<ActionContainerPrivate *>(page);
@@ -310,11 +318,42 @@ void ActionContainerPrivate::addRibbonPage(ActionContainer *before, ActionContai
         return;
 }
 
+/**
+ * @brief 将group添加到groupId的位置，具体地显示是按照列表当中group的顺序来显示的。
+ * 但是，这个会重名吗？
+ *
+ * @param group
+ * @param groupId
+ */
 void ActionContainerPrivate::addRibbonGroup(ActionContainer *group, Id groupId)
 {
     auto containerPrivate = static_cast<ActionContainerPrivate *>(group);
     if (!containerPrivate->canBeAddedToPage())
         return;
+
+    auto container = static_cast<RibbonGroupActionContainer *>(containerPrivate);
+    /** 确定groupId不存在 **/
+    const Id actualGroupId = groupId.isValid() ? groupId : Id(Constants::G_DEFAULT_TWO);
+    QList<Group>::const_iterator groupIt = findGroup(actualGroupId);
+    if(groupIt == m_groups.constEnd())
+        return;
+    QList<Group>::const_iterator it = m_groups.constBegin();
+    int insertLocation = 0;
+    while (it != m_groups.constEnd()) {
+        if(!m_groups[it - m_groups.constBegin()].items.isEmpty() && it > groupIt)
+            break;
+        if(!m_groups[it - m_groups.constBegin()].items.isEmpty()){
+            ++insertLocation;
+        }
+        ++it;
+    }
+
+    m_groups[groupIt-m_groups.constBegin()].items.append(group);
+    /** 删除 **/
+    connect(group, &QObject::destroyed, this, &ActionContainerPrivate::itemDestroyed);
+    /** 添加page，主要问题是插在哪个位置 **/
+    insertRibbonGroup(insertLocation,container->ribbonGroup());
+    scheduleUpdate();
 }
 
 void ActionContainerPrivate::addRibbonGroup(ActionContainer *before, ActionContainer *group, Id groupId)
@@ -734,7 +773,7 @@ RibbonPageActionContainer::RibbonPageActionContainer(Id id)
 
 RibbonPageActionContainer::~RibbonPageActionContainer()
 {
-    delete m_ribbonPage;
+//    delete m_ribbonPage;
 }
 
 RibbonPage *RibbonPageActionContainer::ribbonPage() const
@@ -801,7 +840,7 @@ RibbonGroupActionContainer::RibbonGroupActionContainer(Id id)
 
 RibbonGroupActionContainer::~RibbonGroupActionContainer()
 {
-    delete m_ribbonGroup;
+//    delete m_ribbonGroup;
 }
 
 RibbonGroup *RibbonGroupActionContainer::ribbonGroup() const

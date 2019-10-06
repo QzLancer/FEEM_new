@@ -236,7 +236,9 @@ ActionContainer *ActionManager::createRibbonPage(Id id)
 }
 
 /**
- * @brief 创建出一个group类型的ActionContainer
+ * @brief 创建出一个group类型的ActionContainer。需要注意的是，这个创建出来的container是
+ * 要添加到全局的哈希表当中的，所以id名字不要重复。但是，不要混淆了ActionContainer类变量
+ * group，这个的访问域跟这个id是不一样的。一个是list，一个是hash。
  *
  * @param id
  * @return ActionContainer
