@@ -1,0 +1,32 @@
+<RCC>
+    <qresource prefix="/cad">
+        <file>imgs/buildgeometry.png</file>
+        <file>imgs/circle.png</file>
+        <file>imgs/copy16x16.png</file>
+        <file>imgs/copy32x32.png</file>
+        <file>imgs/cut16x16.png</file>
+        <file>imgs/cut32x32.png</file>
+        <file>imgs/delete16x16.png</file>
+        <file>imgs/delete32x32.png</file>
+        <file>imgs/dot.png</file>
+        <file>imgs/face.svg</file>
+        <file>imgs/line.png</file>
+        <file>imgs/line.svg</file>
+        <file>imgs/paste16x16.png</file>
+        <file>imgs/paste32x32.png</file>
+        <file>imgs/select16x16.png</file>
+        <file>imgs/snapgeometry.png</file>
+        <file>imgs/snapgrid.png</file>
+        <file>imgs/solid.png</file>
+        <file>imgs/square.png</file>
+        <file>imgs/zoomauto32x32.png</file>
+        <file>imgs/zoombox.png</file>
+        <file>imgs/zoomextents.png</file>
+        <file>imgs/zoomextents_32.png</file>
+        <file>imgs/zoomin.png</file>
+        <file>imgs/zoomin32x32.png</file>
+        <file>imgs/zoomout.png</file>
+        <file>imgs/zoomout32x32.png</file>
+        <file>imgs/zoomselected.png</file>
+    </qresource>
+</RCC>

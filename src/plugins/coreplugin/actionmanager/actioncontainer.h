@@ -5,8 +5,8 @@
 
 #include <QObject>
 
-#include "id.h"
-#include "context.h"
+#include "coreplugin/id.h"
+#include "coreplugin/context.h"
 
 QT_BEGIN_NAMESPACE
 class QMenu;

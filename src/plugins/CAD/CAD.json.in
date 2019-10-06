@@ -17,21 +17,5 @@
     \"Category\" : \"CAD\",
     \"Description\" : \"The CAD plugin for the FEEM IDE.\",
     \"Url\" : \"http://feem.org\",
-    \"Arguments\" : [
-        {
-            \"Name\" : \"-color\",
-            \"Parameter\" : \"color\",
-            \"Description\" : \"Override selected UI color\"
-        },
-        {
-            \"Name\" : \"-theme\",
-            \"Parameter\" : \"default|dark\",
-            \"Description\" : \"Choose a built-in theme or pass a .creatortheme file\"
-        },
-        {
-            \"Name\" : \"-presentationMode\",
-            \"Description\" : \"Enable presentation mode with pop-ups for key combos\"
-        }
-    ],
     $$dependencyList
 }

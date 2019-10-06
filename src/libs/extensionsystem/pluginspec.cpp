@@ -601,6 +601,7 @@ bool PluginSpecPrivate::reportError(const QString &err)
 {
     errorString = err;
     hasError = true;
+    qDebug()<<errorString;
     return true;
 }
 

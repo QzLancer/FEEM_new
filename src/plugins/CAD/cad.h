@@ -3,6 +3,8 @@
 
 #include <extensionsystem/iplugin.h>
 
+class PF_ActionHandler;
+
 namespace CAD {
 
 class CADPlugin : public ExtensionSystem::IPlugin
@@ -24,9 +26,12 @@ public:
                            const QString &workingDirectory,
                            const QStringList &args) override;
 
+    void registerDefaultContainers();
+    void registerDefaultActions();
 public slots:
 
 private:
+//    PF_ActionHandler* ac_handler;
 };
 
 }//namespace CAD

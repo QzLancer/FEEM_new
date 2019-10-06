@@ -44,13 +44,6 @@ const char G_RESULT[]                   = "FEEM.Group.Result";
 const char G_HOME_PROJECT[]             = "FEEM.Group.Home.Project";
 /** Definition RibbonBar page groups **/
 const char G_DEFINITION_VARIABLE[]      = "FEEM.Group.Definition.Variable";
-/** Geometry RibbonBar page groups **/
-const char G_GEOMETRY_IMEXPORT[]        = "FEEM.Group.Geometry.ImExport";
-const char G_GEOMETRY_BUILD[]           = "FEEM.Group.Geometry.Build";
-const char G_GEOMETRY_SETTING[]         = "FEEM.Group.Geometry.Setting";
-const char G_GEOMETRY_DRAW[]            = "FEEM.Group.Geometry.Draw";
-const char G_GEOMETRY_OPERATION[]       = "FEEM.Group.Geometry.Operation";
-const char G_GEOMETRY_VIEW[]            = "FEEM.Group.Geometry.View";
 /** Material RibbonBar page groups **/
 const char G_MATERIAL_LIBRARY[]         = "FEEM.Group.Material.Library";
 /** Mesh RibbonBar page groups **/

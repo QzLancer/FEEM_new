@@ -17,13 +17,19 @@ HEADERS += \
     pf_plot.h \
     pf_setting.h \
     cad.h \
-    pf.h
+    pf.h \
+    cadconstants.h \
+    pf_actionhandler.h
 
 SOURCES += \
     pf_cadwidget.cpp \
     pf_flag.cpp \
     pf_graphicview.cpp \
     pf_plot.cpp \
-    cad.cpp
+    cad.cpp \
+    pf_actionhandler.cpp
+
+RESOURCES += \
+    cad.qrc
 
 
