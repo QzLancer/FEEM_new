@@ -32,13 +32,13 @@ defineReplace(dependencyName) {
 # for substitution in the .json
 dependencyList =
 for(dep, plugin_deps) {
-    dependencyList += "        { \"Name\" : \"$$dependencyName($$dep)\", \"Version\" : \"$$FEEMREATOR_VERSION\" }"
+    dependencyList += "        { \"Name\" : \"$$dependencyName($$dep)\", \"Version\" : \"$$FEEM_VERSION\" }"
 }
 for(dep, plugin_recmds) {
-    dependencyList += "        { \"Name\" : \"$$dependencyName($$dep)\", \"Version\" : \"$$FEEMREATOR_VERSION\", \"Type\" : \"optional\" }"
+    dependencyList += "        { \"Name\" : \"$$dependencyName($$dep)\", \"Version\" : \"$$FEEM_VERSION\", \"Type\" : \"optional\" }"
 }
 for(dep, plugin_test_deps) {
-    dependencyList += "        { \"Name\" : \"$$dependencyName($$dep)\", \"Version\" : \"$$FEEMREATOR_VERSION\", \"Type\" : \"test\" }"
+    dependencyList += "        { \"Name\" : \"$$dependencyName($$dep)\", \"Version\" : \"$$FEEM_VERSION\", \"Type\" : \"test\" }"
 }
 dependencyList = $$join(dependencyList, ",$$escape_expand(\\n)")
 
