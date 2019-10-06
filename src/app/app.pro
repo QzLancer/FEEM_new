@@ -20,6 +20,9 @@ win32 {
 target.path = $$INSTALL_APP_PATH
 INSTALLS += target
 
-DISTFILES += icon.rc \
+DISTFILES += icon.rc
+
+RESOURCES += \
+    app.qrc
 
 

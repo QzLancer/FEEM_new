@@ -98,15 +98,7 @@ bool CorePlugin::initialize(const QStringList &arguments, QString *errorMessage)
 
     /** 创建action管理器，保存所有的actions **/
     new ActionManager(this);
-    /** 欢迎页面 **/
-    QSplashScreen* splash = new QSplashScreen;
 
-    QPixmap pixmap(":/main/splash.png");
-    splash->setPixmap(pixmap);
-    splash->setAttribute(Qt::WA_DeleteOnClose);
-    splash->show();
-    splash->showMessage(QObject::tr("Loading..."),
-                        Qt::AlignRight|Qt::AlignBottom,Qt::black);
 //    QDateTime n=QDateTime::currentDateTime();
 //    QDateTime now;
 //    do{
