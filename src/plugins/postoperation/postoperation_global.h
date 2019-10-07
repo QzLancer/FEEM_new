@@ -1,0 +1,11 @@
+#pragma once
+
+#include <qglobal.h>
+
+#if defined(POSTOPERATION_LIBRARY)
+#  define POSTOPERATION_EXPORT Q_DECL_EXPORT
+#elif defined(POSTOPERATION_STATIC_LIBRARY)
+#  define POSTOPERATION_EXPORT
+#else
+#  define POSTOPERATION_EXPORT Q_DECL_IMPORT
+#endif

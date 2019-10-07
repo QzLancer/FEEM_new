@@ -8,6 +8,7 @@ SUBDIRS   = \
 	material \
 	mesh \
 	solver \
+        postoperation \
 
 for(p, SUBDIRS) {
     FEEM_PLUGIN_DEPENDS =

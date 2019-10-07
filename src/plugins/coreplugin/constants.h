@@ -44,8 +44,6 @@ const char G_RESULT[]                   = "FEEM.Group.Result";
 const char G_HOME_PROJECT[]             = "FEEM.Group.Home.Project";
 /** Definition RibbonBar page groups **/
 const char G_DEFINITION_VARIABLE[]      = "FEEM.Group.Definition.Variable";
-/** Result RibbonBar page groups **/
-const char G_RESULT_PLOT[]              = "FEEM.Group.Result.Plot";
 }
 }
 #endif // CONSTANTS_H

@@ -1,4 +1,4 @@
-DEFINES += MESH_LIBRARY
+DEFINES += SOLVER_LIBRARY
 QT += \
     printsupport \
 
