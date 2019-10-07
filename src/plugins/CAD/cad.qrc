@@ -28,5 +28,7 @@
         <file>imgs/zoomout.png</file>
         <file>imgs/zoomout32x32.png</file>
         <file>imgs/zoomselected.png</file>
+        <file>imgs/export.png</file>
+        <file>imgs/import.png</file>
     </qresource>
 </RCC>

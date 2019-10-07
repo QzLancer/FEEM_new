@@ -44,14 +44,6 @@ const char G_RESULT[]                   = "FEEM.Group.Result";
 const char G_HOME_PROJECT[]             = "FEEM.Group.Home.Project";
 /** Definition RibbonBar page groups **/
 const char G_DEFINITION_VARIABLE[]      = "FEEM.Group.Definition.Variable";
-/** Material RibbonBar page groups **/
-const char G_MATERIAL_LIBRARY[]         = "FEEM.Group.Material.Library";
-/** Mesh RibbonBar page groups **/
-const char G_MESH_BUILD[]               = "FEEM.Group.Mesh.Build";
-const char G_MESH_GENERATOR[]           = "FEEM.Group.Mesh.Generator";
-const char G_MESH_IMEXPORT[]            = "FEEM.Group.Mesh.ImExport";
-const char G_MESH_STATICS[]             = "FEEM.Group.Mesh.Statics";
-const char G_MESH_CLEAR[]               = "FEEM.Group.Mesh.Clear";
 /** Solver RibbonBar page groups **/
 const char G_SOLVE_SOLVE[]              = "FEEM.Group.Solve.Solve";
 const char G_SOLVE_SETTING[]            = "FEEM.Group.Solve.Setting";

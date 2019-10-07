@@ -5,6 +5,8 @@ TEMPLATE  = subdirs
 SUBDIRS   = \
     coreplugin \
 	CAD \
+	material \
+	mesh \
 
 for(p, SUBDIRS) {
     FEEM_PLUGIN_DEPENDS =

@@ -34,11 +34,13 @@ static CADPlugin *m_instance = nullptr;
 CADPlugin::CADPlugin()
 //    :ac_handler(new PF_ActionHandler)
 {
+    qDebug()<<Q_FUNC_INFO;
     m_instance = this;
 }
 
 CADPlugin::~CADPlugin()
 {
+    qDebug()<<Q_FUNC_INFO;
 
 }
 
@@ -49,6 +51,7 @@ CADPlugin *CADPlugin::instance()
 
 bool CADPlugin::initialize(const QStringList &arguments, QString *errorMessage)
 {
+    qDebug()<<Q_FUNC_INFO;
     registerDefaultContainers();
     registerDefaultActions();
     return true;
@@ -56,21 +59,25 @@ bool CADPlugin::initialize(const QStringList &arguments, QString *errorMessage)
 
 void CADPlugin::extensionsInitialized()
 {
+    qDebug()<<Q_FUNC_INFO;
 
 }
 
 bool CADPlugin::delayedInitialize()
 {
+    qDebug()<<Q_FUNC_INFO;
     return true;
 }
 
 ExtensionSystem::IPlugin::ShutdownFlag CADPlugin::aboutToShutdown()
 {
+    qDebug()<<Q_FUNC_INFO;
     return SynchronousShutdown;
 }
 
 QObject *CADPlugin::remoteCommand(const QStringList &, const QString &workingDirectory, const QStringList &args)
 {
+    qDebug()<<Q_FUNC_INFO;
     return nullptr;
 }
 
@@ -82,12 +89,36 @@ void CADPlugin::registerDefaultContainers()
 {
     /** 添加geometry group **/
     ActionContainer* page = ActionManager::actionContainer(Core::Constants::P_GEOMETRY);
-
+    /** 导入导出 **/
     ActionContainer* group = ActionManager::createRibbonGroup(Constants::G_GEOMETRY_IMEXPORT);
     group->ribbonGroup()->setTitle(tr("Import/Export"));
-    group->ribbonGroup()->setIcon(QIcon(":/cad/imgs/buildgeometry.png"));
     page->appendGroup(Constants::G_GEOMETRY_IMEXPORT);
     page->addRibbonGroup(group,Constants::G_GEOMETRY_IMEXPORT);
+    /** 构建 **/
+    group = ActionManager::createRibbonGroup(Constants::G_GEOMETRY_BUILD);
+    group->ribbonGroup()->setTitle(tr("BuildGeometry"));
+    page->appendGroup(Constants::G_GEOMETRY_BUILD);
+    page->addRibbonGroup(group,Constants::G_GEOMETRY_BUILD);
+    /** 绘图设置 **/
+    group = ActionManager::createRibbonGroup(Constants::G_GEOMETRY_SETTING);
+    group->ribbonGroup()->setTitle(tr("DrawSetting"));
+    page->appendGroup(Constants::G_GEOMETRY_SETTING);
+    page->addRibbonGroup(group,Constants::G_GEOMETRY_SETTING);
+    /** 绘图 **/
+    group = ActionManager::createRibbonGroup(Constants::G_GEOMETRY_DRAW);
+    group->ribbonGroup()->setTitle(tr("Draw"));
+    page->appendGroup(Constants::G_GEOMETRY_DRAW);
+    page->addRibbonGroup(group,Constants::G_GEOMETRY_DRAW);
+    /** 绘图操作 **/
+    group = ActionManager::createRibbonGroup(Constants::G_GEOMETRY_OPERATION);
+    group->ribbonGroup()->setTitle(tr("DrawOperation"));
+    page->appendGroup(Constants::G_GEOMETRY_OPERATION);
+    page->addRibbonGroup(group,Constants::G_GEOMETRY_OPERATION);
+    /** 试图 **/
+    group = ActionManager::createRibbonGroup(Constants::G_GEOMETRY_VIEW);
+    group->ribbonGroup()->setTitle(tr("View"));
+    page->appendGroup(Constants::G_GEOMETRY_VIEW);
+    page->addRibbonGroup(group,Constants::G_GEOMETRY_VIEW);
 }
 
 /**
@@ -96,6 +127,21 @@ void CADPlugin::registerDefaultContainers()
  */
 void CADPlugin::registerDefaultActions()
 {
+    auto group = ActionManager::actionContainer(Constants::G_GEOMETRY_IMEXPORT);
+    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/import.png"), tr("Import Geometry"), Qt::ToolButtonTextUnderIcon);
+    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/export.png"), tr("Export Geometry"), Qt::ToolButtonTextUnderIcon);
+    group = ActionManager::actionContainer(Constants::G_GEOMETRY_BUILD);
+    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/buildgeometry.png"), tr("Build Geometry"), Qt::ToolButtonTextUnderIcon);
+
+    group = ActionManager::actionContainer(Constants::G_GEOMETRY_SETTING);
+    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/snapgrid.png"), tr("Snap to grid"), Qt::ToolButtonTextBesideIcon);
+    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/snapgeometry.png"), tr("Snap to geometry"), Qt::ToolButtonTextBesideIcon);
+    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/solid.png"), tr("Solid"), Qt::ToolButtonTextBesideIcon);
+
+    group = ActionManager::actionContainer(Constants::G_GEOMETRY_SETTING);
+    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/snapgrid.png"), tr("Snap to grid"), Qt::ToolButtonTextBesideIcon);
+    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/snapgeometry.png"), tr("Snap to geometry"), Qt::ToolButtonTextBesideIcon);
+    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/solid.png"), tr("Solid"), Qt::ToolButtonTextBesideIcon);
 
 }
 }//namespace CAD
