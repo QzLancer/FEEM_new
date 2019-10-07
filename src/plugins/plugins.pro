@@ -7,6 +7,7 @@ SUBDIRS   = \
 	CAD \
 	material \
 	mesh \
+	solver \
 
 for(p, SUBDIRS) {
     FEEM_PLUGIN_DEPENDS =

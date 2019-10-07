@@ -34,13 +34,11 @@ static CADPlugin *m_instance = nullptr;
 CADPlugin::CADPlugin()
 //    :ac_handler(new PF_ActionHandler)
 {
-    qDebug()<<Q_FUNC_INFO;
     m_instance = this;
 }
 
 CADPlugin::~CADPlugin()
 {
-    qDebug()<<Q_FUNC_INFO;
 
 }
 
@@ -51,7 +49,6 @@ CADPlugin *CADPlugin::instance()
 
 bool CADPlugin::initialize(const QStringList &arguments, QString *errorMessage)
 {
-    qDebug()<<Q_FUNC_INFO;
     registerDefaultContainers();
     registerDefaultActions();
     return true;
@@ -59,25 +56,21 @@ bool CADPlugin::initialize(const QStringList &arguments, QString *errorMessage)
 
 void CADPlugin::extensionsInitialized()
 {
-    qDebug()<<Q_FUNC_INFO;
 
 }
 
 bool CADPlugin::delayedInitialize()
 {
-    qDebug()<<Q_FUNC_INFO;
     return true;
 }
 
 ExtensionSystem::IPlugin::ShutdownFlag CADPlugin::aboutToShutdown()
 {
-    qDebug()<<Q_FUNC_INFO;
     return SynchronousShutdown;
 }
 
 QObject *CADPlugin::remoteCommand(const QStringList &, const QString &workingDirectory, const QStringList &args)
 {
-    qDebug()<<Q_FUNC_INFO;
     return nullptr;
 }
 
