@@ -21,13 +21,89 @@ action只是指定了操作的动作，而菜单是一种控件。所以二者�
 \subsection{ribbon类型的菜单创建}
 ribbon改写的思路基本上跟菜单创建的原理一致。但是ribbon可能稍微复杂一点。因为ribbon的包含不是菜单，它是由不同的page组成的，不同的page又包含不同的group。有一点比较难处理。菜单可以有子菜单，但是group不能再分了。还有就是ribbon是可以放控件的，这样的话能放widget吗？还需要考虑动作的状态，是隐藏还是不可用还是可用？
 \subsection{插件项目的创建}
-1.如果想要添加一个新的插件，首先是找到plugins目录，然后在该目录下新建一个代表你的插件名称的文件夹；
+1.如果想要添加一个新的插件，首先是找到plugins目录，然后在该目录下新建一个代表你的插件名称PluginName的文件夹；
 
-2.然后，需要在该目录下添加一下文件：插件名.pro（插件的项目文件呢），插件名\_dependencies.pri（描述插件依赖项的文件，参考别的插件的写法），插件名.json.in（描述插件信息的文件），插件名\_global.h（定义导出宏）；
+2.创建项目文件：名称.pro（插件的项目文件），这个文件名应当与项目文件夹名相同。文件的内容大概都一样。首先定义一个宏，用来导出函数。然后就是添加插件处理的pri文件。
+\begin{lstlisting}
+DEFINES += %PluginName%_LIBRARY
+QT += \
+    printsupport \
 
-3.然后需要修改上一个目录当中的plugins.pro文件，也就是将本项目添加到SUBDIRS的列表当中；
+include(../../feemplugin.pri)
 
-4.接下来就是开始创建插件的C++源代码了。所有的插件类都继承于iplugin类。具体的写法参考一些已经写好的插件。有一些函数是必须要实现的，例如初始化函数。
+msvc: QMAKE_CXXFLAGS += -wd4251 -wd4290 -wd4250
+
+HEADERS += \
+
+SOURCES += \
+
+\end{lstlisting}
+
+3.添加插件依赖的文件：文件夹名\_dependencies.pri（描述插件依赖项的文件，参考别的插件的写法），这里也应该是文件夹名。一般的写法如下：
+\begin{lstlisting}
+FEEM_PLUGIN_NAME = %PluginName%
+FEEM_LIB_DEPENDS += \
+    extensionsystem \
+    utils \
+    qtribbon \
+
+FEEM_PLUGIN_DEPENDS += \
+    coreplugin    
+\end{lstlisting}
+主要就是写上需要依赖的插件即可，不需要考虑头文件的位置，链接库的位置等等。
+
+4.添加插件信息描述文件：插件名.json.in（描述插件信息的文件），这个文件的具体名称要跟插件类的h文件中定义的一样，不然会报错。例如：
+\begin{lstlisting}
+class MeshPlugin : public ExtensionSystem::IPlugin
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.hit.feem.feemPlugin" FILE "Mesh.json")
+\end{lstlisting}
+其中的Mesh.json就是指定的文件名，但是，实际上你需要创建一个Mesh.json.in的文件，内容如下：
+\begin{lstlisting}
+{
+    \"Name\" : \"%PluginName%\",
+    \"Version\" : \"$$FEEM_VERSION\",
+    \"CompatVersion\" : \"$$FEEM_COMPAT_VERSION\",
+    \"Required\" : true,
+    \"HiddenByDefault\" : true,
+    \"Vendor\" : \"The FEEM Company Ltd\",
+    \"Copyright\" : \"(C) $$FEEM_COPYRIGHT_YEAR The FEEM Company Ltd\",
+    \"License\" : [ \"Commercial Usage\",
+                  \"\",
+                  \"Licensees holding valid FEEM Commercial licenses mayuse this plugin in accordance with the FEEM CommercialLicense Agreement provided with the Software or,alternatively, in accordance with the terms contained ina written agreement between you and The FEEM Company.\",
+                  \"\",
+                  \"GNU General Public License Usage\",
+                  \"\",
+                  \"Alternatively, this plugin may be used under the termsof the GNU General Public License version 3 as publishedby the Free Software Foundation with exceptions asappearing in the file LICENSE.GPL3-EXCEPT included in thepackaging of this plugin. Please review the followinginformation to ensure the GNU General Public Licenserequirements will be met: https://www.gnu.org/licensesgpl-3.0.html.\"
+    ],
+    \"Category\" : \"%PluginName%\",
+    \"Description\" : \"The %PluginName% plugin for the FEEM IDE.\",
+    \"Url\" : \"http://feem.org\",
+    $$dependencyList
+}    
+\end{lstlisting}
+需要把其中的PluginName的内容替换为插件名。
+
+5.添加导出宏声明文件：插件名\_global.h（定义导出宏），内容如下：
+\begin{lstlisting}
+#pragma once
+
+#include <qglobal.h>
+
+#if defined(%PluginName%_LIBRARY)
+#  define %PluginName%_EXPORT Q_DECL_EXPORT
+#elif defined(%PluginName%_STATIC_LIBRARY)
+#  define %PluginName%_EXPORT
+#else
+#  define %PluginName%_EXPORT Q_DECL_IMPORT
+#endif   
+\end{lstlisting}
+需要把PluginName部分替换为你的插件名的全大写。
+
+6.然后需要修改上一个目录当中的plugins.pro文件，也就是将本项目添加到SUBDIRS的列表当中；
+
+7.接下来就是开始创建插件的C++源代码了。所有的插件类都继承于iplugin类。具体的写法参考一些已经写好的插件。有一些函数是必须要实现的，例如初始化函数。
 
 大概完成以上步骤就可以开始编写你的插件了，按照上述方法一般情况下你无需再进行别的操作，比如要不要考虑头文件，想要用某个链接库怎么办？只要设置好相关的依赖，qmake就已经自动地添加了相关的东西来保证你能够正常的调用相关的模块。注意，你编译成功的插件一般要于主程序的版本一致，主程序的代码如果发生了改变，一般插件的代码也要重新编译。插件的信息非常重要，如果与主程序定义的不一致，则不能被成功的读取。
 
@@ -90,6 +166,21 @@ void %PluginName%Plugin::triggerAction()
                              tr("Action Triggered"),
                              tr("This is an action from %PluginName%."));
 }   
+\end{lstlisting}
+
+下面是两个插件的时候，各个函数的调用过程。首先是载入插件dll链接库。主插件是coreplugin，CAD插件依赖coreplugin插件。调用构造函数说明插件的dll链接库被载入了。顺序是先载入被依赖的插件coreplugin，然后载入CAD。需要注意的是，载入插件的时候需要读入metadata，如果又一点错误，就会失败。接下来是执行初始化，最先被初始化的是被依赖的，别的插件依赖的东西，必须在这里面实现，也就是先初始化coreplugin，然后初始化CAD。接下来是执行extensionsInitialized。也就是插件所需要的其他插件都完成初始化了，可以进一步执行，这个是按照依赖的顺序反着来的。最后是delayedInitialize。
+\begin{lstlisting}
+__cdecl Core::CorePlugin::CorePlugin(void)
+__cdecl CAD::CADPlugin::CADPlugin(void)
+bool __cdecl Core::CorePlugin::initialize(const class QStringList &,class QString *)
+bool __cdecl CAD::CADPlugin::initialize(const class QStringList &,class QString *)
+void __cdecl CAD::CADPlugin::extensionsInitialized(void)
+void __cdecl Core::CorePlugin::extensionsInitialized(void)
+bool __cdecl CAD::CADPlugin::delayedInitialize(void)
+bool __cdecl Core::CorePlugin::delayedInitialize(void)    
+enum ExtensionSystem::IPlugin::ShutdownFlag __cdecl CAD::CADPlugin::aboutToShutdown(void)
+__cdecl CAD::CADPlugin::~CADPlugin(void)
+__cdecl Core::CorePlugin::~CorePlugin(void)
 \end{lstlisting}
 \subsection{库文件的创建}
 链接库的创建步骤与插件类似，只是放置在libs文件夹下。库文件也没有什么固定的写法，只需要设置好导出宏，最后就可以生成dll文件。在pro文件当中需要添加宏定义，这样编译的时候才会生成dll。
