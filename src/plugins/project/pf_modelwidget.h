@@ -4,6 +4,7 @@
 #include <QWidget>
 
 class QPushButton;
+namespace ProjectExplorer {
 class PF_ProjectTreeWidget;
 
 class PF_ModelWidget : public QWidget
@@ -28,5 +29,5 @@ signals:
 
 public slots:
 };
-
+}//namespace ProjectExplorer
 #endif // PF_MODELWIDGET_H

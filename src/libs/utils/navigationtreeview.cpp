@@ -4,6 +4,7 @@
 #include <QHeaderView>
 #include <QScrollBar>
 
+namespace Utils {
 NavigationTreeView::NavigationTreeView(QWidget *parent)
     : TreeView(parent)
 {
@@ -74,3 +75,4 @@ void NavigationTreeView::resizeEvent(QResizeEvent *event)
     header()->setMinimumSectionSize(minimumWidth);
     TreeView::resizeEvent(event);
 }
+}//namespace Utils

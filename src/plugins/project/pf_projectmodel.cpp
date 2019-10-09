@@ -9,6 +9,8 @@
 #include <QDebug>
 #include <functional>
 
+namespace ProjectExplorer {
+
 PF_ProjectModel::PF_ProjectModel(QObject *parent)
     : BaseTreeModel(new WrapperNode(nullptr), parent)
 {
@@ -128,7 +130,7 @@ WrapperNode *PF_ProjectModel::wrapperForNode(const Node *node) const
     auto pred = [node](WrapperNode *item) {
         return item->m_node == node;
     };
-    const auto pred0 = [pred](TreeItem *treeItem) -> bool { return pred(static_cast<WrapperNode *>(treeItem)); };
+    const auto pred0 = [pred](Utils::TreeItem *treeItem) -> bool { return pred(static_cast<WrapperNode *>(treeItem)); };
     return static_cast<WrapperNode *>(m_root->findAnyChild(pred0));
 }
 
@@ -257,7 +259,7 @@ WrapperNode *PF_ProjectModel::nodeForProject(const PF_Project *project) const
     if(!containerNode)
         return nullptr;
     /** 在tree当中查找containerNode，项目节点肯定在第一层 **/
-    auto pre0 = [containerNode](TreeItem *node) {
+    auto pre0 = [containerNode](Utils::TreeItem *node) {
         return static_cast<WrapperNode *>(node)->m_node == containerNode;
     };
 
@@ -292,7 +294,7 @@ void PF_ProjectModel::addOrRebuildProjectModel(PF_Project *project)
 
 //    container->sortChildren(&sortWrapperNodes);
 
-    container->forAllChildren([this](TreeItem *node) {
+    container->forAllChildren([this](Utils::TreeItem *node) {
         /** 不知道为什么这里不能使用WrapperNode作为参数，可能是编译器的问题，
             所以就写成了TreeItem  **/
         if (dynamic_cast<WrapperNode*>(node)->m_node) {
@@ -364,3 +366,4 @@ Node *PF_ProjectModel::nodeForIndex(const QModelIndex &index) const
 //    static QLoggingCategory logger("qtc.projectexplorer.PF_ProjectModel", QtWarningMsg);
 //    return logger;
 //}
+}//namespace ProjectExplorer

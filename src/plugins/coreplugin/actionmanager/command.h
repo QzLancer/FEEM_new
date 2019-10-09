@@ -20,7 +20,7 @@ class Context;
 
 //constexpr bool useMacShortcuts = Utils::HostOsInfo::isMacHost();
 
-class CORE_EXPORT Command : public QObject
+class FEEM_CORE_EXPORT Command : public QObject
 {
     Q_OBJECT
 public:

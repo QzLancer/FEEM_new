@@ -8,7 +8,6 @@ include($$PWD/../../libs/qtribbon/ribbonsample/qtitanribbon.pri)
 include($$PWD/../../libs/qtribbon/ribbonsample/shared/aboutdialog.pri)
 include($$PWD/../../libs/qtribbon/ribbonsample/shared/ribbonwindow.pri)
 
-msvc: QMAKE_CXXFLAGS += -wd4251 -wd4290 -wd4250
 SOURCES +=  \
     coreplugin.cpp \
     mainwindow.cpp \
@@ -19,7 +18,8 @@ SOURCES +=  \
     actionmanager/actioncontainer.cpp \
     actionmanager/actionmanager.cpp \
     actionmanager/command.cpp \
-    actionmanager/proxyaction.cpp
+    actionmanager/proxyaction.cpp \
+    inavigationwidgetfactory.cpp
     
 
 HEADERS +=  \
@@ -37,6 +37,7 @@ HEADERS +=  \
     actionmanager/actionmanager_p.h \
     actionmanager/command.h \
     actionmanager/command_p.h \
-    actionmanager/proxyaction.h
+    actionmanager/proxyaction.h \
+    inavigationwidgetfactory.h
   
 

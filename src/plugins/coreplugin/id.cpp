@@ -281,7 +281,7 @@ bool Id::operator==(const char *name) const
 }
 
 // For debugging purposes
-//CORE_EXPORT const char *nameForId(quintptr id)
+//FEEM_CORE_EXPORT const char *nameForId(quintptr id)
 //{
 //    return stringFromId.value(id).str;
 //}

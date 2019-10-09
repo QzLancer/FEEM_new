@@ -8,6 +8,7 @@
 #include <QPushButton>
 #include <QDebug>
 
+namespace ProjectExplorer {
 PF_ModelWidget::PF_ModelWidget(QWidget* parent)
     : QWidget (parent)
 {
@@ -101,3 +102,4 @@ void PF_ModelWidget::init()
 
     setLayout(modellayout);
 }
+}//namespace ProjectExplorer

@@ -1,9 +1,11 @@
 #ifndef NAVIGATIONTREEVIEW_H
 #define NAVIGATIONTREEVIEW_H
 
+#include "utils_global.h"
 #include "viewitem.h"
 
-class NavigationTreeView : public TreeView
+namespace Utils {
+class FEEM_UTILS_EXPORT NavigationTreeView : public TreeView
 {
     Q_OBJECT
 public:
@@ -15,5 +17,5 @@ protected:
     void focusOutEvent(QFocusEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
 };
-
+}//namespace Utils
 #endif // NAVIGATIONTREEVIEW_H

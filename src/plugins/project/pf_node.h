@@ -7,6 +7,7 @@
 #include <functional>
 #include <memory>
 
+namespace ProjectExplorer {
 class PF_Project;
 
 class LeafNode;/** 特质在最末端的节点 **/
@@ -221,5 +222,5 @@ public:
 private:
     PF_Project *m_project;
 };
-
+}//namespace ProjectExplorer
 #endif // PF_NODE_H

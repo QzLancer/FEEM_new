@@ -1,6 +1,6 @@
 #include "treemodel.h"
 
-
+namespace Utils {
 TreeItem::TreeItem() = default;
 
 TreeItem::~TreeItem()
@@ -658,3 +658,4 @@ void BaseTreeModel::destroyItem(TreeItem *item)
 {
     delete takeItem(item);
 }
+}//namespace Utils

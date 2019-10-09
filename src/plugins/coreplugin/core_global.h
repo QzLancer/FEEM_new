@@ -3,9 +3,9 @@
 #include <qglobal.h>
 
 #if defined(CORE_LIBRARY)
-#  define CORE_EXPORT Q_DECL_EXPORT
+#  define FEEM_CORE_EXPORT Q_DECL_EXPORT
 #elif defined(CORE_STATIC_LIBRARY)
-#  define CORE_EXPORT
+#  define FEEM_CORE_EXPORT
 #else
-#  define CORE_EXPORT Q_DECL_IMPORT
+#  define FEEM_CORE_EXPORT Q_DECL_IMPORT
 #endif

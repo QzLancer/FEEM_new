@@ -1,6 +1,6 @@
 #include "pf_projecttreewidget.h"
 
-#include "navigationtreeview.h"
+#include <utils/navigationtreeview.h>
 #include "pf_projectmodel.h"
 #include "pf_projecttree.h"
 #include "pf_node.h"
@@ -19,7 +19,7 @@
 #include <QDebug>
 
 
-
+namespace ProjectExplorer {
 class PF_ProjectTreeItemDelegate : public QStyledItemDelegate
 {
 public:
@@ -91,7 +91,7 @@ private:
 };
 
 
-class PF_ProjectTreeView : public NavigationTreeView
+class PF_ProjectTreeView : public Utils::NavigationTreeView
 {
 public:
     PF_ProjectTreeView()
@@ -149,7 +149,7 @@ public:
             connect(newModel, &QAbstractItemModel::rowsRemoved,
                     this, &PF_ProjectTreeView::invalidateSize);
         }
-        NavigationTreeView::setModel(newModel);
+        Utils::NavigationTreeView::setModel(newModel);
     }
 
     ~PF_ProjectTreeView() override
@@ -323,9 +323,9 @@ ProjectTreeWidgetFactory::ProjectTreeWidgetFactory()
     setDisplayName(tr("Projects"));
 }
 
-NavigationView ProjectTreeWidgetFactory::createWidget()
+Core::NavigationView ProjectTreeWidgetFactory::createWidget()
 {
-    NavigationView n;
+    Core::NavigationView n;
     auto ptw = new PF_ProjectTreeWidget;
     n.widget = ptw;
 
@@ -343,3 +343,4 @@ NavigationView ProjectTreeWidgetFactory::createWidget()
 //    n.dockToolBarWidgets << filter << ptw->toggleSync();
     return n;
 }
+}//namespace ProjectExplorer

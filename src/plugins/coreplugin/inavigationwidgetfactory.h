@@ -1,6 +1,8 @@
 #ifndef INAVIGATIONWIDGETFACTORY_H
 #define INAVIGATIONWIDGETFACTORY_H
 
+#include "core_global.h"
+
 #include <QObject>
 #include <QList>
 #include <QKeySequence>
@@ -9,6 +11,7 @@ class QSettings;
 class QToolButton;
 class QWidget;
 
+namespace Core {
 struct NavigationView
 {
     NavigationView(QWidget *w = nullptr) : widget(w) {}
@@ -17,7 +20,7 @@ struct NavigationView
     QList<QToolButton *> dockToolBarWidgets;
 };
 
-class INavigationWidgetFactory : public QObject
+class FEEM_CORE_EXPORT INavigationWidgetFactory : public QObject
 {
     Q_OBJECT
 
@@ -37,5 +40,5 @@ public:
 private:
     QString m_displayName;
 };
-
+}//namespace Utils
 #endif // INAVIGATIONWIDGETFACTORY_H

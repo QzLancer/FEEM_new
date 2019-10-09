@@ -14,7 +14,7 @@ QT_END_NAMESPACE
 
 namespace Core {
 
-class CORE_EXPORT Id
+class FEEM_CORE_EXPORT Id
 {
 public:
     Id() = default;

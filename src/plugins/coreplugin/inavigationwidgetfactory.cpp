@@ -1,5 +1,6 @@
 #include "inavigationwidgetfactory.h"
 
+namespace Core {
 /*!
     \class Core::INavigationWidgetFactory
     \mainclass
@@ -84,3 +85,4 @@ void INavigationWidgetFactory::setDisplayName(const QString &displayName)
     m_displayName = displayName;
 }
 
+}//namespace Utils

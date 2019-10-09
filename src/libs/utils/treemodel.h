@@ -1,18 +1,21 @@
 #ifndef TREEMODEL_H
 #define TREEMODEL_H
 
+#include "utils_global.h"
+
 #include <QAbstractItemModel>
 #include <QVector>
 
 #include <functional>
 
+namespace Utils {
 class BaseTreeModel;
 
 /*!
  \brief 树的每一个节点项
 
 */
-class TreeItem
+class FEEM_UTILS_EXPORT TreeItem
 {
 public:
     TreeItem();
@@ -86,7 +89,7 @@ private:
 // A general purpose multi-level model where each item can have its
 // own (TreeItem-derived) type.
 // https://doc.qt.io/qt-5/qabstractitemmodel.html
-class BaseTreeModel : public QAbstractItemModel
+class FEEM_UTILS_EXPORT BaseTreeModel : public QAbstractItemModel
 {
     Q_OBJECT
 
@@ -134,5 +137,5 @@ protected:
     QStringList m_headerToolTip;
     int m_columnCount;
 };
-
+}//namespace Utils
 #endif // TREEMODEL_H

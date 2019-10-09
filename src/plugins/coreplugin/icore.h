@@ -28,7 +28,7 @@ class IContext;
 class MainWindow;
 //}
 
-class CORE_EXPORT ICore : public QObject
+class FEEM_CORE_EXPORT ICore : public QObject
 {
     Q_OBJECT
 

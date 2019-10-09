@@ -4,14 +4,17 @@
 
 #include "pf_node.h"
 #include "pf_project.h"
-#include "actionmanager/actionmanager.h"
-#include "actionmanager/actioncontainer.h"
+#include <coreplugin/actionmanager/actionmanager.h>
+#include <coreplugin/actionmanager/actioncontainer.h>
 #include "pf_sessionmanager.h"
 #include <QMenu>
 
 #include <QApplication>
 #include <QDebug>
 
+using namespace Core;
+
+namespace ProjectExplorer {
 PF_ProjectTree* PF_ProjectTree::s_instance = nullptr;
 
 PF_ProjectTree::PF_ProjectTree(QObject *parent) : QObject(parent)
@@ -361,3 +364,4 @@ void PF_ProjectTree::hideContextMenu()
 {
 
 }
+}//namespace ProjectExplorer

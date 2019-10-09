@@ -6,6 +6,7 @@
 #include <QString>
 #include <QStringList>
 
+namespace ProjectExplorer {
 class PF_Project;
 
 class PF_SessionManager : public QObject
@@ -103,5 +104,5 @@ private:
 //    static void markSessionFileDirty();
 //    static void configureEditors(PF_Project *project);
 };
-
+}//namespace ProjectExplorer
 #endif // PF_SESSIONMANAGER_H

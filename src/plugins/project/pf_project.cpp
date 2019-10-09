@@ -1,13 +1,14 @@
 #include "pf_project.h"
 #include "pf_node.h"
 
-#include "idocument.h"
+#include <coreplugin/idocument.h>
 #include "pf_nodetreebuilder.h"
 #include "pf_projecttree.h"
 
 #include <memory>
 #include <QDebug>
 
+namespace ProjectExplorer {
 // --------------------------------------------------------------------
 // ProjectDocument:
 // --------------------------------------------------------------------
@@ -22,7 +23,7 @@ ProjectDocument::ProjectDocument(const QString &mimeType, const FileName &fileNa
 //        DocumentManager::addDocument(this);
 }
 
-IDocument::ReloadBehavior
+Core::IDocument::ReloadBehavior
 ProjectDocument::reloadBehavior(IDocument::ChangeTrigger state,
                                 IDocument::ChangeType type) const
 {
@@ -57,7 +58,7 @@ public:
     ~PF_ProjectPrivate();
 
     /** 保存真实的文件 **/
-    std::unique_ptr<IDocument> m_document;
+    std::unique_ptr<Core::IDocument> m_document;
     std::unique_ptr<ProjectNode> m_rootProjectNode;
 
     QString m_displayName;
@@ -180,3 +181,4 @@ PF_ProjectPrivate::~PF_ProjectPrivate()
     // Make sure our root node is null when deleting the actual node
     std::unique_ptr<ProjectNode> oldNode = std::move(m_rootProjectNode);
 }
+}//namespace ProjectExplorer

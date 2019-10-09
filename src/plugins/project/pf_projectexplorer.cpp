@@ -2,19 +2,41 @@
 #include "pf_projecttree.h"
 #include "pf_project.h"
 #include "pf_sessionmanager.h"
-#include "actionmanager/actionmanager.h"
-#include "actionmanager/actioncontainer.h"
-#include "actionmanager/command.h"
+
 #include "projectexplorerconstants.h"
-#include "pf_magmaterialdialog.h"
+//#include "pf_magmaterialdialog.h"
 #include "pf_node.h"
 
 #include <QAction>
-#include <QMenu>
-#include <QDir>
 #include <QFileInfo>
-#include <QDebug>
 
+#include "qtribbon/include/QtnRibbonGroup.h"
+
+#include <coreplugin/actionmanager/actionmanager.h>
+#include <coreplugin/actionmanager/actioncontainer.h>
+#include <coreplugin/actionmanager/command.h>
+#include <coreplugin/constants.h>
+
+#include <extensionsystem/pluginerroroverview.h>
+#include <extensionsystem/pluginmanager.h>
+#include <extensionsystem/pluginspec.h>
+#include <utils/algorithm.h>
+#include <utils/mimetypes/mimedatabase.h>
+#include <utils/stringutils.h>
+
+#include <QtPlugin>
+
+#include <QDateTime>
+#include <QDebug>
+#include <QDir>
+#include <QMenu>
+#include <QUuid>
+
+#include <cstdlib>
+
+using namespace Core;
+
+namespace ProjectExplorer {
 namespace Constants {
 const int  P_MODE_SESSION         = 85;
 
@@ -237,7 +259,7 @@ public:
 static PF_ProjectExplorerPlugin* m_instance = nullptr;
 static PF_ProjectExplorerPluginPrivate*  dd = nullptr;
 
-PF_ProjectExplorerPlugin::PF_ProjectExplorerPlugin(QObject *parent) : QObject(parent)
+PF_ProjectExplorerPlugin::PF_ProjectExplorerPlugin()
 {
     m_instance = this;
 }
@@ -255,9 +277,8 @@ PF_ProjectExplorerPlugin* PF_ProjectExplorerPlugin::instance()
     return m_instance;
 }
 
-bool PF_ProjectExplorerPlugin::initialize()
+bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString *errorMessage)
 {
-    qDebug()<<Q_FUNC_INFO;
     dd = new PF_ProjectExplorerPluginPrivate;
 
     PF_SessionManager *sessionManager = &dd->m_sessionManager;
@@ -345,17 +366,17 @@ bool PF_ProjectExplorerPlugin::initialize()
     dd->m_add3Dmodel = new QAction(QIcon(":/tree/model_3d.png"),tr("3D"), this);
     cmd = ActionManager::registerAction(dd->m_add3Dmodel, Constants::ADD3DMODEL);
 //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
-    addModel->addAction(cmd,Constants::G_DEFAULT_ONE);
+    addModel->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
 
     dd->m_add2DAxismodel = new QAction(QIcon(":/tree/model_2d_axi.png"),tr("2D Axisymmetric"), this);
     cmd = ActionManager::registerAction(dd->m_add2DAxismodel, Constants::ADD2DAXIS);
 //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
-    addModel->addAction(cmd,Constants::G_DEFAULT_ONE);
+    addModel->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
 
     dd->m_add2Dmodel = new QAction(QIcon(":/tree/model_2d.png"),tr("2D"), this);
     cmd = ActionManager::registerAction(dd->m_add2Dmodel, Constants::ADD2DMODEL);
     //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
-    addModel->addAction(cmd,Constants::G_DEFAULT_ONE);
+    addModel->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
 
     mprojectContextMenu->addMenu(addModel,Constants::G_PROJECT_ADD);
 
@@ -363,17 +384,17 @@ bool PF_ProjectExplorerPlugin::initialize()
     dd->m_addStaticMag = new QAction(QIcon(":/tree/magnetic_fields.png"),tr("Static Magnetic Field"), this);
     cmd = ActionManager::registerAction(dd->m_addStaticMag, Constants::ADDSTATICMAG);
     //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
-    addStudy->addAction(cmd,Constants::G_DEFAULT_ONE);
+    addStudy->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
 
     dd->m_addTransientMag = new QAction(QIcon(":/tree/phys_magnetic_fields_no_currents.png"),tr("Transient Magnetic Field"), this);
     cmd = ActionManager::registerAction(dd->m_addTransientMag, Constants::ADDTRANSIENTMAG);
     //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
-    addStudy->addAction(cmd,Constants::G_DEFAULT_ONE);
+    addStudy->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
 
     dd->m_addHeat = new QAction(QIcon(":/tree/modlib_heat.png"),tr("Heat Field"), this);
     cmd = ActionManager::registerAction(dd->m_addHeat, Constants::ADDHEAT);
     //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
-    addStudy->addAction(cmd,Constants::G_DEFAULT_ONE);
+    addStudy->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
 
     mprojectContextMenu->addMenu(addStudy,Constants::G_PROJECT_ADD);
 
@@ -381,14 +402,13 @@ bool PF_ProjectExplorerPlugin::initialize()
     dd->m_addMaterial = new QAction(QIcon(":/material_picker.png"),tr("add Material"), this);
     cmd = ActionManager::registerAction(dd->m_addMaterial, Constants::ADDMATERIAL);
     //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
-    mmaterialContextMenu->addAction(cmd,Constants::G_DEFAULT_ONE);
+    mmaterialContextMenu->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
 
     dd->m_addBlankMaterial = new QAction(QIcon(":/more_materials.png"),tr("add Blank Material"), this);
     cmd = ActionManager::registerAction(dd->m_addBlankMaterial, Constants::ADDBLANKMATERIAL);
     //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
 
-    mmaterialContextMenu->addAction(cmd,Constants::G_DEFAULT_ONE);
-
+    mmaterialContextMenu->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
 
     // help
     dd->m_help = new QAction(QIcon(":/tree/help_16.png"),tr("Help"), this);
@@ -401,6 +421,21 @@ bool PF_ProjectExplorerPlugin::initialize()
 
     connect(dd->m_addBlankMaterial,&QAction::triggered,dd,&PF_ProjectExplorerPluginPrivate::addBlankMaterial);
     return true;
+}
+
+void PF_ProjectExplorerPlugin::extensionsInitialized()
+{
+
+}
+
+bool PF_ProjectExplorerPlugin::delayedInitialize()
+{
+    return true;
+}
+
+ExtensionSystem::IPlugin::ShutdownFlag PF_ProjectExplorerPlugin::aboutToShutdown()
+{
+    return AsynchronousShutdown;
 }
 
 PF_ProjectExplorerPlugin::OpenProjectResult PF_ProjectExplorerPlugin::openProject(const QString &fileName)
@@ -594,15 +629,15 @@ void PF_ProjectExplorerPluginPrivate::addBlankMaterial()
         感觉不需要，因为右键菜单就是根据材料进来的   **/
     if(!folderNode) return;
 
-    PF_MagMaterialDialog* dialog = new PF_MagMaterialDialog();
-    int result = dialog->exec();
-    if(result == QDialog::Accepted){
-        qDebug()<<"addBlankMaterial OK";
-        folderNode->addNode(std::make_unique<LeafNode>(QString(QObject::tr("Material")),LeafType::Header));
-        PF_ProjectTree::emitSubtreeChanged(folderNode);
-    }else{
-        qDebug()<<"addBlankMaterial Cancle";
-    }
+//    PF_MagMaterialDialog* dialog = new PF_MagMaterialDialog();
+//    int result = dialog->exec();
+//    if(result == QDialog::Accepted){
+//        qDebug()<<"addBlankMaterial OK";
+//        folderNode->addNode(std::make_unique<LeafNode>(QString(QObject::tr("Material")),LeafType::Header));
+//        PF_ProjectTree::emitSubtreeChanged(folderNode);
+//    }else{
+//        qDebug()<<"addBlankMaterial Cancle";
+//    }
 }
 
 void PF_ProjectExplorerPluginPrivate::removeProject()
@@ -689,3 +724,5 @@ QList<QPair<QString, QString> > PF_ProjectExplorerPluginPrivate::recentProjects(
 {
     return m_recentProjects;
 }
+
+}//namespace ProjectExplorer

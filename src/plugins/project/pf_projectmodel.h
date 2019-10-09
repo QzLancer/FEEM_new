@@ -1,13 +1,15 @@
 #ifndef PF_PROJECTMODEL_H
 #define PF_PROJECTMODEL_H
 
-#include "treemodel.h"
+#include <utils/treemodel.h>
 
 #include <QPointer>
 #include <QSet>
 #include <QTimer>
 #include <QTreeView>
 
+
+namespace ProjectExplorer {
 class Node;
 class PF_Project;
 class FolderNode;
@@ -17,14 +19,14 @@ class FolderNode;
  \brief 该类用来存放不同的节点数据
 
 */
-class WrapperNode : public TreeItem
+class WrapperNode : public Utils::TreeItem
 {
 public:
     explicit WrapperNode(Node *node) : m_node(node) {}
     Node *m_node = nullptr;
 };
 
-class PF_ProjectModel : public BaseTreeModel
+class PF_ProjectModel : public Utils::BaseTreeModel
 {
     Q_OBJECT
 
@@ -84,5 +86,5 @@ private:
     QColor m_enabledTextColor;
     QColor m_disabledTextColor;
 };
-
+}//namespace ProjectExplorer
 #endif // PF_PROJECTMODEL_H

@@ -15,7 +15,7 @@ class Id;
 class IDocumentPrivate;
 //}
 
-class CORE_EXPORT IDocument : public QObject
+class FEEM_CORE_EXPORT IDocument : public QObject
 {
     Q_OBJECT
 

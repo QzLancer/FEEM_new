@@ -13,7 +13,7 @@
 
 namespace Core {
 
-class CORE_EXPORT Context
+class FEEM_CORE_EXPORT Context
 {
 public:
     Context() = default;
@@ -41,7 +41,7 @@ private:
     QList<Id> d;
 };
 
-class CORE_EXPORT IContext : public QObject
+class FEEM_CORE_EXPORT IContext : public QObject
 {
     Q_OBJECT
 public:

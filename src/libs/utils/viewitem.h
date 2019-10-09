@@ -4,6 +4,7 @@
 #include <QTreeView>
 #include <QKeyEvent>
 
+namespace Utils {
 static const char activationModeC[] = "ActivationMode";
 
 enum ActivationMode {
@@ -59,4 +60,5 @@ public:
         : View(parent)
     {}
 };
+}//namespace Utils
 #endif // VIEWITEM_H

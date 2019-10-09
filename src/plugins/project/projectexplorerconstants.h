@@ -1,6 +1,7 @@
 #ifndef PROJECTEXPLORERCONSTANTS_H
 #define PROJECTEXPLORERCONSTANTS_H
 
+namespace ProjectExplorer {
 namespace Constants {
 
 // Modes and their priorities
@@ -61,5 +62,6 @@ const char G_FILE_CONFIG[]        = "ProjectFile.Group.Config";
 const char G_HELP[] = "Project.Help";
 
 } // namespace Constants
+}//namespace ProjectExplorer
 
 #endif // PROJECTEXPLORERCONSTANTS_H

@@ -5,7 +5,7 @@
 #include <QDebug>
 
 
-
+namespace ProjectExplorer {
 Node::~Node() = default;
 
 Node::Node(QString _displayname, NodeType nodetype, QIcon icon)
@@ -391,3 +391,4 @@ void FolderNode::handleSubTreeChanged(FolderNode *node)
     if (FolderNode *parent = parentFolderNode())
         parent->handleSubTreeChanged(node);
 }
+}//namespace ProjectExplorer

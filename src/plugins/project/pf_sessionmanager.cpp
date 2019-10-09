@@ -2,7 +2,7 @@
 
 #include "pf_projectexplorer.h"
 #include "pf_project.h"
-#include "icore.h"
+#include <coreplugin/icore.h>
 
 #include <QMap>
 #include <QVariant>
@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include <QDebug>
 
+namespace ProjectExplorer {
 /*!
  \brief 用来管理以打开的项目，最近的项目，等等。
 
@@ -140,10 +141,11 @@ bool PF_SessionManager::createSession(const QString& session)
 */
 bool PF_SessionManager::confirmSessionDelete(const QString& session)
 {
-    return QMessageBox::question(ICore::mainWindow(),
-                                 tr("Delete Session"),
-                                 tr("Delete session %1?").arg(session),
-                                 QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes;
+//    return QMessageBox::question(ICore::mainWindow(),
+//                                 tr("Delete Session"),
+//                                 tr("Delete session %1?").arg(session),
+//                                 QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes;
+    return true;
 }
 
 /*!
@@ -418,3 +420,4 @@ QString PF_SessionManagerPrivate::sessionTitle(const QString& filePath)
     }
     return QString();
 }
+}//namespace ProjectExplorer

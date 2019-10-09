@@ -24,7 +24,7 @@ class Context;
 //class MainWindow;
 //} // Internal
 
-class CORE_EXPORT ActionManager : public QObject
+class FEEM_CORE_EXPORT ActionManager : public QObject
 {
     Q_OBJECT
 public:

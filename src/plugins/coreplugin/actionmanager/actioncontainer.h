@@ -22,7 +22,7 @@ namespace Core {
 
 class Command;
 
-class CORE_EXPORT ActionContainer : public QObject
+class FEEM_CORE_EXPORT ActionContainer : public QObject
 {
     Q_OBJECT
 

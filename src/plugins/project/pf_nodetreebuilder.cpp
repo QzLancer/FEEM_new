@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QString>
 
+namespace ProjectExplorer {
 static void createTree(const PF_Project *pro, ProjectNode *node)
 {
     if(!pro)
@@ -52,3 +53,4 @@ std::unique_ptr<ProjectNode> PF_NodeTreeBuilder::buildTree(PF_Project *project)
 
     return root;
 }
+}//namespace ProjectExplorer

@@ -5,15 +5,16 @@
 #include <functional>
 #include <memory>
 
-#include "idocument.h"
+#include <coreplugin/idocument.h>
 
+namespace ProjectExplorer {
 class FolderNode;
 class Node;
 class ProjectNode;
 class PF_ProjectPrivate;
 
 // Auto-registers with the DocumentManager if a callback is set!
-class ProjectDocument : public IDocument
+class ProjectDocument : public Core::IDocument
 {
 public:
     using ProjectCallback = std::function<void()>;
@@ -21,10 +22,10 @@ public:
     ProjectDocument(const QString &mimeType, const FileName &fileName,
                     const ProjectCallback &callback = {});
 
-    IDocument::ReloadBehavior reloadBehavior(IDocument::ChangeTrigger state,
-                                                   IDocument::ChangeType type) const final;
-    bool reload(QString *errorString, IDocument::ReloadFlag flag,
-                IDocument::ChangeType type) final;
+    IDocument::ReloadBehavior reloadBehavior(Core::IDocument::ChangeTrigger state,
+                                                   Core::IDocument::ChangeType type) const final;
+    bool reload(QString *errorString, Core::IDocument::ReloadFlag flag,
+                Core::IDocument::ChangeType type) final;
 
 private:
     ProjectCallback m_callback;
@@ -57,7 +58,8 @@ public slots:
 private:
     PF_ProjectPrivate* d;
 };
+}//namespace ProjectExplorer
 /** 为了使用 **/
-Q_DECLARE_METATYPE(PF_Project*)
+Q_DECLARE_METATYPE(ProjectExplorer::PF_Project*)
 #endif // PF_PROJECT_H
 

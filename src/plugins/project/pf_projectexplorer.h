@@ -1,26 +1,35 @@
 #ifndef PF_PROJECTEXPLORER_H
 #define PF_PROJECTEXPLORER_H
 
-#include <QObject>
+#include <extensionsystem/iplugin.h>
 
+namespace Core {
+class Id;
+}
+
+namespace ProjectExplorer {
 class Node;
 class PF_Project;
-class Id;
-
 /*!
  \brief 主要实现关于project的
 
 */
-class PF_ProjectExplorerPlugin : public QObject
+class PF_ProjectExplorerPlugin : public ExtensionSystem::IPlugin
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.hit.feem.feemPlugin" FILE "Project.json")
+
 public:
-    explicit PF_ProjectExplorerPlugin(QObject *parent = nullptr);
-    ~PF_ProjectExplorerPlugin();
+    explicit PF_ProjectExplorerPlugin();
+    ~PF_ProjectExplorerPlugin() override;
 
     static PF_ProjectExplorerPlugin *instance();
 
-    bool initialize();
+    /** 插件接口 **/
+    bool initialize(const QStringList &arguments, QString *errorMessage = nullptr) override;
+    void extensionsInitialized() override;
+    bool delayedInitialize() override;
+    ShutdownFlag aboutToShutdown() override;
 
     class OpenProjectResult
     {
@@ -66,39 +75,15 @@ public:
 
     static void showContextMenu(QWidget *view, const QPoint &globalPos, Node *node);
 
-//    static void setProjectExplorerSettings(const Internal::ProjectExplorerSettings &pes);
-//    static const Internal::ProjectExplorerSettings &projectExplorerSettings();
-
-//    static void startRunControl(RunControl *runControl);
-//    static void showRunErrorMessage(const QString &errorMessage);
-
-    // internal public for FlatModel
-//    static void renameFile(Node *node, const QString &newFilePath);
-//    static QStringList projectFilePatterns();
-//    static bool isProjectFile(const Utils::FileName &filePath);
     static QList<QPair<QString, QString> > recentProjects();
 
-    static bool canRunStartupProject(Id runMode, QString *whyNot = nullptr);
-    static void runProject(PF_Project *pro, Id, const bool forceSkipDeploy = false);
-    static void runStartupProject(Id runMode, bool forceSkipDeploy = false);
-//    static void runRunConfiguration(RunConfiguration *rc, Core::Id runMode,
-//                             const bool forceSkipDeploy = false);
-//    static QList<QPair<Runnable, Utils::ProcessHandle>> runningRunControlProcesses();
-
-//    static void addExistingFiles(FolderNode *folderNode, const QStringList &filePaths);
+    static bool canRunStartupProject(Core::Id runMode, QString *whyNot = nullptr);
+    static void runProject(PF_Project *pro, Core::Id, const bool forceSkipDeploy = false);
+    static void runStartupProject(Core::Id runMode, bool forceSkipDeploy = false);
 
     static void buildProject(PF_Project *p);
 
-//    static void initiateInlineRenaming();
-
-//    static QString displayNameForStepId(Core::Id stepId);
-
-//    static QString directoryFor(Node *node);
-//    static QStringList projectFileGlobs();
-
     static void updateContextMenuActions();
-
-//    static QThreadPool *sharedThreadPool();
 
     static void openNewProjectDialog();
     static void openOpenProjectDialog();
@@ -119,5 +104,6 @@ signals:
 private:
     static bool coreAboutToClose();
 };
+}//namespace ProjectExplorer
 
 #endif // PF_PROJECTEXPLORER_H

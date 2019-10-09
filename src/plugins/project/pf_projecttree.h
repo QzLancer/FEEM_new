@@ -3,6 +3,7 @@
 
 #include <QObject>
 
+namespace ProjectExplorer {
 class Node;
 class FolderNode;
 
@@ -76,5 +77,5 @@ private:
     Node *m_currentNode = nullptr;
     PF_Project* m_currentProject = nullptr;
 };
-
+}//namespace ProjectExplorer
 #endif // PF_PROJECTTREE_H
