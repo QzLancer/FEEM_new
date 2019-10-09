@@ -11,7 +11,8 @@ HEADERS += \
     $$PWD/pf_point.h \
     $$PWD/pf_polyline.h \
     $$PWD/pf_preview.h \
-    $$PWD/pf_vector.h
+    $$PWD/pf_vector.h \
+    $$PWD/pf_face.h
 
 SOURCES += \
     $$PWD/pf_atomicentity.cpp \
@@ -24,4 +25,5 @@ SOURCES += \
     $$PWD/pf_point.cpp \
     $$PWD/pf_polyline.cpp \
     $$PWD/pf_preview.cpp \
-    $$PWD/pf_vector.cpp
+    $$PWD/pf_vector.cpp \
+    $$PWD/pf_face.cpp

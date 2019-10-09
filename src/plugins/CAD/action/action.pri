@@ -11,7 +11,8 @@ HEADERS += \
     $$PWD/pf_actionselectsingle.h \
     $$PWD/pf_eventhandler.h \
     $$PWD/pf_selection.h \
-    $$PWD/pf_snapper.h
+    $$PWD/pf_snapper.h \
+    $$PWD/pf_actiondrawface.h
 
 SOURCES += \
     $$PWD/pf_actiondrawcircle.cpp \
@@ -24,4 +25,5 @@ SOURCES += \
     $$PWD/pf_actionselectsingle.cpp \
     $$PWD/pf_eventhandler.cpp \
     $$PWD/pf_selection.cpp \
-    $$PWD/pf_snapper.cpp
+    $$PWD/pf_snapper.cpp \
+    $$PWD/pf_actiondrawface.cpp

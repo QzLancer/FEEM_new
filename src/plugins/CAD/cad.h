@@ -31,7 +31,7 @@ public:
 public slots:
 
 private:
-//    PF_ActionHandler* ac_handler;
+    PF_ActionHandler* action_handler;
 };
 
 }//namespace CAD

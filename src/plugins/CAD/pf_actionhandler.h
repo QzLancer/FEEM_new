@@ -44,6 +44,7 @@ public slots:
     void slotDrawArc();
     void slotDrawCircle();
     void slotDrawRectangle();
+    void slotDrawFace();
 
     void slotSetSnaps(PF_SnapMode const& s);
     void slotSnapFree();
@@ -55,8 +56,9 @@ public slots:
     void slotSnapDist();
     void slotSnapIntersection();
     void slotSnapIntersectionManual();
+
     //Geometry
-    void slotExportGeometry();
+    void slotExportGeoFile();
 
     //View
     void slotZoomIn();
