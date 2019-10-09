@@ -47,8 +47,9 @@ void MainWindow::init()
     /** Qribbon更新主题 **/
     Qtitan::OfficeStyle* st = (Qtitan::OfficeStyle*)qApp->style();
     Qtitan::OfficeStyle::Theme theme = Qtitan::OfficeStyle::Office2010Silver;
-//    setFixedSize(500,500);
+
     QWidget* w = new QWidget(this);
+//    w->setFixedSize(900,600);
     setCentralWidget(w);
 
     st->setTheme(theme);

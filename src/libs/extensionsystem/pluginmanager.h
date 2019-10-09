@@ -27,7 +27,6 @@
 
 #include "extensionsystem_global.h"
 #include <QReadWriteLock>
-//#include <aggregation/aggregate.h>
 
 #include <QObject>
 #include <QStringList>

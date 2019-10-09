@@ -103,11 +103,6 @@ bool CorePlugin::initialize(const QStringList &arguments, QString *errorMessage)
     m_mainWindow = new MainWindow;
     m_mainWindow->setWindowTitle("FEEM");
 
-
-    m_mainWindow->show();
-    m_mainWindow->setFocus();
-//    m_mainWindow->showMaximized();
-
     ActionManager::instance()->setContext(Context(Constants::C_GLOBAL));
 
     return true;
@@ -121,22 +116,17 @@ bool CorePlugin::initialize(const QStringList &arguments, QString *errorMessage)
  */
 void CorePlugin::extensionsInitialized()
 {
-//    DesignMode::createModeIfRequired();
-//    Find::extensionsInitialized();
-//    m_locator->extensionsInitialized();
-//    m_mainWindow->extensionsInitialized();
-//    if (ExtensionSystem::PluginManager::hasError()) {
-//        auto errorOverview = new ExtensionSystem::PluginErrorOverview(m_mainWindow);
-//        errorOverview->setAttribute(Qt::WA_DeleteOnClose);
-//        errorOverview->setModal(true);
-//        errorOverview->show();
-//    }
+    /** 显示Windows，需要在所有的菜单都初始化完成之后，
+        但是总是warning 不能设置几何，所以先resize一下。
+        不知道什么原因，至少这样是好使的。**/
+    m_mainWindow->resize(900,600);
+    m_mainWindow->show();
+    m_mainWindow->setFocus();
+    m_mainWindow->showMaximized();
 }
 
 bool CorePlugin::delayedInitialize()
 {
-/*    m_locator->delayedInitialize();
-    IWizardFactory::allWizardFactories();*/ // scan for all wizard factories
     return true;
 }
 
