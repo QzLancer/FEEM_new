@@ -21,11 +21,15 @@
 #include "actionmanager/command.h"
 #include "ouptput/messagemanager.h"
 
+#include <coreplugin/pf_pagewidget.h>
+#include <coreplugin/pagemanager.h>
+
 namespace Core {
 
 MainWindow::MainWindow(QWidget *parent)
     : RibbonWindow(parent)
     , m_coreImpl(new ICore(this))
+    , m_pagesStack(new PF_PageWidget(this))
 {
     init();
 }
@@ -39,22 +43,27 @@ void MainWindow::init()
 {
     m_ribbonStyle->setAccentColor(OfficeStyle::AccentColorBlue);
 
+    setDockNestingEnabled(true);
+
+    setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
+    setCorner(Qt::BottomRightCorner, Qt::BottomDockWidgetArea);
+
+    m_pageManager = new PageManager(this, m_pagesStack);
+
     registerDefaultContainers();
     registerDefaultActions();    
 
-//    setCentralWidget(cad);
+    setCentralWidget(m_pagesStack);
 
     /** Qribbon更新主题 **/
-    Qtitan::OfficeStyle* st = (Qtitan::OfficeStyle*)qApp->style();
-    Qtitan::OfficeStyle::Theme theme = Qtitan::OfficeStyle::Office2010Silver;
-
-    QWidget* w = new QWidget(this);
-//    w->setFixedSize(900,600);
-    setCentralWidget(w);
-
-    st->setTheme(theme);
+    setOptions(Qtitan::OfficeStyle::Office2007Blue);
 
     updateActionsTheme();
+}
+
+void MainWindow::extensionsInitialized()
+{
+    PageManager::extensionsInitialized();
 }
 
 /**

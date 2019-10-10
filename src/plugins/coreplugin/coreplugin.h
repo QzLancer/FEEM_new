@@ -3,6 +3,7 @@
 #include <extensionsystem/iplugin.h>
 namespace Core {
 class MainWindow;
+class WorkPage;
 
 class CorePlugin : public ExtensionSystem::IPlugin
 {
@@ -28,6 +29,7 @@ public slots:
 
 private:
     MainWindow *m_mainWindow = nullptr;
+    WorkPage* m_workPage = nullptr;
 };
 
 } // namespace Core

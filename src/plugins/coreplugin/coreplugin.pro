@@ -22,7 +22,8 @@ SOURCES +=  \
     inavigationwidgetfactory.cpp \
     ipage.cpp \
     pagemanager.cpp \
-    pf_pagewidget.cpp
+    pf_pagewidget.cpp \
+    workpage.cpp
     
 
 HEADERS +=  \
@@ -44,6 +45,7 @@ HEADERS +=  \
     inavigationwidgetfactory.h \
     ipage.h \
     pagemanager.h \
-    pf_pagewidget.h
+    pf_pagewidget.h \
+    workpage.h
   
 

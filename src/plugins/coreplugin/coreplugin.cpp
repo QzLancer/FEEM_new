@@ -1,6 +1,8 @@
 #include "coreplugin.h"
 #include "idocument.h"
 #include "mainwindow.h"
+#include <coreplugin/workpage.h>
+#include <coreplugin/pagemanager.h>
 
 #include <coreplugin/actionmanager/actionmanager.h>
 
@@ -38,6 +40,7 @@ CorePlugin::CorePlugin()
 
 CorePlugin::~CorePlugin()
 {
+    delete m_workPage;
     delete m_mainWindow;
 }
 
@@ -103,6 +106,9 @@ bool CorePlugin::initialize(const QStringList &arguments, QString *errorMessage)
     m_mainWindow = new MainWindow;
     m_mainWindow->setWindowTitle("FEEM");
 
+    m_workPage = new WorkPage;
+    PageManager::activatePage(m_workPage->id());
+
     ActionManager::instance()->setContext(Context(Constants::C_GLOBAL));
 
     return true;
@@ -119,6 +125,7 @@ void CorePlugin::extensionsInitialized()
     /** 显示Windows，需要在所有的菜单都初始化完成之后，
         但是总是warning 不能设置几何，所以先resize一下。
         不知道什么原因，至少这样是好使的。**/
+    m_mainWindow->extensionsInitialized();
     m_mainWindow->resize(900,600);
     m_mainWindow->show();
     m_mainWindow->setFocus();

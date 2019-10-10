@@ -22,6 +22,9 @@ class PF_ProjectExplorerPlugin;
 class PF_ModelWidget;
 class PF_MaterialLibraryWidget;
 
+class PageManager;
+class PF_PageWidget;
+
 class MainWindow : public RibbonWindow
 {
     Q_OBJECT
@@ -32,8 +35,7 @@ public:
 
     void init();
 
-    void setupDockWidgets();
-    void setupStatusBar();
+    void extensionsInitialized();
 
     void registerDefaultContainers();
     void registerDefaultActions();
@@ -44,6 +46,8 @@ public slots:
 private:
     /** 插件  **/
     ICore* m_coreImpl = nullptr;
+    PageManager* m_pageManager = nullptr;
+    PF_PageWidget* m_pagesStack = nullptr;
 
     QList<IContext *> m_activeContext;
 
