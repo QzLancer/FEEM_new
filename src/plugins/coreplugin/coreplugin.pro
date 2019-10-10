@@ -19,7 +19,10 @@ SOURCES +=  \
     actionmanager/actionmanager.cpp \
     actionmanager/command.cpp \
     actionmanager/proxyaction.cpp \
-    inavigationwidgetfactory.cpp
+    inavigationwidgetfactory.cpp \
+    ipage.cpp \
+    pagemanager.cpp \
+    pf_pagewidget.cpp
     
 
 HEADERS +=  \
@@ -38,6 +41,9 @@ HEADERS +=  \
     actionmanager/command.h \
     actionmanager/command_p.h \
     actionmanager/proxyaction.h \
-    inavigationwidgetfactory.h
+    inavigationwidgetfactory.h \
+    ipage.h \
+    pagemanager.h \
+    pf_pagewidget.h
   
 
