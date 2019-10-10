@@ -435,7 +435,7 @@ bool PF_ProjectExplorerPlugin::delayedInitialize()
 
 ExtensionSystem::IPlugin::ShutdownFlag PF_ProjectExplorerPlugin::aboutToShutdown()
 {
-    return AsynchronousShutdown;
+    return SynchronousShutdown;
 }
 
 PF_ProjectExplorerPlugin::OpenProjectResult PF_ProjectExplorerPlugin::openProject(const QString &fileName)
