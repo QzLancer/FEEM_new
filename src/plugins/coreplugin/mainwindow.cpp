@@ -64,8 +64,8 @@ void MainWindow::init()
 void MainWindow::registerDefaultContainers()
 {
     /** 创建ribbonbar，这里不用创建，因为已经有了 **/
-    auto ribbonbar = new RibbonBarActionContainer(Constants::RIBBONBAR);
-    ribbonbar->setRibbonBar(ribbonBar());
+    auto ribbonbar = ActionManager::createRibbonBar(Constants::RIBBONBAR);
+    static_cast<RibbonBarActionContainer*>(ribbonbar)->setRibbonBar(ribbonBar());
 
     ribbonBar()->setFrameThemeEnabled();//不显示一条白带
     /** 添加一些默认的group用来保存Page类型的container **/

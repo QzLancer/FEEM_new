@@ -201,11 +201,11 @@ ActionContainer *ActionManager::createRibbonBar(Id id)
     if (it !=  d->m_idContainerMap.constEnd())
         return it.value();
 
-    auto rb = new RibbonBar; // No parent (System menu bar on macOS)
-    rb->setObjectName(id.toString());
+//    auto rb = new RibbonBar; // No parent (System menu bar on macOS)
+//    rb->setObjectName(id.toString());
 
     auto rbc = new RibbonBarActionContainer(id);
-    rbc->setRibbonBar(rb);
+//    rbc->setRibbonBar(rb);
 
     d->m_idContainerMap.insert(id, rbc);
     connect(rbc, &QObject::destroyed, d, &ActionManagerPrivate::containerDestroyed);
