@@ -10,6 +10,7 @@ SUBDIRS   = \
     solver \
     postoperation \
     project \
+	welcome \
 
 for(p, SUBDIRS) {
     FEEM_PLUGIN_DEPENDS =

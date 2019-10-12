@@ -23,7 +23,8 @@ SOURCES +=  \
     ipage.cpp \
     pagemanager.cpp \
     pf_pagewidget.cpp \
-    workpage.cpp
+    workpage.cpp \
+    iwelcomepage.cpp
     
 
 HEADERS +=  \
@@ -46,6 +47,7 @@ HEADERS +=  \
     ipage.h \
     pagemanager.h \
     pf_pagewidget.h \
-    workpage.h
+    workpage.h \
+    iwelcomepage.h
   
 
