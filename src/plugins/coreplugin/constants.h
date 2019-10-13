@@ -3,6 +3,11 @@
 
 namespace Core {
 namespace Constants {
+// Pages
+const char PAGE_WELCOME[]          = "Welcome";
+const char PAGE_WORK[]             = "Work";
+const int  P_PAGE_WELCOME          = 100;
+const int  P_PAGE_WORK             = 90;
 /** 定义项目中的常量 **/
 
 /** RibbonBar **/

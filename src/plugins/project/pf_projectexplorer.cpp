@@ -3,6 +3,8 @@
 #include "pf_project.h"
 #include "pf_sessionmanager.h"
 
+#include "projectwelcomepage.h"
+
 #include "projectexplorerconstants.h"
 //#include "pf_magmaterialdialog.h"
 #include "pf_node.h"
@@ -215,7 +217,7 @@ public:
 
 //    TaskHub m_taskHub;
 
-//    ProjectWelcomePage m_welcomePage;
+    ProjectWelcomePage m_welcomePage;
 
 //    CustomWizardMetaFactory<CustomProjectWizard> m_customProjectWizard{IWizardFactory::ProjectWizard};
 //    CustomWizardMetaFactory<CustomWizard> m_fileWizard{IWizardFactory::FileWizard};
