@@ -31,6 +31,8 @@ PF_PageWidget::PF_PageWidget(QWidget *parent)
     mainLayout->setSpacing(1);
     mainLayout->addLayout(vlayout);
     setLayout(mainLayout);
+
+    connect(m_pageIndex, &PF_PageIndex::currentChanged, this, &PF_PageWidget::showWidget);
 }
 
 /*!
@@ -43,6 +45,7 @@ PF_PageWidget::PF_PageWidget(QWidget *parent)
 void PF_PageWidget::insertPage(int index, QWidget *page, const QString &label)
 {
     m_pagesStack->insertWidget(index, page);
+    m_pageIndex->insertPage(index,label);
 }
 
 /*!

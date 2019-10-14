@@ -1,4 +1,5 @@
 #include "workpage.h"
+#include "constants.h"
 
 #include <QHBoxLayout>
 #include <QWidget>
@@ -16,6 +17,9 @@ namespace Core {
 WorkPage::WorkPage()
     :m_splitter(new QSplitter)
 {
+    setPriority(Constants::P_PAGE_WORK);
+    setId(Constants::PAGE_WORK);
+
     m_splitter->insertWidget(0,new QLabel("Add"));
     m_splitter->setHandleWidth(1);
     m_splitter->insertWidget(1,new QLabel("Add"));

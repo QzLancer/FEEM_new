@@ -9,6 +9,7 @@
 #include <coreplugin/context.h>
 #include <coreplugin/icore.h>
 //#include <coreplugin/iwizardfactory.h>
+#include <coreplugin/pagemanager.h>
 
 #include <utils/algorithm.h>
 //#include <utils/fileutils.h>
@@ -512,7 +513,13 @@ public:
         auto newButton = new WelcomePageButton(this);
         newButton->setText(ProjectWelcomePage::tr("New Project"));
 //        newButton->setIcon(pixmap("new", Theme::Welcome_ForegroundSecondaryColor));
-//        newButton->setOnClicked([] { ProjectExplorerPlugin::openNewProjectDialog(); });
+        newButton->setOnClicked([] { PageManager::activatePage(Core::Constants::PAGE_WORK); });
+
+        auto divider = new QWidget(this);
+        divider->setMaximumWidth(1);
+        divider->setMinimumWidth(1);
+        divider->setAutoFillBackground(true);
+        divider->setBackgroundRole(QPalette::ButtonText);
 
         auto openButton = new WelcomePageButton(this);
         openButton->setText(ProjectWelcomePage::tr("Open Project"));
@@ -570,6 +577,8 @@ public:
         auto hbox = new QHBoxLayout(this);
         hbox->setContentsMargins(30, 27, 0, 27);
         hbox->addItem(vbox1);
+        hbox->addSpacing(16);
+        hbox->addWidget(divider);
         hbox->addSpacing(16);
         hbox->addItem(vbox2);
         hbox->setStretchFactor(vbox2, 2);

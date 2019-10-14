@@ -27,6 +27,7 @@ struct PageManagerPrivate
     MainWindow *m_mainWindow;/** 主窗口 **/
     PF_PageWidget *m_pagesStack;/** stack控件，所有的页面 **/
     QVector<IPage*> m_pages;/** 已有的Page **/
+    QVector<Command*> m_pagesCommands;
     Context m_addedContexts;
     int m_oldCurrent;
 
@@ -191,11 +192,18 @@ void PageManager::setFocusToCurrentPage()
 */
 void PageManagerPrivate::appendPage(IPage *page)
 {
-    const int index = m_pages.count();
+    const int index = m_pagesCommands.count();
 //    m_mainWindow->addContextObject(page);
 
     m_pagesStack->insertPage(index, page->widget(), page->displayName());
     m_pagesStack->setPageEnabled(index, page->isEnabled());
+
+    // Register mode shortcut
+    const Id actionId = page->id().withPrefix("FEEM.Page.");
+    QAction *action = new QAction(PageManager::tr("Switch to <b>%1</b> page").arg(page->displayName()), m_instance);
+    Command *cmd = ActionManager::registerAction(action, actionId);
+    cmd->setDefaultKeySequence(QKeySequence(QString("Ctrl+%1").arg(index + 1)));
+    m_pagesCommands.append(cmd);
 }
 
 void PageManagerPrivate::enabledStateChanged(IPage *page)
