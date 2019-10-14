@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>imgs/bounce32x32.png</file>
+    </qresource>
+</RCC>
