@@ -5,6 +5,7 @@ QT += \
 
 include(../../feemplugin.pri)
 
+
 HEADERS += \
     postoperation_global.h \
     postoperationconstants.h \
@@ -15,6 +16,6 @@ SOURCES += \
     postoperationplugin.cpp \
     qcustomplot/qcustomplot.cpp
 
-
+include(./plot/plotwidget.pri)
 
 

@@ -1,6 +1,8 @@
 #ifndef PLOTWIDGET_H
 #define PLOTWIDGET_H
 
+#include "../postoperation_global.h"
+
 #include <QWidget>
 #include <QTableView>
 #include <QStandardItemModel>
@@ -12,7 +14,7 @@ namespace Postoperation{
     class QCPItemText;
 }
 
-class PlotWidget : public QWidget
+class FEEM_POSTOPERATION_EXPORT PlotWidget : public QWidget
 {
     Q_OBJECT
 public:

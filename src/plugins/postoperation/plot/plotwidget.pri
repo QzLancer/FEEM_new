@@ -1,8 +1,8 @@
 INCLUDEPATH += $$quote($$PWD)
 
-SOURCES += $$PWD/plotwidget.cpp \
-
 HEADERS += $$PWD/plotwidget.h \
+
+SOURCES += $$PWD/plotwidget.cpp \
 
 RESOURCES += \
     $$PWD/plotrc.qrc

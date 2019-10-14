@@ -1,8 +1,9 @@
 #include "bouncedialog.h"
-#include <QVBoxLayout>
 #include "bouncecore.h"
+
+#include <postoperation/plot/plotwidget.h>
 #include <QDebug>
-#include "plotwidget.h"
+#include <QVBoxLayout>
 #include <QPalette>
 
 BounceDialog::BounceDialog(QWidget *parent) : QDialog(parent),
@@ -11,6 +12,7 @@ BounceDialog::BounceDialog(QWidget *parent) : QDialog(parent),
     mCancelButton(new QPushButton(tr("Cancel"), this)),
     mWarningLabel(new QLabel(this))
 {    
+    setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
     initialization();
 }
 
@@ -75,9 +77,6 @@ void BounceDialog::Run()
 //        core.plot(cp);
 
         PlotWidget *pw = new PlotWidget;
-//        pw->show();
-//        core.plot(pw->mCustomPlot);
-//        pw->mCustomPlot->replot();
         pw->addPlot(core.gett(), core.getxd());
         pw->addPlot(core.gett(), core.getxx());
         pw->show();

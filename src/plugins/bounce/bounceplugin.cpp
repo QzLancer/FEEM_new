@@ -16,6 +16,8 @@
 #include <utils/mimetypes/mimedatabase.h>
 #include <utils/stringutils.h>
 
+#include <postoperation/postoperationconstants.h>
+
 #include <QtPlugin>
 
 #include <QDateTime>
@@ -25,8 +27,6 @@
 #include <QUuid>
 
 #include <cstdlib>
-
-#include "plot/plotwidget.h"
 
 using namespace Core;
 

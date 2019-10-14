@@ -2,7 +2,6 @@
 #include <math.h>
 #include <QAxObject>
 #include <QDebug>
-#include "qcustomplot.h"
 BounceCore::BounceCore()
 {
 }
