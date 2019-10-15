@@ -213,7 +213,8 @@ QList<QList<double>> BounceCore::readExcel(QString fileName)
 		}
 		data.push_back(data0);
 	}
-
+    workbooks->dynamicCall("Close(Boolean)", false);
+    excel->dynamicCall("Quit(void");
 	delete usedrange;
 	delete worksheet;
 	delete workbook;
