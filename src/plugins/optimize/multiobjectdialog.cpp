@@ -8,6 +8,7 @@
 #include <QTableView>
 #include <QDebug>
 #include <QStringList>
+#include <postoperation/plot/plotwidget.h>
 
 MultiObjectDialog::MultiObjectDialog(QWidget *parent)
     : QDialog (parent),
@@ -156,6 +157,21 @@ void MultiObjectDialog::slotOptimize()
         PSO pso(numberOfParticles, numberOfVariables, numberOfObjectives, numberOfExtraParticles, lower, upper, vmax, MultiObjectDialog::objectiveFunction, lowerWeight, upperWeight, maxIteration, c1, c2, vari, TargetMode, stoppingCriteria, psoType);
         pso.optimize();
         pso.printBest();
+
+        //»æÍ¼´°¿ÚÊä³ö,it is not necessary, as not all results are 2D
+        QVector<QVector<double>> position = pso.getBestPosition();
+        QVector<QVector<double>> value = pso.getBestValue();
+
+        PlotWidget *pw = new PlotWidget;
+        pw->addScatter(position[0], position[1], tr("Input"));
+        pw->addScatter(value[0], value[1], tr("Optimization"));
+        for(int i = 0; i < mInputName.size(); ++i){
+            pw->addTableColumn(position[i], mInputName[i]);
+        }
+        for(int i = 0; i < mTargetName.size(); ++i){
+            pw->addTableColumn(value[i], mTargetName[i]);
+        }
+        pw->show();
     }
 }
 

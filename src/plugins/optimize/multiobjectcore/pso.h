@@ -1,5 +1,6 @@
 #include "particle.h"
 #include <QString>
+#include <QVector>\
 using namespace std;
 
 class PSO
@@ -38,6 +39,9 @@ public:
 	void printBest();
 	//æ‡¿Îº∆À„
 	double getnorm(const double *A, const double *V);
+
+    QVector<QVector<double>> getBestPosition() const;
+    QVector<QVector<double>> getBestValue() const;
 
 private:
 

@@ -202,8 +202,8 @@ void SingleObjectDialog::initializeGroup1()
     QLabel *modelabel = new QLabel(tr("Optimize Mode"), mGroup1);
     QComboBox *targetbox = mTargetBox;
     QComboBox *modebox = mModeBox;
-    modebox->addItem(tr("Minimize"));
     modebox->addItem(tr("Maximize"));
+    modebox->addItem(tr("Minimize"));
 
     //layout
     QGridLayout *gridlayout = new QGridLayout;

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <exception>
 #include <ctime>
+#include <QDebug>
 using namespace std;
 
 
@@ -317,9 +318,35 @@ double PSO::getnorm(const double *A, const double *V)
 		norm = norm + (A[i] - V[i])*(A[i] - V[i]);
 	}
 	norm = sqrt(norm);
-	return norm;
+    return norm;
 }
 
+QVector<QVector<double> > PSO::getBestPosition() const
+{
+    QVector<QVector<double>> position;
+    position.resize(numberOfVariables);
+    for(int i = 0; i < numberOfVariables; ++i) position[i].resize(numberOfExtraParticles);
+    qDebug() << position[0].size();
+    for(int i = 0; i < numberOfVariables; ++i){
+        for(int j = 0; j < numberOfExtraParticles; ++j){
+            position[i][j] = extraParticles[j]->getPosition()[i];
+        }
+    }
+    return position;
+}
+
+QVector<QVector<double> > PSO::getBestValue() const
+{
+    QVector<QVector<double>> value;
+    value.resize(numberOfObjectives);
+    for(int i = 0; i < numberOfVariables; ++i) value[i].resize(numberOfExtraParticles);
+    for(int i = 0; i < numberOfObjectives; ++i){
+        for(int j = 0; j < numberOfExtraParticles; ++j){
+            value[i][j] = extraParticles[j]->getValue()[i];
+        }
+    }
+    return value;
+}
 
 void PSO::printBest()
 {	

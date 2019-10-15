@@ -84,7 +84,8 @@ void PlotWidget::slotTracer()
 
 void PlotWidget::slotReset()
 {
-    for(int i = 0; i < mCustomPlot->graphCount(); ++i){
+    mCustomPlot->graph(0)->rescaleAxes();
+    for(int i = 1; i < mCustomPlot->graphCount(); ++i){
         mCustomPlot->graph(i)->rescaleAxes(true);
     }
     mCustomPlot->replot();
@@ -106,12 +107,18 @@ void PlotWidget::slotMousePress(QMouseEvent *event)
         mCustomPlot->replot();
         mMousePressed = true;
     }
+    if(mCurrentAction == ZOOMOUT){
+//        mCustomPlot->xAxis->scaleRange(1.1, mCustomPlot->xAxis->range().center());
+        mCustomPlot->xAxis->scaleRange(1.2, mCustomPlot->xAxis->pixelToCoord(event->pos().x()));
+        mCustomPlot->yAxis->scaleRange(1.2, mCustomPlot->yAxis->pixelToCoord(event->pos().y()));
+        mCustomPlot->replot();
+    }
 }
 
 void PlotWidget::slotMouseMove(QMouseEvent *event)
 {
     if(!mCustomPlot->viewport().contains(event->pos())) return;
-    if(mCurrentAction == TRACER & mMousePressed == true){
+    if((mCurrentAction == TRACER) & (mMousePressed == true)){
         double x = mCustomPlot->xAxis->pixelToCoord(event->pos().x());
         for(int i = 0; i < mTracerList.size(); ++i){
             mTracerList[i]->setGraphKey(x);
@@ -154,7 +161,7 @@ void PlotWidget::addPlot(QVector<double> x, QVector<double> y)
         break;
     }
     mCustomPlot->graph(index)->setData(x, y);
-    mCustomPlot->graph(index)->setPen(QPen(color));
+    mCustomPlot->graph(index)->setPen(color);
 
     //新建tracer
     QCPItemTracer *tracer = new QCPItemTracer(mCustomPlot);
@@ -176,15 +183,52 @@ void PlotWidget::addPlot(QVector<double> x, QVector<double> y)
     mCustomPlot->rescaleAxes(true);
     mCustomPlot->replot();
 
+}
+
+void PlotWidget::addPlot(QVector<double> x, QVector<double> y, QString graphname)
+{
+    addPlot(x, y);
+    mCustomPlot->graph(mCustomPlot->graphCount()-1)->setName(graphname);
+}
+
+void PlotWidget::addScatter(QVector<double> x, QVector<double> y)
+{
+    addPlot(x, y);
+    mCustomPlot->graph(mCustomPlot->graphCount()-1)->setLineStyle(QCPGraph::lsNone);
+    mCustomPlot->graph(mCustomPlot->graphCount()-1)->setScatterStyle(QCPScatterStyle::ssDisc);
+}
+
+void PlotWidget::addScatter(QVector<double> x, QVector<double> y, QString graphname)
+{
+    addScatter(x, y);
+    mCustomPlot->graph(mCustomPlot->graphCount()-1)->setName(graphname);
+}
+
+void PlotWidget::addTableColumn(QVector<double> data)
+{
     //新建model中参数
-    QList<QStandardItem*> xlist;
-    QList<QStandardItem*> ylist;
-    for(int i = 0; i < x.size(); ++i){
-        xlist.append(new QStandardItem(QString::number(x[i])));
-        ylist.append(new QStandardItem(QString::number(y[i])));
+    QList<QStandardItem*> datalist;
+    for(int i = 0; i < data.size(); ++i){
+        datalist.append(new QStandardItem(QString::number(data[i])));
     }
-    mModel->appendColumn(xlist);
-    mModel->appendColumn(ylist);
+    mModel->appendColumn(datalist);
+}
+
+void PlotWidget::addTableColumn(QVector<double> data, QString name)
+{
+    addTableColumn(data);
+    setTableColumnTitle(mModel->columnCount()-1, name);
+}
+
+void PlotWidget::setGraphName(int index, QString name)
+{
+    mCustomPlot->graph(index)->setName(name);
+}
+
+void PlotWidget::setTableColumnTitle(int index, QString title)
+{
+    mModel->setHorizontalHeaderItem(index, new QStandardItem(title));
+    mTable->resizeColumnsToContents();
 }
 
 void PlotWidget::setToolBar()

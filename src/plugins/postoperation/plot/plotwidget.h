@@ -12,6 +12,7 @@ namespace Postoperation{
     class QCustomPlot;
     class QCPItemTracer;
     class QCPItemText;
+    class QCPGraph;
 }
 
 class FEEM_POSTOPERATION_EXPORT PlotWidget : public QWidget
@@ -20,6 +21,13 @@ class FEEM_POSTOPERATION_EXPORT PlotWidget : public QWidget
 public:
     PlotWidget(QWidget *parent = nullptr);
     void addPlot(QVector<double> x, QVector<double> y);
+    void addPlot(QVector<double> x, QVector<double> y, QString graphname);
+    void addScatter(QVector<double> x, QVector<double> y);
+    void addScatter(QVector<double> x, QVector<double> y, QString graphname);
+    void addTableColumn(QVector<double> data);
+    void addTableColumn(QVector<double> data, QString name);
+    void setGraphName(int index, QString name);
+    void setTableColumnTitle(int index, QString title);
     Postoperation::QCustomPlot *mCustomPlot;
     QTableView *mTable;
     enum Action{

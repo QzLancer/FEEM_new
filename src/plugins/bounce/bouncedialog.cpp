@@ -77,8 +77,11 @@ void BounceDialog::Run()
 //        core.plot(cp);
 
         PlotWidget *pw = new PlotWidget;
-        pw->addPlot(core.gett(), core.getxd());
-        pw->addPlot(core.gett(), core.getxx());
+        pw->addPlot(core.gett(), core.getxd(), tr("Moving Contact Displacement"));
+        pw->addPlot(core.gett(), core.getxx(), tr("Armature Displacement"));
+        pw->addTableColumn(core.gett(), tr("time"));
+        pw->addTableColumn(core.getxd(), tr("Moving Contact Displacement"));
+        pw->addTableColumn(core.getxx(), tr("Armature Displacement"));
         pw->show();
         hide();
     }
