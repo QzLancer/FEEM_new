@@ -10,7 +10,9 @@ SUBDIRS   = \
     solver \
     postoperation \
     project \
+    bounce \
 	welcome \
+    optimize \
 
 for(p, SUBDIRS) {
     FEEM_PLUGIN_DEPENDS =
