@@ -88,7 +88,8 @@ void SingleObjectDialog::setInputList(QStringList inputlist)
 void SingleObjectDialog::setTargetList(QStringList targetlist)
 {
     mTargetList = targetlist;
-    mTargetBox->addItems(mTargetList);
+    mTargetBox->clear();
+    mTargetBox->addItems(targetlist);
 }
 
 QStringList SingleObjectDialog::InputList()

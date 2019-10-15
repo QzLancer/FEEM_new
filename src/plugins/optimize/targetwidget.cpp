@@ -90,12 +90,14 @@ QMap<QString, QString> TargetWidget::getTargetModeMap() const
 void TargetWidget::setTargetList(QStringList targetlist)
 {
     mTargetList = targetlist;
+    mTargetBox->clear();
     mTargetBox->addItems(mTargetList);
 }
 
 void TargetWidget::setModeList(QStringList modelist)
 {
     mModeList = modelist;
+    mModeBox->clear();
     mModeBox->addItems(mModeList);
 }
 
