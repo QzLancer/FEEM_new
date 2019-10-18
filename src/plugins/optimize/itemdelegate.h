@@ -4,6 +4,7 @@
 
 class ItemDelegate : public QItemDelegate
 {
+    Q_OBJECT
 public:
     ItemDelegate(QObject *parent = nullptr);
     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const;

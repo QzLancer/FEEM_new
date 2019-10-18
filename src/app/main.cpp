@@ -14,6 +14,7 @@
 #include <QSplashScreen>
 #include <QDateTime>
 #include <QPixmap>
+#include <QLibraryInfo>
 
 using namespace ExtensionSystem;
 
@@ -69,35 +70,36 @@ int main(int argc, char *argv[])
     //PluginManager::setGlobalSettings(globalSettings);
     //PluginManager::setSettings(settings);
     /** 翻译文件 **/
-//    QTranslator translator;
-//    QTranslator qtTranslator;
-//    QStringList uiLanguages;
-//    uiLanguages = QLocale::system().uiLanguages();
+    QTranslator translator;
+    QTranslator qtTranslator;
+    QStringList uiLanguages;
+    uiLanguages = QLocale::system().uiLanguages();
 //    QString overrideLanguage = settings->value(QLatin1String("General/OverrideLanguage")).toString();
 //    if (!overrideLanguage.isEmpty())
 //        uiLanguages.prepend(overrideLanguage);
-//    const QString &creatorTrPath = resourcePath() + "/translations";
-//    foreach (QString locale, uiLanguages) {
-//        locale = QLocale(locale).name();
-//        if (translator.load("qtcreator_" + locale, creatorTrPath)) {
-//            const QString &qtTrPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-//            const QString &qtTrFile = QLatin1String("qt_") + locale;
-//            // Binary installer puts Qt tr files into creatorTrPath
-//            if (qtTranslator.load(qtTrFile, qtTrPath) || qtTranslator.load(qtTrFile, creatorTrPath)) {
-//                app.installTranslator(&translator);
-//                app.installTranslator(&qtTranslator);
-//                app.setProperty("qtc_locale", locale);
-//                break;
-//            }
-//            translator.load(QString()); // unload()
-//        } else if (locale == QLatin1String("C") /* overrideLanguage == "English" */) {
-//            // use built-in
-//            break;
-//        } else if (locale.startsWith(QLatin1String("en")) /* "English" is built-in */) {
-//            // use built-in
-//            break;
-//        }
-//    }
+    const QString &feemTrPath = QDir::cleanPath(QApplication::applicationDirPath() + '/' + RELATIVE_DATA_PATH) + "/translations";
+    qDebug()<<feemTrPath;
+    foreach (QString locale, uiLanguages) {
+        locale = QLocale(locale).name();
+        if (translator.load("feem_" + locale, ":/translations")) {
+            const QString &qtTrPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+            const QString &qtTrFile = QLatin1String("qt_") + locale;
+            // Binary installer puts Qt tr files into feemTrPath
+            if (qtTranslator.load(qtTrFile, qtTrPath) || qtTranslator.load(qtTrFile, feemTrPath)) {
+                app.installTranslator(&translator);
+                app.installTranslator(&qtTranslator);
+                app.setProperty("qtc_locale", locale);
+                break;
+            }
+            translator.load(QString()); // unload()
+        } else if (locale == QLatin1String("C") /* overrideLanguage == "English" */) {
+            // use built-in
+            break;
+        } else if (locale.startsWith(QLatin1String("en")) /* "English" is built-in */) {
+            // use built-in
+            break;
+        }
+    }
     /** 载入插件 **/
     const QStringList pluginPaths = getPluginPaths();// + options.customPluginPaths;
     PluginManager::setPluginPaths(pluginPaths);

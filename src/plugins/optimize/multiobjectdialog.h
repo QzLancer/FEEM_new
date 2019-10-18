@@ -11,6 +11,7 @@
 
 class MultiObjectDialog : public QDialog
 {
+    Q_OBJECT
 public:
     MultiObjectDialog(QWidget *parent = nullptr);
     ~MultiObjectDialog();

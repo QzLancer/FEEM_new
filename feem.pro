@@ -11,6 +11,6 @@ CONFIG   += ordered
 
 SUBDIRS += src
 
-TRANSLATIONS = $$PWD/feem/res/translations/feem_en.ts \
-                $$PWD/feem/res/translations/feem_zh.ts \
+TRANSLATIONS = $$PWD/src/app/translations/feem_en.ts \
+                $$PWD/src/app/translations/feem_zh.ts \
 

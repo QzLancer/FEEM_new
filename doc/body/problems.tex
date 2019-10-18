@@ -1210,3 +1210,4 @@ Project::handleSubTreeChanged -> ProjectTree::emitSubtreeChanged -> ProjectTree:
 \subsubsection{error: Failed to resolve include "debug/moc\_predefs.h" for moc file QtnRibbonSliderPane.h}
 \subsubsection{前置声明}
 如果你在头文件中只用到一些类的指针（而非实现），那么就可以不包含这些类的头文件，而只使用上面形式的类型前置声明，而在具体实现时才包含入上面这些类型的头文件。如此，头文件里所包含的头文件减少了，那么使用到这个头文件的程序就能包含更少的内容，而不是每次都包含很多头文件，解析起来都耗时。
+\subsubsection{插件如何翻译}
