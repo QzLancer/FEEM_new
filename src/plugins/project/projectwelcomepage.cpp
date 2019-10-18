@@ -487,9 +487,9 @@ public:
         setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
         setFocusPolicy(Qt::NoFocus);
 
-//        QPalette pal;  // Needed for classic theme (only).
-//        pal.setColor(QPalette::Base, themeColor(Theme::Welcome_BackgroundColor));
-//        viewport()->setPalette(pal);
+        QPalette pal;  // Needed for classic theme (only).
+        pal.setColor(QPalette::Base, QColor(191,219,255));
+        viewport()->setPalette(pal);
     }
 
     void leaveEvent(QEvent *) final
