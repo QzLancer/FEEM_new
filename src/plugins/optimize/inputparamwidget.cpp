@@ -77,6 +77,7 @@ void InputParamWidget::setWarning(QString string)
 void InputParamWidget::setInputList(QStringList inputlist)
 {
     mInputList = inputlist;
+    mInputBox->clear();
     mInputBox->addItems(mInputList);
 }
 
