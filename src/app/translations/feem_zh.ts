@@ -6,17 +6,17 @@
     <message>
         <location filename="../../plugins/bounce/bounceplugin.cpp" line="74"/>
         <source>&amp;Mechanic</source>
-        <translation type="unfinished">机械运动</translation>
+        <translation>机械运动</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bounceplugin.cpp" line="77"/>
         <source>Bounce</source>
-        <translation type="unfinished">弹跳</translation>
+        <translation>弹跳</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bounceplugin.cpp" line="85"/>
         <source>Bounce Calculate</source>
-        <translation type="unfinished">弹跳计算</translation>
+        <translation>弹跳计算</translation>
     </message>
 </context>
 <context>
@@ -24,154 +24,154 @@
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="11"/>
         <source>Run</source>
-        <translation type="unfinished">运行</translation>
+        <translation>运行</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="12"/>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="41"/>
         <source>Error: Some properties are empty!</source>
-        <translation type="unfinished">错误：一些属性不能为空！</translation>
+        <translation>错误：一些属性不能为空！</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="56"/>
         <source>Error: Properties must be number!</source>
-        <translation type="unfinished">错误：输入必须为数字！</translation>
+        <translation>错误：输入必须为数字！</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="126"/>
         <source>Open distance: </source>
-        <translation type="unfinished">开距：</translation>
+        <translation>开距：</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="127"/>
         <source>Stroke: </source>
-        <translation type="unfinished"></translation>
+        <translation>行程：</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="128"/>
         <source>Moving contact mass: </source>
-        <translation type="unfinished"></translation>
+        <translation>动触头质量：</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="129"/>
         <source>Armature mass: </source>
-        <translation type="unfinished"></translation>
+        <translation>衔铁质量：</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="141"/>
         <source>Stiffness of overtravel spring: </source>
-        <translation type="unfinished"></translation>
+        <translation>超程弹簧刚度：</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="142"/>
         <source>Stiffness of return spring: </source>
-        <translation type="unfinished"></translation>
+        <translation>返回弹簧刚度</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="143"/>
         <source>Pre-pressure of overtravel spring: </source>
-        <translation type="unfinished"></translation>
+        <translation>超程弹簧预压力：</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="144"/>
         <source>Pre-pressure of return spring: </source>
-        <translation type="unfinished"></translation>
+        <translation>返回弹簧预压力：</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="156"/>
         <source>Stiffness: </source>
-        <translation type="unfinished"></translation>
+        <translation>碰撞刚度：</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="157"/>
         <source>Depth: </source>
-        <translation type="unfinished"></translation>
+        <translation>碰撞深度：</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="158"/>
         <source>Damping: </source>
-        <translation type="unfinished"></translation>
+        <translation>碰撞阻尼系数：</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="159"/>
         <source>Index: </source>
-        <translation type="unfinished"></translation>
+        <translation>碰撞指数：</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="170"/>
         <source>Initial time: </source>
-        <translation type="unfinished"></translation>
+        <translation>仿真开始时间：</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="171"/>
         <source>End time: </source>
-        <translation type="unfinished"></translation>
+        <translation>仿真结束时间：</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="172"/>
         <source>Step size: </source>
-        <translation type="unfinished"></translation>
+        <translation>仿真步长：</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="80"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="83"/>
         <source>Moving Contact Displacement</source>
-        <translation type="unfinished"></translation>
+        <translation>动触头位移</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="81"/>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="84"/>
         <source>Armature Displacement</source>
-        <translation type="unfinished"></translation>
+        <translation>衔铁位移</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="82"/>
         <source>time</source>
-        <translation type="unfinished"></translation>
+        <translation>时间</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="92"/>
         <source>Bounce calculate</source>
-        <translation type="unfinished"></translation>
+        <translation>弹跳计算</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="130"/>
         <source>Material properties</source>
-        <translation type="unfinished"></translation>
+        <translation>材料属性</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="145"/>
         <source>Spring reaction force</source>
-        <translation type="unfinished"></translation>
+        <translation>弹簧反力</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="160"/>
         <source>Collision contact</source>
-        <translation type="unfinished"></translation>
+        <translation>碰撞接触</translation>
     </message>
     <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="173"/>
         <source>Solve properties</source>
-        <translation type="unfinished"></translation>
+        <translation>求解属性</translation>
     </message>
 </context>
 <context>
@@ -179,132 +179,132 @@
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="87"/>
         <source>Import/Export</source>
-        <translation type="unfinished">导入/导出</translation>
+        <translation>导入/导出</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="92"/>
         <source>BuildGeometry</source>
-        <translation type="unfinished">建立几何模型</translation>
+        <translation>建立几何模型</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="97"/>
         <source>Draw</source>
-        <translation type="unfinished">绘图</translation>
+        <translation>绘图</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="102"/>
         <source>DrawSetting</source>
-        <translation type="unfinished">绘图设置</translation>
+        <translation>绘图设置</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="107"/>
         <source>DrawOperation</source>
-        <translation type="unfinished">绘图操作</translation>
+        <translation>绘图操作</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="112"/>
         <source>View</source>
-        <translation type="unfinished">视图</translation>
+        <translation>视图</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="125"/>
         <source>Import Geometry</source>
-        <translation type="unfinished">导入几何模型</translation>
+        <translation>导入几何模型</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="126"/>
         <source>Export Geometry</source>
-        <translation type="unfinished">导出几何模型</translation>
+        <translation>导出几何模型</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="129"/>
         <source>Build Geometry</source>
-        <translation type="unfinished">构建几何模型</translation>
+        <translation>构建几何模型</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="133"/>
         <source>DrawPoint</source>
-        <translation type="unfinished">点</translation>
+        <translation>点</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="140"/>
         <source>DrawLine</source>
-        <translation type="unfinished">线段</translation>
+        <translation>线段</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="147"/>
         <source>DrawFace</source>
-        <translation type="unfinished">平面</translation>
+        <translation>平面</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="154"/>
         <source>DrawCircle</source>
-        <translation type="unfinished">圆</translation>
+        <translation>圆</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="162"/>
         <source>Snap to grid</source>
-        <translation type="unfinished">捕捉网格</translation>
+        <translation>捕捉网格</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="163"/>
         <source>Snap to geometry</source>
-        <translation type="unfinished">捕捉几何</translation>
+        <translation>捕捉几何</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="164"/>
         <source>Solid</source>
-        <translation type="unfinished">实心</translation>
+        <translation>实心</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="167"/>
         <source>SelectSingle</source>
-        <translation type="unfinished">单个选择</translation>
+        <translation>单个选择</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="173"/>
         <source>SelectAll</source>
-        <translation type="unfinished">全部选择</translation>
+        <translation>全部选择</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="179"/>
         <source>DeSelectAll</source>
-        <translation type="unfinished">反向选择</translation>
+        <translation>反向选择</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="185"/>
         <source>Cut</source>
-        <translation type="unfinished">剪切</translation>
+        <translation>剪切</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="186"/>
         <source>Copy</source>
-        <translation type="unfinished">复制</translation>
+        <translation>复制</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="187"/>
         <source>Paste</source>
-        <translation type="unfinished">粘贴</translation>
+        <translation>粘贴</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="188"/>
         <source>Delete</source>
-        <translation type="unfinished">删除</translation>
+        <translation>删除</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="191"/>
         <source>Zoom In</source>
-        <translation type="unfinished">放大</translation>
+        <translation>放大</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="192"/>
         <source>Zoom Out</source>
-        <translation type="unfinished">缩小</translation>
+        <translation>缩小</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="193"/>
         <source>Zoom Auto</source>
-        <translation type="unfinished">自动缩放</translation>
+        <translation>自动缩放</translation>
     </message>
 </context>
 <context>
@@ -313,13 +313,13 @@
         <location filename="../../libs/utils/mimetypes/mimedatabase.cpp" line="63"/>
         <source>All Files (*.*)</source>
         <comment>On Windows</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../libs/utils/mimetypes/mimedatabase.cpp" line="65"/>
         <source>All Files (*)</source>
         <comment>On Linux/macOS</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -327,37 +327,37 @@
     <message>
         <location filename="../../plugins/coreplugin/mainwindow.cpp" line="92"/>
         <source>&amp;Home</source>
-        <translation type="unfinished">主页</translation>
+        <translation>主页</translation>
     </message>
     <message>
         <location filename="../../plugins/coreplugin/mainwindow.cpp" line="100"/>
         <source>&amp;Solve</source>
-        <translation type="unfinished">求解</translation>
+        <translation>求解</translation>
     </message>
     <message>
         <location filename="../../plugins/coreplugin/mainwindow.cpp" line="104"/>
         <source>&amp;Definitions</source>
-        <translation type="unfinished">变量</translation>
+        <translation>变量</translation>
     </message>
     <message>
         <location filename="../../plugins/coreplugin/mainwindow.cpp" line="108"/>
         <source>&amp;Materials</source>
-        <translation type="unfinished">材料</translation>
+        <translation>材料</translation>
     </message>
     <message>
         <location filename="../../plugins/coreplugin/mainwindow.cpp" line="112"/>
         <source>&amp;Mesh</source>
-        <translation type="unfinished">分网</translation>
+        <translation>分网</translation>
     </message>
     <message>
         <location filename="../../plugins/coreplugin/mainwindow.cpp" line="116"/>
         <source>&amp;Geometry</source>
-        <translation type="unfinished">几何</translation>
+        <translation>几何</translation>
     </message>
     <message>
         <location filename="../../plugins/coreplugin/mainwindow.cpp" line="120"/>
         <source>&amp;Results</source>
-        <translation type="unfinished">结果</translation>
+        <translation>结果</translation>
     </message>
 </context>
 <context>
@@ -365,7 +365,7 @@
     <message>
         <location filename="../../plugins/coreplugin/pagemanager.cpp" line="203"/>
         <source>Switch to &lt;b&gt;%1&lt;/b&gt; page</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -373,12 +373,12 @@
     <message>
         <location filename="../../libs/extensionsystem/pluginspec.cpp" line="662"/>
         <source>Plugin meta data not found</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../libs/extensionsystem/pluginspec.cpp" line="751"/>
         <source>Invalid platform specification &quot;%1&quot;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../libs/extensionsystem/pluginspec.cpp" line="767"/>
@@ -387,12 +387,12 @@
         <location filename="../../libs/extensionsystem/pluginspec.cpp" line="776"/>
         <location filename="../../libs/extensionsystem/pluginspec.cpp" line="781"/>
         <source>Dependency: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../libs/extensionsystem/pluginspec.cpp" line="791"/>
         <source>Dependency: &quot;%1&quot; must be &quot;%2&quot; or &quot;%3&quot; (is &quot;%4&quot;).</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../libs/extensionsystem/pluginspec.cpp" line="814"/>
@@ -400,12 +400,12 @@
         <location filename="../../libs/extensionsystem/pluginspec.cpp" line="822"/>
         <location filename="../../libs/extensionsystem/pluginspec.cpp" line="826"/>
         <source>Argument: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../libs/extensionsystem/pluginspec.cpp" line="819"/>
         <source>Argument: &quot;%1&quot; is empty</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -413,29 +413,29 @@
     <message>
         <location filename="../../libs/extensionsystem/pluginmanager.cpp" line="1293"/>
         <source>Circular dependency detected:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../libs/extensionsystem/pluginmanager.cpp" line="1297"/>
         <source>%1 (%2) depends on</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../libs/extensionsystem/pluginmanager.cpp" line="1301"/>
         <source>%1 (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../libs/extensionsystem/pluginmanager.cpp" line="1323"/>
         <source>Cannot load plugin because dependency failed to load: %1 (%2)
 Reason: %3</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../libs/extensionsystem/pluginmanager.cpp" line="1369"/>
         <source>Cannot load plugin because dependency failed to load: %1(%2)
 Reason: %3</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -443,50 +443,50 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="15"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>删除</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="16"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>添加</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="22"/>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="23"/>
         <source>Input parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>输入参数</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="24"/>
         <source>Minimum of input parameters: </source>
-        <translation type="unfinished"></translation>
+        <translation>输入参数最小值：</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="25"/>
         <source>Maximum of input Parameters: </source>
-        <translation type="unfinished"></translation>
+        <translation>输入参数最大值：</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="32"/>
         <source>Minimum of input parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>输入参数最小值</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="32"/>
         <source>Maximum of input parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>输入参数最大值</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="105"/>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="132"/>
         <source>Error: The minimum must be less than the maximum!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：输入参数最小值必须小于最大值！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="108"/>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="137"/>
         <source>Error: Properties must be number!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：输入参数必须为数字！</translation>
     </message>
 </context>
 <context>
@@ -494,12 +494,12 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/optimize/itemdelegate.cpp" line="13"/>
         <source>Maximize</source>
-        <translation type="unfinished"></translation>
+        <translation>最大化</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/itemdelegate.cpp" line="14"/>
         <source>Minimize</source>
-        <translation type="unfinished"></translation>
+        <translation>最小化</translation>
     </message>
 </context>
 <context>
@@ -507,17 +507,17 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/material/materialplugin.cpp" line="82"/>
         <source>Material</source>
-        <translation type="unfinished">材料</translation>
+        <translation>材料</translation>
     </message>
     <message>
         <location filename="../../plugins/material/materialplugin.cpp" line="90"/>
         <source>Add material</source>
-        <translation type="unfinished">添加材料</translation>
+        <translation>添加材料</translation>
     </message>
     <message>
         <location filename="../../plugins/material/materialplugin.cpp" line="91"/>
         <source>Material library</source>
-        <translation type="unfinished">材料库</translation>
+        <translation>材料库</translation>
     </message>
 </context>
 <context>
@@ -525,27 +525,27 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/mesh/meshplugin.cpp" line="81"/>
         <source>BuildMesh</source>
-        <translation type="unfinished">构建分网</translation>
+        <translation>构建分网</translation>
     </message>
     <message>
         <location filename="../../plugins/mesh/meshplugin.cpp" line="86"/>
         <source>Im/ExportMesh</source>
-        <translation type="unfinished">导入/导出分网</translation>
+        <translation>导入/导出分网</translation>
     </message>
     <message>
         <location filename="../../plugins/mesh/meshplugin.cpp" line="91"/>
         <source>Mesh Generator</source>
-        <translation type="unfinished">分网器</translation>
+        <translation>分网器</translation>
     </message>
     <message>
         <location filename="../../plugins/mesh/meshplugin.cpp" line="96"/>
         <source>Statics</source>
-        <translation type="unfinished">统计</translation>
+        <translation>统计</translation>
     </message>
     <message>
         <location filename="../../plugins/mesh/meshplugin.cpp" line="101"/>
         <source>ClearMesh</source>
-        <translation type="unfinished">清除分网</translation>
+        <translation>清除分网</translation>
     </message>
 </context>
 <context>
@@ -553,117 +553,117 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="64"/>
         <source>To optimize</source>
-        <translation type="unfinished"></translation>
+        <translation>开始优化</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="166"/>
         <source>Input</source>
-        <translation type="unfinished"></translation>
+        <translation>输入参数</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="167"/>
         <source>Optimization</source>
-        <translation type="unfinished"></translation>
+        <translation>优化目标</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="180"/>
         <source>Target to be optimized &amp;&amp; input parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>优化目标及输入参数</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="192"/>
         <source>Multiple target PSO parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>多目标粒子群参数</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="195"/>
         <source>Number of Particles: </source>
-        <translation type="unfinished"></translation>
+        <translation>种群大小：</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="199"/>
         <source>Max iteration: </source>
-        <translation type="unfinished"></translation>
+        <translation>粒子群循环次数：</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="203"/>
         <source>Number of eliet Particles: </source>
-        <translation type="unfinished"></translation>
+        <translation>精英种群粒子数目：</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="207"/>
         <source>Mutation rate: </source>
-        <translation type="unfinished"></translation>
+        <translation>变异概率：</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="211"/>
         <source>Lower weight: </source>
-        <translation type="unfinished"></translation>
+        <translation>w下界：</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="215"/>
         <source>Upper weight</source>
-        <translation type="unfinished"></translation>
+        <translation>w上界</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="219"/>
         <source>c1: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="223"/>
         <source>c2: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="242"/>
         <source>Error: Target is Empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：优化目标为空！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="247"/>
         <source>Error: Input Parameters is Empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：输入参数为空！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="263"/>
         <source>Error: Number of particles must be a number!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：种群大小必须为整数！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="267"/>
         <source>Error: Max iteration must be a integer!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：粒子群循环次数必须为整数！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="271"/>
         <source>Error: Number of eliet Particles must be a integer!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：精英种群粒子数目必须为整数！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="275"/>
         <source>Error: Mutation rate must be a number!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：变异概率必须为数字！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="279"/>
         <source>Erorr: Lower weight must be a number!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：w下界必须为数字！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="283"/>
         <source>Error: Upper weight must be a number!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">错误：w上界必须为数字！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="287"/>
         <source>Error: C1 must be a number!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：C1必须为数字！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="291"/>
         <source>Error: C2 must be a number!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：C2必须为数字！</translation>
     </message>
 </context>
 <context>
@@ -671,17 +671,17 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/optimize/optimizeplugin.cpp" line="76"/>
         <source>Optimization</source>
-        <translation type="unfinished"></translation>
+        <translation>优化</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/optimizeplugin.cpp" line="84"/>
         <source>Single-Objective Optimization</source>
-        <translation type="unfinished"></translation>
+        <translation>单目标优化</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/optimizeplugin.cpp" line="89"/>
         <source>Multi-Objective Optimization</source>
-        <translation type="unfinished"></translation>
+        <translation>多目标优化</translation>
     </message>
 </context>
 <context>
@@ -689,17 +689,17 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawface.cpp" line="85"/>
         <source>Set Surface loop.(Press right click to abort)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawface.cpp" line="88"/>
         <source>Continue to set sureface loop.(Press right click to abort)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawface.cpp" line="91"/>
         <source>Status error.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -707,17 +707,17 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawline.cpp" line="70"/>
         <source>Set start point.(Press right click to abort)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawline.cpp" line="73"/>
         <source>Set end point.(Press right click to abort)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawline.cpp" line="76"/>
         <source>Status error.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -725,32 +725,32 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawpoint.cpp" line="26"/>
         <source>Add point</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawpoint.cpp" line="32"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawpoint.cpp" line="39"/>
         <source>position x:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawpoint.cpp" line="40"/>
         <source>position y:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawpoint.cpp" line="51"/>
         <source>Set point&apos;s coordinate</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawpoint.cpp" line="88"/>
         <source>Single click to set point.(Press right click to abort)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -758,27 +758,27 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/CAD/pf_cadwidget.cpp" line="49"/>
         <source>Zoom box</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/pf_cadwidget.cpp" line="61"/>
         <source>Zoom Extents</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/pf_cadwidget.cpp" line="73"/>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/pf_cadwidget.cpp" line="84"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/pf_cadwidget.cpp" line="95"/>
         <source>Zoom to Selected</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -804,7 +804,7 @@ Reason: %3</source>
     <message>
         <location filename="../../libs/extensionsystem/optionsparser.cpp" line="260"/>
         <source>Unknown option %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../libs/extensionsystem/optionsparser.cpp" line="282"/>
@@ -1644,122 +1644,122 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="58"/>
         <source>To optimize</source>
-        <translation type="unfinished"></translation>
+        <translation>开始优化</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="179"/>
         <source>Value: </source>
-        <translation type="unfinished"></translation>
+        <translation>目标值：</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="181"/>
         <source>Feasible: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="198"/>
         <source>Target to be optimized &amp;&amp; input parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>优化目标及输入参数</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="201"/>
         <source>Target to be optimized</source>
-        <translation type="unfinished"></translation>
+        <translation>优化目标</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="202"/>
         <source>Optimize Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>优化形式</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="205"/>
         <source>Maximize</source>
-        <translation type="unfinished"></translation>
+        <translation>最大化</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="206"/>
         <source>Minimize</source>
-        <translation type="unfinished"></translation>
+        <translation>最小化</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="222"/>
         <source>Single target PSO parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>单目标粒子群参数</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="225"/>
         <source>Number of Particles: </source>
-        <translation type="unfinished"></translation>
+        <translation>种群大小：</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="229"/>
         <source>Max iteration: </source>
-        <translation type="unfinished"></translation>
+        <translation>粒子群循环次数：</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="233"/>
         <source>Mutation rate: </source>
-        <translation type="unfinished"></translation>
+        <translation>变异概率：</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="237"/>
         <source>Lower weight: </source>
-        <translation type="unfinished"></translation>
+        <translation>w下界</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="241"/>
         <source>Upper weight: </source>
-        <translation type="unfinished"></translation>
+        <translation>w上界：</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="245"/>
         <source>c1: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="249"/>
         <source>c2: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="272"/>
         <source>Error: Input Parameters is Empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：输入参数为空！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="287"/>
         <source>Error: Number of particles must be a number!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：种群大小必须为整数！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="291"/>
         <source>Error: Max iteration must be a integer!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：粒子群循环次数必须为整数！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="295"/>
         <source>Error: Mutation rate must be a number!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：变异概率必须为数字！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="299"/>
         <source>Erorr: Lower weight must be a number!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：w下界必须为数字！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="303"/>
         <source>Error: Upper weight must be a number!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：w上界必须为数字！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="307"/>
         <source>Error: C1 must be a number!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：C1必须为数字！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="311"/>
         <source>Error: C2 must be a number!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：C2必须为数字！</translation>
     </message>
 </context>
 <context>
@@ -1785,48 +1785,48 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/optimize/targetwidget.cpp" line="15"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>删除</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/targetwidget.cpp" line="16"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>添加</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/targetwidget.cpp" line="24"/>
         <location filename="../../plugins/optimize/targetwidget.cpp" line="33"/>
         <source>Target to be optimized</source>
-        <translation type="unfinished"></translation>
+        <translation>优化目标</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/targetwidget.cpp" line="26"/>
         <source>Target to be optimized: </source>
-        <translation type="unfinished"></translation>
+        <translation>优化目标：</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/targetwidget.cpp" line="28"/>
         <source>Optimize mode: </source>
-        <translation type="unfinished"></translation>
+        <translation>优化形式：</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/targetwidget.cpp" line="33"/>
         <source>Optimize mode</source>
-        <translation type="unfinished"></translation>
+        <translation>优化形式</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/targetwidget.cpp" line="46"/>
         <source>Maximize</source>
-        <translation type="unfinished"></translation>
+        <translation>最大化</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/targetwidget.cpp" line="46"/>
         <source>Minimize</source>
-        <translation type="unfinished"></translation>
+        <translation>最小化</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/targetwidget.cpp" line="113"/>
         <source>Error: Current Target Exist!</source>
-        <translation type="unfinished"></translation>
+        <translation>错误：当前优化目标已存在！</translation>
     </message>
 </context>
 <context>
