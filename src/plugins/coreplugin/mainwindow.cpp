@@ -20,6 +20,7 @@
 #include "actionmanager/actionmanager_p.h"
 #include "actionmanager/command.h"
 #include "ouptput/messagemanager.h"
+#include <geometrymanager/geometrymanager.h>
 
 #include <coreplugin/pf_pagewidget.h>
 #include <coreplugin/pagemanager.h>
@@ -52,6 +53,9 @@ void MainWindow::init()
 
     registerDefaultContainers();
     registerDefaultActions();    
+
+    /** 几何管理器 **/
+    m_geometryManager = new GeometryManager(this);
 
     setCentralWidget(m_pagesStack);
 

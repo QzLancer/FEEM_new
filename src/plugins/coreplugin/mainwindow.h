@@ -25,6 +25,8 @@ class PF_MaterialLibraryWidget;
 class PageManager;
 class PF_PageWidget;
 
+class GeometryManager;
+
 class MainWindow : public RibbonWindow
 {
     Q_OBJECT
@@ -48,6 +50,7 @@ private:
     ICore* m_coreImpl = nullptr;
     PageManager* m_pageManager = nullptr;
     PF_PageWidget* m_pagesStack = nullptr;
+    GeometryManager* m_geometryManager = nullptr;
 
     QList<IContext *> m_activeContext;
 

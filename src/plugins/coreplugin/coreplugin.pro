@@ -25,7 +25,9 @@ SOURCES +=  \
     pf_pagewidget.cpp \
     workpage.cpp \
     iwelcomepage.cpp \
-    geometrymanager/geometrymanager.cpp
+    geometrymanager/geometrymanager.cpp \
+    geometrymanager/geometryview.cpp \
+    geometrymanager/geometryarea.cpp
     
 
 HEADERS +=  \
@@ -50,6 +52,9 @@ HEADERS +=  \
     pf_pagewidget.h \
     workpage.h \
     iwelcomepage.h \
-    geometrymanager/geometrymanager.h
+    geometrymanager/geometrymanager.h \
+    geometrymanager/geometrymanager_p.h \
+    geometrymanager/geometryview.h \
+    geometrymanager/geometryarea.h
   
 
