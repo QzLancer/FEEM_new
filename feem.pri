@@ -15,10 +15,14 @@ isEmpty(IDE_CASED_ID):               IDE_CASED_ID = FEEM
 isEmpty(PRODUCT_BUNDLE_IDENTIFIER): PRODUCT_BUNDLE_IDENTIFIER = org.hit.$$IDE_ID
 
 CONFIG += c++14
-#ignore warning C4819
-QMAKE_CXXFLAGS += /wd"4819"
 
-DEFINES += _CRT_SECURE_NO_WARNINGS
+win32-msvc* {
+    #ignore warning C4819
+    QMAKE_CXXFLAGS += /wd"4819"
+    QMAKE_CXXFLAGS *=  /wd"4100"
+    contains (QMAKE_CXXFLAGS_WARN_ON, -w34100) : QMAKE_CXXFLAGS_WARN_ON -= -w34100
+    DEFINES += _CRT_SECURE_NO_WARNINGS
+}
 
 # 生成库文件名称
 defineReplace(feemLibraryTargetName) {

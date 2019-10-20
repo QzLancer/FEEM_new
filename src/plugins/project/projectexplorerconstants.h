@@ -30,7 +30,7 @@ const char G_BUILD_REBUILD[]      = "ProjectExplorer.Group.Rebuild";
 const char G_BUILD_CLEAN[]        = "ProjectExplorer.Group.Clean";
 const char G_BUILD_RUN[]          = "ProjectExplorer.Group.Run";
 const char G_BUILD_CANCEL[]       = "ProjectExplorer.Group.BuildCancel";
-
+const char G_HOME_PROJECT[]             = "FEEM.Group.Home.Project";
 /** 不同的上下文菜单以及子菜单 **/
 const char M_PROJECTCONTEXT[]     = "Project.Menu.Project";/** 项目节点 **/
 const char M_ADDMODELCONTEXT[] = "Project.Menu.Project.AddModel";

@@ -316,6 +316,11 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
 //        TextEditor::FindInFiles::instance()->setBaseDirectory(project ? project->projectDirectory()
 //                                                                      : Utils::FileName());
 //    });
+    ActionContainer* page = ActionManager::actionContainer(Core::Constants::P_HOME);
+    ActionContainer* group = ActionManager::createRibbonGroup(Constants::G_HOME_PROJECT);
+    group->ribbonGroup()->setTitle(tr("Project"));
+    page->appendGroup(Constants::G_HOME_PROJECT);
+    page->addRibbonGroup(group,Constants::G_HOME_PROJECT);
 
     Context projecTreeContext(Constants::C_PROJECT_TREE);
     //   actions

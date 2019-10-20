@@ -17,7 +17,7 @@ HEADERS += \
     cad.h \
     pf.h \
     cadconstants.h \
-    pf_actionhandler.h
+    pf_actionhandler.h \
 
 SOURCES += \
     pf_cadwidget.cpp \
@@ -25,7 +25,7 @@ SOURCES += \
     pf_graphicview.cpp \
     pf_plot.cpp \
     cad.cpp \
-    pf_actionhandler.cpp
+    pf_actionhandler.cpp \
 
 RESOURCES += \
     cad.qrc

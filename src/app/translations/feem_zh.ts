@@ -330,32 +330,32 @@
         <translation>主页</translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="100"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="96"/>
         <source>&amp;Solve</source>
         <translation>求解</translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="104"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="100"/>
         <source>&amp;Definitions</source>
         <translation>变量</translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="108"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="104"/>
         <source>&amp;Materials</source>
         <translation>材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="112"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="108"/>
         <source>&amp;Mesh</source>
         <translation>分网</translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="116"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="112"/>
         <source>&amp;Geometry</source>
         <translation>几何</translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="120"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="116"/>
         <source>&amp;Results</source>
         <translation>结果</translation>
     </message>
@@ -477,14 +477,14 @@ Reason: %3</source>
         <translation>输入参数最大值</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="105"/>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="132"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="106"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="133"/>
         <source>Error: The minimum must be less than the maximum!</source>
         <translation>错误：输入参数最小值必须小于最大值！</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="108"/>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="137"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="109"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="138"/>
         <source>Error: Properties must be number!</source>
         <translation>错误：输入参数必须为数字！</translation>
     </message>
@@ -908,37 +908,37 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/project/pf_modelwidget.cpp" line="42"/>
         <source>Previous Node</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">上一个节点</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_modelwidget.cpp" line="47"/>
         <source>Next Node</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">下一个节点</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_modelwidget.cpp" line="52"/>
         <source>Move Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">向上</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_modelwidget.cpp" line="57"/>
         <source>Move Down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">向下</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_modelwidget.cpp" line="62"/>
         <source>Show</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_modelwidget.cpp" line="67"/>
         <source>Collapse All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">折叠所有</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_modelwidget.cpp" line="77"/>
         <source>Expand All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">展开所有</translation>
     </message>
 </context>
 <context>
@@ -956,85 +956,90 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/project/pf_project.cpp" line="102"/>
         <source>Materials: Materials</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">材料</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_project.cpp" line="103"/>
         <source>Component: Component1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">组件</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_project.cpp" line="104"/>
         <source>Definitions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">定义</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_project.cpp" line="105"/>
         <source>Geometry1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">几何</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_project.cpp" line="106"/>
         <source>Mesh1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">分网</translation>
     </message>
 </context>
 <context>
     <name>ProjectExplorer::PF_ProjectExplorerPlugin</name>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="355"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="321"/>
+        <source>Project</source>
+        <translation type="unfinished">项目</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="360"/>
         <source>Add Model</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">添加模型</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="362"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="367"/>
         <source>Add Study</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="368"/>
-        <source>3D</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">添加研究</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_projectexplorer.cpp" line="373"/>
-        <source>2D Axisymmetric</source>
-        <translation type="unfinished"></translation>
+        <source>3D</source>
+        <translation type="unfinished">三维</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_projectexplorer.cpp" line="378"/>
-        <source>2D</source>
-        <translation type="unfinished"></translation>
+        <source>2D Axisymmetric</source>
+        <translation type="unfinished">二维轴对称</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="386"/>
-        <source>Static Magnetic Field</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="383"/>
+        <source>2D</source>
+        <translation type="unfinished">二维</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_projectexplorer.cpp" line="391"/>
-        <source>Transient Magnetic Field</source>
-        <translation type="unfinished"></translation>
+        <source>Static Magnetic Field</source>
+        <translation type="unfinished">静磁场</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_projectexplorer.cpp" line="396"/>
-        <source>Heat Field</source>
-        <translation type="unfinished"></translation>
+        <source>Transient Magnetic Field</source>
+        <translation type="unfinished">瞬态磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="404"/>
-        <source>add Material</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="401"/>
+        <source>Heat Field</source>
+        <translation type="unfinished">热场</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_projectexplorer.cpp" line="409"/>
-        <source>add Blank Material</source>
-        <translation type="unfinished"></translation>
+        <source>add Material</source>
+        <translation type="unfinished">添加材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="416"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="414"/>
+        <source>add Blank Material</source>
+        <translation type="unfinished">添加空白材料</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="421"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">帮助</translation>
     </message>
 </context>
 <context>
@@ -1042,7 +1047,7 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/project/pf_sessionmanager.cpp" line="418"/>
         <source>Untitled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">未命名</translation>
     </message>
 </context>
 <context>
@@ -1081,37 +1086,37 @@ Reason: %3</source>
     <message>
         <location filename="../../libs/qtribbon/src/styles/QtnRibbonPaintManager.cpp" line="65"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">蓝色</translation>
     </message>
     <message>
         <location filename="../../libs/qtribbon/src/styles/QtnRibbonPaintManager.cpp" line="67"/>
         <source>Yellow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">黄色</translation>
     </message>
     <message>
         <location filename="../../libs/qtribbon/src/styles/QtnRibbonPaintManager.cpp" line="69"/>
         <source>Green</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">绿色</translation>
     </message>
     <message>
         <location filename="../../libs/qtribbon/src/styles/QtnRibbonPaintManager.cpp" line="71"/>
         <source>Red</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">红色</translation>
     </message>
     <message>
         <location filename="../../libs/qtribbon/src/styles/QtnRibbonPaintManager.cpp" line="73"/>
         <source>Purple</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">紫色</translation>
     </message>
     <message>
         <location filename="../../libs/qtribbon/src/styles/QtnRibbonPaintManager.cpp" line="75"/>
         <source>Cyan</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">青色</translation>
     </message>
     <message>
         <location filename="../../libs/qtribbon/src/styles/QtnRibbonPaintManager.cpp" line="77"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">桔色</translation>
     </message>
     <message>
         <location filename="../../libs/qtribbon/src/styles/QtnRibbonPaintManager.cpp" line="200"/>
@@ -1147,13 +1152,18 @@ Reason: %3</source>
         <source>GroupButton</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../main.cpp" line="56"/>
+        <source>Loading...</source>
+        <translation type="unfinished">载入中...</translation>
+    </message>
 </context>
 <context>
     <name>QMessageBox</name>
     <message>
         <location filename="../../libs/qtribbon/ribbonsample/shared/aboutdialog.cpp" line="49"/>
         <source>&lt;h2&gt;About FEEM&lt;/h2&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;h2&gt;关于 FEEM&lt;/h2&gt;</translation>
     </message>
     <message>
         <location filename="../../libs/qtribbon/ribbonsample/shared/aboutdialog.cpp" line="54"/>
@@ -1166,22 +1176,22 @@ Reason: %3</source>
     <message>
         <location filename="../../libs/qtribbon/src/ribbon/QtnRibbonBar.cpp" line="1136"/>
         <source>Customize Quick Access Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自定义快速访问工具</translation>
     </message>
     <message>
         <location filename="../../libs/qtribbon/src/ribbon/QtnRibbonBar.cpp" line="1140"/>
         <source>Show Quick Access Toolbar Below the Ribbon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在Ribbon的下方显示快速访问工具栏</translation>
     </message>
     <message>
         <location filename="../../libs/qtribbon/src/ribbon/QtnRibbonBar.cpp" line="1141"/>
         <source>Show Quick Access Toolbar Above the Ribbon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在Ribbon上方显示快速访问工具栏</translation>
     </message>
     <message>
         <location filename="../../libs/qtribbon/src/ribbon/QtnRibbonBar.cpp" line="1149"/>
         <source>Minimize the Ribbon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">最下化Ribbon界面</translation>
     </message>
     <message>
         <location filename="../../libs/qtribbon/src/ribbon/QtnRibbonBar.cpp" line="1250"/>
@@ -1300,50 +1310,55 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="56"/>
-        <location filename="../main.cpp" line="64"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">载入中...</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_nodetreebuilder.cpp" line="20"/>
         <source>Definitions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">定义</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_nodetreebuilder.cpp" line="22"/>
         <source>Materials: Materials</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">材料</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_nodetreebuilder.cpp" line="24"/>
         <source>Geometry1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">几何</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_nodetreebuilder.cpp" line="26"/>
         <source>Mesh1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">分网</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_nodetreebuilder.cpp" line="28"/>
         <source>Global Definitions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">全局定义</translation>
     </message>
     <message>
         <location filename="../../plugins/project/pf_nodetreebuilder.cpp" line="30"/>
         <source>Component: Component1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">组件</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectcore/sparticle.cpp" line="135"/>
         <source>Maximize</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">最大化</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectcore/sparticle.cpp" line="138"/>
         <source>Minimize</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">最小化</translation>
+    </message>
+</context>
+<context>
+    <name>QSplashScreen</name>
+    <message>
+        <source>Loading...</source>
+        <translation type="obsolete">载入中...</translation>
     </message>
 </context>
 <context>
@@ -1476,7 +1491,7 @@ Reason: %3</source>
     <message>
         <location filename="../../libs/qtribbon/src/ribbon/QtnRibbonQuickAccessBar.cpp" line="358"/>
         <source>Customize Quick Access Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自定义快速访问工具栏</translation>
     </message>
 </context>
 <context>
@@ -1497,7 +1512,7 @@ Reason: %3</source>
     <message>
         <location filename="../../libs/qtribbon/ribbonsample/shared/ribbonwindow.cpp" line="56"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关于</translation>
     </message>
     <message>
         <location filename="../../libs/qtribbon/ribbonsample/shared/ribbonwindow.cpp" line="57"/>
@@ -1508,7 +1523,7 @@ Reason: %3</source>
         <location filename="../../libs/qtribbon/ribbonsample/shared/ribbonwindow.cpp" line="60"/>
         <location filename="../../libs/qtribbon/ribbonsample/shared/ribbonwindow.cpp" line="66"/>
         <source>Minimize the Ribbon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">最下化Ribbon界面</translation>
     </message>
     <message>
         <location filename="../../libs/qtribbon/ribbonsample/shared/ribbonwindow.cpp" line="61"/>
@@ -1539,7 +1554,7 @@ Reason: %3</source>
         <location filename="../../libs/qtribbon/ribbonsample/shared/ribbonwindow.cpp" line="92"/>
         <location filename="../../libs/qtribbon/ribbonsample/shared/ribbonwindow.cpp" line="123"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">蓝色</translation>
     </message>
     <message>
         <location filename="../../libs/qtribbon/ribbonsample/shared/ribbonwindow.cpp" line="97"/>
@@ -1647,117 +1662,117 @@ Reason: %3</source>
         <translation>开始优化</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="179"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="180"/>
         <source>Value: </source>
         <translation>目标值：</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="181"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="182"/>
         <source>Feasible: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="198"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="199"/>
         <source>Target to be optimized &amp;&amp; input parameters</source>
         <translation>优化目标及输入参数</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="201"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="202"/>
         <source>Target to be optimized</source>
         <translation>优化目标</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="202"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="203"/>
         <source>Optimize Mode</source>
         <translation>优化形式</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="205"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="206"/>
         <source>Maximize</source>
         <translation>最大化</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="206"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="207"/>
         <source>Minimize</source>
         <translation>最小化</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="222"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="223"/>
         <source>Single target PSO parameters</source>
         <translation>单目标粒子群参数</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="225"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="226"/>
         <source>Number of Particles: </source>
         <translation>种群大小：</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="229"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="230"/>
         <source>Max iteration: </source>
         <translation>粒子群循环次数：</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="233"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="234"/>
         <source>Mutation rate: </source>
         <translation>变异概率：</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="237"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="238"/>
         <source>Lower weight: </source>
         <translation>w下界</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="241"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="242"/>
         <source>Upper weight: </source>
         <translation>w上界：</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="245"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="246"/>
         <source>c1: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="249"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="250"/>
         <source>c2: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="272"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="273"/>
         <source>Error: Input Parameters is Empty!</source>
         <translation>错误：输入参数为空！</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="287"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="288"/>
         <source>Error: Number of particles must be a number!</source>
         <translation>错误：种群大小必须为整数！</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="291"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="292"/>
         <source>Error: Max iteration must be a integer!</source>
         <translation>错误：粒子群循环次数必须为整数！</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="295"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="296"/>
         <source>Error: Mutation rate must be a number!</source>
         <translation>错误：变异概率必须为数字！</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="299"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="300"/>
         <source>Erorr: Lower weight must be a number!</source>
         <translation>错误：w下界必须为数字！</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="303"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="304"/>
         <source>Error: Upper weight must be a number!</source>
         <translation>错误：w上界必须为数字！</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="307"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="308"/>
         <source>Error: C1 must be a number!</source>
         <translation>错误：C1必须为数字！</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="311"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="312"/>
         <source>Error: C2 must be a number!</source>
         <translation>错误：C2必须为数字！</translation>
     </message>
@@ -1767,17 +1782,17 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/solver/solverplugin.cpp" line="81"/>
         <source>Solver Setting</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">求解器设置</translation>
     </message>
     <message>
         <location filename="../../plugins/solver/solverplugin.cpp" line="86"/>
         <source>Solve</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">求解</translation>
     </message>
     <message>
         <location filename="../../plugins/solver/solverplugin.cpp" line="91"/>
         <source>Clear Solution</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除结果</translation>
     </message>
 </context>
 <context>
@@ -1824,7 +1839,7 @@ Reason: %3</source>
         <translation>最小化</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="113"/>
+        <location filename="../../plugins/optimize/targetwidget.cpp" line="115"/>
         <source>Error: Current Target Exist!</source>
         <translation>错误：当前优化目标已存在！</translation>
     </message>

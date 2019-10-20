@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include <algorithm>
+#include <qmath.h>
 
 
 PF_Vector::PF_Vector(double vx, double vy, double vz)

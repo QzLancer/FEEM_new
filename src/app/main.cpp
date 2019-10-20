@@ -53,16 +53,16 @@ int main(int argc, char *argv[])
     splash->setPixmap(pixmap);
     splash->setAttribute(Qt::WA_DeleteOnClose);
     splash->show();
-    splash->showMessage(QObject::tr("Loading..."),
+    splash->showMessage(QApplication::tr("Loading..."),
                         Qt::AlignRight|Qt::AlignBottom,Qt::black);
     QDateTime n=QDateTime::currentDateTime();
     QDateTime now;
     do{
         now=QDateTime::currentDateTime();
     } while (n.secsTo(now)<=1);//6 为需要延时的秒数
-    splash->raise();
-    splash->showMessage(QObject::tr("Loading..."),
-                        Qt::AlignRight|Qt::AlignBottom,Qt::black);
+//    splash->raise();
+//    splash->showMessage(QSplashScreen::tr("Loading..."),
+//                        Qt::AlignRight|Qt::AlignBottom,Qt::black);
 
     /** 初始化插件管理器 **/
     PluginManager pluginManager;
@@ -78,7 +78,6 @@ int main(int argc, char *argv[])
 //    if (!overrideLanguage.isEmpty())
 //        uiLanguages.prepend(overrideLanguage);
     const QString &feemTrPath = QDir::cleanPath(QApplication::applicationDirPath() + '/' + RELATIVE_DATA_PATH) + "/translations";
-    qDebug()<<feemTrPath;
     foreach (QString locale, uiLanguages) {
         locale = QLocale(locale).name();
         if (translator.load("feem_" + locale, ":/translations")) {

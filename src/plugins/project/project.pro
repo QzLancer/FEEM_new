@@ -18,7 +18,8 @@ HEADERS += \
     pf_projecttreewidget.h \
     pf_projectwelcomepage.h \
     pf_sessionmanager.h \
-    projectwelcomepage.h
+    projectwelcomepage.h \
+    projectexplorerconstants.h
 
 SOURCES += \
     pf_projectexplorer.cpp \

@@ -330,32 +330,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="100"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="96"/>
         <source>&amp;Solve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="104"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="100"/>
         <source>&amp;Definitions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="108"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="104"/>
         <source>&amp;Materials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="112"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="108"/>
         <source>&amp;Mesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="116"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="112"/>
         <source>&amp;Geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="120"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="116"/>
         <source>&amp;Results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -477,14 +477,14 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="105"/>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="132"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="106"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="133"/>
         <source>Error: The minimum must be less than the maximum!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="108"/>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="137"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="109"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="138"/>
         <source>Error: Properties must be number!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -982,57 +982,62 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::PF_ProjectExplorerPlugin</name>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="355"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="321"/>
+        <source>Project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="360"/>
         <source>Add Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="362"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="367"/>
         <source>Add Study</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="368"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="373"/>
         <source>3D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="373"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="378"/>
         <source>2D Axisymmetric</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="378"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="383"/>
         <source>2D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="386"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="391"/>
         <source>Static Magnetic Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="391"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="396"/>
         <source>Transient Magnetic Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="396"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="401"/>
         <source>Heat Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="404"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="409"/>
         <source>add Material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="409"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="414"/>
         <source>add Blank Material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="416"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="421"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1145,6 +1150,11 @@ Reason: %3</source>
     <message>
         <location filename="../../libs/qtribbon/src/styles/QtnRibbonPaintManager.cpp" line="723"/>
         <source>GroupButton</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="56"/>
+        <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1297,12 +1307,6 @@ Reason: %3</source>
         <location filename="../../libs/qtribbon/src/styles/QtnRibbonStyle.cpp" line="245"/>
         <location filename="../../libs/qtribbon/src/styles/QtnRibbonStyle.cpp" line="268"/>
         <source>TEXT</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../main.cpp" line="56"/>
-        <location filename="../main.cpp" line="64"/>
-        <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1647,117 +1651,117 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="179"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="180"/>
         <source>Value: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="181"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="182"/>
         <source>Feasible: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="198"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="199"/>
         <source>Target to be optimized &amp;&amp; input parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="201"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="202"/>
         <source>Target to be optimized</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="202"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="203"/>
         <source>Optimize Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="205"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="206"/>
         <source>Maximize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="206"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="207"/>
         <source>Minimize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="222"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="223"/>
         <source>Single target PSO parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="225"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="226"/>
         <source>Number of Particles: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="229"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="230"/>
         <source>Max iteration: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="233"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="234"/>
         <source>Mutation rate: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="237"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="238"/>
         <source>Lower weight: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="241"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="242"/>
         <source>Upper weight: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="245"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="246"/>
         <source>c1: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="249"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="250"/>
         <source>c2: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="272"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="273"/>
         <source>Error: Input Parameters is Empty!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="287"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="288"/>
         <source>Error: Number of particles must be a number!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="291"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="292"/>
         <source>Error: Max iteration must be a integer!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="295"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="296"/>
         <source>Error: Mutation rate must be a number!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="299"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="300"/>
         <source>Erorr: Lower weight must be a number!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="303"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="304"/>
         <source>Error: Upper weight must be a number!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="307"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="308"/>
         <source>Error: C1 must be a number!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="311"/>
+        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="312"/>
         <source>Error: C2 must be a number!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1824,7 +1828,7 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="113"/>
+        <location filename="../../plugins/optimize/targetwidget.cpp" line="115"/>
         <source>Error: Current Target Exist!</source>
         <translation type="unfinished"></translation>
     </message>

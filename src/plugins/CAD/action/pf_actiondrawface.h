@@ -3,7 +3,7 @@
 
 #include "pf_actionpreviewinterface.h"
 
-struct PF_FaceData;
+class PF_FaceData;
 
 class PF_ActionDrawFace : public PF_ActionPreviewInterface
 {

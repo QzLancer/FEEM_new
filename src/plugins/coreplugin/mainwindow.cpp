@@ -90,11 +90,7 @@ void MainWindow::registerDefaultContainers()
     /** 添加不同的page **/
     ActionContainer* page = ActionManager::createRibbonPage(Constants::P_HOME);
     page->ribbonPage()->setTitle(tr("&Home"));
-    ribbonbar->addRibbonPage(page,Constants::G_HOME);
-    ActionContainer* group = ActionManager::createRibbonGroup(Constants::G_HOME_PROJECT);
-    group->ribbonGroup()->setTitle("Project");
-    page->appendGroup(Constants::G_HOME_PROJECT);
-    page->addRibbonGroup(group,Constants::G_HOME_PROJECT);
+    ribbonbar->addRibbonPage(page,Constants::G_HOME);    
 
     page = ActionManager::createRibbonPage(Constants::P_SOLVER);
     page->ribbonPage()->setTitle(tr("&Solve"));
