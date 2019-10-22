@@ -1,0 +1,562 @@
+\section{C++语法} 
+\subsection{default构造函数}
+在C++当中，类里面的数据大部分都是私有的，外部无法访问的，所以需要定义一些函数来进行赋值或者初始化的操作，这些函数可以称为接口。C++的类通过构造函数来对数据进行初始化操作，一个类当中可以有多个构造函数，这些函数的名称跟类名一致。当在类中没有定义任何构造函数时，C++会给你提供一个无参数的默认构造函数。但是，当你定义了一个含有参数的构造函数时，编译器就不再提供这个构造函数，如果你需要使用这个函数，就需要自己自已一个，否则，编译器就会报错。为了减轻程序员的负担，在C++的类声明时，使用"=default"来表示让编译器生成一个默认的构造函数，这样就不需要自己再去实现了。这个构造函数是在类的内部实现的，所以是一个内联函数。但是，vs2013之前的编译器都不支持这种语法，会报错。
+
+需要注意的是，在vs2013当中遇到了这个错误：multiple versions of a defaulted special member functions are not allowed。原因可能是，使用default定义了一个默认构造函数，同时定义了一个含有参数的构造参数，但是这个参数的默认值被设为了null，编译器就认为出现了两个默认构造函数，所以会报错。  
+\subsection{构造函数}
+1.父类没有声明构造函数
+
+（1）子类也没有声明构造函数，则父类和子类均由编译器生成默认的构造函数；
+
+（2）子类中声明了构造函数（无参或者带参），则子类的构造函数可以写成任何形式，不用顾忌父类的构造函数。在创建子类对象时，需要先调用父类的默认构造函数（编译器自动生成），然后再调用子类的构造函数。
+
+2.父类只声明了无参数构造函数
+
+如果子类的构造函数没有明显地调用父类的构造函数，则将会调用父类的无参构造函数。
+
+3.父类只声明了带参数的构造函数
+
+子类的构造函数必须显式得调用父类的构造函数。
+
+4.父类同时声明了无参和有参构造函数
+
+子类的构造函数调用其中一个即可。如果没有显式调用的话，会默认调用父类无参构造函数。
+\subsubsection{类的私有private构造函数 ，为什么要这样做？}
+通常我们都将构造函数的声明置于public区段，假如我们将其放入private区段中会发生什么样的后果？没错，我也知道这将会使构造函数成为私有的，这意味着什么？
+
+我们知道，当我们在程序中声明一个对象时，编译器为调用构造函数(如果有的话)，而这个调用将通常是外部的，也就是说它不属于class对象本身的调用，假如构造函数是私有的，由于在class外部不允许访问私有成员，所以这将导致编译出错。
+
+你于是说：“哈哈。”我们制造了一个似乎无法产生对象的class.哦，当然，对于class本身，我们还可以利用它的static公有成员，因为它们独立于class对象之外，我们不必产生对象也可以使用它们。嗯，看来我们还是为带有私有构造函数的类找到了一个存在的理由。不过我们不应当满足于此，因为看上去应当还有发掘的余地。
+
+首先我们来认真看一下是不是真的无法创建出一个具有私有构造函数的类对象。“呃，可能未必。”你现在也许会这样说。这很好，让我们再来看看为什么，没错，因为构造函数被class私有化了，所以我们要创建出对象，就必须能够访问到class的私有域；但这一点“我们”是做不到的，那么，谁能做得到呢？class的成员可以做得到；但在我们建构出其对象之前，怎么能利用它的成员呢？噢，刚才我们刚刚提到了static公有成员，它是独立于class对象而存在的，当然，它也是公有的，“我们”可以访问得到。假如在某个static函数中创建了该class的对象，并以引用或者指针的形式将其返回(不可以以值的形式返回，想想为什么)，我们就获得了这个对象的使用权。下面是例子：
+
+\begin{lstlisting}
+class WonderfulClass
+{
+public:
+    static WonderfulClass* makeAnObject()
+    {
+        // 创建一个WonderfulClass对象并返回其指针
+        return (new WonderfulClass);
+    }
+private:
+    WonderfulClass() { }
+};
+
+int main()
+{
+    WonderfulClass *p = WonderfulClass::makeAnObject();
+
+    ... // 使用*p
+
+    delete p;  // Not neccesary here, but it's a good habit.
+
+    return 0;
+}
+\end{lstlisting}
+嗯，这个例子使用了私有构造函数，但它运行得很好：makeAnObject()作为WonderfulClass的静态成员函数，尽心尽责地为我们创建对象：由于要跨函数传递并且不能使用值传递方式，所以我们选择在堆上创建对象，这样即使makeAnObject()退出，对象也不会随之蒸发掉，当然，使用完之后你可不要忘了手工将它清除。
+
+回到前面的思路：除了公有的static成员可以帮助我们访问私有域外，还有没有其它可以利用的“东西”？
+
+噢，你一定想到了使用友元，完全正确。可以使用该类的友元函数或者友元类创建其对象，这里就不举例了。
+
+我们知道没有人会无聊到无缘无故把一个class设为私有，然后再写一个和上面一模一样的makeAnObject()来让它的用户体验一下奇特的感觉。我们也不太相信这只是由于C++的设计原因而导致的一个“顺便的”“特殊的”“无用的”边角功能。它应当是有实际用途的。提醒一下，到了JAVA中你会更容易明白很多静态方法创建对象的原理！！！
+
+嗯，例如，我们想实现这样一个class：它至多只能存在一个，或者指定数量个的对象(还记得标准输入输出流库中那个独一无二的cout吗？)，我们可以在class的私有域中添加一个static类型的计数器，它的初值置为0，然后再对makeAnObject()做点手脚：每次调用它时先检查计数器的值是否已经达到对象个数的上限值，如果是则产生错误，否则才new出新的对象，同时将计数器的值增1.最后，为了避免值复制时产生新的对象副本，除了将构造函数置为私有外，复制构造函数也要特别声明并置为私有。
+
+
+后记：
+
+上面的仁兄评论堪称经典，总结一下就是为了避免创建对象时调用类的构造函数，而是想将生成对象的方式以其它的方式实现，则可将所有的构造函数声明为非public的，这样并不意味着该类无意义，不能实例化生成对象。
+
+生成对象可以两种方式：
+
+1. 通过同时为该类声明Public的static成员函数，在该static成员函数中调用该类私有的构造函数，生成实例，static成员函数是属于任何一个对象，而是属于类的，故可以在没有该类的对象的情况下，通过<类名>::<static 公有成员函数名>(参数)的方式来实现。
+
+2. 调用该类的私有构造函数并生成类对象实例还可以通过该类的友元函数，或该类的友元类的成员函数调用此私有构造函数来实现。
+\subsection{堆内存，栈内存}
+move函数能够利用已经分配好但是很快就要被释放的空间，如果是临时变量的话，肯定会建立在栈当中，那如果该部分空间不释放，岂不是会一直占用栈空间。或者说，变量应该保存在栈内存中，而new动态分配的内存应当保存在堆内存中。这样的话，使用std::move（）右值引用来将变量“移动”到动态内存中应当没有意义。
+
+可以写一个测试函数验证一下移动前后指针地址是不是一致。栈内存的东西应当是被移动了。这个确实是这样的，move有它特有的功能，也就代表着这样测试会实现一样的效果。
+
+作为\texttt{C++11}的新特性，\texttt{move语义}（\texttt{move\ semantics}）和\texttt{右值引用}(\texttt{rvalue\ reference})经常被放在一起讨论，在网络上也能看见不少的分析文章。但是使用\texttt{右值引用}这种全新的概念去解释\texttt{move语义}，其实会让人觉得门槛很高，似懂非懂，至少对于我来说是这样的。\\
+因此本文尽量避免使用\texttt{右值引用}来解释\texttt{move语义}，并说明它在实际编程中的用法。本文只用\texttt{C++}标准库中的函数作为例子讲解，如何自己编写一个适用于\texttt{move语义}的类库不是考虑范围之内（因为这涉及到\texttt{右值引用}）。因为我相信如果一个连轮子都不会用的人是不可能造出好轮子的。
+
+\subsection[move语义再思考]{\texorpdfstring{\protect\hypertarget{1move_8}{}{}move语义再思考}{move语义再思考}}\label{moveux8bedux4e49ux518dux601dux8003}
+
+首先我们先把这个词根据语法拆分成\texttt{move}和\texttt{语义}来考虑，先来说明\texttt{语义}，再来说明\texttt{move}。
+
+\subsubsection[语义 vs.
+语法]{\texorpdfstring{\protect\hypertarget{11_vs__11}{}{}语义 vs.
+语法}{1.1.语义 vs. 语法}}\label{ux8bedux4e49-vs.-ux8bedux6cd5}
+
+更加简单直白地说。
+
+\begin{itemize}
+
+\item
+  语法 = 某个源代码怎么写
+\item
+  语义 = 这个源代码怎么执行
+\end{itemize}
+
+\begin{lstlisting}
+b = a[4];
+// 同
+b = *(a + 4);
+\end{lstlisting}
+
+这里对于同一个语义，有两种不一样的语法可以用。一般我们会选择前一种来编写程序，但这不过是一种``语法糖''。本来使用后一种写法就足够了，但从阅读和编写的角度来说后一种的写法增加了理解的难度，因此增加了前一种写法（应该叫语法）。这里举这个例子只是为了说明语法和语义的关系并不是1:1的关系。
+
+\subsubsection[复制 vs.
+移动]{\texorpdfstring{\protect\hypertarget{12_vs__24}{}{}复制 vs.
+移动}{1.2.复制 vs. 移动}}\label{ux590dux5236-vs.-ux79fbux52a8}
+
+与\texttt{move}相对的就是\texttt{copy}。众所周知，\texttt{C++}的变量都是\texttt{值语义}的。所谓的\texttt{值语义}的变量，就是它的行为跟\texttt{int}类型是一样的，典型表现就是作为参数传入函数中需要再复制一个作为形式参数，它的变化不会影响到原来的变量。\\
+这里，我们再回到刚才谈到的语法/语义的关系，对于\texttt{u=t}这样的语法，实际上的语义是把\texttt{变量t}的内容复制到\texttt{变量u}当中。
+
+\subsubsection[move的两个含义]{\texorpdfstring{\protect\hypertarget{13move_28}{}{}move的两个含义}{1.3.move的两个含义}}\label{moveux7684ux4e24ux4e2aux542bux4e49}
+
+刚才提到的\texttt{值语义}的实现，本质上是依赖于复制的。但如果只用值语义来实现这样一个函数------将数组内的元素都乘以\texttt{2}，结果将会是下面这样的。
+
+\begin{lstlisting}
+std::vector<int> twice_vector(std::vector<int>);  // 将数组内所用元素都乘以2然后再返回
+
+std::vector<int> v = { /*很多元素*/ };
+std::vector<int> w = twice_vector( v ); 
+// v变量将在以后都不会被用到
+\end{lstlisting}
+
+上面这段代码发生了多次没有意义的\texttt{copy}，及损失了时间又损失了内存。当然，这里当然会有读者直截了当地提出------``那就使用引用类型啊，像\texttt{std::vector\textless{}int\textgreater{}\&}，不就行了吗？''。如果你了解\texttt{move语义}，这里同样可以使用它。\\
+\texttt{move语义}也用另外一个用武之地，例如智能指针\texttt{unique\_ptr}，如果只有\texttt{值语义}，那必然报错，因为这会造成重复释放对象。但通过\texttt{move语义}可以实现所有权的移动，参考下面的代码。
+
+\begin{lstlisting}
+boost::unique_ptr<int> p( new int(42) );
+boost::unique_ptr<int> q = p;  // 禁止复制！（编译会报错）
+
+boost::unique_ptr<int> q ← p;  // 允许move（这里只是用'←'暂时表示move而已，实际语法并非这样）
+assert(*q==42 && p.get()==NULL);
+\end{lstlisting}
+
+综上所述\texttt{move}有两个含义------①以极低的性能消耗实现复制；②所有权的转移
+
+\subsubsection[C++11中的move语义]{\texorpdfstring{\protect\hypertarget{14C11move_48}{}{}C++11中的move语义}{1.4.C++11中的move语义}}\label{c11ux4e2dux7684moveux8bedux4e49}
+
+这里所说的\texttt{move语义}就是上面所说\texttt{move}两个含义的后者，翻译成代码就是：
+
+\begin{lstlisting}
+int *p = new int(42);  // 指针p拥有值42的所有权
+int *q;
+
+// 值42的所有权从p转移到q
+q = p;
+p = NULL;
+assert(*q==42 && p==NULL);
+\end{lstlisting}
+
+因此这里的\texttt{move语义}就是把\texttt{旧指针}的值复制到\texttt{新指针}，并把\texttt{旧指针}的值赋为\texttt{NULL}。既然是这么简单的事情，为什么\texttt{C++11}还要把它作为一个新特性呢？原因有很多，①避免程序员所有权转移不彻底（忘了写后面的\texttt{p=NULL}）；②让\texttt{move}这个语义更清晰；③增加语法支持（也就是常说的右值引用）让编译器在编译时就能做优化处理\ldots{}\ldots{}
+
+\subsubsection[move语义的使用]{\texorpdfstring{\protect\hypertarget{2move_61}{}{}move语义的使用}{2.move语义的使用}}\label{moveux8bedux4e49ux7684ux4f7fux7528}
+
+这里举\texttt{C++11}的标准库作为例子说明。
+
+\subsubsection[C++11标准库和move]{\texorpdfstring{\protect\hypertarget{21C11move_64}{}{}C++11标准库和move}{2.1.C++11标准库和move}}\label{c11ux6807ux51c6ux5e93ux548cmove}
+
+现在的\texttt{C++11}标准库基本上都增加了\texttt{move语义}的支持，不光是上面提到的\texttt{std::unique\_ptr}，\texttt{C++03}其实的\texttt{std::string}和\texttt{std::vector}这两个我们最熟悉的类库同样支持。
+
+\begin{lstlisting}
+std::string s1 = "apple";
+std::string s2 = "banana";
+
+s1 = std::move(s2);  //从s2转移到s1，关于s2的转移后的状态放在后面讨论
+// s1=="banana"
+
+std::vector<int> v1;
+std::vector<int> v2 = {1, 2, 3, 4};
+
+v1 = std::move(v2);  //从v2转移到v1
+// v1=={1, 2, 3, 4}
+\end{lstlisting}
+
+\begin{lstlisting}
+std::string s1 = "apple";
+std::string s2 = "banana";
+
+std::vector<std::string> dict;
+
+dict.push_back( s1 );             // 通过复制s1的值来添加元素
+// s1 == "apple"
+dict.push_back( std::move(s2) );  // 通过移动s2来添加元素
+// (关于s2的转移后的状态放在后面讨论)
+
+std::vector<std::string> v;
+v = std::move(dict);  // 整个容器移动实现复制
+// v[0]=="apple" && v[1]=="banana"
+\end{lstlisting}
+
+\subsubsection[移动之后的状态？]{\texorpdfstring{\protect\hypertarget{22_96}{}{}移动之后的状态？}{2.2.移动之后的状态？}}\label{ux79fbux52a8ux4e4bux540eux7684ux72b6ux6001}
+
+如果要找出十分准确的答案，其实是挺麻烦的。\texttt{C++11}的标准类库的说法就是------``仍然有效，但状态不明''，实际上一般情况下为空，但并不能保证。以\texttt{string}为例说明。
+
+\begin{lstlisting}
+std::string t = "xmas", u;
+u = std::move(t);
+
+// OK: t = "X";  再赋值是没有问题的，因为仍然有效
+// OK: t.size() ; 求大小也没问题，但不能保证得到是什么
+// NG: t[2];     有可能报错，因为有可能是空的
+\end{lstlisting}
+
+但是如果对于某个类库，\texttt{move语义}表示的是所有权的移动这个含义，而不是以极低的性能消耗实现复制（参考\texttt{1.3}中两个含义），则这个类库必须保证转移后的状态必须为空，还是举\texttt{unique\_ptr}为例子。
+
+\begin{lstlisting}
+std::unique_ptr<int> p1( int new(42) );
+std::unique_ptr<int> p2;
+
+p2 = std::move(p1); 
+// p1不再拥有所有权，保证 p1.get()==NULL必然成立
+\end{lstlisting}
+
+\subsubsection[利用move语义编写高效函数]{\texorpdfstring{\protect\hypertarget{23move_115}{}{}利用move语义编写高效函数}{2.3利用move语义编写高效函数}}\label{ux5229ux7528moveux8bedux4e49ux7f16ux5199ux9ad8ux6548ux51fdux6570}
+
+回到\texttt{1.3}一开始提到的那个问题，编写一个函数实现将数组内的元素都乘以\texttt{2}。接下来就可以通过\texttt{move语义}来高效实现了。
+
+\begin{lstlisting}
+typedef std::vector<int> IntVec;
+IntVec twice_vector(IntVec a)
+{
+  for (auto& e : a)
+    e *= 2;
+  return std::move(a); 
+}
+
+IntVec v = { /*...*/ };
+IntVec w = twice_vector( std::move(v) );
+\end{lstlisting}
+\subsection{常量引用}
+在C++当中，函数的参数是以形参的形式传递的，也就是，编译器会将原始的数据拷贝一份，放到另外一个地方供你使用，你对该变量的任何修改都不能使原始数据发生变化。所以，起初C当中是采用指针的方式传递真实的地址来实现对原始数据的修改。在C++当中，引入了引用类型，该类型相当于是原始数据的一个别名，但是可以达到修改真实数据的目的。在阅读别人的源代码时，发现在函数的参数当中，传递的大多都是const类型的引用，仔细一思考，这就很矛盾。引用类型是用来修改数据的，加了一个const限制又代表不让修改，那么为什么这样写呢？这是为了提高程序的性能。由于在C++当中，是采用创建临时对象的方式传值的，所以编译器会创建一个拷贝，这样的话就需要调用构造函数和析构函数，消耗额外的计算和存储资源。
+\subsection{变量和函数何时应该声明为static}
+static变量具有全局的属性，使用类名就可以直接访问，生命周期也比其他变量要长。那么static变量的空间受不受到什么限制？可以无限分配吗？
+
+在类中声明static变量或者函数时，初始化时使用作用域运算符来标明它所属类，因此，静态数据成员是类的成员，而不是对象的成员，这样就出现以下作用：
+
+(1)类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致 了它仅能访问类的静态数据和静态成员函数。      
+
+(2)不能将静态成员函数定义为虚函数。      
+
+(3)由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊 ，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。
+
+(4)由于静态成员函数没有this指针，所以就差不多等同于nonmember函数，结果就 产生了一个意想不到的好处：成为一个callback函数，使得我们得以将C++和C-based X W indow系统结合，同时也成功的应用于线程函数身上。 （这条没遇见过）  
+
+(5)static并没有增加程序的时空开销，相反她还缩短了子类对父类静态成员的访问 时间，节省了子类的内存空间。      
+
+(6)静态数据成员在<定义或说明>时前面加关键字static。      
+
+(7)静态数据成员是静态存储的，所以必须对它进行初始化。 （程序员手动初始化，否则编译时一般不会报错，但是在Link时会报错误） 
+
+(8)静态成员初始化与一般数据成员初始化不同:
+
+初始化在类体外进行，而前面不加static，以免与一般静态变量或对象相混淆；
+
+初始化时不加该成员的访问权限控制符private，public等；     
+   
+初始化时使用作用域运算符来标明它所属类；
+
+所以我们得出静态数据成员初始化的格式：
+
+<数据类型><类名>::<静态数据成员名>=<值>
+
+(9)为了防止父类的影响，可以在子类定义一个与父类相同的静态变量，以屏蔽父类的影响。这里有一点需要注意：我们说静态成员为父类和子类共享，但我们有重复定义了静态成员，这会不会引起错误呢？不会，我们的编译器采用了一种绝妙的手法：name-mangling 用以生成唯一的标志。
+\subsection{初始化列表}
+C++的构造函数的初始化有两种方式，一种是初始化列表，一种是在构造函数内部执行。第一种的话，只会初始化一次，而第二种在执行之前，会先调用父类的构造函数进行初始化。
+
+\subsection{初始化列表和构造函数内赋值}
+对于内部数据类型，一般都比较简单，这两种方法的计算效率没有多大的差异；
+
+如果没有采用初始化列表，那么在函数内部就会调用父类的默认构造函数对父类的变量进行初始化，如果父类没有提供默认的无参数的构造函数，那么就会报错，这个时候你就只能在初始化列表当中调用含有参数的构造函数进行初始化了；
+
+对于类当中的const、引用数据成员，必须在初始化列表当中进行初始化，因为在函数内部就成为了赋值；
+
+对于类当中的类成员变量，如果在初始化列表当中初始化，相当于调用了一次拷贝函数，而在构造函数内部，就会调用一次构造函数，然后再调用一次赋值函数。这样，计算效率就下降了。
+
+但是，如果类成员变量如果是指针的话，不就没有这个问题了？
+
+列表初始化的顺序与声明顺序相同，因此要考虑变量之间有没有初始化的顺序问题。
+\subsection{virtual析构函数}
+如果一个类有可能被继承，那么它的析构函数最好加上virtual，不然会出现内存泄漏问题，找都找不到原因。
+\subsection{C++类中的static数据成员，static成员函数}
+C++类中谈到static,我们可以在类中定义static成员，static成员函数！C++primer里面讲过：static成员它不像普通的数据成员，static数据成员独立于该类的任意对象而存在，每个static数据成员是与类关联的对象，并不与该类的对象相关联！这句话可能比较拗口，其实可以这么理解：每个static数据成员可以看成是类的一个对象，而不与该类定义的对象有任何关系！下面我们就来具体看看类中的static数据成员！
+
+谈到数据成员，我们最先想到的应该是怎么去定义一个static数据成员，static数据成员是存储在程序的静态存储区，而并不是在栈空间上。
+
+注意在类中不能对static数据成员进行初始化，要初始化的话必须在类外进行定义！注意，static数据成员不是通过类构造函数进行初始化的！如上面的代码所示：在类外定义int Person::age=20;这里前面就不要再加static了。如果类中有多个static数据成员，static数据成员初始化的次序是按照static数据成员在类中的声明次序进行初始化的，初始化了之后,就可以使用static数据成员了，我们可以通过作用域操作符从类直接调用static数据成员，或者通过对象，引用，或指向该类类型对象的指针间接调用（这种情况下static数据成员必须是public的访问权限,如果定义在private访问权限下是不行的）。
+
+说到static数据成员，有一种情况不得不提，那就是特殊的const static成员。如上面所述，类的static成员，像普通数据成员一样，不能在类的定义体中进行初始化。只能在类外进行初始化。const int 型的static成员便可以在类定义体内部进行初始化。记住一定只能是const int型的，换成const string ，double都不行的。
+
+说完了static成员后，我们再来看看static成员函数，static成员是类的组成部分并不是任何对象的组成部分，因此,static成员函数没有this指针。我们知道,一般而言，类中的成员函数具有一个附加的隐含实参，即指向该类对象的一个指针。这个隐含实参命名为this。因为static成员函数不是任何对象的组成部分，所以static成员函数就没有this形参了。由于成员函数声明为const说明该成员函数不会修改该成员函数所属的对象，所以static成员函数不能声明为const。为什么呢？因为static成员函数不是任何对象的组成部分。static成员函数可以直接访问所属类的static成员，但是不能直接使用非static成员函数！也不能访问static const 类型的成员！
+\subsection{类对象与类指针}
+类成员变量，可以声明为对象和指针两种形式，严格的来说，两者都能达到相同的使用效果。不同的是，二者的存储空间不一致，一个是建立在堆上，一个是建立在栈上。另外，指针可以用来表示该类不拥有这个对象的实体，真实的所有者在类外部，比如parent。
+
+有的成员变量可能会有多态，这个时候，要定义为虚函数的基类指针，在执行过程中，动态地进行动作。
+
+比较庞大的类对象，需要申请的空间如果比较大的话，有可能在栈内创建失败，这个时候就得申请为指针类型，采用动态申请方式去分配空间。
+
+变量需要在类外进行共享，需要访问到它的指针进行一些操作，或者指针只是引用自外部类成员变量，自己不拥有。
+
+从写法上来看，如果直接声明为变量，那么构造函数就简单多了，甚至不需要写构造函数，编译器直接生成一个默认的构造函数，自动的去调用各个类的默认构造函数，节省了动态创建变量，释放变量空间的功夫。当然，前提是各个类成员都有自己的默认构造函数可以正常的初始化。这种写法非常适用于类当中包含很多个成员变量的情形，省心省力。
+
+还有的情形就是，类成员变量的初始化过程太多很复杂，使用默认构造函数无法一步实现效果，也不是要马上要进行初始化，而且之后采用指针操作可能更加方便，在适当的位置动态地创建变量能更加地灵活。如果采用变量式声明的话，可能涉及到赋值，从而影响效率。
+
+总结一下，二者其实可以达到相同的效果，在不同的需求情景下各有偏爱。
+\subsection{std::move}
+我记下它，并不代表我打算用它。
+
+使用原因：
+
+C++ 标准库使用比如vector::push\_back 等这类函数时,会对参数的对象进行复制,连数据也会复制.这就会造成对象内存的额外创建, 本来原意是想把参数push\_back进去就行了；
+
+C++11 提供了std::move 函数来把左值转换为xrvalue, 而且新版的push\_back也支持\&\&参数的重载版本,这时候就可以高效率的使用内存了；
+
+对指针类型的标准库对象并不需要这么做。
+
+std::move(t) 用来表明对象t 是可以moved from的,它允许高效的从t资源转换到lvalue上.
+
+注意,标准库对象支持moved from的左值在moved 之后它的对象原值是有效的(可以正常析构),但是是unspecified的,可以理解为空数据,但是这个对象的其他方法返回值不一定是0,比如size().所以,moved from 之后的对象最好还是不要使用吧?(如有不正确理解,请告知)
+
+对本身进行move,并赋值给本身是undefined的行为.
+
+\begin{lstlisting}
+void TestSTLObject()
+{
+std::string str = "Hello";
+std::vector<std::string> v;
+
+// uses the push_back(const T&) overload, which means
+// we'll incur the cost of copying str
+v.push_back(str);
+std::cout << "After copy, str is \"" << str << "\"\n";
+
+// uses the rvalue reference push_back(T&&) overload,
+// which means no strings will be copied; instead, the contents
+// of str will be moved into the vector.  This is less
+// expensive, but also means str might now be empty.
+v.push_back(std::move(str));
+std::cout << "After move, str is \"" << str << "\"\n";
+
+std::cout << "The contents of the vector are \"" << v[0]
+<< "\", \"" << v[1] << "\"\n";
+
+}
+\end{lstlisting}
+
+看到这里感觉很疑惑，如果所有的类型都可以被move的话，那是怎样操作内存的？所以，自定义自己的类对象支持moved from 操作,需要实现 Move Constructors and Move Assignment Operators。
+\begin{lstlisting}
+#include <iostream>
+#include <stdio.h>
+
+#include <utility>
+#include <vector>
+#include <string>
+
+class MemoryBlock
+{
+public:
+
+// Simple constructor that initializes the resource.
+explicit MemoryBlock(size_t length)
+: _length(length)
+, _data(new int[length])
+{
+std::cout << "In MemoryBlock(size_t). length = "
+<< _length << "." << std::endl;
+}
+
+// Destructor.
+~MemoryBlock()
+{
+std::cout << "In ~MemoryBlock(). length = "
+<< _length << ".";
+
+if (_data != nullptr)
+{
+std::cout << " Deleting resource.";
+// Delete the resource.
+delete[] _data;
+}
+
+std::cout << std::endl;
+}
+
+// Copy constructor.
+MemoryBlock(const MemoryBlock& other)
+: _length(other._length)
+, _data(new int[other._length])
+{
+std::cout << "In MemoryBlock(const MemoryBlock&). length = "
+<< other._length << ". Copying resource." << std::endl;
+
+std::copy(other._data, other._data + _length, _data);
+}
+
+// Copy assignment operator.
+MemoryBlock& operator=(const MemoryBlock& other)
+{
+std::cout << "In operator=(const MemoryBlock&). length = "
+<< other._length << ". Copying resource." << std::endl;
+
+if (this != &other)
+{
+// Free the existing resource.
+delete[] _data;
+
+_length = other._length;
+_data = new int[_length];
+std::copy(other._data, other._data + _length, _data);
+}
+return *this;
+}
+
+// Retrieves the length of the data resource.
+size_t Length() const
+{
+return _length;
+}
+
+// Move constructor.
+MemoryBlock(MemoryBlock&& other)
+: _data(nullptr)
+, _length(0)
+{
+std::cout << "In MemoryBlock(MemoryBlock&&). length = "
+<< other._length << ". Moving resource." << std::endl;
+
+// Copy the data pointer and its length from the
+// source object.
+_data = other._data;
+_length = other._length;
+
+// Release the data pointer from the source object so that
+// the destructor does not free the memory multiple times.
+other._data = nullptr;
+other._length = 0;
+}
+
+// Move assignment operator.
+MemoryBlock& operator=(MemoryBlock&& other)
+{
+std::cout << "In operator=(MemoryBlock&&). length = "
+<< other._length << "." << std::endl;
+
+if (this != &other)
+{
+// Free the existing resource.
+delete[] _data;
+
+// Copy the data pointer and its length from the
+// source object.
+_data = other._data;
+_length = other._length;
+
+// Release the data pointer from the source object so that
+// the destructor does not free the memory multiple times.
+other._data = nullptr;
+other._length = 0;
+}
+return *this;
+}
+
+private:
+size_t _length; // The length of the resource.
+int* _data; // The resource.
+};
+
+void TestSTLObject()
+{
+std::string str = "Hello";
+std::vector<std::string> v;
+
+// uses the push_back(const T&) overload, which means
+// we'll incur the cost of copying str
+v.push_back(str);
+std::cout << "After copy, str is \"" << str << "\"\n";
+
+// uses the rvalue reference push_back(T&&) overload,
+// which means no strings will be copied; instead, the contents
+// of str will be moved into the vector.  This is less
+// expensive, but also means str might now be empty.
+v.push_back(std::move(str));
+std::cout << "After move, str is \"" << str << "\"\n";
+
+std::cout << "The contents of the vector are \"" << v[0]
+<< "\", \"" << v[1] << "\"\n";
+
+}
+
+void TestMyObjectWithoutUseMove()
+{
+std::vector<MemoryBlock> v;
+MemoryBlock mb1(25);
+// MemoryBlock mb2(75);
+// MemoryBlock mb3(50);
+
+v.push_back(mb1);
+//v.push_back(mb2);
+//v.insert(v.begin() + 1, mb3);
+}
+
+void TestMyObjectWithUseMove()
+{
+std::vector<MemoryBlock> v;
+
+MemoryBlock mb1(25);
+// MemoryBlock mb2(75);
+// MemoryBlock mb3(50);
+
+v.push_back(std::move(mb1));
+//v.push_back(MemoryBlock(75));
+//v.insert(v.begin() + 1, MemoryBlock(50));
+}
+
+int main(int argc, char const *argv[])
+{
+
+//TestSTLObject();
+TestMyObjectWithoutUseMove();
+std::cout << "......................................." << std::endl;
+TestMyObjectWithUseMove();
+return 0;
+}
+
+\end{lstlisting}
+
+还有一个问题，似乎可以对任意的类型进行move，比如左值、左值引用、右值、右值引用，最后的结果都是转化为右值引用，似乎。
+
+引用折叠出现的情况在于范型编程时。
+
+\begin{lstlisting}
+void f(T\&\& param);
+f(10);
+int x = 10;
+f(x);
+\end{lstlisting}
+这两者都可运行成功。
+
+由于存在T\&\&这种未定的引用类型，当它作为参数时，有可能被一个左值引用或右值引用的参数初始化，这是经过类型推导的T\&\&类型，相比右值引用(\&\&)会发生类型的变化，这种变化就称为引用折叠。（《深入应用C++11-代码优化与工程级应用》 --- 祁宇 P68 ）
+
+引用折叠的规则如下（配合@jun-jun的答案）[和上一段的出处一样]：1.所有右值引用折叠到右值引用上仍然是一个右值引用。（A\&\& \&\& 变成 A\&\&）2.所有的其他引用类型之间的折叠都将变成左值引用。 （\& \& 变成 A\&; A\& \&\& 变成 A\&; A\&\& \& 变成 A\&）
+
+右值引用的本质是给内存当中即将消失的变量一个延时的机会，使它因为有一个名字而不被释放。
+
+当然，光有move是不行的，你还得让你的函数能够接受右值引用的参数。
+\subsubsection{前置声明}
+如果你在头文件中只用到一些类的指针（而非实现），那么就可以不包含这些类的头文件，而只使用上面形式的类型前置声明，而在具体实现时才包含入上面这些类型的头文件。如此，头文件里所包含的头文件减少了，那么使用到这个头文件的程序就能包含更少的内容，而不是每次都包含很多头文件，解析起来都耗时。
+\subsection{把一个父类变量转换为子类变量会怎样？}
+我也说不好这种转换是提升还是下降了。这种转换应该是不能吧？
+
+C++支持两种多态性：编译时多态性，运行时多态性。 
+
+a.编译时多态性：通过重载函数和运算符重载实现。 
+
+b.运行时多态性：通过虚函数和继承实现。
+
+也就是说，如果没有明确地声明为虚函数，那么即使重载也不会有多态的效果？

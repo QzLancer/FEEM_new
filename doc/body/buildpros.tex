@@ -1,0 +1,48 @@
+\section{编译错误}
+\subsection{error LNK2019: unresolved external symbol compress referenced in function}
+如果使用Qtcreator出现了这个问题，恰好编译器是vs的话，有可能是一下原因：确定一下在pro文件当中，头文件列表和源文件列表中被调用函数的源文件是不是出现在了调用文件的后面，如果是的话，将它移动到前面去。
+\subsection{VS不同版本编译报错}
+出现“无法找到文件MSVCP120D.DLL”的问题，问题在于某些使用的dll文件是vs2013生成的，而现在使用的vs版本不是2013，解决方法就是将这些dll在新的vs下重新编译。
+\subsubsection{warning: comparing floating point with == or != is unsafe}
+\subsection{warning: C4819: The file contains a character that cannot}
+你的源码是不带BOM的UTF8格式，但是MSVC不知道你用的UTF8。由于你在简体中文Windows系统下，它就认为你用的是GB18030（也叫GB2312，GBK，CP936）。
+
+当你一个汉字时，占3个字节，用GB18030是无法解析的(1个半汉字)。当你2个汉字时，占6个字节，用GB18030碰巧可以解释成3个汉字。
+
+如果不指定的话默认是 utf-8。所以我们用 gcc 时很少关注这个问题。
+
+Viual Stdio 中就麻烦多了。这里先说 Visual stdio 2015，这个是我现在用的编译环境。VS2015 中如果源代码是 utf-8的，执行字符集默认是本地 Locale 字符集，对于简体中文的 windows 系统来说，这个 本地Locale字符集是 gb18030。所以直接显示汉字会全是乱码。解决这个乱码有三个办法，第一个办法是编译时加入命令行参数，在 Qt 的 pro 文件中可以这样：
+
+msvc:QMAKE\_CXXFLAGS += -execution-charset:utf-8
+1
+第二个办法是在源文件中加入：
+
+\#pragma execution\_character\_set("utf-8")
+\subsection{MSVC中文注释导致的编译错误}
+遇到这个问题是将代码在虚拟机下面进行编译的时候出现的。在另外一台电脑上编译运行没有任何问题，但是在这台电脑上运行就好几百个问题，刚开始也是丈二和尚，后来慢慢领悟到应该又是中文编码的问题导致没有正确的解析源代码。
+
+为什么会出现编码错误呢？主要是中文的存在。编码主要存在在两个地方：一个是IDE需要知道文件的编码来正确地进行源代码的显示；第二个就是编译器需要知道文件的编码来正确地对代码进行编译。我们所遇到的错误就是第二个导致的。这个问题的根源在于MSVC编译器对UTF-8编码支持的不是很好。简单来说，就是在Windows下，微软创建的UTF-8文件都自带BOM，而UNIX系的UTF-8文件则不带。MSVC编译器则是通过判断文件有没有BOM来确定是不是要采用UTF-8编码，所以Unix下的UTF-8编码文件拷贝到Windows下使用MSVC进行编译就会不通过。没有BOM，编译器就会采用操作系统的本地语言编码进行解释，中文应该是GB2321。这就很愚蠢了。
+
+解决办法主要有以下几种：
+\begin{enumerate}
+	\item 将所有的UTF-8文件都加上BOM。这个方法虽然可行，但是不适合跨平台，而且BOM有可能在别的地方打开之后被删掉。还有那么多文件都要批量添加BOM。
+	\item 所有文件的编码都改为UTF-8，注释一律用英文。经测试，这个方法可行，没有报错。但是不支持中文注释也太傻逼了吧，都什么年代了。
+	\item 所有的文件编码依然采用UTF-8，这样可以跨平台，但是想办法让编译器忽略掉中文注释。注释本来就是被编译器忽略的一部分，但是因为解码错误，编译器只能识别出注释的开始部分，也就是"//"。但是后面的中文如果识别不出来的话，就会连带注释后面的英文代码也变成了注释，直到解析出了换行。所以解决办法就是让编译器识别出注释的结束，想来想去，只有多行注释这种方法了，也就是“/**nnnn**/”。经实测，这种方法可行，但是就是得两个星号。
+\end{enumerate}
+
+详细的解释可以参考：\url{https://blog.csdn.net/imxiangzi/article/details/50781459}、 \url{https://www.cnblogs.com/Esfog/p/MSVC_UTF8_CHARSET_HANDLE.html}、 \url{https://www.cnblogs.com/cheungxiongwei/p/8003867.html}、 \url{https://blog.csdn.net/liyuanbhu/article/details/72596952}。
+\subsection{error: LNK2019: unresolved external symbol referenced in function}
+
+明明没有什么问题的项目编译之后却报这个错误，开始的时候确实令人匪夷所思。在另外一台电脑上编译运行也没有什么问题。解决办法就是将build目录删除，然后重新编译运行，就没有这个错误了。
+\subsection{vs2017 char *}
+在新版本的vs2017当中，向函数参数传递常量字符串的时候，会无法转换的错误。这个错误产生的原因似乎是由于在C++11的标准中，不能直接将常量赋值给指针变量，解决办法就是在常量字符串前面加上指针的强制转化符。
+\subsubsection{error: Failed to resolve include "debug/moc\_predefs.h" for moc file QtnRibbonSliderPane.h}
+\subsection{error: C2039: 'unique\_ptr' : is not a member of 'std'}
+vs2013 好像不支持这个。完犊子。用vs2017写的。
+\begin{lstlisting}
+	#include <memory>
+\end{lstlisting}
+
+加上这句即可。
+\subsection{signal没有响应}
+qt当中，已经设置了信号并且进行了连接，为什么没有响应？没有执行任何函数，在信号发出之后。肯定是哪里跳出了。。。
