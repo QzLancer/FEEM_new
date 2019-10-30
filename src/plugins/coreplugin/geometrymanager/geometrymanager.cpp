@@ -35,6 +35,7 @@ void GeometryManagerPlaceHolder::showEvent(QShowEvent *event)
 {
     QWidget *previousFocus = nullptr;
     QWidget *em = GeometryManagerPrivate::currentGeoView();
+    if(!em) return;
     if (em->focusWidget() && em->focusWidget()->hasFocus())
         previousFocus = em->focusWidget();
     layout()->addWidget(em);
@@ -56,22 +57,22 @@ GeometryManagerPrivate *GeometryManagerPrivate::instance()
  *
  * @return QWidget
  */
-QWidget *GeometryManagerPrivate::currentGeoView()
+GeometryView *GeometryManagerPrivate::currentGeoView()
 {
     GeometryView* view = d->m_currentView;
     /** 可能没有打开文件 **/
     if(!view){
-
+        return nullptr;
     }
     return view;
 }
 
-void GeometryManagerPrivate::setCurrentView(QWidget *view)
+void GeometryManagerPrivate::setCurrentView(GeometryView *view)
 {
     if (view == d->m_currentView)
         return;
 
-    QWidget *old = d->m_currentView;
+    GeometryView *old = d->m_currentView;
     d->m_currentView = view;
 
     if (old)

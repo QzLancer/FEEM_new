@@ -12,7 +12,7 @@ BounceDialog::BounceDialog(QWidget *parent) : QDialog(parent),
     mCancelButton(new QPushButton(tr("Cancel"), this)),
     mWarningLabel(new QLabel(this))
 {    
-    setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
+//    setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
     initialization();
 }
 

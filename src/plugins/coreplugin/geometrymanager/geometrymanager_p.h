@@ -15,8 +15,8 @@ class GeometryManagerPrivate : public QObject
 public:
     static GeometryManagerPrivate* instance();
 
-    static QWidget* currentGeoView();
-    static void setCurrentView(QWidget* view);
+    static GeometryView* currentGeoView();
+    static void setCurrentView(GeometryView* view);
 
 private:
     explicit GeometryManagerPrivate(QObject* parent);
@@ -24,7 +24,7 @@ private:
 
     void init();
 
-    GeometryView* m_currentView;
+    GeometryView* m_currentView = nullptr;
 
 };
 }//namespace Core

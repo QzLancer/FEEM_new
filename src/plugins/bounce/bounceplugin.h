@@ -29,7 +29,7 @@ public slots:
     void slotCalculate();
 
 private:
-    BounceDialog *dialog;
+//    BounceDialog *dialog;
 };
 
 }//namespace Bounce

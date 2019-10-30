@@ -8,6 +8,7 @@
 #include <coreplugin/actionmanager/actioncontainer.h>
 #include <coreplugin/actionmanager/command.h>
 #include <coreplugin/constants.h>
+#include <coreplugin/icore.h>
 
 #include <extensionsystem/pluginerroroverview.h>
 #include <extensionsystem/pluginmanager.h>
@@ -34,14 +35,14 @@ namespace Bounce {
 static BouncePlugin * m_instance = nullptr;
 
 BouncePlugin::BouncePlugin()
-    : dialog(new BounceDialog)
+//    : dialog(new BounceDialog)
 {
     m_instance = this;
 }
 
 BouncePlugin::~BouncePlugin()
 {
-    delete dialog;
+//    delete dialog;
 }
 
 BouncePlugin *BouncePlugin::instance()
@@ -90,7 +91,8 @@ void BouncePlugin::registerDefaultActions()
 
 void BouncePlugin::slotCalculate()
 {
-    dialog->show();
+    auto dialog = new BounceDialog(ICore::dialogParent());
+    dialog->exec();
 }
 
 }//namespace Bounce
