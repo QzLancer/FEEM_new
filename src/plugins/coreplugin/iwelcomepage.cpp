@@ -134,7 +134,7 @@ WelcomePageButton::WelcomePageButton(QWidget *parent)
     setPalette(buttonPalette(false, false, false));
 
     QFont f = font();
-    f.setPixelSize(15);
+    f.setPixelSize(24);
     d->m_label = new QLabel(this);
     d->m_label->setFont(f);
     d->m_label->setPalette(buttonPalette(false, false, true));

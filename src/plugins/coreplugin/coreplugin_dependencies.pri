@@ -3,3 +3,4 @@ FEEM_LIB_DEPENDS += \
     extensionsystem \
     utils \
     qtribbon \
+    QtAdvancedDock \

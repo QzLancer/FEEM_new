@@ -30,7 +30,7 @@ GeometryView::GeometryView(QWidget *parent)
     empty->setLayout(emptyLayout);
     m_emptyViewLabel = new QLabel;
     const QString placeholderText = tr("Hello!");
-    m_emptyViewLabel->setText("");
+    m_emptyViewLabel->setText("Please select a file");
 //    connect(GeometryManagerPrivate::instance(), &GeometryManagerPrivate::placeholderTextChanged,
 //            m_emptyViewLabel, &QLabel::setText);
 //    m_emptyViewLabel->setText(EditorManagerPrivate::placeholderText());

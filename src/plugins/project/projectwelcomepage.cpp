@@ -162,13 +162,13 @@ void ProjectWelcomePage::openProjectAt(int index)
 //    return Utils::creatorTheme()->color(role);
 //}
 
-//static QFont sizedFont(int size, const QWidget *widget, bool underline = false)
-//{
-//    QFont f = widget->font();
-//    f.setPixelSize(size);
-//    f.setUnderline(underline);
-//    return f;
-//}
+static QFont sizedFont(int size, const QWidget *widget, bool underline = false)
+{
+    QFont f = widget->font();
+    f.setPixelSize(size);
+    f.setUnderline(underline);
+    return f;
+}
 
 //static QPixmap pixmap(const QString &id, const Theme::Color &color)
 //{
@@ -499,6 +499,11 @@ public:
     }
 };
 
+
+/**
+ * @brief 项目的欢迎界面，包括按钮一些。
+ *
+ */
 class SessionsPage : public QWidget
 {
 public:
@@ -531,7 +536,7 @@ public:
 //        sessionsLabel->setText(ProjectWelcomePage::tr("Sessions"));
 
         auto recentProjectsLabel = new QLabel(this);
-//        recentProjectsLabel->setFont(sizedFont(16, this));
+        recentProjectsLabel->setFont(sizedFont(24, this));
         recentProjectsLabel->setText(ProjectWelcomePage::tr("Recent Projects"));
 
 //        auto sessionsList = new TreeView(this);

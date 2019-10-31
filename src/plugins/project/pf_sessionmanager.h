@@ -9,6 +9,10 @@
 namespace ProjectExplorer {
 class PF_Project;
 
+/**
+ * @brief 主要用来管理所有的project
+ *
+ */
 class PF_SessionManager : public QObject
 {
     Q_OBJECT

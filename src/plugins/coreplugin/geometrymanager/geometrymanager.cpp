@@ -103,6 +103,7 @@ void GeometryManagerPrivate::init()
  * @param parent
  */
 GeometryManager::GeometryManager(QObject *parent)
+    :QObject (parent)
 {
     m_instance = this;
     /** 因为构造函数是私有的，所以只能在这里构造 **/

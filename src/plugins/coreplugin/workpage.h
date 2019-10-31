@@ -4,7 +4,6 @@
 #include <coreplugin/ipage.h>
 
 class QSplitter;
-class QVBoxLayout;
 
 namespace Core {
 class WorkPage : public IPage
