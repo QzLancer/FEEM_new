@@ -11,6 +11,14 @@
 namespace ProjectExplorer {
 PF_ModelWidget::PF_ModelWidget(QWidget* parent)
     : QWidget (parent)
+    ,m_toolbar(new QWidget(this))
+    ,tb_previousNode(new QPushButton(this))
+    ,tb_nextNode(new QPushButton(this))
+    ,tb_moveup(new QPushButton(this))
+    ,tb_movedown(new QPushButton(this))
+    ,tb_show(new QPushButton(this))
+    ,tb_collapseAll(new QPushButton(this))
+    ,tb_expandAll(new QPushButton(this))
 {
     init();
 }
@@ -22,15 +30,6 @@ PF_ModelWidget::~PF_ModelWidget()
 
 void PF_ModelWidget::init()
 {
-    m_toolbar = new QWidget(this);
-    tb_previousNode = new QPushButton(this);
-    tb_nextNode = new QPushButton(this);
-    tb_moveup = new QPushButton(this);
-    tb_movedown = new QPushButton(this);
-    tb_collapseAll = new QPushButton(this);
-    tb_expandAll = new QPushButton(this);
-    tb_show = new QPushButton(this);
-
     m_modelTreeWidget = new PF_ProjectTreeWidget(this);
 
     QHBoxLayout* toolbarLayout = new QHBoxLayout(this);

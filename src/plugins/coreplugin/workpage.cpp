@@ -39,16 +39,26 @@ WorkPage::WorkPage()
     splitter->setHandleWidth(1);
     splitter->setOrientation(Qt::Vertical);
     splitter->insertWidget(0, rightSplitWidget);
-    QWidget *outputPane = new GeometryManagerPlaceHolder;
+    QWidget *outputPane = new QWidget;
+    auto emptyLayout = new QGridLayout(outputPane);
+//    QPalette pe;
+//    pe.setColor(QPalette::WindowText, Qt::gray);
+    QLabel* l1 = new QLabel(outputPane);
+    l1->setText("FEEM");
+    l1->setStyleSheet("font-size:60px;color:gray");
+//    l1->setPalette(pe);
+    emptyLayout->addWidget(l1);
+    outputPane->setLayout(emptyLayout);
     splitter->insertWidget(1, outputPane);
     splitter->setStretchFactor(0, 3);
     splitter->setStretchFactor(1, 0);
 
     m_splitter->setHandleWidth(1);
 
-    m_splitter->insertWidget(0,new QDockWidget);
+    /** 添加其他的布局，左侧的项目树，右侧的材料树 **/
+    m_splitter->insertWidget(0,new QWidget);
     m_splitter->insertWidget(1,splitter);
-    m_splitter->insertWidget(2,new QDockWidget);
+    m_splitter->insertWidget(2,new QWidget);
     m_splitter->setStretchFactor(0, 0);
     m_splitter->setStretchFactor(1, 1);
     m_splitter->setStretchFactor(2, 0);
