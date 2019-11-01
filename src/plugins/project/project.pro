@@ -34,3 +34,6 @@ SOURCES += \
     pf_projectwelcomepage.cpp \
     pf_sessionmanager.cpp \
     projectwelcomepage.cpp
+
+RESOURCES += \
+    project.qrc

@@ -68,26 +68,6 @@ WorkPage::WorkPage()
     // Add the dock widget to the top dock widget area
     m_DockManager->addDockWidget(ads::BottomDockWidgetArea, DockWidget1);
 
-//    QLabel* l2 = new QLabel();
-//    l2->setWordWrap(true);
-//    l2->setAlignment(Qt::AlignCenter);
-//    l2->setText("FEEM");
-//    l2->setStyleSheet("font-size:60px;color:gray");
-
-    // Create a dock widget with the title Label 1 and set the created label
-    // as the dock widget content
-    ads::CDockWidget* DockWidget2 = new ads::CDockWidget(tr("Model tree"));
-//    DockWidget2->setWidget(l2);
-    // Add the dock widget to the top dock widget area
-    m_DockManager->addDockWidget(ads::LeftDockWidgetArea, DockWidget2);
-
-//    QLabel* l3 = new QLabel();
-//    l3->setWordWrap(true);
-//    l3->setAlignment(Qt::AlignCenter);
-//    l3->setText("FEEM");
-//    l3->setStyleSheet("font-size:60px;color:gray");
-
-
     setWidget(m_splitter);
 }
 

@@ -6,7 +6,7 @@
 #include "projectwelcomepage.h"
 
 #include "projectexplorerconstants.h"
-//#include "pf_magmaterialdialog.h"
+#include "pf_modelwidget.h"
 #include "pf_node.h"
 
 #include <QAction>
@@ -14,10 +14,13 @@
 
 #include "qtribbon/include/QtnRibbonGroup.h"
 
+#include <QtAdvancedDock/DockManager.h>
+
 #include <coreplugin/actionmanager/actionmanager.h>
 #include <coreplugin/actionmanager/actioncontainer.h>
 #include <coreplugin/actionmanager/command.h>
 #include <coreplugin/constants.h>
+#include <coreplugin/workpage.h>
 
 #include <extensionsystem/pluginerroroverview.h>
 #include <extensionsystem/pluginmanager.h>
@@ -432,7 +435,10 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
 
 void PF_ProjectExplorerPlugin::extensionsInitialized()
 {
-
+    QWidget * widgetProjectTree = new PF_ModelWidget();
+    ads::CDockWidget* DockWidget = new ads::CDockWidget(tr("Model tree"));
+    DockWidget->setWidget(widgetProjectTree);
+    Core::WorkPage::DockManager()->addDockWidget(ads::LeftDockWidgetArea, DockWidget);
 }
 
 bool PF_ProjectExplorerPlugin::delayedInitialize()

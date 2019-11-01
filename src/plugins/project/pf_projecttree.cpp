@@ -60,7 +60,9 @@ void PF_ProjectTree::registerWidget(PF_ProjectTreeWidget* widget)
 */
 void PF_ProjectTree::unregisterWidget(PF_ProjectTreeWidget* widget)
 {
-    s_instance->m_projecttreewidget = nullptr;
+    /** 这里有bug，不清楚为什么PF_ProjectTree在PF_ProjectTreeWidget
+        之前析构了**/
+//    s_instance->m_projecttreewidget = nullptr;
 }
 
 void PF_ProjectTree::nodeChanged(PF_ProjectTreeWidget* widget)

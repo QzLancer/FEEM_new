@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>imgs/hide_tree.png</file>
+        <file>imgs/node_labels.png</file>
+        <file>imgs/report_down.png</file>
+        <file>imgs/report_next.png</file>
+        <file>imgs/report_next_disabled.png</file>
+        <file>imgs/report_previous.png</file>
+        <file>imgs/show_tree.png</file>
+        <file>imgs/report_up.png</file>
+    </qresource>
+</RCC>
