@@ -243,6 +243,7 @@ public:
 	 * Call this function to close all dock areas except the KeepOpenArea
 	 */
 	void closeOtherAreas(CDockAreaWidget* KeepOpenArea);
+    void paintEvent(QPaintEvent *) override;
 
 signals:
 	/**

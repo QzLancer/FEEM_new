@@ -38,6 +38,7 @@
 #include <QDebug>
 #include <QXmlStreamWriter>
 #include <QAbstractButton>
+#include <QPainter>
 
 #include "DockManager.h"
 #include "DockAreaWidget.h"
@@ -970,6 +971,7 @@ CDockContainerWidget::CDockContainerWidget(CDockManager* DockManager, QWidget *p
 		d->DockManager->registerDockContainer(this);
 		createRootSplitter();
 	}
+
 }
 
 //============================================================================
@@ -1483,7 +1485,26 @@ void CDockContainerWidget::closeOtherAreas(CDockAreaWidget* KeepOpenArea)
 		{
 			DockArea->closeArea();
 		}
-	}
+    }
+}
+
+void CDockContainerWidget::paintEvent(QPaintEvent *)
+{
+    QPainter p(this);
+    /**设置字体、大小、字符间距等**/
+    QFont font;
+    font.setPointSize(50);
+//    font.setFamily("Microsoft YaHei");
+    font.setLetterSpacing(QFont::AbsoluteSpacing,0);
+    p.setFont(font);
+    /**获取这种字体情况下，文本的长度和高度**/
+    QFontMetricsF fontMetrics(font);
+    qreal wid = fontMetrics.width("FEEM");
+    qreal height = fontMetrics.capHeight();
+
+    p.setPen(QPen(QColor(160,160,160)));
+    /**文字画在（x，y）这个点的左边，（x，y）在文字的中间**/
+    p.drawText(this->width()/2 -wid/2,this->height()/2 +height/2,"FEEM");
 }
 
 

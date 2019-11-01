@@ -377,6 +377,29 @@
     </message>
 </context>
 <context>
+    <name>Core::WorkPage</name>
+    <message>
+        <location filename="../../plugins/coreplugin/workpage.cpp" line="42"/>
+        <source>Geometry builder</source>
+        <translation type="unfinished">几何建模</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/coreplugin/workpage.cpp" line="66"/>
+        <source>Message outputpane</source>
+        <translation type="unfinished">信息输出</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/coreplugin/workpage.cpp" line="79"/>
+        <source>Model tree</source>
+        <translation type="unfinished">模型树</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/coreplugin/workpage.cpp" line="92"/>
+        <source>Material library</source>
+        <translation type="unfinished">材料库</translation>
+    </message>
+</context>
+<context>
     <name>ExtensionSystem::Internal::PluginSpecPrivate</name>
     <message>
         <location filename="../../libs/extensionsystem/pluginspec.cpp" line="662"/>
@@ -764,17 +787,17 @@ Reason: %3</source>
 <context>
     <name>PF_CADWidget</name>
     <message>
-        <location filename="../../plugins/CAD/pf_cadwidget.cpp" line="49"/>
+        <location filename="../../plugins/CAD/pf_cadwidget.cpp" line="52"/>
         <source>Zoom box</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/pf_cadwidget.cpp" line="61"/>
+        <location filename="../../plugins/CAD/pf_cadwidget.cpp" line="62"/>
         <source>Zoom Extents</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/pf_cadwidget.cpp" line="73"/>
+        <location filename="../../plugins/CAD/pf_cadwidget.cpp" line="72"/>
         <source>Zoom In</source>
         <translation></translation>
     </message>
@@ -784,7 +807,7 @@ Reason: %3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/pf_cadwidget.cpp" line="95"/>
+        <location filename="../../plugins/CAD/pf_cadwidget.cpp" line="96"/>
         <source>Zoom to Selected</source>
         <translation></translation>
     </message>
@@ -919,32 +942,32 @@ Reason: %3</source>
         <translation>上一个节点</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_modelwidget.cpp" line="46"/>
+        <location filename="../../plugins/project/pf_modelwidget.cpp" line="45"/>
         <source>Next Node</source>
         <translation type="unfinished">下一个节点</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_modelwidget.cpp" line="51"/>
+        <location filename="../../plugins/project/pf_modelwidget.cpp" line="49"/>
         <source>Move Up</source>
         <translation type="unfinished">向上</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_modelwidget.cpp" line="56"/>
+        <location filename="../../plugins/project/pf_modelwidget.cpp" line="53"/>
         <source>Move Down</source>
         <translation type="unfinished">向下</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_modelwidget.cpp" line="61"/>
+        <location filename="../../plugins/project/pf_modelwidget.cpp" line="57"/>
         <source>Show</source>
         <translation type="unfinished">显示</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_modelwidget.cpp" line="66"/>
+        <location filename="../../plugins/project/pf_modelwidget.cpp" line="61"/>
         <source>Collapse All</source>
         <translation type="unfinished">折叠所有</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_modelwidget.cpp" line="76"/>
+        <location filename="../../plugins/project/pf_modelwidget.cpp" line="70"/>
         <source>Expand All</source>
         <translation type="unfinished">展开所有</translation>
     </message>
