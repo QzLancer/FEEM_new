@@ -361,7 +361,7 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
     addModel->setOnAllDisabledBehavior(ActionContainer::Show);
     dd->m_addmodel = addModel->menu();
     dd->m_addmodel->setTitle(tr("Add Model"));
-    dd->m_addmodel->setIcon(QIcon(":/tree/model_3d.png"));
+    dd->m_addmodel->setIcon(QIcon(":/imgs/model_3d.png"));
 
     ActionContainer * const addStudy =
             ActionManager::createMenu(Constants::M_ADDSTUDYCONTEXT);
@@ -373,17 +373,17 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
     Command* cmd;
 
     /************add model******************/
-    dd->m_add3Dmodel = new QAction(QIcon(":/tree/model_3d.png"),tr("3D"), this);
+    dd->m_add3Dmodel = new QAction(QIcon(":/imgs/model_3d.png"),tr("3D"), this);
     cmd = ActionManager::registerAction(dd->m_add3Dmodel, Constants::ADD3DMODEL);
 //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
     addModel->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
 
-    dd->m_add2DAxismodel = new QAction(QIcon(":/tree/model_2d_axi.png"),tr("2D Axisymmetric"), this);
+    dd->m_add2DAxismodel = new QAction(QIcon(":/imgs/model_2d_axi.png"),tr("2D Axisymmetric"), this);
     cmd = ActionManager::registerAction(dd->m_add2DAxismodel, Constants::ADD2DAXIS);
 //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
     addModel->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
 
-    dd->m_add2Dmodel = new QAction(QIcon(":/tree/model_2d.png"),tr("2D"), this);
+    dd->m_add2Dmodel = new QAction(QIcon(":/imgs/model_2d.png"),tr("2D"), this);
     cmd = ActionManager::registerAction(dd->m_add2Dmodel, Constants::ADD2DMODEL);
     //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
     addModel->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
@@ -391,17 +391,17 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
     mprojectContextMenu->addMenu(addModel,Constants::G_PROJECT_ADD);
 
     /************add study******************/
-    dd->m_addStaticMag = new QAction(QIcon(":/tree/magnetic_fields.png"),tr("Static Magnetic Field"), this);
+    dd->m_addStaticMag = new QAction(QIcon(":/imgs/magnetic_fields.png"),tr("Static Magnetic Field"), this);
     cmd = ActionManager::registerAction(dd->m_addStaticMag, Constants::ADDSTATICMAG);
     //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
     addStudy->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
 
-    dd->m_addTransientMag = new QAction(QIcon(":/tree/phys_magnetic_fields_no_currents.png"),tr("Transient Magnetic Field"), this);
+    dd->m_addTransientMag = new QAction(QIcon(":/imgs/phys_magnetic_fields_no_currents.png"),tr("Transient Magnetic Field"), this);
     cmd = ActionManager::registerAction(dd->m_addTransientMag, Constants::ADDTRANSIENTMAG);
     //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
     addStudy->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
 
-    dd->m_addHeat = new QAction(QIcon(":/tree/modlib_heat.png"),tr("Heat Field"), this);
+    dd->m_addHeat = new QAction(QIcon(":/imgs/modlib_heat.png"),tr("Heat Field"), this);
     cmd = ActionManager::registerAction(dd->m_addHeat, Constants::ADDHEAT);
     //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
     addStudy->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
@@ -421,7 +421,7 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
     mmaterialContextMenu->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
 
     // help
-    dd->m_help = new QAction(QIcon(":/tree/help_16.png"),tr("Help"), this);
+    dd->m_help = new QAction(QIcon(":/imgs/help_16.png"),tr("Help"), this);
     cmd = ActionManager::registerAction(dd->m_help, Constants::HELP);
     //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
     mmaterialContextMenu->addSeparator(Constants::G_HELP);

@@ -114,7 +114,7 @@ void ProjectNode::removeAllChildren()
 
 
 ProjectNode::ProjectNode(PF_Project *project)
-    :FolderNode (project->displayName(),NodeType::Project,QIcon(":/tree/model_3d.png"))
+    :FolderNode (project->displayName(),NodeType::Project,QIcon(":/imgs/model_3d.png"))
     ,m_project(project)
 {
 

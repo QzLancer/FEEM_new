@@ -393,7 +393,7 @@ bool PF_MaterialTreeModel::loadBuiltinMaterials()
     char s[1024];
 //    int i,k;
 
-//    std::unique_ptr<FolderNode> root = std::make_unique<FolderNode>(QString(tr("Global Definitions")),NodeType::Definition,QIcon(":/tree/global_branch.png"));
+//    std::unique_ptr<FolderNode> root = std::make_unique<FolderNode>(QString(tr("Global Definitions")),NodeType::Definition,QIcon(":/imgs/global_branch.png"));
 
     nodes.emplace_back(std::make_unique<FolderNode>(QString("root")));
 
@@ -453,7 +453,7 @@ CMaterialPropNode::CMaterialPropNode(CMaterialProp *material)
     :LeafNode (material->BlockName,LeafType::CMaterialProp)
     ,m_material(material)
 {
-//    setIcon(QIcon(":/tree/material.png"));
+//    setIcon(QIcon(":/imgs/material.png"));
 }
 
 CMaterialPropNode::~CMaterialPropNode()

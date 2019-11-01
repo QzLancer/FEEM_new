@@ -98,12 +98,12 @@ void PF_Project::creatTree()
 {
     std::unique_ptr<ProjectNode> root = std::make_unique<ProjectNode>(this);
     std::vector<std::unique_ptr<FolderNode>> nodes;
-    nodes.emplace_back(std::make_unique<FolderNode>(QString(tr("Global Definitions")),NodeType::Definition,QIcon(":/tree/global_branch.png")));
-    nodes.emplace_back(std::make_unique<FolderNode>(QString(tr("Materials: Materials")),NodeType::Material,QIcon(":/tree/material.png")));
-    nodes.emplace_back(std::make_unique<FolderNode>(QString(tr("Component: Component1")),NodeType::Component,QIcon(":/tree/model_2d_axi.png")));
-    nodes.emplace_back(std::make_unique<FolderNode>(QString(tr("Definitions")),NodeType::Variable,QIcon(":/tree/definitions.png")));
-    nodes.emplace_back(std::make_unique<FolderNode>(QString(tr("Geometry1")),NodeType::Geometry,QIcon(":/tree/geometry.png")));
-    nodes.emplace_back(std::make_unique<FolderNode>(QString(tr("Mesh1")),NodeType::Mesh,QIcon(":/tree/mesh.png")));
+    nodes.emplace_back(std::make_unique<FolderNode>(QString(tr("Global Definitions")),NodeType::Definition,QIcon(":/imgs/global_branch.png")));
+    nodes.emplace_back(std::make_unique<FolderNode>(QString(tr("Materials: Materials")),NodeType::Material,QIcon(":/imgs/material.png")));
+    nodes.emplace_back(std::make_unique<FolderNode>(QString(tr("Component: Component1")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png")));
+    nodes.emplace_back(std::make_unique<FolderNode>(QString(tr("Definitions")),NodeType::Variable,QIcon(":/imgs/definitions.png")));
+    nodes.emplace_back(std::make_unique<FolderNode>(QString(tr("Geometry1")),NodeType::Geometry,QIcon(":/imgs/geometry.png")));
+    nodes.emplace_back(std::make_unique<FolderNode>(QString(tr("Mesh1")),NodeType::Mesh,QIcon(":/imgs/mesh.png")));
 
     nodes.at(0)->addNode(std::move(nodes.at(3)));
     nodes.at(0)->addNode(std::move(nodes.at(1)));
