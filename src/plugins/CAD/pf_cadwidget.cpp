@@ -16,6 +16,12 @@ QStatusBar* PF_CADWidget::statusbar = nullptr;
 
 PF_CADWidget::PF_CADWidget(PF_Document* doc, QWidget *parent)
     : QWidget(parent)
+    ,toolBar(new QWidget(this))
+    ,zoom(new QToolButton(this))
+    ,zoomextents(new QToolButton(this))
+    ,zoomin(new QToolButton(this))
+    ,zoomout(new QToolButton(this))
+    ,zoomselected(new QToolButton(this))
 {
     if(doc == nullptr){
 
@@ -32,8 +38,7 @@ PF_CADWidget::~PF_CADWidget()
 }
 
 void PF_CADWidget::init()
-{
-    toolBar = new QWidget(this);
+{    
     QPalette p;
     p.setBrush(toolBar->backgroundRole(),QBrush(QColor(251,253,253)));
     toolBar->setPalette(p);
@@ -42,59 +47,56 @@ void PF_CADWidget::init()
 //    toolBar->setIconSize(QSize(24,24));
     toolBar->setObjectName("ToolBar");
 
-    QString str;
-    zoom = new QToolButton(this);
     zoom->setIcon(QIcon(":/main/zoombox.png"));
     zoom->setCheckable(true);
     zoom->setToolTip(tr("Zoom box"));
     zoom->setAttribute(Qt::WA_TranslucentBackground);
+    zoom->setAutoRaise(true);
     connect(zoom,&QToolButton::clicked,[this]()
     {
         qDebug()<<"Zoom";
         this->zoom->setChecked(zoom->isChecked());
     });
-    str.append("QPushButton{background-color:rgba(0,0,0,0);}");
-    zoom->setStyleSheet(str);
 
-    zoomextents = new QToolButton(this);
     zoomextents->setIcon(QIcon(":/main/zoomextents.png"));
     zoomextents->setToolTip(tr("Zoom Extents"));
-//    zoomextents->setFlat(true);
-//    zoomextents->setAttribute(Qt::WA_TranslucentBackground);
-//    zoomextents->setCheckable(true);
+    zoomextents->setAutoRaise(true);
     connect(zoomextents,&QToolButton::clicked,[this]()
     {
 //        qDebug()<<"ZoomExtents";
         this->view->zoomAuto(true,true);
         //this->zoomextents->setChecked(zoomextents->isChecked());
     });
-    zoomin = new QToolButton(this);
+
     zoomin->setIcon(QIcon(":/main/zoomin.png"));
     zoomin->setToolTip(tr("Zoom In"));
     zoomin->setAttribute(Qt::WA_TranslucentBackground);
 //    zoomin->setCheckable(true);
+    zoomin->setAutoRaise(true);
     connect(zoomin,&QToolButton::clicked,[this]()
     {
 //        qDebug()<<"Zoom In";
         this->view->zoomIn(1.2);
         //this->zoomin->setChecked(zoomin->isChecked());
     });
-    zoomout = new QToolButton(this);
+
     zoomout->setIcon(QIcon(":/main/zoomout.png"));
     zoomout->setToolTip(tr("Zoom Out"));
     zoomout->setAttribute(Qt::WA_TranslucentBackground);
 //    zoomout->setCheckable(true);
+    zoomout->setAutoRaise(true);
     connect(zoomout,&QToolButton::clicked,[this]()
     {
 //        qDebug()<<"Zoom Out";
         this->view->zoomOut(1.2);
         //this->zoomout->setChecked(zoomout->isChecked());
     });
-    zoomselected = new QToolButton(this);
+
     zoomselected->setIcon(QIcon(":/main/zoomselected.png"));
     zoomselected->setToolTip(tr("Zoom to Selected"));
     zoomselected->setCheckable(true);
     zoomselected->setAttribute(Qt::WA_TranslucentBackground);
+    zoomselected->setAutoRaise(true);
     connect(zoomselected,&QToolButton::clicked,[this]()
     {
         qDebug()<<"Zoom Selected";

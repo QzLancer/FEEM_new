@@ -5,20 +5,20 @@
 
 #include <QHBoxLayout>
 #include <QVBoxLayout>
-#include <QPushButton>
+#include <QToolButton>
 #include <QDebug>
 
 namespace ProjectExplorer {
 PF_ModelWidget::PF_ModelWidget(QWidget* parent)
     : QWidget (parent)
     ,m_toolbar(new QWidget(this))
-    ,tb_previousNode(new QPushButton(this))
-    ,tb_nextNode(new QPushButton(this))
-    ,tb_moveup(new QPushButton(this))
-    ,tb_movedown(new QPushButton(this))
-    ,tb_show(new QPushButton(this))
-    ,tb_collapseAll(new QPushButton(this))
-    ,tb_expandAll(new QPushButton(this))
+    ,tb_previousNode(new QToolButton(this))
+    ,tb_nextNode(new QToolButton(this))
+    ,tb_moveup(new QToolButton(this))
+    ,tb_movedown(new QToolButton(this))
+    ,tb_show(new QToolButton(this))
+    ,tb_collapseAll(new QToolButton(this))
+    ,tb_expandAll(new QToolButton(this))
 {
     init();
 }
@@ -39,34 +39,28 @@ void PF_ModelWidget::init()
     /** previous Node QToolbutton **/
     tb_previousNode->setIcon(QIcon(":/tree/report_previous.png"));
     tb_previousNode->setToolTip(tr("Previous Node"));
-    tb_previousNode->setFlat(true);
-    tb_previousNode->setAttribute(Qt::WA_TranslucentBackground);
+    tb_previousNode->setAutoRaise(true);
 
     tb_nextNode->setIcon(QIcon(":/tree/report_next.png"));
     tb_nextNode->setToolTip(tr("Next Node"));
-    tb_nextNode->setFlat(true);
-    tb_nextNode->setAttribute(Qt::WA_TranslucentBackground);
+    tb_nextNode->setAutoRaise(true);
 
     tb_moveup->setIcon(QIcon(":/tree/report_up.png"));
     tb_moveup->setToolTip(tr("Move Up"));
-    tb_moveup->setFlat(true);
-    tb_moveup->setAttribute(Qt::WA_TranslucentBackground);
+    tb_moveup->setAutoRaise(true);
 
     tb_movedown->setIcon(QIcon(":/tree/report_down.png"));
     tb_movedown->setToolTip(tr("Move Down"));
-    tb_movedown->setFlat(true);
-    tb_movedown->setAttribute(Qt::WA_TranslucentBackground);
+    tb_movedown->setAutoRaise(true);
 
     tb_show->setIcon(QIcon(":/tree/node_labels.png"));
     tb_show->setToolTip(tr("Show"));
-    tb_show->setFlat(true);
-    tb_show->setAttribute(Qt::WA_TranslucentBackground);
+    tb_show->setAutoRaise(true);
 
     tb_collapseAll->setIcon(QIcon(":/tree/hide_tree.png"));
     tb_collapseAll->setToolTip(tr("Collapse All"));
-    tb_collapseAll->setFlat(true);
-    tb_collapseAll->setAttribute(Qt::WA_TranslucentBackground);
-    connect(tb_collapseAll,&QPushButton::clicked,[]()
+    tb_collapseAll->setAutoRaise(true);
+    connect(tb_collapseAll,&QToolButton::clicked,[]()
     {
 //        qDebug()<<"Collapse All";
         PF_ProjectTree::instance()->collapseAll();
@@ -74,9 +68,8 @@ void PF_ModelWidget::init()
 
     tb_expandAll->setIcon(QIcon(":/tree/show_tree.png"));
     tb_expandAll->setToolTip(tr("Expand All"));
-    tb_expandAll->setFlat(true);
-//    tb_expandAll->setAttribute(Qt::WA_TranslucentBackground);
-    connect(tb_expandAll,&QPushButton::clicked,[]()
+    tb_expandAll->setAutoRaise(true);
+    connect(tb_expandAll,&QToolButton::clicked,[]()
     {
 //        qDebug()<<"Expand All";
         PF_ProjectTree::instance()->expandAll();

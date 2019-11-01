@@ -4,17 +4,17 @@
 <context>
     <name>Bounce::BouncePlugin</name>
     <message>
-        <location filename="../../plugins/bounce/bounceplugin.cpp" line="74"/>
+        <location filename="../../plugins/bounce/bounceplugin.cpp" line="75"/>
         <source>&amp;Mechanic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bounceplugin.cpp" line="77"/>
+        <location filename="../../plugins/bounce/bounceplugin.cpp" line="78"/>
         <source>Bounce</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bounceplugin.cpp" line="85"/>
+        <location filename="../../plugins/bounce/bounceplugin.cpp" line="86"/>
         <source>Bounce Calculate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -323,39 +323,47 @@
     </message>
 </context>
 <context>
+    <name>Core::GeometryView</name>
+    <message>
+        <location filename="../../plugins/coreplugin/geometrymanager/geometryview.cpp" line="32"/>
+        <source>Hello!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Core::MainWindow</name>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="92"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="96"/>
         <source>&amp;Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="96"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="100"/>
         <source>&amp;Solve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="100"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="104"/>
         <source>&amp;Definitions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="104"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="108"/>
         <source>&amp;Materials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="108"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="112"/>
         <source>&amp;Mesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="112"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="116"/>
         <source>&amp;Geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="116"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="120"/>
         <source>&amp;Results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -906,37 +914,37 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::PF_ModelWidget</name>
     <message>
-        <location filename="../../plugins/project/pf_modelwidget.cpp" line="42"/>
+        <location filename="../../plugins/project/pf_modelwidget.cpp" line="41"/>
         <source>Previous Node</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_modelwidget.cpp" line="47"/>
+        <location filename="../../plugins/project/pf_modelwidget.cpp" line="46"/>
         <source>Next Node</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_modelwidget.cpp" line="52"/>
+        <location filename="../../plugins/project/pf_modelwidget.cpp" line="51"/>
         <source>Move Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_modelwidget.cpp" line="57"/>
+        <location filename="../../plugins/project/pf_modelwidget.cpp" line="56"/>
         <source>Move Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_modelwidget.cpp" line="62"/>
+        <location filename="../../plugins/project/pf_modelwidget.cpp" line="61"/>
         <source>Show</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_modelwidget.cpp" line="67"/>
+        <location filename="../../plugins/project/pf_modelwidget.cpp" line="66"/>
         <source>Collapse All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_modelwidget.cpp" line="77"/>
+        <location filename="../../plugins/project/pf_modelwidget.cpp" line="76"/>
         <source>Expand All</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1061,17 +1069,17 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::ProjectWelcomePage</name>
     <message>
-        <location filename="../../plugins/project/projectwelcomepage.cpp" line="514"/>
+        <location filename="../../plugins/project/projectwelcomepage.cpp" line="519"/>
         <source>New Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/projectwelcomepage.cpp" line="525"/>
+        <location filename="../../plugins/project/projectwelcomepage.cpp" line="530"/>
         <source>Open Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/projectwelcomepage.cpp" line="535"/>
+        <location filename="../../plugins/project/projectwelcomepage.cpp" line="540"/>
         <source>Recent Projects</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1347,6 +1355,31 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/optimize/singleobjectcore/sparticle.cpp" line="138"/>
         <source>Minimize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/QtAdvancedDock/DockAreaTitleBar.cpp" line="147"/>
+        <source>List all tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/QtAdvancedDock/DockAreaTitleBar.cpp" line="160"/>
+        <source>Detach Group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/QtAdvancedDock/DockAreaTitleBar.cpp" line="176"/>
+        <source>Close Active Tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/QtAdvancedDock/DockAreaTitleBar.cpp" line="180"/>
+        <source>Close Group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/QtAdvancedDock/DockWidgetTab.cpp" line="173"/>
+        <source>Close Tab</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1878,6 +1911,50 @@ Reason: %3</source>
     <message>
         <location filename="../../libs/utils/synchronousprocess.cpp" line="560"/>
         <source>Would you like to terminate it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ads::CDockAreaTitleBar</name>
+    <message>
+        <location filename="../../libs/QtAdvancedDock/DockAreaTitleBar.cpp" line="357"/>
+        <source>Detach Area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/QtAdvancedDock/DockAreaTitleBar.cpp" line="360"/>
+        <source>Close Area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/QtAdvancedDock/DockAreaTitleBar.cpp" line="362"/>
+        <source>Close Other Areas</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ads::CDockManager</name>
+    <message>
+        <location filename="../../libs/QtAdvancedDock/DockManager.cpp" line="414"/>
+        <source>Show View</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ads::CDockWidgetTab</name>
+    <message>
+        <location filename="../../libs/QtAdvancedDock/DockWidgetTab.cpp" line="370"/>
+        <source>Detach</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/QtAdvancedDock/DockWidgetTab.cpp" line="373"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/QtAdvancedDock/DockWidgetTab.cpp" line="375"/>
+        <source>Close Others</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

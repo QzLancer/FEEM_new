@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-class QPushButton;
+class QToolButton;
 namespace ProjectExplorer {
 class PF_ProjectTreeWidget;
 
@@ -17,13 +17,13 @@ public:
     void init();
 private:
     QWidget* m_toolbar;
-    QPushButton* tb_previousNode;
-    QPushButton* tb_nextNode;
-    QPushButton* tb_moveup;
-    QPushButton* tb_movedown;
-    QPushButton* tb_show;
-    QPushButton* tb_collapseAll;
-    QPushButton* tb_expandAll;
+    QToolButton* tb_previousNode;
+    QToolButton* tb_nextNode;
+    QToolButton* tb_moveup;
+    QToolButton* tb_movedown;
+    QToolButton* tb_show;
+    QToolButton* tb_collapseAll;
+    QToolButton* tb_expandAll;
     PF_ProjectTreeWidget* m_modelTreeWidget;
 signals:
 
