@@ -1,9 +1,13 @@
 #include "pf_materialtreemodel.h"
 #include "pf_material.h"
 
+#include <utils/treemodel.h>
+#include <project/pf_node.h>
 //#include <memory>
 //#include <stdio.h>
 #include <QDebug>
+
+using namespace ProjectExplorer;
 
 char* StripKey(char *c)
 {
@@ -29,7 +33,7 @@ enum LABELTAGS{
     NOTHING
 };
 
-int ParseLine(char *s, FILE *fp, CMaterialProp* MProp,std::vector<std::unique_ptr<FolderNode>> &nodes)
+int ParseLine(char *s, FILE *fp, CMaterialProp* MProp,std::vector<std::unique_ptr<ProjectExplorer::FolderNode>> &nodes)
 {
     char q[1024];
     char *v;
@@ -58,7 +62,7 @@ int ParseLine(char *s, FILE *fp, CMaterialProp* MProp,std::vector<std::unique_pt
                 i=-1;
             }
         }
-        nodes.emplace_back(std::make_unique<FolderNode>(QString(v)));
+        nodes.emplace_back(std::make_unique<ProjectExplorer::FolderNode>(QString(v)));
 
 //        FoldProps[FoldProps.GetUpperBound()].FolderName=v;
 //        m_mytree.SetItemText(Parent,v);
@@ -291,9 +295,9 @@ QVariant PF_MaterialTreeModel::data(const QModelIndex &index, int role) const
         }
         case Qt::DecorationRole: {/**要以图标形式呈现为装饰的数据**/
             if(node->asFolderNode())
-                result = QIcon(":/tree/material_library.png");
+                result = QIcon(":/material/imgs/materiallibrary.png");
             if(node->asLeafNode())
-                result = QIcon(":/tree/material.png");
+                result = QIcon(":/material/imgs/material.png");
             break;
         }
         case Qt::FontRole: {/**用于使用默认委托呈现的项目的字体**/
@@ -354,7 +358,7 @@ WrapperNode *PF_MaterialTreeModel::wrapperForNode(const Node *node) const
     auto pred = [node](WrapperNode *item) {
         return item->m_node == node;
     };
-    const auto pred0 = [pred](TreeItem *treeItem) -> bool { return pred(static_cast<WrapperNode *>(treeItem)); };
+    const auto pred0 = [pred](Utils::TreeItem *treeItem) -> bool { return pred(static_cast<WrapperNode *>(treeItem)); };
     return static_cast<WrapperNode *>(m_root->findAnyChild(pred0));
 }
 

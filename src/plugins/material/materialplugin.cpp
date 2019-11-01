@@ -1,13 +1,17 @@
 #include "materialplugin.h"
 #include "materialconstants.h"
 
+#include "pf_materiallibrary.h"
+
 #include "qtribbon/include/QtnRibbonGroup.h"
+
+#include <QtAdvancedDock/DockManager.h>
 
 #include <coreplugin/constants.h>
 #include <coreplugin/actionmanager/actionmanager.h>
 #include <coreplugin/actionmanager/actioncontainer.h>
 #include <coreplugin/actionmanager/command.h>
-
+#include <coreplugin/workpage.h>
 
 #include <extensionsystem/pluginerroroverview.h>
 #include <extensionsystem/pluginmanager.h>
@@ -55,7 +59,11 @@ bool MaterialPlugin::initialize(const QStringList &arguments, QString *errorMess
 
 void MaterialPlugin::extensionsInitialized()
 {
-
+    QWidget* materialLibraryTree = new PF_MaterialLibraryWidget();
+    ads::CDockWidget* DockWidget3 = new ads::CDockWidget(tr("Material library"));
+    DockWidget3->setWidget(materialLibraryTree);
+    // Add the dock widget to the top dock widget area
+    Core::WorkPage::DockManager()->addDockWidget(ads::RightDockWidgetArea, DockWidget3);
 }
 
 bool MaterialPlugin::delayedInitialize()

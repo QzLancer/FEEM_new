@@ -1,6 +1,8 @@
 #ifndef PF_NODE_H
 #define PF_NODE_H
 
+#include "project_export.h"
+
 #include <QIcon>
 #include <QStringList>
 
@@ -79,7 +81,7 @@ enum ProjectAction {
  类似于枝干，而有的Node则不再细分，成为树叶。
 
 */
-class Node
+class FEEM_PROJECT_EXPORT Node
 {
 public:
     virtual ~Node();
@@ -120,7 +122,7 @@ private:
  \brief 最末端的，不能再添加子节点的节点
 
 */
-class LeafNode : public Node
+class FEEM_PROJECT_EXPORT LeafNode : public Node
 {
 public:
     LeafNode(const QString &_displayname, const LeafType leafType,NodeType nodeType = NodeType::Leaf, QIcon icon=QIcon());
@@ -143,7 +145,7 @@ private:
  \brief
 
 */
-class FolderNode : public Node
+class FEEM_PROJECT_EXPORT FolderNode : public Node
 {
 public:
     explicit FolderNode(const QString &displayName, NodeType nodeType = NodeType::Folder, QIcon icon=QIcon());
@@ -201,7 +203,7 @@ protected:
  \brief
 
 */
-class ProjectNode : public FolderNode
+class FEEM_PROJECT_EXPORT ProjectNode : public FolderNode
 {
 public:
     explicit ProjectNode(PF_Project* project);

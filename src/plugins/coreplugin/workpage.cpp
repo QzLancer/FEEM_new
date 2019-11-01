@@ -87,12 +87,7 @@ WorkPage::WorkPage()
 //    l3->setText("FEEM");
 //    l3->setStyleSheet("font-size:60px;color:gray");
 
-    // Create a dock widget with the title Label 1 and set the created label
-    // as the dock widget content
-    ads::CDockWidget* DockWidget3 = new ads::CDockWidget(tr("Material library"));
-//    DockWidget3->setWidget(l3);
-    // Add the dock widget to the top dock widget area
-    m_DockManager->addDockWidget(ads::RightDockWidgetArea, DockWidget3);
+
     setWidget(m_splitter);
 }
 

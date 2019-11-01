@@ -1,8 +1,8 @@
 #include "pf_materiallibrary.h"
 
-#include "navigationtreeview.h"
-#include "pf_projecttree.h"
-#include "pf_node.h"
+#include <utils/navigationtreeview.h>
+#include <project/pf_projecttree.h>
+#include <project/pf_node.h>
 #include "pf_materialtreemodel.h"
 
 #include <QApplication>
@@ -18,7 +18,7 @@
 #include <QMenu>
 #include <QDebug>
 
-
+using namespace Utils;
 
 class PF_MaterialTreeItemDelegate : public QStyledItemDelegate
 {
@@ -235,7 +235,6 @@ void PF_MaterialLibraryWidget::handleCurrentItemChange(const QModelIndex &curren
 
 void PF_MaterialLibraryWidget::showContextMenu(const QPoint &pos)
 {
-    qDebug()<<Q_FUNC_INFO;
     QModelIndex index = m_view->indexAt(pos);
     Node *node = m_model->nodeForIndex(index);
 }
