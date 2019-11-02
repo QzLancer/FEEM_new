@@ -196,7 +196,7 @@ void SingleObjectDialog::slotOptimize()
 
 void SingleObjectDialog::initializeGroup1()
 {
-    mGroup1->setTitle(tr("Target to be optimized && input parameters"));
+    mGroup1->setTitle(tr("Object to be optimized && input parameters"));
 
     //优化目标
     QLabel *targetlabel = new QLabel(tr("Target to be optimized"), mGroup1);
@@ -285,7 +285,7 @@ bool SingleObjectDialog::isParamError()
     mC2Edit->text().toDouble(&isC2Double);
 
     if(!isSizeInt){
-        mWarningLabel1->setText(tr("Error: Number of particles must be a number!"));
+        mWarningLabel1->setText(tr("Error: Number of particles must be a integer!"));
         return false;
     }
     if(!isTimeInt){

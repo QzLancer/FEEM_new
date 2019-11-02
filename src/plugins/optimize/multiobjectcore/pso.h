@@ -1,6 +1,6 @@
 #include "particle.h"
 #include <QString>
-#include <QVector>\
+#include <QVector>
 using namespace std;
 
 class PSO

@@ -684,7 +684,7 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="283"/>
         <source>Error: Upper weight must be a number!</source>
-        <translation type="unfinished">错误：w上界必须为数字！</translation>
+        <translation>错误：w上界必须为数字！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="287"/>

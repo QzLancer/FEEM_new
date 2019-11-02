@@ -1,5 +1,6 @@
 #include "optimizeplugin.h"
 #include "optimizeconstants.h"
+#include "singleobjwizard.h"
 
 #include "qtribbon/include/QtnRibbonPage.h"
 #include "qtribbon/include/QtnRibbonGroup.h"
@@ -55,6 +56,9 @@ bool OptimizePlugin::initialize(const QStringList &arguments, QString *errorMess
 {
     registerDefaultContainers();
     registerDefaultActions();
+
+    SingleObjWizard *sow = new SingleObjWizard;
+    sow->show();
     return true;
 }
 
