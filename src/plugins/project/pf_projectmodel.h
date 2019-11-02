@@ -1,6 +1,8 @@
 #ifndef PF_PROJECTMODEL_H
 #define PF_PROJECTMODEL_H
 
+#include "project_export.h"
+
 #include <utils/treemodel.h>
 
 #include <QPointer>
@@ -19,7 +21,7 @@ class FolderNode;
  \brief 该类用来存放不同的节点数据
 
 */
-class WrapperNode : public Utils::TreeItem
+class FEEM_PROJECT_EXPORT WrapperNode : public Utils::TreeItem
 {
 public:
     explicit WrapperNode(Node *node) : m_node(node) {}

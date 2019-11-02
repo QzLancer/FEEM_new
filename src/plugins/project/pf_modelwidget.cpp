@@ -37,27 +37,27 @@ void PF_ModelWidget::init()
     toolbarLayout->setSpacing(1);
 
     /** previous Node QToolbutton **/
-    tb_previousNode->setIcon(QIcon(":/tree/report_previous.png"));
+    tb_previousNode->setIcon(QIcon(":/imgs/report_previous.png"));
     tb_previousNode->setToolTip(tr("Previous Node"));
     tb_previousNode->setAutoRaise(true);
 
-    tb_nextNode->setIcon(QIcon(":/tree/report_next.png"));
+    tb_nextNode->setIcon(QIcon(":/imgs/report_next.png"));
     tb_nextNode->setToolTip(tr("Next Node"));
     tb_nextNode->setAutoRaise(true);
 
-    tb_moveup->setIcon(QIcon(":/tree/report_up.png"));
+    tb_moveup->setIcon(QIcon(":/imgs/report_up.png"));
     tb_moveup->setToolTip(tr("Move Up"));
     tb_moveup->setAutoRaise(true);
 
-    tb_movedown->setIcon(QIcon(":/tree/report_down.png"));
+    tb_movedown->setIcon(QIcon(":/imgs/report_down.png"));
     tb_movedown->setToolTip(tr("Move Down"));
     tb_movedown->setAutoRaise(true);
 
-    tb_show->setIcon(QIcon(":/tree/node_labels.png"));
+    tb_show->setIcon(QIcon(":/imgs/node_labels.png"));
     tb_show->setToolTip(tr("Show"));
     tb_show->setAutoRaise(true);
 
-    tb_collapseAll->setIcon(QIcon(":/tree/hide_tree.png"));
+    tb_collapseAll->setIcon(QIcon(":/imgs/hide_tree.png"));
     tb_collapseAll->setToolTip(tr("Collapse All"));
     tb_collapseAll->setAutoRaise(true);
     connect(tb_collapseAll,&QToolButton::clicked,[]()
@@ -66,7 +66,7 @@ void PF_ModelWidget::init()
         PF_ProjectTree::instance()->collapseAll();
     });
 
-    tb_expandAll->setIcon(QIcon(":/tree/show_tree.png"));
+    tb_expandAll->setIcon(QIcon(":/imgs/show_tree.png"));
     tb_expandAll->setToolTip(tr("Expand All"));
     tb_expandAll->setAutoRaise(true);
     connect(tb_expandAll,&QToolButton::clicked,[]()

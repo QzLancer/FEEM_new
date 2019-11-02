@@ -3,8 +3,12 @@
 
 #include <QWidget>
 
-class QTreeView;
+namespace ProjectExplorer {
 class Node;
+}
+using namespace ProjectExplorer;
+
+class QTreeView;
 class PF_MaterialTreeModel;
 
 class PF_MaterialLibraryWidget : public QWidget

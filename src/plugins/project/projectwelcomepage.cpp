@@ -1,7 +1,7 @@
 #include "projectwelcomepage.h"
-//#include "session.h"
-//#include "sessionmodel.h"
-//#include "projectexplorer.h"
+#include "pf_project.h"
+#include "pf_sessionmanager.h"
+#include "pf_projecttree.h"
 
 #include <coreplugin/actionmanager/actionmanager.h>
 #include <coreplugin/actionmanager/command.h>
@@ -518,7 +518,16 @@ public:
         auto newButton = new WelcomePageButton(this);
         newButton->setText(ProjectWelcomePage::tr("New Project"));
 //        newButton->setIcon(pixmap("new", Theme::Welcome_ForegroundSecondaryColor));
-        newButton->setOnClicked([] { PageManager::activatePage(Core::Constants::PAGE_WORK); });
+        newButton->setOnClicked([] {
+            /** 切换到工作页面 **/
+            PageManager::activatePage(Core::Constants::PAGE_WORK);
+            /** 新建一个项目 **/
+            PF_Project* pro = new PF_Project();
+        //    PF_Project* pro1 = new PF_Project(this);
+            PF_SessionManager::instance()->addProject(pro);
+        //    PF_SessionManager::instance()->addProject(pro1);
+            PF_ProjectTree::instance()->expandAll();
+        });
 
         auto divider = new QWidget(this);
         divider->setMaximumWidth(1);

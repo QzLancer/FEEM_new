@@ -1,6 +1,8 @@
 #ifndef WORKPAGE_H
 #define WORKPAGE_H
 
+#include "core_global.h"
+
 #include <coreplugin/ipage.h>
 #include <QSplitter>
 namespace ads {
@@ -11,7 +13,7 @@ class CDockWidget;
 
 namespace Core {
 
-class WorkPage : public IPage
+class FEEM_CORE_EXPORT WorkPage : public IPage
 {
     Q_OBJECT
 public:

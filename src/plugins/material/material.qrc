@@ -9,5 +9,6 @@
         <file>imgs/more_materials_32.png</file>
         <file>imgs/new_material_library.png</file>
         <file>imgs/new_material_library_32.png</file>
+        <file>imgs/material.png</file>
     </qresource>
 </RCC>

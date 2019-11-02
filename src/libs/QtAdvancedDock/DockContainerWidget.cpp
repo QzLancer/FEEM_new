@@ -1502,7 +1502,7 @@ void CDockContainerWidget::paintEvent(QPaintEvent *)
     qreal wid = fontMetrics.width("FEEM");
     qreal height = fontMetrics.capHeight();
 
-    p.setPen(QPen(QColor(160,160,160)));
+    p.setPen(QPen(QColor(150,150,150)));
     /**文字画在（x，y）这个点的左边，（x，y）在文字的中间**/
     p.drawText(this->width()/2 -wid/2,this->height()/2 +height/2,"FEEM");
 }

@@ -17,17 +17,17 @@ static void createTree(const PF_Project *pro, ProjectNode *node)
     node->setDisplayName(pro->displayName());
 
     /** 添加变量 **/
-    auto def_node = std::make_unique<FolderNode>(QString(QObject::tr("Definitions")),NodeType::Variable,QIcon(":/tree/definitions.png"));
+    auto def_node = std::make_unique<FolderNode>(QString(QObject::tr("Definitions")),NodeType::Variable,QIcon(":/imgs/definitions.png"));
     /** 添加材料 **/
-    auto material_node = std::make_unique<FolderNode>(QString(QObject::tr("Materials: Materials")),NodeType::Material,QIcon(":/tree/material.png"));
+    auto material_node = std::make_unique<FolderNode>(QString(QObject::tr("Materials: Materials")),NodeType::Material,QIcon(":/imgs/material.png"));
     /** 添加几何 **/
-    auto geo_node = std::make_unique<FolderNode>(QString(QObject::tr("Geometry1")),NodeType::Geometry,QIcon(":/tree/geometry.png"));
+    auto geo_node = std::make_unique<FolderNode>(QString(QObject::tr("Geometry1")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
     /** 添加分网 **/
-    auto mesh_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh1")),NodeType::Mesh,QIcon(":/tree/mesh.png"));
+    auto mesh_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh1")),NodeType::Mesh,QIcon(":/imgs/mesh.png"));
 
-    auto globaldef_node = std::make_unique<FolderNode>(QString(QObject::tr("Global Definitions")),NodeType::Definition,QIcon(":/tree/global_branch.png"));
+    auto globaldef_node = std::make_unique<FolderNode>(QString(QObject::tr("Global Definitions")),NodeType::Definition,QIcon(":/imgs/global_branch.png"));
 
-    auto comp_node = std::make_unique<FolderNode>(QString(QObject::tr("Component: Component1")),NodeType::Component,QIcon(":/tree/model_2d_axi.png"));
+    auto comp_node = std::make_unique<FolderNode>(QString(QObject::tr("Component: Component1")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
 
     globaldef_node->addNode(std::move(def_node));
     globaldef_node->addNode(std::move(material_node));

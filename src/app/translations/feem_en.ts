@@ -388,16 +388,6 @@
         <source>Message outputpane</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../../plugins/coreplugin/workpage.cpp" line="79"/>
-        <source>Model tree</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/coreplugin/workpage.cpp" line="92"/>
-        <source>Material library</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ExtensionSystem::Internal::PluginSpecPrivate</name>
@@ -536,17 +526,18 @@ Reason: %3</source>
 <context>
     <name>Material::MaterialPlugin</name>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="82"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="90"/>
         <source>Material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="90"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="98"/>
         <source>Add material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="91"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="63"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="99"/>
         <source>Material library</source>
         <translation type="unfinished"></translation>
     </message>
@@ -813,6 +804,126 @@ Reason: %3</source>
     </message>
 </context>
 <context>
+    <name>PF_MagMaterialDialog</name>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="24"/>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="25"/>
+        <source>Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="31"/>
+        <source>Basic Material</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="32"/>
+        <source>Magnetic Material</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="33"/>
+        <source>Heat Material</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="36"/>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="38"/>
+        <source>Cancle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="56"/>
+        <source>Add Blank Material</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="76"/>
+        <source>Linear B-H relationship</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="77"/>
+        <source>Nonlinear B-H curve</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="80"/>
+        <source>B-H curve</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="93"/>
+        <source>Relative ux:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="94"/>
+        <source>Relative hx:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="96"/>
+        <source>Relative uy:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="97"/>
+        <source>Relative hy:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="101"/>
+        <source>Linear Material Properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="107"/>
+        <source>Nonlinear Material Properties</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="110"/>
+        <source>B-H Curve</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="115"/>
+        <source>hmax</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="129"/>
+        <source>Coercivity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="132"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="139"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="152"/>
+        <source>J,MA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="136"/>
+        <source>Electrical Conductivity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="149"/>
+        <source>Source Current Density</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PluginManager</name>
     <message>
         <location filename="../../libs/extensionsystem/optionsparser.cpp" line="128"/>
@@ -1013,63 +1124,68 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::PF_ProjectExplorerPlugin</name>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="321"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="324"/>
         <source>Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="360"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="363"/>
         <source>Add Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="367"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="370"/>
         <source>Add Study</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="373"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="376"/>
         <source>3D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="378"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="381"/>
         <source>2D Axisymmetric</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="383"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="386"/>
         <source>2D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="391"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="394"/>
         <source>Static Magnetic Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="396"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="399"/>
         <source>Transient Magnetic Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="401"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="404"/>
         <source>Heat Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="409"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="412"/>
         <source>add Material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="414"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="417"/>
         <source>add Blank Material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="421"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="424"/>
         <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="439"/>
+        <source>Model tree</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1097,12 +1213,12 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/projectwelcomepage.cpp" line="530"/>
+        <location filename="../../plugins/project/projectwelcomepage.cpp" line="539"/>
         <source>Open Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/projectwelcomepage.cpp" line="540"/>
+        <location filename="../../plugins/project/projectwelcomepage.cpp" line="549"/>
         <source>Recent Projects</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1403,6 +1519,11 @@ Reason: %3</source>
     <message>
         <location filename="../../libs/QtAdvancedDock/DockWidgetTab.cpp" line="173"/>
         <source>Close Tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_material.cpp" line="13"/>
+        <source>New Material</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

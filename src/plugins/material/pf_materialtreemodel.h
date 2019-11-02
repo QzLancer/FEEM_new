@@ -1,9 +1,13 @@
 #ifndef PF_MATERIALTREEMODEL_H
 #define PF_MATERIALTREEMODEL_H
 
-#include "pf_node.h"
-#include "pf_projectmodel.h"
+#include <project/pf_node.h>
+#include <utils/treemodel.h>
+#include <project/pf_projectmodel.h>
+
 #include "pf_material.h"
+
+using namespace ProjectExplorer;
 
 class CMaterialPropNode : public LeafNode{
 public:
@@ -13,7 +17,7 @@ public:
     CMaterialProp* m_material;
 };
 
-class PF_MaterialTreeModel : public BaseTreeModel
+class PF_MaterialTreeModel : public Utils::BaseTreeModel
 {
     Q_OBJECT
 
