@@ -11,8 +11,9 @@ SUBDIRS   = \
     postoperation \
     project \
     bounce \
-	welcome \
+    welcome \
     optimize \
+    magfemprojectmanagerplugin \
 
 for(p, SUBDIRS) {
     FEEM_PLUGIN_DEPENDS =
