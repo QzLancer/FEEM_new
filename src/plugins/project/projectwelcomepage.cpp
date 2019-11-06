@@ -27,6 +27,7 @@
 #include <QPainter>
 #include <QToolTip>
 #include <QTreeView>
+#include <QApplication>
 
 using namespace Core;
 using namespace Utils;
@@ -488,7 +489,7 @@ public:
         setFocusPolicy(Qt::NoFocus);
 
         QPalette pal;  // Needed for classic theme (only).
-        pal.setColor(QPalette::Base, QColor(191,219,255));
+        pal.setColor(QPalette::Base, parent->palette().color(QPalette::Background));
         viewport()->setPalette(pal);
     }
 
