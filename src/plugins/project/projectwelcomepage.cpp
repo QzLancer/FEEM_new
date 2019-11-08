@@ -2,13 +2,14 @@
 #include "pf_project.h"
 #include "pf_sessionmanager.h"
 #include "pf_projecttree.h"
+#include "pf_projectexplorer.h"
 
 #include <coreplugin/actionmanager/actionmanager.h>
 #include <coreplugin/actionmanager/command.h>
 #include <coreplugin/constants.h>
 #include <coreplugin/context.h>
 #include <coreplugin/icore.h>
-//#include <coreplugin/iwizardfactory.h>
+#include <coreplugin/iwizardfactory.h>
 #include <coreplugin/pagemanager.h>
 
 #include <utils/algorithm.h>
@@ -539,7 +540,9 @@ public:
         auto openButton = new WelcomePageButton(this);
         openButton->setText(ProjectWelcomePage::tr("Open Project"));
 //        openButton->setIcon(pixmap("open", Theme::Welcome_ForegroundSecondaryColor));
-//        openButton->setOnClicked([] { ProjectExplorerPlugin::openOpenProjectDialog(); });
+        openButton->setOnClicked([] {
+            PF_ProjectExplorerPlugin::openOpenProjectDialog();
+        });
 
 //        auto sessionsLabel = new QLabel(this);
 //        sessionsLabel->setFont(sizedFont(16, this));

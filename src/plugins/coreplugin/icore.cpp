@@ -247,8 +247,8 @@
     from the focus object as well as the additional context.
 */
 
-//#include "dialogs/newdialog.h"
-//#include "iwizardfactory.h"
+#include "dialogs/newdialog.h"
+#include "iwizardfactory.h"
 #include "mainwindow.h"
 //#include "documentmanager.h"
 
@@ -276,17 +276,22 @@ ICore *ICore::instance()
     return m_instance;
 }
 
-//bool ICore::isNewItemDialogRunning()
-//{
-//    return NewDialog::currentDialog() || IWizardFactory::isWizardRunning();
-//}
+/**
+ * @brief 当前是否有新建的对话框打开
+ *
+ * @return bool
+ */
+bool ICore::isNewItemDialogRunning()
+{
+    return NewDialog::currentDialog() || IWizardFactory::isWizardRunning();
+}
 
-//QWidget *ICore::newItemDialog()
-//{
-//    if (NewDialog::currentDialog())
-//        return NewDialog::currentDialog();
-//    return IWizardFactory::currentWizard();
-//}
+QWidget *ICore::newItemDialog()
+{
+    if (NewDialog::currentDialog())
+        return NewDialog::currentDialog();
+    return IWizardFactory::currentWizard();
+}
 
 ICore::ICore(MainWindow *mainwindow)
 {
@@ -307,20 +312,28 @@ ICore::~ICore()
     m_mainwindow = nullptr;
 }
 
-//void ICore::showNewItemDialog(const QString &title,
-//                              const QList<IWizardFactory *> &factories,
-//                              const QString &defaultLocation,
-//                              const QVariantMap &extraVariables)
-//{
-//    QTC_ASSERT(!isNewItemDialogRunning(), return);
-//    auto newDialog = new NewDialog(dialogParent());
-//    connect(newDialog, &QObject::destroyed, m_instance, &ICore::updateNewItemDialogState);
-//    newDialog->setWizardFactories(factories, defaultLocation, extraVariables);
-//    newDialog->setWindowTitle(title);
-//    newDialog->showDialog();
+/**
+ * @brief 弹出新建对话框
+ *
+ * @param title
+ * @param factories
+ * @param defaultLocation
+ * @param extraVariables
+ */
+void ICore::showNewItemDialog(const QString &title,
+                              const QList<IWizardFactory *> &factories,
+                              const QString &defaultLocation,
+                              const QVariantMap &extraVariables)
+{
+    if(!isNewItemDialogRunning()) return;
+    auto newDialog = new NewDialog(dialogParent());
+    connect(newDialog, &QObject::destroyed, m_instance, &ICore::updateNewItemDialogState);
+    newDialog->setWizardFactories(factories, defaultLocation, extraVariables);
+    newDialog->setWindowTitle(title);
+    newDialog->showDialog();
 
-//    updateNewItemDialogState();
-//}
+    updateNewItemDialogState();
+}
 
 //bool ICore::showOptionsDialog(const Id page, QWidget *parent)
 //{
@@ -503,6 +516,12 @@ QMainWindow *ICore::mainWindow()
     return m_mainwindow;
 }
 
+/**
+ * @brief 返回一个控件作为dialog的parent，这样对话框才能在前面
+ * 显示。
+ *
+ * @return QWidget
+ */
 QWidget *ICore::dialogParent()
 {
     QWidget *active = QApplication::activeModalWidget();
@@ -513,23 +532,35 @@ QWidget *ICore::dialogParent()
     return active;
 }
 
+/**
+ * @brief 返回状态栏
+ *
+ * @return QStatusBar
+ */
 QStatusBar *ICore::statusBar()
 {
     return m_mainwindow->statusBar();
 }
 
-//void ICore::raiseWindow(QWidget *widget)
-//{
-//    if (!widget)
-//        return;
-//    QWidget *window = widget->window();
-//    if (window && window == m_mainwindow) {
-//        m_mainwindow->raiseWindow();
-//    } else {
-//        window->raise();
-//        window->activateWindow();
-//    }
-//}
+/**
+ * @brief 激活主窗口
+ *
+ * @param widget
+ */
+void ICore::raiseWindow(QWidget *widget)
+{
+    if (!widget)
+        return;
+    QWidget *window = widget->window();
+    if (window && window == m_mainwindow) {
+        window->setWindowState(window->windowState() & ~Qt::WindowMinimized);
+        window->raise();
+        window->activateWindow();
+    } else {
+        window->raise();
+        window->activateWindow();
+    }
+}
 
 //void ICore::updateAdditionalContexts(const Context &remove, const Context &add,
 //                                     ContextPriority priority)
@@ -557,10 +588,10 @@ QStatusBar *ICore::statusBar()
 //    m_mainwindow->removeContextObject(context);
 //}
 
-//void ICore::registerWindow(QWidget *window, const Context &context)
-//{
+void ICore::registerWindow(QWidget *window, const Context &context)
+{
 //    new WindowSupport(window, context); // deletes itself when widget is destroyed
-//}
+}
 
 //void ICore::openFiles(const QStringList &arguments, ICore::OpenFilesFlags flags)
 //{
@@ -666,15 +697,19 @@ QStatusBar *ICore::statusBar()
 //    m_mainwindow->appendAboutInformation(line);
 //}
 
-//void ICore::updateNewItemDialogState()
-//{
-//    static bool wasRunning = false;
-//    static QWidget *previousDialog = nullptr;
-//    if (wasRunning == isNewItemDialogRunning() && previousDialog == newItemDialog())
-//        return;
-//    wasRunning = isNewItemDialogRunning();
-//    previousDialog = newItemDialog();
-//    emit instance()->newItemDialogStateChanged();
-//}
+/*!
+ \brief 更新一下新建对话框的状态
+
+*/
+void ICore::updateNewItemDialogState()
+{
+    static bool wasRunning = false;
+    static QWidget *previousDialog = nullptr;
+    if (wasRunning == isNewItemDialogRunning() && previousDialog == newItemDialog())
+        return;
+    wasRunning = isNewItemDialogRunning();
+    previousDialog = newItemDialog();
+    emit instance()->newItemDialogStateChanged();
+}
 
 } // namespace Core

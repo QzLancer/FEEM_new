@@ -27,7 +27,9 @@ SOURCES +=  \
     iwelcomepage.cpp \
     geometrymanager/geometrymanager.cpp \
     geometrymanager/geometryview.cpp \
-    geometrymanager/geometryarea.cpp
+    geometrymanager/geometryarea.cpp \
+    dialogs/newdialog.cpp \
+    iwizardfactory.cpp
     
 
 HEADERS +=  \
@@ -55,6 +57,11 @@ HEADERS +=  \
     geometrymanager/geometrymanager.h \
     geometrymanager/geometrymanager_p.h \
     geometrymanager/geometryview.h \
-    geometrymanager/geometryarea.h
+    geometrymanager/geometryarea.h \
+    dialogs/newdialog.h \
+    iwizardfactory.h
   
+
+FORMS += \
+    dialogs/newdialog.ui
 

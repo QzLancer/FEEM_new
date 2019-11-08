@@ -19,7 +19,7 @@ template <typename T> class QList;
 QT_END_NAMESPACE
 
 namespace Core {
-//class IWizardFactory;
+class IWizardFactory;
 class Context;
 class IContext;
 //class SettingsDatabase;
@@ -49,12 +49,12 @@ public:
     // it returns a ICore.
     static ICore *instance();
 
-//    static bool isNewItemDialogRunning();
-//    static QWidget *newItemDialog();
-//    static void showNewItemDialog(const QString &title,
-//                                  const QList<IWizardFactory *> &factories,
-//                                  const QString &defaultLocation = QString(),
-//                                  const QVariantMap &extraVariables = QVariantMap());
+    static bool isNewItemDialogRunning();
+    static QWidget *newItemDialog();
+    static void showNewItemDialog(const QString &title,
+                                  const QList<IWizardFactory *> &factories,
+                                  const QString &defaultLocation = QString(),
+                                  const QVariantMap &extraVariables = QVariantMap());
 
 //    static bool showOptionsDialog(Id page, QWidget *parent = nullptr);
 //    static QString msgShowOptionsDialog();
@@ -85,7 +85,7 @@ public:
     static QWidget *dialogParent();
     static QStatusBar *statusBar();
     /* Raises and activates the window for the widget. This contains workarounds for X11. */
-//    static void raiseWindow(QWidget *widget);
+    static void raiseWindow(QWidget *widget);
 
 //    static IContext *currentContextObject();
 //    static QWidget *currentContextWidget();
@@ -101,7 +101,7 @@ public:
 //    static void removeContextObject(IContext *context);
 
     // manages the minimize, zoom and fullscreen actions for the window
-//    static void registerWindow(QWidget *window, const Context &context);
+    static void registerWindow(QWidget *window, const Context &context);
 
     enum OpenFilesFlags {
         None = 0,
@@ -111,7 +111,7 @@ public:
         StopOnLoadFail = 4,
         SwitchSplitIfAlreadyVisible = 8
     };
-//    static void openFiles(const QStringList &fileNames, OpenFilesFlags flags = None);
+    static void openFiles(const QStringList &fileNames, OpenFilesFlags flags = None);
 
 //    static void addPreCloseListener(const std::function<bool()> &listener);
 
@@ -122,21 +122,21 @@ public slots:
 //    static void saveSettings();
 
 signals:
-//    void coreAboutToOpen();
-//    void coreOpened();
-//    void newItemDialogStateChanged();
-//    void saveSettingsRequested();
-//    void coreAboutToClose();
-//    void contextAboutToChange(const QList<Core::IContext *> &context);
-//    void contextChanged(const Core::Context &context);
+    void coreAboutToOpen();
+    void coreOpened();
+    void newItemDialogStateChanged();
+    void saveSettingsRequested();
+    void coreAboutToClose();
+    void contextAboutToChange(const QList<Core::IContext *> &context);
+    void contextChanged(const Core::Context &context);
 
 public:
     /* internal use */
 //    static QStringList additionalAboutInformation();
 //    static void appendAboutInformation(const QString &line);
 
-private:
-//    static void updateNewItemDialogState();
+//private:
+    static void updateNewItemDialogState();
 };
 
 } // namespace Core

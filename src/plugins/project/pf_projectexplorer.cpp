@@ -21,6 +21,8 @@
 #include <coreplugin/actionmanager/command.h>
 #include <coreplugin/constants.h>
 #include <coreplugin/workpage.h>
+#include <coreplugin/icore.h>
+#include <coreplugin/iwizardfactory.h>
 
 #include <extensionsystem/pluginerroroverview.h>
 #include <extensionsystem/pluginmanager.h>
@@ -531,9 +533,19 @@ void PF_ProjectExplorerPlugin::updateContextMenuActions()
 
 }
 
+/**
+ * @brief 新建项目
+ *
+ */
 void PF_ProjectExplorerPlugin::openNewProjectDialog()
 {
-
+    if (!ICore::isNewItemDialogRunning()) {
+        ICore::showNewItemDialog(tr("New Project", "Title of dialog"),Core::IWizardFactory::allWizardFactories());
+//                                 Utils::filtered(IWizardFactory::allWizardFactories(),
+//                                 [](IWizardFactory *f) { return !f->supportedProjectTypes().isEmpty(); }));
+    } else {
+        ICore::raiseWindow(ICore::newItemDialog());
+    }
 }
 
 void PF_ProjectExplorerPlugin::openOpenProjectDialog()
