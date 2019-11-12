@@ -1,4 +1,6 @@
 #include "singleobjectpage.h"
+#include "singleobjwizard.h"
+
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -8,45 +10,34 @@
 #include <QLineEdit>
 #include <QFormLayout>
 
-SingleObjectPage::SingleObjectPage(QWidget *parent)
-    : QDialog(parent),
+SingleObjectPage::SingleObjectPage(QWizard *parent)
+    : QWizardPage(parent),
       mGroup1(new QGroupBox(this)),
       mGroup2(new QGroupBox(this)),
       mTargetBox(new QComboBox(mGroup1)),
       mModeBox(new QComboBox(mGroup1)),
-//      mSizeEdit(new QLineEdit("50", mGroup2)),
-//      mTimeEdit(new QLineEdit("500", mGroup2)),
-//      mRateEdit(new QLineEdit("0.1", mGroup2)),
-//      mWLowerEdit(new QLineEdit("0.4", mGroup2)),
-//      mWUpperEdit(new QLineEdit("0.9", mGroup2)),
-//      mC1Edit(new QLineEdit("2", mGroup2)),
-//      mC2Edit(new QLineEdit("2", mGroup2)),
-//      mWarningLabel1(new QLabel(mGroup2)),
-      mInputWidget(new InputParamWidget(mGroup1))
+      mInputWidget(new InputParamWidget(mGroup1)),
+//      mWizard(parent),
+      mPicLabel(new QLabel(mGroup2))
 {
     initialize();
 }
 
 SingleObjectPage::~SingleObjectPage()
 {
-    delete mInputWidget;
-//    delete mWarningLabel1;
-//    delete mC2Edit;
-//    delete mC1Edit;
-//    delete mWLowerEdit;
-//    delete mWUpperEdit;
-//    delete mRateEdit;
-//    delete mTimeEdit;
-//    delete mSizeEdit;
-    delete mModeBox;
-    delete mTargetBox;
-    delete mGroup2;
-    delete mGroup1;
+//    delete mWizard;
+//    delete mInputWidget;
+//    delete mModeBox;
+//    delete mTargetBox;
+//    delete mGroup2;
+//    delete mGroup1;
 }
 
 void SingleObjectPage::initialize()
 {
     setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
+    setTitle(tr("Object to be optimized & Input parameters"));
+
     initializeGroup1();
     initializeGroup2();
 
@@ -65,6 +56,15 @@ void SingleObjectPage::initialize(QStringList inputlist, QStringList targetlist)
     initialize();
     setInputList(inputlist);
     setTargetList(targetlist);
+}
+
+void SingleObjectPage::setPicture(QPixmap pic)
+{
+    mCurrentPic = pic;
+    QPixmap scaledpic = mCurrentPic.scaled(mPicLabel->width(), mPicLabel->height(),
+                     Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    qDebug() << mPicLabel->size();
+    mPicLabel->setPixmap(scaledpic);
 }
 
 void SingleObjectPage::setInputList(QStringList inputlist)
@@ -106,10 +106,17 @@ QStringList SingleObjectPage::TargetList()
     return mTargetList;
 }
 
+void SingleObjectPage::resizeEvent(QResizeEvent *event)
+{
+    qDebug() << Q_FUNC_INFO;
+    QPixmap scaledpic = mCurrentPic.scaled(mPicLabel->width(), mPicLabel->height(),
+                     Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    qDebug() << mPicLabel->size();
+    mPicLabel->setPixmap(scaledpic);
+}
+
 void SingleObjectPage::initializeGroup1()
 {
-    mGroup1->setTitle(tr("Object to be optimized && input parameters"));
-
     //优化目标
     QLabel *targetlabel = new QLabel(tr("Target to be optimized"), mGroup1);
     QLabel *modelabel = new QLabel(tr("Optimize Mode"), mGroup1);
@@ -132,8 +139,15 @@ void SingleObjectPage::initializeGroup1()
 
 void SingleObjectPage::initializeGroup2()
 {
-
-
+    QVBoxLayout *vlayout = new QVBoxLayout(mGroup2);
+//    mPicLabel->setScaledContents(true);
+    QLabel *tiplabel = new QLabel(mGroup2);
+    tiplabel->setWordWrap(true);
+    tiplabel->setText("电磁力（保持力）：一般望大，保证继电器可靠吸合。主要影响因素包括：气隙及永磁附近的尺寸因素(如衔铁尺寸，轭铁尺寸，铁芯尺寸，永磁体尺寸等)，线圈匝数，线圈电阻，电源电压，软磁材料的磁化特性，永磁材料的磁化特性等");
+    vlayout->addWidget(mPicLabel);
+    vlayout->addWidget(tiplabel);
+    vlayout->setStretch(0, 1);
+    vlayout->setStretch(1, 1);
 }
 
 

@@ -11,8 +11,13 @@ class TypePage : public QWizardPage
 {
     Q_OBJECT
 public:
-    explicit TypePage(QWizardPage *parent = nullptr);
+    explicit TypePage(QWizard *parent = nullptr);
     void appendListPicMap(const QString name, const QPixmap pic);
+
+    QPixmap getCurrentMap() const;
+    QPixmap getCurrentPic() const;
+
+    void setCurrentPic(const QPixmap &currentPic);
 
 signals:
 
@@ -25,6 +30,8 @@ private:
     QLabel *mPicLabel;
     QHBoxLayout *mHLayout;
     QMap<QString, QPixmap> mListPicMap;
+    QPixmap mCurrentPic;
+    QPixmap mScaledPic;
 };
 
 #endif // TYPEPAGE_H

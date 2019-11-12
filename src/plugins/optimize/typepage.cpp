@@ -1,24 +1,19 @@
 #include "typepage.h"
 
-TypePage::TypePage(QWizardPage *parent)
+#include <QDebug>
+
+TypePage::TypePage(QWizard *parent)
     : QWizardPage(parent),
       mList(new QListWidget(this)),
       mPicLabel(new QLabel(this)),
       mHLayout(new QHBoxLayout(this))
 {
     setTitle(tr("Select the type of relay"));
-
     mHLayout->addWidget(mList);
     mHLayout->addWidget(mPicLabel);
     mList->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-    QPixmap pix1(QPixmap(":./pic/imgs/relay1.jpg"));
-    appendListPicMap("relay1", QPixmap(":./pic/imgs/relay1.jpg"));
-    appendListPicMap("son1", QPixmap(":./pic/imgs/son1.jpg"));
-    appendListPicMap("son2", QPixmap(":./pic/imgs/son2.jpg"));
-    mList->setCurrentRow(0);
-    mPicLabel->setAutoFillBackground(true);
-    mPicLabel->setPixmap(QPixmap(":./pic/imgs/relay1.jpg"));
-    connect(mList, &QListWidget::itemClicked, this, &TypePage::slotChangePic);
+    connect(mList, &QListWidget::currentItemChanged, this, &TypePage::slotChangePic);
+//    mPicLabel->setAutoFillBackground(true);
 }
 
 void TypePage::appendListPicMap(const QString name, const QPixmap pic)
@@ -27,12 +22,38 @@ void TypePage::appendListPicMap(const QString name, const QPixmap pic)
     mList->addItem(name);
 }
 
+QPixmap TypePage::getCurrentMap() const
+{
+    QString name = mList->currentItem()->text();
+    return mListPicMap[name];
+}
+
 void TypePage::slotChangePic(QListWidgetItem *item)
 {
-    mPicLabel->setPixmap(mListPicMap[item->text()]);
+    qDebug() << Q_FUNC_INFO;
+    mCurrentPic = mListPicMap[item->text()];
+    mScaledPic = mCurrentPic.scaled(mPicLabel->width(), mPicLabel->height(),
+                                    Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    mPicLabel->setPixmap(mScaledPic);
 }
 
 void TypePage::resizeEvent(QResizeEvent *event)
 {
     QWizardPage::resizeEvent(event);
+    if(!mCurrentPic.isNull()){
+        qDebug() << Q_FUNC_INFO << mPicLabel->size();
+        mScaledPic = mCurrentPic.scaled(mPicLabel->width(), mPicLabel->height(),
+                         Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        mPicLabel->setPixmap(mScaledPic);
+    }
+}
+
+QPixmap TypePage::getCurrentPic() const
+{
+    return mCurrentPic;
+}
+
+void TypePage::setCurrentPic(const QPixmap &currentPic)
+{
+    mCurrentPic = currentPic;
 }

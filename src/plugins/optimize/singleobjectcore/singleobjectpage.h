@@ -1,5 +1,8 @@
 #ifndef SINGLEOBJECTPAGE_H
 #define SINGLEOBJECTPAGE_H
+#include "singleobjectcore/spso.h"
+#include "inputparamwidget.h"
+
 #include <QDialog>
 #include <QGroupBox>
 #include <QString>
@@ -8,18 +11,20 @@
 #include <QList>
 #include <QItemSelectionModel>
 #include <QLabel>
-#include "singleobjectcore/spso.h"
-#include "inputparamwidget.h"
+#include <QWizardPage>
 
-class SingleObjectPage : public QDialog
+//class SingleObjWizard;
+
+class SingleObjectPage : public QWizardPage
 {
     Q_OBJECT
 
 public:
-    SingleObjectPage(QWidget *parent = nullptr);
+    SingleObjectPage(QWizard *parent = nullptr);
     ~SingleObjectPage();
     void initialize();
     void initialize(QStringList inputlist, QStringList targetlist);
+    void setPicture(QPixmap pic);
 
     //set
     void setInputList(QStringList inputlist);
@@ -32,6 +37,7 @@ public:
     QStringList TargetList();
 
 public slots:
+    void resizeEvent(QResizeEvent *event) override;
 
 private:
     QGroupBox *mGroup1;
@@ -40,18 +46,26 @@ private:
     void initializeGroup2();
     void refreshTable();
 
-    //Combobox中的参数
+    /**Combobox中的参数**/
     QStringList mTargetList;
     QStringList mInputList;
 
-    //控件
+    /**控件**/
     QComboBox *mTargetBox;
     QComboBox *mModeBox;
 
     InputParamWidget *mInputWidget;
     QStringList mInputName;
-    //求解器
+
+    /**父窗口**/
+//    SingleObjWizard *mWizard;
+
+    /**求解器**/
     static void objectiveFunction (SParticle *Particle);
+
+    /**测试用Pixmap**/
+    QPixmap mCurrentPic;
+    QLabel *mPicLabel;
 };
 
 #endif // SINGLEOBJECTPAGE_H

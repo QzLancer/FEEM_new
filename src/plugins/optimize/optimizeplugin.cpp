@@ -58,6 +58,9 @@ bool OptimizePlugin::initialize(const QStringList &arguments, QString *errorMess
     registerDefaultActions();
 
     SingleObjWizard *sow = new SingleObjWizard;
+    sow->page1->appendListPicMap("relay1", QPixmap(":./pic/imgs/relay1.jpg"));
+    sow->page1->appendListPicMap("son1", QPixmap(":./pic/imgs/son1.jpg"));
+    sow->page1->appendListPicMap("son2", QPixmap(":./pic/imgs/son2.jpg"));
     sow->show();
     return true;
 }
@@ -98,7 +101,7 @@ void OptimizePlugin::registerDefaultActions()
 
 void OptimizePlugin::slotActionSOO()
 {
-    //添加部分参数，后续进行修改
+    /**添加部分参数，后续进行修改**/
     QStringList InputList;
     QStringList TargetList;
     InputList << "Input1" << "Input2" << "Input3";
@@ -110,7 +113,7 @@ void OptimizePlugin::slotActionSOO()
 
 void OptimizePlugin::slotActionMOO()
 {
-    //添加部分参数，后续进行修改
+    /**添加部分参数，后续进行修改**/
     QStringList InputList;
     QStringList TargetList;
     InputList << "Input1" << "Input2" << "Input3";
