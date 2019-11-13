@@ -29,7 +29,10 @@ SOURCES +=  \
     geometrymanager/geometryview.cpp \
     geometrymanager/geometryarea.cpp \
     dialogs/newdialog.cpp \
-    iwizardfactory.cpp
+    iwizardfactory.cpp \
+    basefilewizardfactory.cpp \
+    generatedfile.cpp \
+    basefilewizard.cpp
     
 
 HEADERS +=  \
@@ -59,7 +62,11 @@ HEADERS +=  \
     geometrymanager/geometryview.h \
     geometrymanager/geometryarea.h \
     dialogs/newdialog.h \
-    iwizardfactory.h
+    iwizardfactory.h \
+    basefilewizardfactory.h \
+    generatedfile.h \
+    basefilewizard.h \
+    ifilewizardextension.h
   
 
 FORMS += \

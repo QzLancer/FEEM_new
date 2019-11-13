@@ -521,14 +521,7 @@ public:
         newButton->setText(ProjectWelcomePage::tr("New Project"));
 //        newButton->setIcon(pixmap("new", Theme::Welcome_ForegroundSecondaryColor));
         newButton->setOnClicked([] {
-            /** 切换到工作页面 **/
-            PageManager::activatePage(Core::Constants::PAGE_WORK);
-            /** 新建一个项目 **/
-            PF_Project* pro = new PF_Project();
-        //    PF_Project* pro1 = new PF_Project(this);
-            PF_SessionManager::instance()->addProject(pro);
-        //    PF_SessionManager::instance()->addProject(pro1);
-            PF_ProjectTree::instance()->expandAll();
+            PF_ProjectExplorerPlugin::openNewProjectDialog();
         });
 
         auto divider = new QWidget(this);
@@ -541,7 +534,14 @@ public:
         openButton->setText(ProjectWelcomePage::tr("Open Project"));
 //        openButton->setIcon(pixmap("open", Theme::Welcome_ForegroundSecondaryColor));
         openButton->setOnClicked([] {
-            PF_ProjectExplorerPlugin::openOpenProjectDialog();
+            /** 切换到工作页面 **/
+            PageManager::activatePage(Core::Constants::PAGE_WORK);
+            /** 新建一个项目 **/
+            PF_Project* pro = new PF_Project();
+        //    PF_Project* pro1 = new PF_Project(this);
+            PF_SessionManager::instance()->addProject(pro);
+        //    PF_SessionManager::instance()->addProject(pro1);
+            PF_ProjectTree::instance()->expandAll();
         });
 
 //        auto sessionsLabel = new QLabel(this);

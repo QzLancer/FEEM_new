@@ -56,11 +56,11 @@ public:
 //                        Id::fromStringList(ICore::settings()->value(BLACKLISTED_CATEGORIES_KEY).toStringList());
     }
 
-    void setPlatform(Core::Id platform)
-    {
-        m_platform = platform;
-        invalidateFilter();
-    }
+//    void setPlatform(Core::Id platform)
+//    {
+//        m_platform = platform;
+//        invalidateFilter();
+//    }
 
     void manualReset()
     {
@@ -94,7 +94,7 @@ public:
         return true;
     }
 private:
-    Core::Id m_platform;
+//    Core::Id m_platform;
     QSet<Core::Id> m_blacklistedCategories;
 };
 
@@ -168,6 +168,7 @@ NewDialog::NewDialog(QWidget *parent) :
     m_okButton = m_ui->buttonBox->button(QDialogButtonBox::Ok);
     m_okButton->setDefault(true);
     m_okButton->setText(tr("Choose..."));
+    m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
 
     m_model = new QStandardItemModel(this);
 
@@ -248,12 +249,12 @@ void NewDialog::setWizardFactories(QList<IWizardFactory *> factories,
     QStandardItem *projectKindItem = new QStandardItem(tr("Projects"));
     projectKindItem->setData(IWizardFactory::ProjectWizard, Qt::UserRole);
     projectKindItem->setFlags(nullptr); // disable item to prevent focus
-    QStandardItem *filesKindItem = new QStandardItem(tr("Files and Classes"));
+    QStandardItem *filesKindItem = new QStandardItem(tr("Files"));
     filesKindItem->setData(IWizardFactory::FileWizard, Qt::UserRole);
     filesKindItem->setFlags(nullptr); // disable item to prevent focus
 
     parentItem->appendRow(projectKindItem);
-    parentItem->appendRow(filesKindItem);
+//    parentItem->appendRow(filesKindItem);
 
 //    if (m_dummyIcon.isNull())
 //        m_dummyIcon = QIcon(":/utils/images/wizardicon-file.png");
@@ -284,8 +285,10 @@ void NewDialog::setWizardFactories(QList<IWizardFactory *> factories,
             kindItem = projectKindItem;
             break;
         case IWizardFactory::FileWizard:
+//            kindItem = filesKindItem;
+            break;
         default:
-            kindItem = filesKindItem;
+            kindItem = projectKindItem;
             break;
         }
         addItem(kindItem, factory);
@@ -471,13 +474,13 @@ void NewDialog::currentItemChanged(const QModelIndex &index)
         if (!Qt::mightBeRichText(desciption))
             desciption.replace(QLatin1Char('\n'), QLatin1String("<br>"));
         desciption += QLatin1String("<br><br><b>");
-        if (wizard->flags().testFlag(IWizardFactory::PlatformIndependent))
-            desciption += tr("Platform independent") + QLatin1String("</b>");
-        else
-            desciption += tr("Supported Platforms")
-                    + QLatin1String("</b>: <tt>")
-//                    + displayNamesForSupportedPlatforms.join(QLatin1Char(' '))
-                    + QLatin1String("</tt>");
+//        if (wizard->flags().testFlag(IWizardFactory::PlatformIndependent))
+//            desciption += tr("Platform independent") + QLatin1String("</b>");
+//        else
+//            desciption += tr("Supported Platforms")
+//                    + QLatin1String("</b>: <tt>")
+////                    + displayNamesForSupportedPlatforms.join(QLatin1Char(' '))
+//                    + QLatin1String("</tt>");
 
         m_ui->templateDescription->setHtml(desciption);
 
@@ -515,7 +518,10 @@ static void runWizard(IWizardFactory *wizard, const QString &defaultLocation, /*
     QString path = wizard->runPath(defaultLocation);
     wizard->runWizard(path, ICore::dialogParent(), /*platform,*/ variables);
 }
+/*!
+ \brief 按下“选择”按钮的执行。
 
+*/
 void NewDialog::accept()
 {
     saveState();

@@ -36,7 +36,7 @@ public:
     Q_DECLARE_FLAGS(WizardFlags, WizardFlag)
 
     Id id() const { return m_id; }
-    WizardKind kind() const { return m_supportedProjectTypes.isEmpty() ? FileWizard : ProjectWizard; }
+    WizardKind kind() const { return /*m_supportedProjectTypes.isEmpty() ? FileWizard : */ProjectWizard; }
     QIcon icon() const { return m_icon; }
     QString iconText() const { return m_iconText; }
     QString description() const { return m_description; }

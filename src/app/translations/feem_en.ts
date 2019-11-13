@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
+    <name>BaseFileWizard</name>
+    <message>
+        <location filename="../../plugins/coreplugin/generatedfile.cpp" line="120"/>
+        <source>Unable to create the directory %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Bounce::BouncePlugin</name>
     <message>
         <location filename="../../plugins/bounce/bounceplugin.cpp" line="75"/>
@@ -323,10 +331,44 @@
     </message>
 </context>
 <context>
+    <name>Core::BaseFileWizard</name>
+    <message>
+        <location filename="../../plugins/coreplugin/basefilewizard.cpp" line="67"/>
+        <source>Existing files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/coreplugin/basefilewizard.cpp" line="82"/>
+        <location filename="../../plugins/coreplugin/basefilewizard.cpp" line="93"/>
+        <location filename="../../plugins/coreplugin/basefilewizard.cpp" line="110"/>
+        <location filename="../../plugins/coreplugin/basefilewizard.cpp" line="126"/>
+        <source>File Generation Failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Core::GeometryView</name>
     <message>
         <location filename="../../plugins/coreplugin/geometrymanager/geometryview.cpp" line="32"/>
         <source>Hello!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Core::IWizardFactory</name>
+    <message>
+        <location filename="../../plugins/coreplugin/iwizardfactory.cpp" line="188"/>
+        <source>Factory with id=&quot;%1&quot; already registered. Deleting.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/coreplugin/iwizardfactory.cpp" line="398"/>
+        <source>Reload All Wizards</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/coreplugin/iwizardfactory.cpp" line="405"/>
+        <source>Inspect Wizard State</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -365,6 +407,39 @@
     <message>
         <location filename="../../plugins/coreplugin/mainwindow.cpp" line="120"/>
         <source>&amp;Results</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Core::NewDialog</name>
+    <message>
+        <location filename="../../plugins/coreplugin/dialogs/newdialog.ui" line="20"/>
+        <source>New Project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/coreplugin/dialogs/newdialog.ui" line="26"/>
+        <source>Choose a project:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="170"/>
+        <source>Choose...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="171"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="249"/>
+        <source>Projects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="252"/>
+        <source>Files</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -520,6 +595,82 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/optimize/itemdelegate.cpp" line="14"/>
         <source>Minimize</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MagFEMProjectManagerPlugin::MagField2DTransientWizard</name>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="19"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="20"/>
+        <source>Magnetic field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="21"/>
+        <source>2D Magnetic Transient field simulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="22"/>
+        <source>Create a project to simulate the distribution of magnetic field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MagFEMProjectManagerPlugin::MagField3DStaticWizard</name>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="19"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="20"/>
+        <source>Magnetic field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="21"/>
+        <source>3D Magnetic Static field simulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="22"/>
+        <source>Create a project to simulate the distribution of magnetic field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MagFEMProjectManagerPlugin::MagField3DTransintWizard</name>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="20"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="21"/>
+        <source>Magnetic field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="22"/>
+        <source>3D Magnetic Transient field simulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="23"/>
+        <source>Create a project to simulate the distribution of magnetic field.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MagFEMProjectManagerPlugin::MagfieldWizard</name>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="19"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="20"/>
+        <source>Magnetic field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="21"/>
+        <source>2D Magnetic Static field simulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="22"/>
+        <source>Create a project to simulate the distribution of magnetic field.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1124,68 +1275,74 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::PF_ProjectExplorerPlugin</name>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="324"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="329"/>
         <source>Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="363"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="368"/>
         <source>Add Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="370"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="375"/>
         <source>Add Study</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="376"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="381"/>
         <source>3D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="381"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="386"/>
         <source>2D Axisymmetric</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="386"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="391"/>
         <source>2D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="394"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="399"/>
         <source>Static Magnetic Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="399"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="404"/>
         <source>Transient Magnetic Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="404"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="409"/>
         <source>Heat Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="412"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="417"/>
         <source>add Material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="417"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="422"/>
         <source>add Blank Material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="424"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="429"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="439"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="444"/>
         <source>Model tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="546"/>
+        <source>New Project</source>
+        <comment>Title of dialog</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1208,17 +1365,17 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::ProjectWelcomePage</name>
     <message>
-        <location filename="../../plugins/project/projectwelcomepage.cpp" line="519"/>
+        <location filename="../../plugins/project/projectwelcomepage.cpp" line="521"/>
         <source>New Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/projectwelcomepage.cpp" line="539"/>
+        <location filename="../../plugins/project/projectwelcomepage.cpp" line="534"/>
         <source>Open Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/projectwelcomepage.cpp" line="549"/>
+        <location filename="../../plugins/project/projectwelcomepage.cpp" line="553"/>
         <source>Recent Projects</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2011,49 +2168,136 @@ Reason: %3</source>
     </message>
 </context>
 <context>
+    <name>Utils::FileUtils</name>
+    <message>
+        <location filename="../../libs/utils/fileutils.cpp" line="63"/>
+        <source>Refusing to remove root directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/utils/fileutils.cpp" line="70"/>
+        <source>Refusing to remove your home directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/utils/fileutils.cpp" line="84"/>
+        <source>Failed to remove directory &quot;%1&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/utils/fileutils.cpp" line="92"/>
+        <source>Failed to remove file &quot;%1&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/utils/fileutils.cpp" line="128"/>
+        <source>Failed to create directory &quot;%1&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/utils/fileutils.cpp" line="152"/>
+        <source>Could not copy file &quot;%1&quot; to &quot;%2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/utils/fileutils.cpp" line="347"/>
+        <source>Cannot open %1 for reading: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/utils/fileutils.cpp" line="353"/>
+        <source>Cannot read %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/utils/fileutils.cpp" line="375"/>
+        <location filename="../../libs/utils/fileutils.cpp" line="406"/>
+        <source>File Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/utils/fileutils.cpp" line="429"/>
+        <source>Cannot write file %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/utils/fileutils.cpp" line="432"/>
+        <source>Cannot write file %1. Disk full?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/utils/fileutils.cpp" line="470"/>
+        <source>%1: Is a reserved filename on Windows. Cannot save.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/utils/fileutils.cpp" line="485"/>
+        <source>Cannot overwrite file %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/utils/fileutils.cpp" line="485"/>
+        <source>Cannot create file %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/utils/fileutils.cpp" line="515"/>
+        <source>Cannot create temporary file in %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Utils::LinearProgressWidget</name>
+    <message>
+        <location filename="../../libs/utils/wizard.cpp" line="115"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Utils::SynchronousProcess</name>
     <message>
-        <location filename="../../libs/utils/synchronousprocess.cpp" line="121"/>
+        <location filename="../../libs/utils/synchronousprocess.cpp" line="96"/>
         <source>The command &quot;%1&quot; finished successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../libs/utils/synchronousprocess.cpp" line="123"/>
+        <location filename="../../libs/utils/synchronousprocess.cpp" line="98"/>
         <source>The command &quot;%1&quot; terminated with exit code %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../libs/utils/synchronousprocess.cpp" line="125"/>
+        <location filename="../../libs/utils/synchronousprocess.cpp" line="100"/>
         <source>The command &quot;%1&quot; terminated abnormally.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../libs/utils/synchronousprocess.cpp" line="127"/>
+        <location filename="../../libs/utils/synchronousprocess.cpp" line="102"/>
         <source>The command &quot;%1&quot; could not be started.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../libs/utils/synchronousprocess.cpp" line="129"/>
+        <location filename="../../libs/utils/synchronousprocess.cpp" line="104"/>
         <source>The command &quot;%1&quot; did not respond within the timeout limit (%2 s).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../libs/utils/synchronousprocess.cpp" line="555"/>
+        <location filename="../../libs/utils/synchronousprocess.cpp" line="530"/>
         <source>Process not Responding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../libs/utils/synchronousprocess.cpp" line="557"/>
+        <location filename="../../libs/utils/synchronousprocess.cpp" line="532"/>
         <source>The process is not responding.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../libs/utils/synchronousprocess.cpp" line="558"/>
+        <location filename="../../libs/utils/synchronousprocess.cpp" line="533"/>
         <source>The process &quot;%1&quot; is not responding.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../libs/utils/synchronousprocess.cpp" line="560"/>
+        <location filename="../../libs/utils/synchronousprocess.cpp" line="535"/>
         <source>Would you like to terminate it?</source>
         <translation type="unfinished"></translation>
     </message>

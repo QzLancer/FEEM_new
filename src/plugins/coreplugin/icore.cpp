@@ -325,7 +325,7 @@ void ICore::showNewItemDialog(const QString &title,
                               const QString &defaultLocation,
                               const QVariantMap &extraVariables)
 {
-    if(!isNewItemDialogRunning()) return;
+    if(isNewItemDialogRunning()) return;
     auto newDialog = new NewDialog(dialogParent());
     connect(newDialog, &QObject::destroyed, m_instance, &ICore::updateNewItemDialogState);
     newDialog->setWizardFactories(factories, defaultLocation, extraVariables);
