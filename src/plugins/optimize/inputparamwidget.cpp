@@ -14,6 +14,7 @@ InputParamWidget::InputParamWidget(QWidget *parent) :
     mGridLayout(new QGridLayout),
     mDeleteButton(new QPushButton(tr("Delete"), this)),
     mAddButton(new QPushButton(tr("Add"), this)),
+    mOrthButton(new QPushButton(tr("OrthDisign"), this)),
     mInputModel(new QStandardItemModel(mInputTable)),
     mInputSelection(new QItemSelectionModel(mInputModel))
 {
@@ -45,6 +46,7 @@ InputParamWidget::InputParamWidget(QWidget *parent) :
     mGridLayout->addWidget(InputParamMax, 4, 0);
     mGridLayout->addWidget(mMaxInputEdit, 4, 1);
     QHBoxLayout *HLayout = new QHBoxLayout;
+    HLayout->addWidget(mOrthButton);
     HLayout->addStretch();
     HLayout->addWidget(mDeleteButton);
     HLayout->addWidget(mAddButton);
@@ -167,4 +169,5 @@ void InputParamWidget::refreshTable()
         mInputModel->setItem(i, 1, new QStandardItem(QString::number(mInputValue[i][1])));
     }
     mInputTable->resizeColumnsToContents();
+    emit(inputParamChanged());
 }

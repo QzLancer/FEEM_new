@@ -21,23 +21,29 @@ class SingleObjectPage : public QWizardPage
 
 public:
     SingleObjectPage(QWizard *parent = nullptr);
-    ~SingleObjectPage();
+    ~SingleObjectPage() override;
     void initialize();
-    void initialize(QStringList inputlist, QStringList targetlist);
+    void initialize(QStringList inputlist);
     void setPicture(QPixmap pic);
 
     //set
     void setInputList(QStringList inputlist);
     void appendInputList(const QString inputstr);
-    void setTargetList(QStringList targetlist);
-    void appendTargetList(const QString targetstr);
+    void setOptimizeHintMap(const QMap<QString, QString> optimizeHintMap);
+    void appendOptimizeHintMap (QString objective, QString hint);
 
     //get
     QStringList InputList();
-    QStringList TargetList();
+    QMap<QString, QString> optimizeHintMap() const;
+    QStringList getInputName() const;
+    QList<QList<double>> getInputValue() const;
+    QString getCurrentObject() const;
+    QString getCurrentMode() const;
 
 public slots:
     void resizeEvent(QResizeEvent *event) override;
+    void slotObjectChange(const QString &text);
+    void slotButtonEnable();
 
 private:
     QGroupBox *mGroup1;
@@ -47,25 +53,23 @@ private:
     void refreshTable();
 
     /**Combobox中的参数**/
-    QStringList mTargetList;
     QStringList mInputList;
 
     /**控件**/
-    QComboBox *mTargetBox;
+    QComboBox *mObjectBox;
     QComboBox *mModeBox;
 
     InputParamWidget *mInputWidget;
-    QStringList mInputName;
-
-    /**父窗口**/
-//    SingleObjWizard *mWizard;
-
-    /**求解器**/
-    static void objectiveFunction (SParticle *Particle);
 
     /**测试用Pixmap**/
     QPixmap mCurrentPic;
     QLabel *mPicLabel;
+    QLabel *mTipLabel;
+
+    /**优化目标与注释配对**/
+    QMap<QString, QString> mOptimizeHintMap;
+
+    QWizard *mWizard;
 };
 
 #endif // SINGLEOBJECTPAGE_H

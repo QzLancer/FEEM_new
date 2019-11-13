@@ -30,7 +30,6 @@ QPixmap TypePage::getCurrentMap() const
 
 void TypePage::slotChangePic(QListWidgetItem *item)
 {
-    qDebug() << Q_FUNC_INFO;
     mCurrentPic = mListPicMap[item->text()];
     mScaledPic = mCurrentPic.scaled(mPicLabel->width(), mPicLabel->height(),
                                     Qt::KeepAspectRatio, Qt::SmoothTransformation);
@@ -41,7 +40,6 @@ void TypePage::resizeEvent(QResizeEvent *event)
 {
     QWizardPage::resizeEvent(event);
     if(!mCurrentPic.isNull()){
-        qDebug() << Q_FUNC_INFO << mPicLabel->size();
         mScaledPic = mCurrentPic.scaled(mPicLabel->width(), mPicLabel->height(),
                          Qt::KeepAspectRatio, Qt::SmoothTransformation);
         mPicLabel->setPixmap(mScaledPic);

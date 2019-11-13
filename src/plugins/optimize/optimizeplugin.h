@@ -1,7 +1,7 @@
 #pragma once
 
 #include <extensionsystem/iplugin.h>
-#include "singleobjectdialog.h"
+#include "singleobjwizard.h"
 #include "multiobjectdialog.h"
 
 namespace Optimize {
@@ -29,7 +29,6 @@ public slots:
     void slotActionMOO();
 
 private:
-    SingleObjectDialog *mSingleObjectDialog;
     MultiObjectDialog *mMultiObjectDialog;
 };
 

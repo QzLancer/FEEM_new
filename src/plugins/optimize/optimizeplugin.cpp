@@ -9,6 +9,7 @@
 #include <coreplugin/actionmanager/actioncontainer.h>
 #include <coreplugin/actionmanager/command.h>
 #include <coreplugin/constants.h>
+#include <coreplugin/icore.h>
 
 #include <extensionsystem/pluginerroroverview.h>
 #include <extensionsystem/pluginmanager.h>
@@ -35,8 +36,7 @@ namespace Optimize {
 static OptimizePlugin * m_instance = nullptr;
 
 OptimizePlugin::OptimizePlugin()
-    : mSingleObjectDialog(new SingleObjectDialog),
-      mMultiObjectDialog(new MultiObjectDialog)
+    : mMultiObjectDialog(new MultiObjectDialog)
 {
     m_instance = this;
 }
@@ -44,7 +44,6 @@ OptimizePlugin::OptimizePlugin()
 OptimizePlugin::~OptimizePlugin()
 {
     delete mMultiObjectDialog;
-    delete mSingleObjectDialog;
 }
 
 OptimizePlugin *OptimizePlugin::instance()
@@ -57,11 +56,6 @@ bool OptimizePlugin::initialize(const QStringList &arguments, QString *errorMess
     registerDefaultContainers();
     registerDefaultActions();
 
-    SingleObjWizard *sow = new SingleObjWizard;
-    sow->page1->appendListPicMap("relay1", QPixmap(":./pic/imgs/relay1.jpg"));
-    sow->page1->appendListPicMap("son1", QPixmap(":./pic/imgs/son1.jpg"));
-    sow->page1->appendListPicMap("son2", QPixmap(":./pic/imgs/son2.jpg"));
-    sow->show();
     return true;
 }
 
@@ -101,14 +95,14 @@ void OptimizePlugin::registerDefaultActions()
 
 void OptimizePlugin::slotActionSOO()
 {
-    /**添加部分参数，后续进行修改**/
-    QStringList InputList;
-    QStringList TargetList;
-    InputList << "Input1" << "Input2" << "Input3";
-    TargetList << "Target1" << "Target2" << "Target3" << "Target4";
-    mSingleObjectDialog->setInputList(InputList);
-    mSingleObjectDialog->setTargetList(TargetList);
-    mSingleObjectDialog->show();
+    SingleObjWizard *sow = new SingleObjWizard(ICore::dialogParent());
+    sow->page1->appendListPicMap("relay1", QPixmap(":./pic/imgs/relay1.jpg"));
+    sow->page1->appendListPicMap("son1", QPixmap(":./pic/imgs/son1.jpg"));
+    sow->page1->appendListPicMap("son2", QPixmap(":./pic/imgs/son2.jpg"));
+    sow->appendInputList("Input1");
+    sow->appendInputList("Input2");
+    sow->appendInputList("Input3");
+    sow->exec();
 }
 
 void OptimizePlugin::slotActionMOO()

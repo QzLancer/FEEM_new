@@ -3,6 +3,7 @@
 #include <QFormLayout>
 #include <QDebug>
 #include <QPalette>
+#include <singleobjwizard.h>
 
 SinglePSOPage::SinglePSOPage(QWizard *parent)
     : mSizeEdit(new QLineEdit("50", this)),
@@ -12,7 +13,8 @@ SinglePSOPage::SinglePSOPage(QWizard *parent)
       mWUpperEdit(new QLineEdit("0.9", this)),
       mC1Edit(new QLineEdit("2", this)),
       mC2Edit(new QLineEdit("2", this)),
-      mWarningLabel(new QLabel(this))
+      mWarningLabel(new QLabel(this)),
+      mWizard(parent)
 {
     setTitle(tr("Single object PSO parameters"));
 

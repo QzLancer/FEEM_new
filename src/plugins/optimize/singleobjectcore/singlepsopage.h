@@ -27,7 +27,7 @@ public slots:
     void isParamError();
 
 private:
-
+    QWizard *mWizard;
 };
 
 #endif // SINGLEPSOPAGE_H

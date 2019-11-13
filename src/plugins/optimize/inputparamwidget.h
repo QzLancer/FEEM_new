@@ -22,12 +22,14 @@ public:
     QList<QList<double>> getInputValue() const;
     QStringList getInputName() const;
 
+
     //setter
     void setWarning(QString string);
     void setInputList(QStringList inputlist);
 
 
 signals:
+    void inputParamChanged();
 
 private slots:
     void slotAddTableItem();
@@ -45,9 +47,11 @@ private:
     QGridLayout *mGridLayout;
     QPushButton *mDeleteButton;
     QPushButton *mAddButton;
+    QPushButton *mOrthButton;
     QStringList mInputList;
     QStandardItemModel *mInputModel;
     QItemSelectionModel *mInputSelection;
+
     void refreshTable();
 };
 
