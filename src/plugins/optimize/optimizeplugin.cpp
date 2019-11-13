@@ -95,7 +95,7 @@ void OptimizePlugin::registerDefaultActions()
 
 void OptimizePlugin::slotActionSOO()
 {
-    SingleObjWizard *sow = new SingleObjWizard(ICore::dialogParent());
+    SingleObjWizard *sow = new SingleObjWizard();
     sow->page1->appendListPicMap("relay1", QPixmap(":./pic/imgs/relay1.jpg"));
     sow->page1->appendListPicMap("son1", QPixmap(":./pic/imgs/son1.jpg"));
     sow->page1->appendListPicMap("son2", QPixmap(":./pic/imgs/son2.jpg"));
