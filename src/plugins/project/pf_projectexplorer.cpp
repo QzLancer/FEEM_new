@@ -21,6 +21,8 @@
 #include <coreplugin/actionmanager/command.h>
 #include <coreplugin/constants.h>
 #include <coreplugin/workpage.h>
+#include <coreplugin/icore.h>
+#include <coreplugin/iwizardfactory.h>
 
 #include <extensionsystem/pluginerroroverview.h>
 #include <extensionsystem/pluginmanager.h>
@@ -284,8 +286,10 @@ PF_ProjectExplorerPlugin* PF_ProjectExplorerPlugin::instance()
 
 bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString *errorMessage)
 {
+    /** 初始化ProjectExplorer所需要的变量 **/
     dd = new PF_ProjectExplorerPluginPrivate;
 
+    /** 建立相互之间的联系 **/
     PF_SessionManager *sessionManager = &dd->m_sessionManager;
     connect(sessionManager, &PF_SessionManager::projectAdded,
             this, &PF_ProjectExplorerPlugin::fileListChanged);
@@ -319,6 +323,7 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
 //        TextEditor::FindInFiles::instance()->setBaseDirectory(project ? project->projectDirectory()
 //                                                                      : Utils::FileName());
 //    });
+    /** 添加Project的group **/
     ActionContainer* page = ActionManager::actionContainer(Core::Constants::P_HOME);
     ActionContainer* group = ActionManager::createRibbonGroup(Constants::G_HOME_PROJECT);
     group->ribbonGroup()->setTitle(tr("Project"));
@@ -531,9 +536,19 @@ void PF_ProjectExplorerPlugin::updateContextMenuActions()
 
 }
 
+/**
+ * @brief 新建项目
+ *
+ */
 void PF_ProjectExplorerPlugin::openNewProjectDialog()
 {
-
+    if (!ICore::isNewItemDialogRunning()) {
+        ICore::showNewItemDialog(tr("New Project", "Title of dialog"),Core::IWizardFactory::allWizardFactories());
+//                                 Utils::filtered(IWizardFactory::allWizardFactories(),
+//                                 [](IWizardFactory *f) { return !f->supportedProjectTypes().isEmpty(); }));
+    } else {
+        ICore::raiseWindow(ICore::newItemDialog());
+    }
 }
 
 void PF_ProjectExplorerPlugin::openOpenProjectDialog()

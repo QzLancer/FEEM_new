@@ -2,13 +2,14 @@
 #include "pf_project.h"
 #include "pf_sessionmanager.h"
 #include "pf_projecttree.h"
+#include "pf_projectexplorer.h"
 
 #include <coreplugin/actionmanager/actionmanager.h>
 #include <coreplugin/actionmanager/command.h>
 #include <coreplugin/constants.h>
 #include <coreplugin/context.h>
 #include <coreplugin/icore.h>
-//#include <coreplugin/iwizardfactory.h>
+#include <coreplugin/iwizardfactory.h>
 #include <coreplugin/pagemanager.h>
 
 #include <utils/algorithm.h>
@@ -27,6 +28,7 @@
 #include <QPainter>
 #include <QToolTip>
 #include <QTreeView>
+#include <QApplication>
 
 using namespace Core;
 using namespace Utils;
@@ -488,7 +490,7 @@ public:
         setFocusPolicy(Qt::NoFocus);
 
         QPalette pal;  // Needed for classic theme (only).
-        pal.setColor(QPalette::Base, QColor(191,219,255));
+        pal.setColor(QPalette::Base, parent->palette().color(QPalette::Background));
         viewport()->setPalette(pal);
     }
 
@@ -519,14 +521,7 @@ public:
         newButton->setText(ProjectWelcomePage::tr("New Project"));
 //        newButton->setIcon(pixmap("new", Theme::Welcome_ForegroundSecondaryColor));
         newButton->setOnClicked([] {
-            /** 切换到工作页面 **/
-            PageManager::activatePage(Core::Constants::PAGE_WORK);
-            /** 新建一个项目 **/
-            PF_Project* pro = new PF_Project();
-        //    PF_Project* pro1 = new PF_Project(this);
-            PF_SessionManager::instance()->addProject(pro);
-        //    PF_SessionManager::instance()->addProject(pro1);
-            PF_ProjectTree::instance()->expandAll();
+            PF_ProjectExplorerPlugin::openNewProjectDialog();
         });
 
         auto divider = new QWidget(this);
@@ -538,7 +533,16 @@ public:
         auto openButton = new WelcomePageButton(this);
         openButton->setText(ProjectWelcomePage::tr("Open Project"));
 //        openButton->setIcon(pixmap("open", Theme::Welcome_ForegroundSecondaryColor));
-//        openButton->setOnClicked([] { ProjectExplorerPlugin::openOpenProjectDialog(); });
+        openButton->setOnClicked([] {
+            /** 切换到工作页面 **/
+            PageManager::activatePage(Core::Constants::PAGE_WORK);
+            /** 新建一个项目 **/
+            PF_Project* pro = new PF_Project();
+        //    PF_Project* pro1 = new PF_Project(this);
+            PF_SessionManager::instance()->addProject(pro);
+        //    PF_SessionManager::instance()->addProject(pro1);
+            PF_ProjectTree::instance()->expandAll();
+        });
 
 //        auto sessionsLabel = new QLabel(this);
 //        sessionsLabel->setFont(sizedFont(16, this));

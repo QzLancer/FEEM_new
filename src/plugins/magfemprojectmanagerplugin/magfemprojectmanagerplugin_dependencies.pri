@@ -4,5 +4,7 @@ FEEM_LIB_DEPENDS += \
     utils \
 
 FEEM_PLUGIN_DEPENDS += \
-    coreplugin
-
+    coreplugin \
+    project \
+    material \
+    solver \

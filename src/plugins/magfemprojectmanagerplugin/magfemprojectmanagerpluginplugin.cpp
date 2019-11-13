@@ -1,5 +1,9 @@
 #include "magfemprojectmanagerpluginplugin.h"
 #include "magfemprojectmanagerpluginconstants.h"
+#include "magfieldwizard.h"
+#include "magfield2dtransientwizard.h"
+#include "magfield3dstaticwizard.h"
+#include "magfield3dtransintwizard.h"
 
 #include <coreplugin/icore.h>
 #include <coreplugin/context.h>
@@ -8,6 +12,7 @@
 #include <coreplugin/actionmanager/actioncontainer.h>
 #include <coreplugin/constants.h>
 
+using namespace Core;
 
 namespace MagFEMProjectManagerPlugin {
 namespace Internal {
@@ -25,16 +30,15 @@ MagFEMProjectManagerPluginPlugin::~MagFEMProjectManagerPluginPlugin()
 
 bool MagFEMProjectManagerPluginPlugin::initialize(const QStringList &arguments, QString *errorString)
 {
-    // Register objects in the plugin manager's object pool
-    // Load settings
-    // Add actions to menus
-    // Connect to other plugins' signals
-    // In the initialize function, a plugin can be sure that the plugins it
-    // depends on have initialized their members.
-
-//    Q_UNUSED(arguments)
-//    Q_UNUSED(errorString)
-
+    /** 添加wizards **/
+    IWizardFactory::registerFactoryCreator([] {
+        return QList<IWizardFactory *> {
+            new MagfieldWizard,
+            new MagField2DTransientWizard,
+            new MagField3DStaticWizard,
+            new MagField3DTransintWizard
+        };
+    });
     return true;
 }
 
