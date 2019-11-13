@@ -1,6 +1,6 @@
 #include "singleobjwizard.h"
-#include "singleobjectcore/singleobjectpage.h"
-#include "singleobjectcore/singlepsopage.h"
+#include "singleobjectpage.h"
+#include "singlepsopage.h"
 
 #include <QWizardPage>
 #include <QVBoxLayout>

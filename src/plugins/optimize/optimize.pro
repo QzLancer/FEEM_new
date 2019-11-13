@@ -18,7 +18,7 @@ HEADERS += \
     singleobjectcore/sparticle.h \
     singleobjectcore/spso.h \
     optimizeconstants.h \
-    singleobjwizard.h \
+    singleobjectcore/singleobjwizard.h \
     typepage.h \
     singleobjectcore/singleobjectpage.h \
     singleobjectcore/singlepsopage.h
@@ -35,7 +35,7 @@ SOURCES += \
     multiobjectcore/pso.cpp \
     singleobjectcore/sparticle.cpp \
     singleobjectcore/spso.cpp \
-    singleobjwizard.cpp \
+    singleobjectcore/singleobjwizard.cpp \
     typepage.cpp \
     singleobjectcore/singleobjectpage.cpp \
     singleobjectcore/singlepsopage.cpp
