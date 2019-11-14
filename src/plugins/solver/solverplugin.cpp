@@ -82,15 +82,27 @@ void SolverPlugin::registerDefaultContainers()
     page->appendGroup(Constants::G_SOLVE_SETTING);
     page->addRibbonGroup(group,Constants::G_SOLVE_SETTING);
 
+    auto action = new QAction(tr("Solver Setting"));
+    action->setIcon(QIcon(":/imgs/setting.png"));
+    group->ribbonGroup()->addAction(action,Qt::ToolButtonTextUnderIcon);
+
     group = ActionManager::createRibbonGroup(Constants::G_SOLVE_SOLVE);
     group->ribbonGroup()->setTitle(tr("Solve"));
     page->appendGroup(Constants::G_SOLVE_SOLVE);
     page->addRibbonGroup(group,Constants::G_SOLVE_SOLVE);
 
+    action = new QAction(tr("Solve"));
+    action->setIcon(QIcon(":/imgs/solve.png"));
+    group->ribbonGroup()->addAction(action,Qt::ToolButtonTextUnderIcon);
+
     group = ActionManager::createRibbonGroup(Constants::G_SOLVE_CLEAR);
     group->ribbonGroup()->setTitle(tr("Clear Solution"));
     page->appendGroup(Constants::G_SOLVE_CLEAR);
     page->addRibbonGroup(group,Constants::G_SOLVE_CLEAR);
+
+    action = new QAction(tr("Clear Solution"));
+    action->setIcon(QIcon(":/imgs/clearsolution.png"));
+    group->ribbonGroup()->addAction(action,Qt::ToolButtonTextUnderIcon);
 }
 
 void SolverPlugin::registerDefaultActions()

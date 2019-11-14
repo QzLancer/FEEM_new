@@ -9,6 +9,9 @@ class PF_Mag2DSProject : ProjectExplorer::PF_Project
 {
 public:
     PF_Mag2DSProject();
+    ~PF_Mag2DSProject();
+private:
+
 };
 
 }// namespace MagFEMProjectManagerPlugin

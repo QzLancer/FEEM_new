@@ -46,9 +46,9 @@ void OutputPluginPlugin::extensionsInitialized()
     DockWidget1->setWidget(m_messagePane->outputWidget());
     Core::WorkPage::DockManager()->addDockWidget(ads::BottomDockWidgetArea, DockWidget1);
     QDateTime current_date_time =QDateTime::currentDateTime();
-    QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss.zzz ddd");
+    QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss ddd");
     m_messagePane->appendMessage(current_date);
-    m_messagePane->appendMessage(tr("Welcome to use FEEM!"));
+    m_messagePane->appendMessage(tr("Welcome to FEEM!"));
 }
 
 ExtensionSystem::IPlugin::ShutdownFlag OutputPluginPlugin::aboutToShutdown()

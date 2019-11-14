@@ -12,4 +12,8 @@ HEADERS += \
 SOURCES += \
     solverplugin.cpp
 
+RESOURCES += \
+    res.qrc
+
+
 

@@ -1,15 +1,18 @@
+#include "pf_magfemfile.h"
 #include "pf_mag2dsproject.h"
 
 namespace MagFEMProjectManagerPlugin {
 
-PF_Mag2DSProject::PF_Mag2DSProject()
+PF_MagFEMFile::PF_MagFEMFile(PF_Mag2DSProject *m_project)
 {
 
 }
 
-PF_Mag2DSProject::~PF_Mag2DSProject()
+PF_MagFEMFile::~PF_MagFEMFile()
 {
 
 }
+
+
 
 }// namespace MagFEMProjectManagerPlugin

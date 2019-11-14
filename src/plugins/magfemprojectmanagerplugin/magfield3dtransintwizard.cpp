@@ -28,7 +28,7 @@ MagField3DTransintWizard::MagField3DTransintWizard()
 
 Core::BaseFileWizard *MagField3DTransintWizard::create(QWidget *parent, const Core::WizardDialogParameters &parameters) const
 {
-    QMessageBox::warning(parent,tr("Warning"),tr("This feature is not available."));
+    QMessageBox::warning(parent,tr("Tips"),tr("This feature is not available."));
     return nullptr;
 }
 

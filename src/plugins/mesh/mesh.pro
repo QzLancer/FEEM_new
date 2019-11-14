@@ -11,3 +11,6 @@ HEADERS += \
 
 SOURCES += \
     meshplugin.cpp
+
+RESOURCES += \
+    res.qrc

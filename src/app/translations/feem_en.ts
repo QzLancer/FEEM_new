@@ -375,37 +375,37 @@
 <context>
     <name>Core::MainWindow</name>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="96"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="125"/>
         <source>&amp;Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="100"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="129"/>
         <source>&amp;Solve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="104"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="133"/>
         <source>&amp;Definitions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="108"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="137"/>
         <source>&amp;Materials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="112"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="141"/>
         <source>&amp;Mesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="116"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="145"/>
         <source>&amp;Geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="120"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="149"/>
         <source>&amp;Results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -608,7 +608,7 @@ Reason: %3</source>
     </message>
     <message>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="30"/>
-        <source>Warning</source>
+        <source>Tips</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -632,7 +632,7 @@ Reason: %3</source>
     </message>
     <message>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="30"/>
-        <source>Warning</source>
+        <source>Tips</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -656,7 +656,7 @@ Reason: %3</source>
     </message>
     <message>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="31"/>
-        <source>Warning</source>
+        <source>Tips</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -706,23 +706,49 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="86"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="85"/>
+        <source>Build mesh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="90"/>
         <source>Im/ExportMesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="91"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="94"/>
+        <source>Import mesh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="98"/>
+        <source>Export mesh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="103"/>
         <source>Mesh Generator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="96"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="107"/>
+        <source>Mesh generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="112"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="116"/>
         <source>Statics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="101"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="121"/>
         <source>ClearMesh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="125"/>
+        <source>Clear mesh</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -863,10 +889,31 @@ Reason: %3</source>
     </message>
 </context>
 <context>
+    <name>OutputPlugin::MessageOutputPane</name>
+    <message>
+        <location filename="../../plugins/output/messageoutputpane.cpp" line="61"/>
+        <source>Message Outputpane</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>OutputPlugin::OutputPluginPlugin</name>
     <message>
-        <location filename="../../plugins/output/outputpluginplugin.cpp" line="49"/>
+        <location filename="../../plugins/output/outputpluginplugin.cpp" line="45"/>
         <source>Message outputpane</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/output/outputpluginplugin.cpp" line="51"/>
+        <source>Welcome to FEEM!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>OutputPlugin::OutputWindow</name>
+    <message>
+        <location filename="../../plugins/output/outputwindow.cpp" line="347"/>
+        <source>Additional output omitted</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2137,16 +2184,19 @@ Reason: %3</source>
     <name>Solver::SolverPlugin</name>
     <message>
         <location filename="../../plugins/solver/solverplugin.cpp" line="81"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="85"/>
         <source>Solver Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/solver/solverplugin.cpp" line="86"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="90"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="94"/>
         <source>Solve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/solver/solverplugin.cpp" line="91"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="99"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="103"/>
         <source>Clear Solution</source>
         <translation type="unfinished"></translation>
     </message>

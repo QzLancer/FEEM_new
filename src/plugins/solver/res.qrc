@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>imgs/clearsolution.png</file>
+        <file>imgs/setting.png</file>
+        <file>imgs/solve.png</file>
+    </qresource>
+</RCC>

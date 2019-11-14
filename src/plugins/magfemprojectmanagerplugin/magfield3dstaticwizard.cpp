@@ -27,7 +27,7 @@ MagField3DStaticWizard::MagField3DStaticWizard()
 
 Core::BaseFileWizard *MagField3DStaticWizard::create(QWidget *parent, const Core::WizardDialogParameters &parameters) const
 {
-    QMessageBox::warning(parent,tr("Warning"),tr("This feature is not available."));
+    QMessageBox::warning(parent,tr("Tips"),tr("This feature is not available."));
     return nullptr;
 }
 

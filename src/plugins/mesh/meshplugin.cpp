@@ -82,25 +82,49 @@ void MeshPlugin::registerDefaultContainers()
     page->appendGroup(Constants::G_MESH_BUILD);
     page->addRibbonGroup(group,Constants::G_MESH_BUILD);
 
+    auto action = new QAction(tr("Build mesh"));
+    action->setIcon(QIcon(":/imgs/buildmesh.png"));
+    group->ribbonGroup()->addAction(action,Qt::ToolButtonTextUnderIcon);
+
     group = ActionManager::createRibbonGroup(Constants::G_MESH_IMEXPORT);
     group->ribbonGroup()->setTitle(tr("Im/ExportMesh"));
     page->appendGroup(Constants::G_MESH_IMEXPORT);
     page->addRibbonGroup(group,Constants::G_MESH_IMEXPORT);
+
+    action = new QAction(tr("Import mesh"));
+    action->setIcon(QIcon(":/imgs/import.png"));
+    group->ribbonGroup()->addAction(action,Qt::ToolButtonTextUnderIcon);
+
+    action = new QAction(tr("Export mesh"));
+    action->setIcon(QIcon(":/imgs/export.png"));
+    group->ribbonGroup()->addAction(action,Qt::ToolButtonTextUnderIcon);
 
     group = ActionManager::createRibbonGroup(Constants::G_MESH_GENERATOR);
     group->ribbonGroup()->setTitle(tr("Mesh Generator"));
     page->appendGroup(Constants::G_MESH_GENERATOR);
     page->addRibbonGroup(group,Constants::G_MESH_GENERATOR);
 
+    action = new QAction(tr("Mesh generator"));
+    action->setIcon(QIcon(":/imgs/meshgenerator.png"));
+    group->ribbonGroup()->addAction(action,Qt::ToolButtonTextUnderIcon);
+
     group = ActionManager::createRibbonGroup(Constants::G_MESH_STATICS);
     group->ribbonGroup()->setTitle(tr("Statics"));
     page->appendGroup(Constants::G_MESH_STATICS);
     page->addRibbonGroup(group,Constants::G_MESH_STATICS);
 
+    action = new QAction(tr("Statics"));
+    action->setIcon(QIcon(":/imgs/Statics.png"));
+    group->ribbonGroup()->addAction(action,Qt::ToolButtonTextUnderIcon);
+
     group = ActionManager::createRibbonGroup(Constants::G_MESH_CLEAR);
     group->ribbonGroup()->setTitle(tr("ClearMesh"));
     page->appendGroup(Constants::G_MESH_CLEAR);
     page->addRibbonGroup(group,Constants::G_MESH_CLEAR);
+
+    action = new QAction(tr("Clear mesh"));
+    action->setIcon(QIcon(":/imgs/clearmesh.png"));
+    group->ribbonGroup()->addAction(action,Qt::ToolButtonTextUnderIcon);
 }
 
 void MeshPlugin::registerDefaultActions()
