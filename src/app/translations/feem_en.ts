@@ -433,12 +433,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="249"/>
+        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="250"/>
         <source>Projects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="252"/>
+        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="253"/>
         <source>Files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -601,18 +601,18 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagField2DTransientWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="19"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="20"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="21"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="22"/>
         <source>Magnetic field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="21"/>
-        <source>2D Magnetic Transient field simulation</source>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="23"/>
+        <source>2D Axis Magnetic Transient field simulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="22"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="24"/>
         <source>Create a project to simulate the distribution of magnetic field.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -620,18 +620,18 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagField3DStaticWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="19"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="20"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="21"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="22"/>
         <source>Magnetic field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="21"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="23"/>
         <source>3D Magnetic Static field simulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="22"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="24"/>
         <source>Create a project to simulate the distribution of magnetic field.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -639,18 +639,18 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagField3DTransintWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="20"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="21"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="22"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="23"/>
         <source>Magnetic field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="22"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="24"/>
         <source>3D Magnetic Transient field simulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="23"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="25"/>
         <source>Create a project to simulate the distribution of magnetic field.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -658,18 +658,18 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagfieldWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="19"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="20"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="21"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="22"/>
         <source>Magnetic field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="21"/>
-        <source>2D Magnetic Static field simulation</source>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="23"/>
+        <source>2D Axis Magnetic Static field simulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="22"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="24"/>
         <source>Create a project to simulate the distribution of magnetic field.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1280,67 +1280,82 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="368"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="331"/>
+        <source>New Project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="336"/>
+        <source>Open Project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="341"/>
+        <source>Save Project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="383"/>
         <source>Add Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="375"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="390"/>
         <source>Add Study</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="381"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="396"/>
         <source>3D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="386"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="401"/>
         <source>2D Axisymmetric</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="391"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="406"/>
         <source>2D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="399"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="414"/>
         <source>Static Magnetic Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="404"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="419"/>
         <source>Transient Magnetic Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="409"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="424"/>
         <source>Heat Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="417"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="432"/>
         <source>add Material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="422"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="437"/>
         <source>add Blank Material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="429"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="444"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="444"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="459"/>
         <source>Model tree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="546"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="561"/>
         <source>New Project</source>
         <comment>Title of dialog</comment>
         <translation type="unfinished"></translation>

@@ -17,6 +17,8 @@ namespace MagFEMProjectManagerPlugin {
 MagField3DTransintWizard::MagField3DTransintWizard()
 {
     setId("FEM.MAG3DTransient");
+    setIcon(QIcon(":/imgs/model_3d_32.png"));
+    setCategoryIcon(QIcon(":/imgs/magnetic_fields_32.png"));
     setCategory(tr("Magnetic field"));
     setDisplayCategory(tr("Magnetic field"));
     setDisplayName(tr("3D Magnetic Transient field simulation"));

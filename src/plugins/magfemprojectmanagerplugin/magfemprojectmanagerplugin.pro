@@ -17,3 +17,6 @@ SOURCES += \
     magfield2dtransientwizard.cpp \
     magfield3dstaticwizard.cpp \
     magfield3dtransintwizard.cpp
+
+RESOURCES += \
+    res.qrc

@@ -178,6 +178,7 @@ NewDialog::NewDialog(QWidget *parent) :
     m_ui->templateCategoryView->setModel(m_filterProxyModel);
     m_ui->templateCategoryView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     m_ui->templateCategoryView->setItemDelegate(new FancyTopLevelDelegate);
+    m_ui->templateCategoryView->setIconSize(QSize(ICON_SIZE, ICON_SIZE));
 
     m_ui->templatesView->setModel(m_filterProxyModel);
     m_ui->templatesView->setIconSize(QSize(ICON_SIZE, ICON_SIZE));
@@ -408,6 +409,12 @@ static QIcon iconWithText(const QIcon &icon, const QString &text)
     return iconWithText;
 }
 
+/*!
+ \brief
+
+ \param topLevelCategoryItem
+ \param factory
+*/
 void NewDialog::addItem(QStandardItem *topLevelCategoryItem, IWizardFactory *factory)
 {
     const QString categoryName = factory->category();
@@ -423,6 +430,7 @@ void NewDialog::addItem(QStandardItem *topLevelCategoryItem, IWizardFactory *fac
         categoryItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
         categoryItem->setText(QLatin1String("  ") + factory->displayCategory());
         categoryItem->setData(factory->category(), Qt::UserRole);
+        categoryItem->setIcon(iconWithText(factory->categoryIcon(), factory->categoryIconText()));
     }
 
     QStandardItem *wizardItem = new QStandardItem(factory->displayName());

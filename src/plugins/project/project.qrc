@@ -44,5 +44,8 @@
         <file>imgs/parameter_32.png</file>
         <file>imgs/phys_magnetic_fields_no_currents.png</file>
         <file>imgs/phys_magnetic_fields_no_currents_32.png</file>
+        <file>imgs/projects.png</file>
+        <file>imgs/filesave.png</file>
+        <file>imgs/openfile.png</file>
     </qresource>
 </RCC>
