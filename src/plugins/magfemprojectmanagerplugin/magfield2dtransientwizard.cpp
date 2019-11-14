@@ -21,7 +21,7 @@ MagField2DTransientWizard::MagField2DTransientWizard()
     setCategory(tr("Magnetic field"));
     setDisplayCategory(tr("Magnetic field"));
     setDisplayName(tr("2D Axis Magnetic Transient field simulation"));
-    setDescription(tr("Create a project to simulate the distribution of magnetic field."));
+//    setDescription(tr("Create a project to simulate the distribution of magnetic field."));
 //    setRequiredFeatures({QtSupport::Constants::FEATURE_QWIDGETS});
 }
 

@@ -21,7 +21,7 @@ MagField3DStaticWizard::MagField3DStaticWizard()
     setCategory(tr("Magnetic field"));
     setDisplayCategory(tr("Magnetic field"));
     setDisplayName(tr("3D Magnetic Static field simulation"));
-    setDescription(tr("Create a project to simulate the distribution of magnetic field."));
+//    setDescription(tr("Create a project to simulate the distribution of magnetic field."));
 //    setRequiredFeatures({QtSupport::Constants::FEATURE_QWIDGETS});
 }
 

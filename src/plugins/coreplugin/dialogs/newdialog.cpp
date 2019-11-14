@@ -161,9 +161,9 @@ NewDialog::NewDialog(QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
 //    ICore::registerWindow(this, Context("Core.NewDialog"));
     m_ui->setupUi(this);
-    QPalette p = m_ui->frame->palette();
-    p.setColor(QPalette::Window, p.color(QPalette::Base));
-    m_ui->frame->setPalette(p);
+//    QPalette p = m_ui->frame->palette();
+//    p.setColor(QPalette::Window, p.color(QPalette::Base));
+//    m_ui->frame->setPalette(p);
 
     m_okButton = m_ui->buttonBox->button(QDialogButtonBox::Ok);
     m_okButton->setDefault(true);
@@ -471,37 +471,37 @@ void NewDialog::currentCategoryChanged(const QModelIndex &index)
 */
 void NewDialog::currentItemChanged(const QModelIndex &index)
 {
-    QModelIndex sourceIndex = m_filterProxyModel->mapToSource(index);
-    QStandardItem* cat = (m_model->itemFromIndex(sourceIndex));
-    if (const IWizardFactory *wizard = factoryOfItem(cat)) {
-        QString desciption = wizard->description();
-//        QStringList displayNamesForSupportedPlatforms;
-//        foreach (Id platform, wizard->supportedPlatforms())
-//            displayNamesForSupportedPlatforms << IWizardFactory::displayNameForPlatform(platform);
-//        Utils::sort(displayNamesForSupportedPlatforms);
-        if (!Qt::mightBeRichText(desciption))
-            desciption.replace(QLatin1Char('\n'), QLatin1String("<br>"));
-        desciption += QLatin1String("<br><br><b>");
-//        if (wizard->flags().testFlag(IWizardFactory::PlatformIndependent))
-//            desciption += tr("Platform independent") + QLatin1String("</b>");
-//        else
-//            desciption += tr("Supported Platforms")
-//                    + QLatin1String("</b>: <tt>")
-////                    + displayNamesForSupportedPlatforms.join(QLatin1Char(' '))
-//                    + QLatin1String("</tt>");
+//    QModelIndex sourceIndex = m_filterProxyModel->mapToSource(index);
+//    QStandardItem* cat = (m_model->itemFromIndex(sourceIndex));
+//    if (const IWizardFactory *wizard = factoryOfItem(cat)) {
+//        QString desciption = wizard->description();
+////        QStringList displayNamesForSupportedPlatforms;
+////        foreach (Id platform, wizard->supportedPlatforms())
+////            displayNamesForSupportedPlatforms << IWizardFactory::displayNameForPlatform(platform);
+////        Utils::sort(displayNamesForSupportedPlatforms);
+//        if (!Qt::mightBeRichText(desciption))
+//            desciption.replace(QLatin1Char('\n'), QLatin1String("<br>"));
+//        desciption += QLatin1String("<br><br><b>");
+////        if (wizard->flags().testFlag(IWizardFactory::PlatformIndependent))
+////            desciption += tr("Platform independent") + QLatin1String("</b>");
+////        else
+////            desciption += tr("Supported Platforms")
+////                    + QLatin1String("</b>: <tt>")
+//////                    + displayNamesForSupportedPlatforms.join(QLatin1Char(' '))
+////                    + QLatin1String("</tt>");
 
-        m_ui->templateDescription->setHtml(desciption);
+//        m_ui->templateDescription->setHtml(desciption);
 
-        if (!wizard->descriptionImage().isEmpty()) {
-            m_ui->imageLabel->setVisible(true);
-            m_ui->imageLabel->setPixmap(wizard->descriptionImage());
-        } else {
-            m_ui->imageLabel->setVisible(false);
-        }
+//        if (!wizard->descriptionImage().isEmpty()) {
+//            m_ui->imageLabel->setVisible(true);
+//            m_ui->imageLabel->setPixmap(wizard->descriptionImage());
+//        } else {
+//            m_ui->imageLabel->setVisible(false);
+//        }
 
-    } else {
-        m_ui->templateDescription->clear();
-    }
+//    } else {
+//        m_ui->templateDescription->clear();
+//    }
     updateOkButton();
 }
 

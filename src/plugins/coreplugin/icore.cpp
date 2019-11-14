@@ -10,6 +10,7 @@
 
 #include <QSysInfo>
 #include <QApplication>
+#include <QFileDialog>
 
 /*!
     \namespace Core
@@ -590,7 +591,12 @@ void ICore::raiseWindow(QWidget *widget)
 
 void ICore::registerWindow(QWidget *window, const Context &context)
 {
-//    new WindowSupport(window, context); // deletes itself when widget is destroyed
+    //    new WindowSupport(window, context); // deletes itself when widget is destroyed
+}
+
+void ICore::openFiles(const QStringList &fileNames, ICore::OpenFilesFlags flags)
+{
+
 }
 
 //void ICore::openFiles(const QStringList &arguments, ICore::OpenFilesFlags flags)

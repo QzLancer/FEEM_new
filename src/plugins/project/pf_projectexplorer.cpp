@@ -38,6 +38,7 @@
 #include <QDir>
 #include <QMenu>
 #include <QUuid>
+#include <QFileDialog>
 
 #include <cstdlib>
 
@@ -568,7 +569,12 @@ void PF_ProjectExplorerPlugin::openNewProjectDialog()
 
 void PF_ProjectExplorerPlugin::openOpenProjectDialog()
 {
-
+    /** 寻找上次记录的文件夹位置 **/
+    /** 打开文件对话框 **/
+    const QStringList files = QFileDialog::getOpenFileNames(ICore::dialogParent(),
+                                                      tr("Open File"));
+    if (!files.isEmpty())
+        ICore::openFiles(files, ICore::SwitchMode);
 }
 
 void PF_ProjectExplorerPluginPrivate::updateContextMenuActions()
