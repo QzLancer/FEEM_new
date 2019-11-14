@@ -19,7 +19,6 @@
 #include "actionmanager/actionmanager.h"
 #include "actionmanager/actionmanager_p.h"
 #include "actionmanager/command.h"
-#include "ouptput/messagemanager.h"
 #include <geometrymanager/geometrymanager.h>
 
 #include <coreplugin/pf_pagewidget.h>
@@ -38,6 +37,36 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
 
+}
+
+IContext *MainWindow::contextObject(QWidget *widget)
+{
+    return m_contextWidgets.value(widget);
+}
+
+void MainWindow::addContextObject(IContext *context)
+{
+    if (!context)
+        return;
+    QWidget *widget = context->widget();
+    if (m_contextWidgets.contains(widget))
+        return;
+
+    m_contextWidgets.insert(widget, context);
+}
+
+void MainWindow::removeContextObject(IContext *context)
+{
+    if (!context)
+        return;
+
+    QWidget *widget = context->widget();
+    if (!m_contextWidgets.contains(widget))
+        return;
+
+    m_contextWidgets.remove(widget);
+    if (m_activeContext.removeAll(context) > 0)
+        updateContextObject(m_activeContext);
 }
 
 void MainWindow::init()
@@ -129,6 +158,37 @@ void MainWindow::registerDefaultContainers()
 void MainWindow::registerDefaultActions()
 {
 
+}
+
+void MainWindow::updateContextObject(const QList<IContext *> &context)
+{
+    emit m_coreImpl->contextAboutToChange(context);
+    m_activeContext = context;
+    updateContext();/*
+    if (debugMainWindow) {
+        qDebug() << "new context objects =" << context;
+        foreach (IContext *c, context)
+            qDebug() << (c ? c->widget() : nullptr) << (c ? c->widget()->metaObject()->className() : nullptr);
+    }*/
+}
+
+void MainWindow::updateContext()
+{
+    Context contexts;// = m_highPrioAdditionalContexts;
+
+    foreach (IContext *context, m_activeContext)
+        contexts.add(context->context());
+
+//    contexts.add(m_lowPrioAdditionalContexts);
+
+    Context uniquecontexts;
+    for (const Id &id : qAsConst(contexts)) {
+        if (!uniquecontexts.contains(id))
+            uniquecontexts.add(id);
+    }
+
+    ActionManager::setContext(uniquecontexts);
+    emit m_coreImpl->contextChanged(uniquecontexts);
 }
 
 } // namespace Core

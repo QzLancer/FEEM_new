@@ -1,5 +1,6 @@
 #include "outputpluginplugin.h"
 #include "outputpluginconstants.h"
+#include "messageoutputpane.h"
 
 #include <QtAdvancedDock/DockManager.h>
 
@@ -15,6 +16,7 @@
 #include <QMessageBox>
 #include <QMainWindow>
 #include <QMenu>
+#include <QDateTime>
 
 using namespace Core;
 
@@ -33,22 +35,20 @@ OutputPluginPlugin::~OutputPluginPlugin()
 
 bool OutputPluginPlugin::initialize(const QStringList &arguments, QString *errorString)
 {
-    // Register objects in the plugin manager's object pool
-    // Load settings
-    // Add actions to menus
-    // Connect to other plugins' signals
-    // In the initialize function, a plugin can be sure that the plugins it
-    // depends on have initialized their members.
+    m_messagePane = new MessageOutputPane();
 
     return true;
 }
 
 void OutputPluginPlugin::extensionsInitialized()
 {
-    qDebug()<<Q_FUNC_INFO;
     ads::CDockWidget* DockWidget1 = new ads::CDockWidget(tr("Message outputpane"));
-
+    DockWidget1->setWidget(m_messagePane->outputWidget());
     Core::WorkPage::DockManager()->addDockWidget(ads::BottomDockWidgetArea, DockWidget1);
+    QDateTime current_date_time =QDateTime::currentDateTime();
+    QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss.zzz ddd");
+    m_messagePane->appendMessage(current_date);
+    m_messagePane->appendMessage(tr("Welcome to use FEEM!"));
 }
 
 ExtensionSystem::IPlugin::ShutdownFlag OutputPluginPlugin::aboutToShutdown()

@@ -17,9 +17,12 @@ public:
     IOutputPane(QObject* parent = nullptr);
     ~IOutputPane() override;
 
+    virtual QWidget *outputWidget() const = 0;
+
     virtual QString displayName() const = 0;
 
     virtual void clearContents() = 0;
+
 public slots:
 
 signals:

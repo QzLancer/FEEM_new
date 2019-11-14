@@ -42,9 +42,7 @@ Core::BaseFileWizard *MagfieldWizard::create(QWidget *parent, const Core::Wizard
     Core::PageManager::activatePage(Core::Constants::PAGE_WORK);
     /** 新建一个项目 **/
     ProjectExplorer::PF_Project* pro = new ProjectExplorer::PF_Project();
-//    PF_Project* pro1 = new PF_Project(this);
     ProjectExplorer::PF_SessionManager::instance()->addProject(pro);
-//    PF_SessionManager::instance()->addProject(pro1);
     ProjectExplorer::PF_ProjectTree::instance()->expandAll();
 
     return nullptr;

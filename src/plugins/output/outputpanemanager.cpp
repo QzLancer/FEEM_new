@@ -19,4 +19,5 @@ IOutputPane::~IOutputPane()
 {
 
 }
+
 } // namespace OutputPlugin

@@ -87,18 +87,18 @@ public:
     /* Raises and activates the window for the widget. This contains workarounds for X11. */
     static void raiseWindow(QWidget *widget);
 
-//    static IContext *currentContextObject();
-//    static QWidget *currentContextWidget();
-//    static IContext *contextObject(QWidget *widget);
+    static IContext *currentContextObject();
+    static QWidget *currentContextWidget();
+    static IContext *contextObject(QWidget *widget);
     // Adds and removes additional active contexts, these contexts are appended
     // to the currently active contexts.
 //    static void updateAdditionalContexts(const Context &remove, const Context &add,
 //                                         ContextPriority priority = ContextPriority::Low);
 //    static void addAdditionalContext(const Context &context,
 //                                     ContextPriority priority = ContextPriority::Low);
-//    static void removeAdditionalContext(const Context &context);
-//    static void addContextObject(IContext *context);
-//    static void removeContextObject(IContext *context);
+    static void removeAdditionalContext(const Context &context);
+    static void addContextObject(IContext *context);
+    static void removeContextObject(IContext *context);
 
     // manages the minimize, zoom and fullscreen actions for the window
     static void registerWindow(QWidget *window, const Context &context);

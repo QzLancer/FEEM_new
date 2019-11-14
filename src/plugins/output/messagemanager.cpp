@@ -18,9 +18,9 @@ void MessageManager::showOutputPane(PrintToOutputPaneFlags flags)
 
 void MessageManager::write(const QString &text, PrintToOutputPaneFlags flags)
 {
-    if (!m_messageOutputWindow)
-        return;
-    showOutputPane(flags);
+//    if (!m_messageOutputWindow)
+//        return;
+//    showOutputPane(flags);
 //    m_messageOutputWindow->append(text + QLatin1Char('\n'));
 }
 

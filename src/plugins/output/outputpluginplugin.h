@@ -6,6 +6,8 @@
 
 namespace OutputPlugin {
 
+class MessageOutputPane;
+
 class OutputPluginPlugin : public ExtensionSystem::IPlugin
 {
     Q_OBJECT
@@ -20,6 +22,7 @@ public:
     ShutdownFlag aboutToShutdown();
 
 private:
+    MessageOutputPane* m_messagePane;
 };
 
 } // namespace OutputPlugin

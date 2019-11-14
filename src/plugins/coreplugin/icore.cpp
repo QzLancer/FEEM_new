@@ -579,15 +579,15 @@ void ICore::raiseWindow(QWidget *widget)
 //    m_mainwindow->updateAdditionalContexts(context, Context(), ContextPriority::Low);
 //}
 
-//void ICore::addContextObject(IContext *context)
-//{
-//    m_mainwindow->addContextObject(context);
-//}
+void ICore::addContextObject(IContext *context)
+{
+    m_mainwindow->addContextObject(context);
+}
 
-//void ICore::removeContextObject(IContext *context)
-//{
-//    m_mainwindow->removeContextObject(context);
-//}
+void ICore::removeContextObject(IContext *context)
+{
+    m_mainwindow->removeContextObject(context);
+}
 
 void ICore::registerWindow(QWidget *window, const Context &context)
 {
