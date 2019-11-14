@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QTextStream>
 #include <QSharedPointer>
+#include <QMessageBox>
 
 namespace MagFEMProjectManagerPlugin {
 
@@ -27,6 +28,7 @@ MagField2DTransientWizard::MagField2DTransientWizard()
 
 Core::BaseFileWizard *MagField2DTransientWizard::create(QWidget *parent, const Core::WizardDialogParameters &parameters) const
 {
+    QMessageBox::warning(parent,tr("Warning"),tr("This feature is not available."));
     return nullptr;
 }
 

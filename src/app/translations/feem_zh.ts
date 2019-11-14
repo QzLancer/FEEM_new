@@ -601,58 +601,73 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagField2DTransientWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="21"/>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="22"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="23"/>
         <source>Magnetic field</source>
         <translation type="unfinished">磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="23"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="24"/>
         <source>2D Axis Magnetic Transient field simulation</source>
         <translation type="unfinished">二维轴对称瞬态磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="24"/>
-        <source>Create a project to simulate the distribution of magnetic field.</source>
-        <translation type="unfinished">创建一个求解磁场分布的项目。</translation>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="31"/>
+        <source>Warning</source>
+        <translation type="unfinished">警告</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="31"/>
+        <source>This feature is not available.</source>
+        <translation type="unfinished">该功能暂不可用。</translation>
     </message>
 </context>
 <context>
     <name>MagFEMProjectManagerPlugin::MagField3DStaticWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="21"/>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="22"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="23"/>
         <source>Magnetic field</source>
         <translation type="unfinished">磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="23"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="24"/>
         <source>3D Magnetic Static field simulation</source>
         <translation type="unfinished">三维静磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="24"/>
-        <source>Create a project to simulate the distribution of magnetic field.</source>
-        <translation type="unfinished">创建一个求解磁场分布的项目。</translation>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="31"/>
+        <source>Warning</source>
+        <translation type="unfinished">警告</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="31"/>
+        <source>This feature is not available.</source>
+        <translation type="unfinished">该功能暂不可用。</translation>
     </message>
 </context>
 <context>
     <name>MagFEMProjectManagerPlugin::MagField3DTransintWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="22"/>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="23"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="24"/>
         <source>Magnetic field</source>
         <translation type="unfinished">磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="24"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="25"/>
         <source>3D Magnetic Transient field simulation</source>
         <translation type="unfinished">三维瞬态磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="25"/>
-        <source>Create a project to simulate the distribution of magnetic field.</source>
-        <translation type="unfinished">创建一个求解磁场分布的项目。</translation>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="32"/>
+        <source>Warning</source>
+        <translation type="unfinished">警告</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="32"/>
+        <source>This feature is not available.</source>
+        <translation type="unfinished">该功能暂不可用。</translation>
     </message>
 </context>
 <context>
@@ -667,11 +682,6 @@ Reason: %3</source>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="23"/>
         <source>2D Axis Magnetic Static field simulation</source>
         <translation type="unfinished">二维轴对称静磁场</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="24"/>
-        <source>Create a project to simulate the distribution of magnetic field.</source>
-        <translation type="unfinished">创建一个求解磁场分布的项目。</translation>
     </message>
 </context>
 <context>
@@ -1275,90 +1285,95 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::PF_ProjectExplorerPlugin</name>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="329"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="330"/>
         <source>Project</source>
         <translation type="unfinished">项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="331"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="332"/>
         <source>New Project</source>
         <translation type="unfinished">新建项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="336"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="337"/>
         <source>Open Project</source>
         <translation type="unfinished">打开项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="341"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="342"/>
         <source>Save Project</source>
         <translation type="unfinished">保存项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="383"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="384"/>
         <source>Add Model</source>
         <translation type="unfinished">添加模型</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="390"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="391"/>
         <source>Add Study</source>
         <translation type="unfinished">添加研究</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="396"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="397"/>
         <source>3D</source>
         <translation type="unfinished">三维</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="401"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="402"/>
         <source>2D Axisymmetric</source>
         <translation type="unfinished">二维轴对称</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="406"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="407"/>
         <source>2D</source>
         <translation type="unfinished">二维</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="414"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="415"/>
         <source>Static Magnetic Field</source>
         <translation type="unfinished">静磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="419"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="420"/>
         <source>Transient Magnetic Field</source>
         <translation type="unfinished">瞬态磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="424"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="425"/>
         <source>Heat Field</source>
         <translation type="unfinished">热场</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="432"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="433"/>
         <source>add Material</source>
         <translation type="unfinished">添加材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="437"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="438"/>
         <source>add Blank Material</source>
         <translation type="unfinished">添加空白材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="444"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="445"/>
         <source>Help</source>
         <translation type="unfinished">帮助</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="459"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="460"/>
         <source>Model tree</source>
         <translation type="unfinished">模型树</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="561"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="562"/>
         <source>New Project</source>
         <comment>Title of dialog</comment>
         <translation type="unfinished">新建项目</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="575"/>
+        <source>Open File</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

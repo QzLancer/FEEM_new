@@ -2,6 +2,17 @@
 
 #include <utils/fileutils.h>
 
+#include <project/pf_project.h>
+#include <project/pf_projectexplorer.h>
+#include <project/pf_sessionmanager.h>
+#include <project/pf_projecttree.h>
+
+#include <coreplugin/constants.h>
+#include <coreplugin/context.h>
+#include <coreplugin/icore.h>
+#include <coreplugin/iwizardfactory.h>
+#include <coreplugin/pagemanager.h>
+
 #include <QCoreApplication>
 #include <QDir>
 #include <QTextStream>
@@ -27,6 +38,16 @@ MagfieldWizard::MagfieldWizard()
 
 Core::BaseFileWizard *MagfieldWizard::create(QWidget *parent, const Core::WizardDialogParameters &parameters) const
 {
+
+    /** 切换到工作页面 **/
+    Core::PageManager::activatePage(Core::Constants::PAGE_WORK);
+    /** 新建一个项目 **/
+    ProjectExplorer::PF_Project* pro = new ProjectExplorer::PF_Project();
+//    PF_Project* pro1 = new PF_Project(this);
+    ProjectExplorer::PF_SessionManager::instance()->addProject(pro);
+//    PF_SessionManager::instance()->addProject(pro1);
+    ProjectExplorer::PF_ProjectTree::instance()->expandAll();
+
     return nullptr;
 }
 
