@@ -13,7 +13,6 @@
 #include <coreplugin/iwizardfactory.h>
 #include <coreplugin/pagemanager.h>
 
-#include <QCoreApplication>
 #include <QDir>
 #include <QTextStream>
 #include <QSharedPointer>

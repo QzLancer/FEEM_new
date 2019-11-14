@@ -2,6 +2,7 @@
 
 #include "messageoutputwindow.h"
 
+namespace OutputPlugin {
 static MessageManager* m_instance = nullptr;
 static MessageOutputWindow* m_messageOutputWindow = nullptr;
 
@@ -43,3 +44,4 @@ void MessageManager::init()
 //    m_messageOutputWindow = new MessageOutputWindow;
 //    ExtensionSystem::PluginManager::addObject(m_messageOutputWindow);
 }
+} // namespace OutputPlugin

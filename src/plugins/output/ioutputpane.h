@@ -5,6 +5,8 @@
 #include <QString>
 #include <QList>
 
+namespace OutputPlugin {
+
 class IOutputPane : public QObject
 {
     Q_OBJECT
@@ -22,7 +24,7 @@ public slots:
 
 signals:
 
-
 };
 
+} // namespace OutputPlugin
 #endif // IOUTPUTPANE_H

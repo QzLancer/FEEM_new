@@ -63,11 +63,6 @@ WorkPage::WorkPage()
 //    emptyLayout->addWidget(l1);
 //    outputPane->setLayout(emptyLayout);
 
-    ads::CDockWidget* DockWidget1 = new ads::CDockWidget(tr("Message outputpane"));
-//    DockWidget1->setWidget(outputPane);
-    // Add the dock widget to the top dock widget area
-    m_DockManager->addDockWidget(ads::BottomDockWidgetArea, DockWidget1);
-
     setWidget(m_splitter);
 }
 

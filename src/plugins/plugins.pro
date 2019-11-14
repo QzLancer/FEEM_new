@@ -4,6 +4,7 @@ TEMPLATE  = subdirs
 
 SUBDIRS   = \
     coreplugin \
+    output \
     CAD \
     material \
     mesh \

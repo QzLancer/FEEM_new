@@ -3,7 +3,6 @@
 
 #include <utils/fileutils.h>
 
-#include <QCoreApplication>
 #include <QDir>
 #include <QTextStream>
 #include <QSharedPointer>

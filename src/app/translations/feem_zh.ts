@@ -458,11 +458,6 @@
         <source>Geometry builder</source>
         <translation type="unfinished">几何建模</translation>
     </message>
-    <message>
-        <location filename="../../plugins/coreplugin/workpage.cpp" line="66"/>
-        <source>Message outputpane</source>
-        <translation type="unfinished">信息输出</translation>
-    </message>
 </context>
 <context>
     <name>ExtensionSystem::Internal::PluginSpecPrivate</name>
@@ -601,23 +596,23 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagField2DTransientWizard</name>
     <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="21"/>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="22"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="23"/>
         <source>Magnetic field</source>
         <translation type="unfinished">磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="24"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="23"/>
         <source>2D Axis Magnetic Transient field simulation</source>
         <translation type="unfinished">二维轴对称瞬态磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="31"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="30"/>
         <source>Warning</source>
         <translation type="unfinished">警告</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="31"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="30"/>
         <source>This feature is not available.</source>
         <translation type="unfinished">该功能暂不可用。</translation>
     </message>
@@ -625,23 +620,23 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagField3DStaticWizard</name>
     <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="21"/>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="22"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="23"/>
         <source>Magnetic field</source>
         <translation type="unfinished">磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="24"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="23"/>
         <source>3D Magnetic Static field simulation</source>
         <translation type="unfinished">三维静磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="31"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="30"/>
         <source>Warning</source>
         <translation type="unfinished">警告</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="31"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="30"/>
         <source>This feature is not available.</source>
         <translation type="unfinished">该功能暂不可用。</translation>
     </message>
@@ -649,23 +644,23 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagField3DTransintWizard</name>
     <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="22"/>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="23"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="24"/>
         <source>Magnetic field</source>
         <translation type="unfinished">磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="25"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="24"/>
         <source>3D Magnetic Transient field simulation</source>
         <translation type="unfinished">三维瞬态磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="32"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="31"/>
         <source>Warning</source>
         <translation type="unfinished">警告</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="32"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="31"/>
         <source>This feature is not available.</source>
         <translation type="unfinished">该功能暂不可用。</translation>
     </message>
@@ -673,13 +668,13 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagfieldWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="21"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="22"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="31"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="32"/>
         <source>Magnetic field</source>
         <translation type="unfinished">磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="23"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="33"/>
         <source>2D Axis Magnetic Static field simulation</source>
         <translation type="unfinished">二维轴对称静磁场</translation>
     </message>
@@ -865,6 +860,14 @@ Reason: %3</source>
         <location filename="../../plugins/optimize/optimizeplugin.cpp" line="89"/>
         <source>Multi-Objective Optimization</source>
         <translation>多目标优化</translation>
+    </message>
+</context>
+<context>
+    <name>OutputPlugin::OutputPluginPlugin</name>
+    <message>
+        <location filename="../../plugins/output/outputpluginplugin.cpp" line="49"/>
+        <source>Message outputpane</source>
+        <translation type="unfinished">信息输出</translation>
     </message>
 </context>
 <context>
@@ -1405,7 +1408,7 @@ Reason: %3</source>
         <translation type="unfinished">打开项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/projectwelcomepage.cpp" line="553"/>
+        <location filename="../../plugins/project/projectwelcomepage.cpp" line="546"/>
         <source>Recent Projects</source>
         <translation type="unfinished">最近的项目</translation>
     </message>

@@ -3,6 +3,7 @@
 
 #include "ioutputpane.h"
 
+namespace OutputPlugin {
 class OutputWindow;
 
 class MessageOutputWindow : public IOutputPane
@@ -14,5 +15,5 @@ public:
 
 
 };
-
+} // namespace OutputPlugin
 #endif // MESSAGEOUTPUTWINDOW_H
