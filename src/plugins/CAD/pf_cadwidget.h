@@ -19,12 +19,12 @@ class PF_CADWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit PF_CADWidget(PF_Document* doc, QWidget *parent = nullptr);
+    explicit PF_CADWidget(/*PF_Document* doc, */QWidget *parent = nullptr);
     ~PF_CADWidget();
 
     void init();
     PF_GraphicView* getGraphicView();
-    PF_Document* getDocument();
+//    PF_Document* getDocument();
 
     void exportGmshGeo();
 
@@ -41,7 +41,7 @@ private:
     QToolButton* zoomselected;
 
     PF_GraphicView* view;
-    PF_Document* document;
+//    PF_Document* document;
 signals:
 
 public slots:
