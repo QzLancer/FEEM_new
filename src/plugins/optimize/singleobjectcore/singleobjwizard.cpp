@@ -38,8 +38,6 @@ void SingleObjWizard::slotCurrentIdChange(int id)
 
 void SingleObjWizard::slotSolve()
 {
-    qDebug() << Q_FUNC_INFO;
-
     //将input parameter转换成可以传递的形式
     QStringList inputname = page2->getInputName();
     QList<QList<double>> inputvalue = page2->getInputValue();

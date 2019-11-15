@@ -5,6 +5,10 @@
 class Particle
 {
 public:
+    enum OptimizeMode{
+        MAXIMIZE,
+        MINIMIZE
+    };
 	//构造函数
     Particle(int _numberOfVariables,
         int _numberOfObjectives,
@@ -15,7 +19,7 @@ public:
         const double *_weight,
         const double *_vari,
         void(*_functionPtr)(Particle *),
-        QStringList _optimizeMode);
+        QList<OptimizeMode> _optimizeMode);
 	//赋值运算符重载
 	Particle& operator =(const Particle& str);
 	//复制构造函数
@@ -111,7 +115,7 @@ private:
 	//更新最佳粒子
 	void updateParticleBest();
 
-    QStringList optimizeMode;
+    QList<OptimizeMode> optimizeMode;
 };
 
 

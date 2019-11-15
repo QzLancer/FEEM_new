@@ -35,7 +35,7 @@ Particle::Particle(int _numberOfVariables,
 	const double *_weight, 
 	const double *_vari,
     void(*_functionPtr)(Particle *),
-    QStringList _optimizeMode)
+    QList<OptimizeMode> _optimizeMode)
 {
     optimizeMode = _optimizeMode;
 
@@ -250,10 +250,10 @@ const double *Particle::getValue()
 void Particle::setValue(const double *_value)
 {
     for (int i = 0; i < numberOfObjectives; i++){
-        if(optimizeMode[i] == "Maximize"){
+        if(optimizeMode[i] == MAXIMIZE){
             value[i] = _value[i];
         }
-        else if(optimizeMode[i] == "Minimize"){
+        else if(optimizeMode[i] == MINIMIZE){
             value[i] = 1/_value[i];
         }
         else{

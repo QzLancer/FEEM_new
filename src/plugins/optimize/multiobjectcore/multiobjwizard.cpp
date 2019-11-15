@@ -83,7 +83,15 @@ void MultiObjWizard::slotSolve()
     qDebug() << "c1: " << c1;
     qDebug() << "c2: " << c2;
 
-    PSO pso(numberOfParticles, numberOfVariables, numberOfObjectives, numberOfExtraParticles, lower, upper, vmax, MultiObjWizard::objectiveFunction, lowerWeight, upperWeight, maxIteration, c1, c2, vari, modename, stoppingCriteria, psoType);
+    QList<Particle::OptimizeMode> optimizemode;
+    for(int i = 0; i < modename.size(); ++i){
+        if(modename[i] == tr("Maximize")){
+            optimizemode.append(Particle::MAXIMIZE);
+        }else{
+            optimizemode.append(Particle::MINIMIZE);
+        }
+    }
+    PSO pso(numberOfParticles, numberOfVariables, numberOfObjectives, numberOfExtraParticles, lower, upper, vmax, MultiObjWizard::objectiveFunction, lowerWeight, upperWeight, maxIteration, c1, c2, vari, optimizemode, stoppingCriteria, psoType);
     pso.optimize();
     pso.printBest();
 

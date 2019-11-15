@@ -375,37 +375,37 @@
 <context>
     <name>Core::MainWindow</name>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="96"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="125"/>
         <source>&amp;Home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="100"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="129"/>
         <source>&amp;Solve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="104"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="133"/>
         <source>&amp;Definitions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="108"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="137"/>
         <source>&amp;Materials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="112"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="141"/>
         <source>&amp;Mesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="116"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="145"/>
         <source>&amp;Geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="120"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="149"/>
         <source>&amp;Results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -433,12 +433,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="249"/>
+        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="250"/>
         <source>Projects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="252"/>
+        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="253"/>
         <source>Files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -456,11 +456,6 @@
     <message>
         <location filename="../../plugins/coreplugin/workpage.cpp" line="42"/>
         <source>Geometry builder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/coreplugin/workpage.cpp" line="66"/>
-        <source>Message outputpane</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -606,76 +601,86 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagField2DTransientWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="19"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="20"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="21"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="22"/>
         <source>Magnetic field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="21"/>
-        <source>2D Magnetic Transient field simulation</source>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="23"/>
+        <source>2D Axis Magnetic Transient field simulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="22"/>
-        <source>Create a project to simulate the distribution of magnetic field.</source>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="30"/>
+        <source>Tips</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="30"/>
+        <source>This feature is not available.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MagFEMProjectManagerPlugin::MagField3DStaticWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="19"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="20"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="21"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="22"/>
         <source>Magnetic field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="21"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="23"/>
         <source>3D Magnetic Static field simulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="22"/>
-        <source>Create a project to simulate the distribution of magnetic field.</source>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="30"/>
+        <source>Tips</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="30"/>
+        <source>This feature is not available.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MagFEMProjectManagerPlugin::MagField3DTransintWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="20"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="21"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="22"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="23"/>
         <source>Magnetic field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="22"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="24"/>
         <source>3D Magnetic Transient field simulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="23"/>
-        <source>Create a project to simulate the distribution of magnetic field.</source>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="31"/>
+        <source>Tips</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="31"/>
+        <source>This feature is not available.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MagFEMProjectManagerPlugin::MagfieldWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="19"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="20"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="31"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="32"/>
         <source>Magnetic field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="21"/>
-        <source>2D Magnetic Static field simulation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="22"/>
-        <source>Create a project to simulate the distribution of magnetic field.</source>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="33"/>
+        <source>2D Axis Magnetic Static field simulation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -706,35 +711,66 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="86"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="85"/>
+        <source>Build mesh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="90"/>
         <source>Im/ExportMesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="91"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="94"/>
+        <source>Import mesh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="98"/>
+        <source>Export mesh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="103"/>
         <source>Mesh Generator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="96"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="107"/>
+        <source>Mesh generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="112"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="116"/>
         <source>Statics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="101"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="121"/>
         <source>ClearMesh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="125"/>
+        <source>Clear mesh</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MultiObjWizard</name>
     <message>
-        <location filename="../../plugins/optimize/multiobjectcore/multiobjwizard.cpp" line="95"/>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjwizard.cpp" line="88"/>
+        <source>Maximize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjwizard.cpp" line="103"/>
         <source>Input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/multiobjectcore/multiobjwizard.cpp" line="96"/>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjwizard.cpp" line="104"/>
         <source>Optimization</source>
         <translation type="unfinished"></translation>
     </message>
@@ -744,16 +780,6 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="64"/>
         <source>To optimize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="166"/>
-        <source>Input</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="167"/>
-        <source>Optimization</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -993,6 +1019,35 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/optimize/optimizeplugin.cpp" line="91"/>
         <source>Multi-Objective Optimization</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>OutputPlugin::MessageOutputPane</name>
+    <message>
+        <location filename="../../plugins/output/messageoutputpane.cpp" line="69"/>
+        <source>Message Outputpane</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>OutputPlugin::OutputPluginPlugin</name>
+    <message>
+        <location filename="../../plugins/output/outputpluginplugin.cpp" line="45"/>
+        <source>Message outputpane</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/output/outputpluginplugin.cpp" line="51"/>
+        <source>Welcome to FEEM!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>OutputPlugin::OutputWindow</name>
+    <message>
+        <location filename="../../plugins/output/outputwindow.cpp" line="347"/>
+        <source>Additional output omitted</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1414,74 +1469,94 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::PF_ProjectExplorerPlugin</name>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="329"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="330"/>
         <source>Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="368"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="332"/>
+        <source>New Project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="337"/>
+        <source>Open Project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="342"/>
+        <source>Save Project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="384"/>
         <source>Add Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="375"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="391"/>
         <source>Add Study</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="381"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="397"/>
         <source>3D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="386"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="402"/>
         <source>2D Axisymmetric</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="391"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="407"/>
         <source>2D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="399"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="415"/>
         <source>Static Magnetic Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="404"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="420"/>
         <source>Transient Magnetic Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="409"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="425"/>
         <source>Heat Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="417"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="433"/>
         <source>add Material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="422"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="438"/>
         <source>add Blank Material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="429"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="445"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="444"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="460"/>
         <source>Model tree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="546"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="562"/>
         <source>New Project</source>
         <comment>Title of dialog</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="575"/>
+        <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1514,7 +1589,7 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/projectwelcomepage.cpp" line="553"/>
+        <location filename="../../plugins/project/projectwelcomepage.cpp" line="546"/>
         <source>Recent Projects</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2109,17 +2184,17 @@ Reason: %3</source>
 <context>
     <name>SingleObjWizard</name>
     <message>
-        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="81"/>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="79"/>
         <source>Maximize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="114"/>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="112"/>
         <source>Value: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="116"/>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="114"/>
         <source>Feasible: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -2328,16 +2403,19 @@ Reason: %3</source>
     <name>Solver::SolverPlugin</name>
     <message>
         <location filename="../../plugins/solver/solverplugin.cpp" line="81"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="85"/>
         <source>Solver Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/solver/solverplugin.cpp" line="86"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="90"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="94"/>
         <source>Solve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/solver/solverplugin.cpp" line="91"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="99"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="103"/>
         <source>Clear Solution</source>
         <translation type="unfinished"></translation>
     </message>

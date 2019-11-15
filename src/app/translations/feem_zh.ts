@@ -544,7 +544,7 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="17"/>
         <source>OrthDisign</source>
-        <translation type="unfinished"></translation>
+        <translation>正交实验</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="23"/>
@@ -760,12 +760,17 @@ Reason: %3</source>
 <context>
     <name>MultiObjWizard</name>
     <message>
-        <location filename="../../plugins/optimize/multiobjectcore/multiobjwizard.cpp" line="95"/>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjwizard.cpp" line="88"/>
+        <source>Maximize</source>
+        <translation>最大化</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjwizard.cpp" line="103"/>
         <source>Input</source>
         <translation>输入参数</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/multiobjectcore/multiobjwizard.cpp" line="96"/>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjwizard.cpp" line="104"/>
         <source>Optimization</source>
         <translation>优化目标</translation>
     </message>
@@ -778,14 +783,12 @@ Reason: %3</source>
         <translation>开始优化</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="166"/>
         <source>Input</source>
-        <translation>输入参数</translation>
+        <translation type="vanished">输入参数</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="167"/>
         <source>Optimization</source>
-        <translation>优化目标</translation>
+        <translation type="vanished">优化目标</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="180"/>
@@ -1030,7 +1033,7 @@ Reason: %3</source>
 <context>
     <name>OutputPlugin::MessageOutputPane</name>
     <message>
-        <location filename="../../plugins/output/messageoutputpane.cpp" line="61"/>
+        <location filename="../../plugins/output/messageoutputpane.cpp" line="69"/>
         <source>Message Outputpane</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2197,17 +2200,17 @@ Reason: %3</source>
 <context>
     <name>SingleObjWizard</name>
     <message>
-        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="81"/>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="79"/>
         <source>Maximize</source>
         <translation>最大化</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="114"/>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="112"/>
         <source>Value: </source>
         <translation>目标值：</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="116"/>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="114"/>
         <source>Feasible: </source>
         <translation type="unfinished"></translation>
     </message>
