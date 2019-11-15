@@ -15,9 +15,12 @@ class OutputWindow;
 */
 class MessageOutputPane : public IOutputPane
 {
+    Q_OBJECT
 public:
     MessageOutputPane();
     ~MessageOutputPane();
+
+    static MessageOutputPane* instance();
 
     QWidget *outputWidget() const override;
     QString displayName() const override;

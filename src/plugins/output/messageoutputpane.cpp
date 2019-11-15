@@ -7,6 +7,7 @@
 #include <QWidget>
 
 namespace OutputPlugin {
+static MessageOutputPane *m_instance = nullptr;
 
 MessageOutputPane::MessageOutputPane()
     :m_mainWidget(new QWidget)
@@ -15,6 +16,8 @@ MessageOutputPane::MessageOutputPane()
     ,m_zoomInButton(new QToolButton)
     ,m_zoomOutButton(new QToolButton)
 {
+    m_instance = this;
+
     m_clearButton->setIcon(QIcon(":/imgs/clear16.png"));
     m_clearButton->setAutoRaise(true);
     connect(m_clearButton,&QToolButton::clicked,[this]()
@@ -48,7 +51,12 @@ MessageOutputPane::MessageOutputPane()
 
 MessageOutputPane::~MessageOutputPane()
 {
+    m_instance = nullptr;
+}
 
+MessageOutputPane *MessageOutputPane::instance()
+{
+    return m_instance;
 }
 
 QWidget *MessageOutputPane::outputWidget() const
@@ -68,7 +76,7 @@ void MessageOutputPane::clearContents()
 
 void MessageOutputPane::appendMessage(const QString &out)
 {
-    m_outputWindow->appendText(out);
+    m_outputWindow->appendText(out+QLatin1Char('\n'));
 }
 
 }// namespace OutputPlugin

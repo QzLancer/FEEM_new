@@ -332,7 +332,7 @@ void OutputWindow::appendMessage(const QString &output/*, OutputFormat format*/)
 // TODO rename
 void OutputWindow::appendText(const QString &textIn, const QTextCharFormat &format)
 {
-    const QString text = Utils::SynchronousProcess::normalizeNewlines(textIn) + QLatin1Char('\n');
+    const QString text = Utils::SynchronousProcess::normalizeNewlines(textIn);
     if (d->maxCharCount > 0 && document()->characterCount() >= d->maxCharCount)
         return;
     const bool atBottom = isScrollbarAtBottom();
