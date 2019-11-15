@@ -891,7 +891,22 @@ Reason: %3</source>
 <context>
     <name>OutputPlugin::MessageOutputPane</name>
     <message>
-        <location filename="../../plugins/output/messageoutputpane.cpp" line="61"/>
+        <location filename="../../plugins/output/messageoutputpane.cpp" line="23"/>
+        <source>Clear</source>
+        <translation type="unfinished">清除</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/output/messageoutputpane.cpp" line="30"/>
+        <source>Zoom in</source>
+        <translation type="unfinished">放大</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/output/messageoutputpane.cpp" line="33"/>
+        <source>Zoom out</source>
+        <translation type="unfinished">缩小</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/output/messageoutputpane.cpp" line="72"/>
         <source>Message Outputpane</source>
         <translation type="unfinished"></translation>
     </message>

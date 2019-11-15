@@ -54,16 +54,19 @@ bool MaterialPlugin::initialize(const QStringList &arguments, QString *errorMess
 {
     registerDefaultContainers();
     registerDefaultActions();
-    return true;
-}
 
-void MaterialPlugin::extensionsInitialized()
-{
     QWidget* materialLibraryTree = new PF_MaterialLibraryWidget();
     ads::CDockWidget* DockWidget3 = new ads::CDockWidget(tr("Material library"));
     DockWidget3->setWidget(materialLibraryTree);
     // Add the dock widget to the top dock widget area
     Core::WorkPage::DockManager()->addDockWidget(ads::RightDockWidgetArea, DockWidget3);
+
+    return true;
+}
+
+void MaterialPlugin::extensionsInitialized()
+{
+
 }
 
 bool MaterialPlugin::delayedInitialize()

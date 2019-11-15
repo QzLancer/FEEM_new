@@ -16,7 +16,7 @@ namespace MagFEMProjectManagerPlugin {
 MagField3DStaticWizard::MagField3DStaticWizard()
 {
     setId("FEM.MAG3DStatic");
-    setIcon(QIcon(":/imgs/model_3d_32.png"));
+    setIcon(QIcon(":/imgs/model3d32.png"));
     setCategoryIcon(QIcon(":/imgs/magnetic_fields_32.png"));
     setCategory(tr("Magnetic field"));
     setDisplayCategory(tr("Magnetic field"));

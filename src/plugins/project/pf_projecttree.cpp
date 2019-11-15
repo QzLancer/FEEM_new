@@ -4,9 +4,13 @@
 
 #include "pf_node.h"
 #include "pf_project.h"
+#include "pf_sessionmanager.h"
+
+#include <utils/algorithm.h>
+
 #include <coreplugin/actionmanager/actionmanager.h>
 #include <coreplugin/actionmanager/actioncontainer.h>
-#include "pf_sessionmanager.h"
+
 #include <QMenu>
 
 #include <QApplication>
@@ -105,18 +109,18 @@ PF_Project* PF_ProjectTree::projectForNode(const Node* node)
     if (!node)
         return nullptr;
 
-//    /** 寻找对应的projectnode **/
-//    const FolderNode *folder = node->asFolderNode();
-//    if (!folder)
-//        folder = node->parentFolderNode();
+    /** 寻找对应的projectnode **/
+    const FolderNode *folder = node->asFolderNode();
+    if (!folder)
+        folder = node->parentFolderNode();
 
-//    while (folder && folder->parentFolderNode())
-//        folder = folder->parentFolderNode();
+    while (folder && folder->parentFolderNode())
+        folder = folder->parentFolderNode();
 
-//    /** 寻找projectnode对应的project **/
-//    return Utils::findOrDefault(SessionManager::projects(), [folder](const Project *pro) {
-//        return pro->containerNode() == folder;
-//    });
+    /** 寻找projectnode对应的project **/
+    return Utils::findOrDefault(PF_SessionManager::projects(), [folder](const PF_Project *pro) {
+        return pro->rootProjectNode() == folder;
+    });
 }
 
 /*!

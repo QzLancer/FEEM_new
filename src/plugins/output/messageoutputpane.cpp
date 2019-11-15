@@ -20,14 +20,17 @@ MessageOutputPane::MessageOutputPane()
 
     m_clearButton->setIcon(QIcon(":/imgs/clear16.png"));
     m_clearButton->setAutoRaise(true);
+    m_clearButton->setToolTip(tr("Clear"));
     connect(m_clearButton,&QToolButton::clicked,[this]()
     {
         this->clearContents();
     });
     m_zoomInButton->setIcon(QIcon(":/imgs/zoomin16.png"));
     m_zoomInButton->setAutoRaise(true);
+    m_zoomInButton->setToolTip(tr("Zoom in"));
     m_zoomOutButton->setIcon(QIcon(":/imgs/zoomout16.png"));
     m_zoomOutButton->setAutoRaise(true);
+    m_zoomOutButton->setToolTip(tr("Zoom out"));
 
     /** toolbar **/
     auto toolbarlayout = new QHBoxLayout(m_mainWidget);
