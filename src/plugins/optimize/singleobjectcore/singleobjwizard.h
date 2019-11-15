@@ -25,8 +25,6 @@ public slots:
 private:
     /**求解器**/
     static void objectiveFunction (SParticle *Particle);
-
-    QVariantMap mMap;
 };
 
 #endif // SINGLEOBJWIZARD_H

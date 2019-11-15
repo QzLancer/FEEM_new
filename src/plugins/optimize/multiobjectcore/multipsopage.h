@@ -1,19 +1,20 @@
-#ifndef SINGLEPSOPAGE_H
-#define SINGLEPSOPAGE_H
+#ifndef MULTIPSOPAGE_H
+#define MULTIPSOPAGE_H
 
 #include <QWizardPage>
 #include <QLineEdit>
 #include <QLabel>
 
-class SinglePSOPage : public QWizardPage
+class MultiPSOPage : public QWizardPage
 {
     Q_OBJECT
 public:
-    explicit SinglePSOPage(QWizard *parent = nullptr);
+    explicit MultiPSOPage(QWizard *parent = nullptr);
 
     /**所有LineEdit**/
     QLineEdit *mSizeEdit;
     QLineEdit *mTimeEdit;
+    QLineEdit *mEliteEdit;
     QLineEdit *mRateEdit;
     QLineEdit *mWLowerEdit;
     QLineEdit *mWUpperEdit;
@@ -30,4 +31,4 @@ private:
     QWizard *mWizard;
 };
 
-#endif // SINGLEPSOPAGE_H
+#endif // MULTIPSOPAGE_H

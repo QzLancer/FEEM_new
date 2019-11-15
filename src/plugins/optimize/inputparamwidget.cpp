@@ -83,6 +83,12 @@ void InputParamWidget::setInputList(QStringList inputlist)
     mInputBox->addItems(mInputList);
 }
 
+void InputParamWidget::appendInputList(QString string)
+{
+    mInputList.append(string);
+    mInputBox->addItem(string);
+}
+
 void InputParamWidget::slotAddTableItem()
 {
     qDebug() << "InputParamWidget::slotAddTableItem";

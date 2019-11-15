@@ -15,7 +15,7 @@ MultiObjectDialog::MultiObjectDialog(QWidget *parent)
       mGroup1(new QGroupBox(this)),
       mGroup2(new QGroupBox(this)),
       mInputWidget(new InputParamWidget(mGroup1)),
-      mTargetWidget(new TargetWidget(mGroup1)),
+      mTargetWidget(new ObjectWidget(mGroup1)),
       mWarningLabel(new QLabel(mGroup2)),
       mSizeEdit(new QLineEdit("50", mGroup2)),
       mTimeEdit(new QLineEdit("100", mGroup2)),
@@ -91,7 +91,7 @@ void MultiObjectDialog::setInputList(QStringList inputlist)
 void MultiObjectDialog::setTargetList(QStringList targetlist)
 {
     mTargetList = targetlist;
-    mTargetWidget->setTargetList(mTargetList);
+    mTargetWidget->setObjectList(mTargetList);
 }
 
 QStringList MultiObjectDialog::getInputList()
@@ -109,7 +109,7 @@ void MultiObjectDialog::slotOptimize()
         qDebug() << "Input parameter OK!";
         //optimize mode
         QStringList TargetMode;
-        QMap<QString, QString> TargetModeMap = mTargetWidget->getTargetModeMap();
+        QMap<QString, QString> TargetModeMap = mTargetWidget->getObjectModeMap();
         for(auto iter = TargetModeMap.begin(); iter != TargetModeMap.end(); ++iter){
             qDebug() << iter.key() << iter.value();
             mTargetName.append(iter.key());
@@ -238,7 +238,7 @@ void MultiObjectDialog::initializeGroup2()
 bool MultiObjectDialog::isParamError()
 {
     //判断输入参数是否为空
-    if(mTargetWidget->getTargetList().size() == 0){
+    if(mTargetWidget->getObjectList().size() == 0){
         mWarningLabel->setText(tr("Error: Target is Empty!"));
         return false;
     }

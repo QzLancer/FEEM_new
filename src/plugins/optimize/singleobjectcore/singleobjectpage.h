@@ -33,7 +33,7 @@ public:
     void appendOptimizeHintMap (QString objective, QString hint);
 
     //get
-    QStringList InputList();
+    QStringList getInputList();
     QMap<QString, QString> optimizeHintMap() const;
     QStringList getInputName() const;
     QList<QList<double>> getInputValue() const;
@@ -51,9 +51,6 @@ private:
     void initializeGroup1();
     void initializeGroup2();
     void refreshTable();
-
-    /**Combobox中的参数**/
-    QStringList mInputList;
 
     /**控件**/
     QComboBox *mObjectBox;

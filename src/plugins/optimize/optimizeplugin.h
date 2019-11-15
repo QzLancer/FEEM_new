@@ -1,7 +1,6 @@
 #pragma once
 
 #include <extensionsystem/iplugin.h>
-#include "singleobjwizard.h"
 #include "multiobjectdialog.h"
 
 namespace Optimize {

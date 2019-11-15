@@ -22,11 +22,10 @@ public:
     QList<QList<double>> getInputValue() const;
     QStringList getInputName() const;
 
-
     //setter
     void setWarning(QString string);
     void setInputList(QStringList inputlist);
-
+    void appendInputList(QString string);
 
 signals:
     void inputParamChanged();

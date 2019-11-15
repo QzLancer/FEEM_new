@@ -1,6 +1,7 @@
 #include "optimizeplugin.h"
 #include "optimizeconstants.h"
-#include "singleobjwizard.h"
+#include "singleobjectcore/singleobjwizard.h"
+#include "multiobjectcore/multiobjwizard.h"
 
 #include "qtribbon/include/QtnRibbonPage.h"
 #include "qtribbon/include/QtnRibbonGroup.h"
@@ -108,13 +109,14 @@ void OptimizePlugin::slotActionSOO()
 void OptimizePlugin::slotActionMOO()
 {
     /**添加部分参数，后续进行修改**/
-    QStringList InputList;
-    QStringList TargetList;
-    InputList << "Input1" << "Input2" << "Input3";
-    TargetList << "Target1" << "Target2" << "Target3" << "Target4";
-    mMultiObjectDialog->setInputList(InputList);
-    mMultiObjectDialog->setTargetList(TargetList);
-    mMultiObjectDialog->show();
+    MultiObjWizard *mow = new MultiObjWizard;
+    mow->page1->appendListPicMap("relay1", QPixmap(":./pic/imgs/relay1.jpg"));
+    mow->page1->appendListPicMap("son1", QPixmap(":./pic/imgs/son1.jpg"));
+    mow->page1->appendListPicMap("son2", QPixmap(":./pic/imgs/son2.jpg"));
+    mow->appendInputList("Input1");
+    mow->appendInputList("Input2");
+    mow->appendInputList("Input3");
+    mow->exec();
 }
 
 }//namespace Optimize
