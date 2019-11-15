@@ -547,40 +547,45 @@ Reason: %3</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="22"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="17"/>
+        <source>OrthDisign</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="23"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="24"/>
         <source>Input parameters</source>
         <translation>输入参数</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="24"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="25"/>
         <source>Minimum of input parameters: </source>
         <translation>输入参数最小值：</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="25"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="26"/>
         <source>Maximum of input Parameters: </source>
         <translation>输入参数最大值：</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="32"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="33"/>
         <source>Minimum of input parameters</source>
         <translation>输入参数最小值</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="32"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="33"/>
         <source>Maximum of input parameters</source>
         <translation>输入参数最大值</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="106"/>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="133"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="114"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="141"/>
         <source>Error: The minimum must be less than the maximum!</source>
         <translation>错误：输入参数最小值必须小于最大值！</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="109"/>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="138"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="117"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="146"/>
         <source>Error: Properties must be number!</source>
         <translation>错误：输入参数必须为数字！</translation>
     </message>
@@ -733,6 +738,19 @@ Reason: %3</source>
     </message>
 </context>
 <context>
+    <name>MultiObjWizard</name>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjwizard.cpp" line="95"/>
+        <source>Input</source>
+        <translation>输入参数</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjwizard.cpp" line="96"/>
+        <source>Optimization</source>
+        <translation>优化目标</translation>
+    </message>
+</context>
+<context>
     <name>MultiObjectDialog</name>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="64"/>
@@ -851,19 +869,140 @@ Reason: %3</source>
     </message>
 </context>
 <context>
+    <name>MultiObjectPage</name>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjectpage.cpp" line="16"/>
+        <source>Object to be optimized &amp; Input parameters</source>
+        <translation>优化目标与输入参数</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjectpage.cpp" line="31"/>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjectpage.cpp" line="37"/>
+        <source>Electromagnetic force</source>
+        <translation>电磁力</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjectpage.cpp" line="33"/>
+        <source>Pick-up time</source>
+        <translation>吸合时间</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjectpage.cpp" line="35"/>
+        <source>Release time</source>
+        <translation>释放时间</translation>
+    </message>
+</context>
+<context>
+    <name>MultiPSOPage</name>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="18"/>
+        <source>Multi-object PSO parameters</source>
+        <translation>多目标粒子群参数</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="25"/>
+        <source>Number of Particles: </source>
+        <translation>种群大小：</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="29"/>
+        <source>Max iteration: </source>
+        <translation>粒子群循环次数：</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="33"/>
+        <source>Number of eliet Particles: </source>
+        <translation>精英种群粒子数目：</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="37"/>
+        <source>Mutation rate: </source>
+        <translation>变异概率：</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="41"/>
+        <source>Lower weight: </source>
+        <translation>w下界：</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="45"/>
+        <source>Upper weight: </source>
+        <translation>w上界：</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="49"/>
+        <source>c1: </source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="53"/>
+        <source>c2: </source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>ObjectWidget</name>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="15"/>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="16"/>
+        <source>Add</source>
+        <translation>添加</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="24"/>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="33"/>
+        <source>Object to be optimized</source>
+        <translation>优化目标</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="26"/>
+        <source>Object to be optimized: </source>
+        <translation>优化目标：</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="28"/>
+        <source>Optimize mode: </source>
+        <translation>优化形式：</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="33"/>
+        <source>Optimize mode</source>
+        <translation>优化形式</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="46"/>
+        <source>Maximize</source>
+        <translation>最大化</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="46"/>
+        <source>Minimize</source>
+        <translation>最小化</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="113"/>
+        <source>Error: Current Object Exist!</source>
+        <translation>错误：当前目标已存在</translation>
+    </message>
+</context>
+<context>
     <name>Optimize::OptimizePlugin</name>
     <message>
-        <location filename="../../plugins/optimize/optimizeplugin.cpp" line="76"/>
+        <location filename="../../plugins/optimize/optimizeplugin.cpp" line="78"/>
         <source>Optimization</source>
         <translation>优化</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/optimizeplugin.cpp" line="84"/>
+        <location filename="../../plugins/optimize/optimizeplugin.cpp" line="86"/>
         <source>Single-Objective Optimization</source>
         <translation>单目标优化</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/optimizeplugin.cpp" line="89"/>
+        <location filename="../../plugins/optimize/optimizeplugin.cpp" line="91"/>
         <source>Multi-Objective Optimization</source>
         <translation>多目标优化</translation>
     </message>
@@ -1655,14 +1794,12 @@ Reason: %3</source>
         <translation type="unfinished">组件</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectcore/sparticle.cpp" line="135"/>
         <source>Maximize</source>
-        <translation type="unfinished">最大化</translation>
+        <translation type="obsolete">最大化</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectcore/sparticle.cpp" line="138"/>
         <source>Minimize</source>
-        <translation type="unfinished">最小化</translation>
+        <translation type="obsolete">最小化</translation>
     </message>
     <message>
         <location filename="../../libs/QtAdvancedDock/DockAreaTitleBar.cpp" line="147"/>
@@ -1989,6 +2126,24 @@ Reason: %3</source>
     </message>
 </context>
 <context>
+    <name>SingleObjWizard</name>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="81"/>
+        <source>Maximize</source>
+        <translation>最大化</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="114"/>
+        <source>Value: </source>
+        <translation>目标值：</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="116"/>
+        <source>Feasible: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SingleObjectDialog</name>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="58"/>
@@ -1996,19 +2151,17 @@ Reason: %3</source>
         <translation>开始优化</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="180"/>
         <source>Value: </source>
-        <translation>目标值：</translation>
+        <translation type="vanished">目标值：</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="182"/>
-        <source>Feasible: </source>
-        <translation></translation>
+        <source>Target to be optimized &amp;&amp; input parameters</source>
+        <translation type="vanished">优化目标及输入参数</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="199"/>
-        <source>Target to be optimized &amp;&amp; input parameters</source>
-        <translation>优化目标及输入参数</translation>
+        <source>Object to be optimized &amp;&amp; input parameters</source>
+        <translation>优化目标与输入参数</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="202"/>
@@ -2077,8 +2230,12 @@ Reason: %3</source>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="288"/>
+        <source>Error: Number of particles must be a integer!</source>
+        <translation>错误：粒子数目必须为整数！</translation>
+    </message>
+    <message>
         <source>Error: Number of particles must be a number!</source>
-        <translation>错误：种群大小必须为整数！</translation>
+        <translation type="vanished">错误：种群大小必须为整数！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="292"/>
@@ -2112,6 +2269,93 @@ Reason: %3</source>
     </message>
 </context>
 <context>
+    <name>SingleObjectPage</name>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="35"/>
+        <source>Object to be optimized &amp; Input parameters</source>
+        <translation>优化目标与输入参数</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="54"/>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="59"/>
+        <source>Electromagnetic force</source>
+        <translation>电磁力</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="56"/>
+        <source>Pick-up time</source>
+        <translation>吸合时间</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="58"/>
+        <source>Release time</source>
+        <translation>释放时间</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="124"/>
+        <source>Object to be optimized</source>
+        <translation>优化目标</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="125"/>
+        <source>Optimize Mode</source>
+        <translation>优化形式</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="128"/>
+        <source>Maximize</source>
+        <translation>最大化</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="129"/>
+        <source>Minimize</source>
+        <translation>最小化</translation>
+    </message>
+</context>
+<context>
+    <name>SinglePSOPage</name>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="20"/>
+        <source>Single-object PSO parameters</source>
+        <translation>单目标粒子群参数</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="27"/>
+        <source>Number of Particles: </source>
+        <translation>种群大小：</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="31"/>
+        <source>Max iteration: </source>
+        <translation>粒子群循环次数：</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="35"/>
+        <source>Mutation rate: </source>
+        <translation>变异概率：</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="39"/>
+        <source>Lower weight: </source>
+        <translation>w下界</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="43"/>
+        <source>Upper weight: </source>
+        <translation>w上界：</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="47"/>
+        <source>c1: </source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="51"/>
+        <source>c2: </source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>Solver::SolverPlugin</name>
     <message>
         <location filename="../../plugins/solver/solverplugin.cpp" line="81"/>
@@ -2132,50 +2376,48 @@ Reason: %3</source>
 <context>
     <name>TargetWidget</name>
     <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="15"/>
         <source>Delete</source>
-        <translation>删除</translation>
+        <translation type="vanished">删除</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="16"/>
         <source>Add</source>
-        <translation>添加</translation>
+        <translation type="vanished">添加</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="24"/>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="33"/>
         <source>Target to be optimized</source>
-        <translation>优化目标</translation>
+        <translation type="vanished">优化目标</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="26"/>
         <source>Target to be optimized: </source>
-        <translation>优化目标：</translation>
+        <translation type="vanished">优化目标：</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="28"/>
         <source>Optimize mode: </source>
-        <translation>优化形式：</translation>
+        <translation type="vanished">优化形式：</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="33"/>
         <source>Optimize mode</source>
-        <translation>优化形式</translation>
+        <translation type="vanished">优化形式</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="46"/>
         <source>Maximize</source>
-        <translation>最大化</translation>
+        <translation type="vanished">最大化</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="46"/>
         <source>Minimize</source>
-        <translation>最小化</translation>
+        <translation type="vanished">最小化</translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="115"/>
         <source>Error: Current Target Exist!</source>
-        <translation>错误：当前优化目标已存在！</translation>
+        <translation type="vanished">错误：当前优化目标已存在！</translation>
+    </message>
+</context>
+<context>
+    <name>TypePage</name>
+    <message>
+        <location filename="../../plugins/optimize/typepage.cpp" line="11"/>
+        <source>Select the type of relay</source>
+        <translation>选择继电器类型</translation>
     </message>
 </context>
 <context>

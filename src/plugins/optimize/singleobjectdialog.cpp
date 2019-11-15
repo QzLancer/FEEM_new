@@ -110,88 +110,88 @@ QStringList SingleObjectDialog::TargetList()
 
 void SingleObjectDialog::slotOptimize()
 {
-    QList<QList<double>> InputValue = mInputWidget->getInputValue();
-    if(isParamError()){
-        qDebug() << "Input parameter OK!";
-        //优化形式
-        QString TargetMode = mModeBox->currentText();
-        //将input parameter转换成可以传递的形式
-        double *lower = new double[static_cast<unsigned long long>(InputValue.size())];
-        double *upper = new double[static_cast<unsigned long long>(InputValue.size())];
-        double *vmax = new double[static_cast<unsigned long long>(InputValue.size())]; //粒子最大速度
-        mInputName = mInputWidget->getInputName();
-        for(int i = 0; i < InputValue.size(); ++i){
-            lower[i] = InputValue[i][0];
-            upper[i] = InputValue[i][1];
-            vmax[i] = 0.1;
-        }
-        //读取各个lineedit中的数据，目前变异概率不使用
-        int numberOfParticles = mSizeEdit->text().toInt();
-        int numberOfVariables = InputValue.size();
-        int maxIteration = mTimeEdit->text().toInt();
-        double lowerWeight = mWLowerEdit->text().toDouble();
-        double upperWeight = mWUpperEdit->text().toDouble();
-        double c1 = mC1Edit->text().toDouble();
-        double c2 = mC2Edit->text().toDouble();
-        QString stoppingCriteria = "none";
-        QString psoType = "Classic";
-        double threshold = 0.0001;
+//    QList<QList<double>> InputValue = mInputWidget->getInputValue();
+//    if(isParamError()){
+//        qDebug() << "Input parameter OK!";
+//        //优化形式
+//        QString TargetMode = mModeBox->currentText();
+//        //将input parameter转换成可以传递的形式
+//        double *lower = new double[static_cast<unsigned long long>(InputValue.size())];
+//        double *upper = new double[static_cast<unsigned long long>(InputValue.size())];
+//        double *vmax = new double[static_cast<unsigned long long>(InputValue.size())]; //粒子最大速度
+//        mInputName = mInputWidget->getInputName();
+//        for(int i = 0; i < InputValue.size(); ++i){
+//            lower[i] = InputValue[i][0];
+//            upper[i] = InputValue[i][1];
+//            vmax[i] = 0.1;
+//        }
+//        //读取各个lineedit中的数据，目前变异概率不使用
+//        int numberOfParticles = mSizeEdit->text().toInt();
+//        int numberOfVariables = InputValue.size();
+//        int maxIteration = mTimeEdit->text().toInt();
+//        double lowerWeight = mWLowerEdit->text().toDouble();
+//        double upperWeight = mWUpperEdit->text().toDouble();
+//        double c1 = mC1Edit->text().toDouble();
+//        double c2 = mC2Edit->text().toDouble();
+//        QString stoppingCriteria = "none";
+//        QString psoType = "Classic";
+//        double threshold = 0.0001;
 
-        //观察输入参数
-        qDebug() << "lower: " << lower[0] << lower[1];
-        qDebug() << "upper: " << upper[0] << upper[1];
-        qDebug() << "vmax: " << vmax[0] << vmax[1];
-        qDebug() << "numberOfParticles: " << numberOfParticles;
-        qDebug() << "numberOfVariables: " << numberOfVariables;
-        qDebug() << "maxIteration: " << maxIteration;
-        qDebug() << "lowerWeight: " << lowerWeight;
-        qDebug() << "upperWeight: " << upperWeight;
-        qDebug() << "c1: " << c1;
-        qDebug() << "c2: " << c2;
+//        //观察输入参数
+//        qDebug() << "lower: " << lower[0] << lower[1];
+//        qDebug() << "upper: " << upper[0] << upper[1];
+//        qDebug() << "vmax: " << vmax[0] << vmax[1];
+//        qDebug() << "numberOfParticles: " << numberOfParticles;
+//        qDebug() << "numberOfVariables: " << numberOfVariables;
+//        qDebug() << "maxIteration: " << maxIteration;
+//        qDebug() << "lowerWeight: " << lowerWeight;
+//        qDebug() << "upperWeight: " << upperWeight;
+//        qDebug() << "c1: " << c1;
+//        qDebug() << "c2: " << c2;
 
-        SPSO spso(numberOfParticles, numberOfVariables, lower, upper, vmax, SingleObjectDialog::objectiveFunction, lowerWeight, upperWeight, maxIteration, c1, c2, threshold, TargetMode, stoppingCriteria, psoType);
+//        SPSO spso(numberOfParticles, numberOfVariables, lower, upper, vmax, SingleObjectDialog::objectiveFunction, lowerWeight, upperWeight, maxIteration, c1, c2, threshold, TargetMode, stoppingCriteria, psoType);
 
-        spso.optimize();
+//        spso.optimize();
 
-        spso.printBest();
+//        spso.printBest();
 
-        double *position = spso.getBestPosition();
-        double value = spso.getBestValue();
-        bool feasible = spso.getBestFeasible();
+//        double *position = spso.getBestPosition();
+//        double value = spso.getBestValue();
+//        bool feasible = spso.getBestFeasible();
 
-        //优化后结果Dialog
-        QDialog *dialog = new QDialog;
-        dialog->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
-        QVBoxLayout *vlayout = new QVBoxLayout(dialog);
-        QLabel *positionlabel = new QLabel;
-        QLabel *valuelabel = new QLabel;
-        QLabel *feasiblelabel = new QLabel;
-        vlayout->addWidget(positionlabel);
-        vlayout->addWidget(valuelabel);
-        vlayout->addWidget(feasiblelabel);
+//        //优化后结果Dialog
+//        QDialog *dialog = new QDialog;
+//        dialog->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
+//        QVBoxLayout *vlayout = new QVBoxLayout(dialog);
+//        QLabel *positionlabel = new QLabel;
+//        QLabel *valuelabel = new QLabel;
+//        QLabel *feasiblelabel = new QLabel;
+//        vlayout->addWidget(positionlabel);
+//        vlayout->addWidget(valuelabel);
+//        vlayout->addWidget(feasiblelabel);
 
-        QString positionstr;
-        for(int i = 0; i < numberOfVariables; ++i){
-            positionstr += mInputName[i];
-            positionstr += ": ";
-            positionstr += QString::number(position[i]);
-            positionstr += " ";
-        }
-        QString valuestr(tr("Value: "));
-        valuestr += QString::number(value);
-        QString feasiblestr(tr("Feasible: "));
-        feasiblestr += feasible ? "true" : "false";
+//        QString positionstr;
+//        for(int i = 0; i < numberOfVariables; ++i){
+//            positionstr += mInputName[i];
+//            positionstr += ": ";
+//            positionstr += QString::number(position[i]);
+//            positionstr += " ";
+//        }
+//        QString valuestr(tr("Value: "));
+//        valuestr += QString::number(value);
+//        QString feasiblestr(tr("Feasible: "));
+//        feasiblestr += feasible ? "true" : "false";
 
-        positionlabel->setText(positionstr);
-        valuelabel->setText(valuestr);
-        feasiblelabel->setText(feasiblestr);
+//        positionlabel->setText(positionstr);
+//        valuelabel->setText(valuestr);
+//        feasiblelabel->setText(feasiblestr);
 
-        dialog->show();
+//        dialog->show();
 
-        delete[] vmax;
-        delete[] upper;
-        delete[] lower;
-    }
+//        delete[] vmax;
+//        delete[] upper;
+//        delete[] lower;
+//    }
 }
 
 void SingleObjectDialog::initializeGroup1()

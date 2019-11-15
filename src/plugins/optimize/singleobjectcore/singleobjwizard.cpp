@@ -76,7 +76,14 @@ void SingleObjWizard::slotSolve()
     qDebug() << "c1: " << c1;
     qDebug() << "c2: " << c2;
     qDebug() << page2->getCurrentMode();
-    SPSO spso(numberOfParticles, numberOfVariables, lower, upper, vmax, SingleObjWizard::objectiveFunction, lowerWeight, upperWeight, maxIteration, c1, c2, threshold, page2->getCurrentMode(), stoppingCriteria, psoType);
+
+    SParticle::OptimizeMode optimizeMode;
+    if(page2->getCurrentMode() == tr("Maximize")){
+        optimizeMode = SParticle::MAXIMIZE;
+    }else{
+        optimizeMode = SParticle::MINIMIZE;
+    }
+    SPSO spso(numberOfParticles, numberOfVariables, lower, upper, vmax, SingleObjWizard::objectiveFunction, lowerWeight, upperWeight, maxIteration, c1, c2, threshold, optimizeMode, stoppingCriteria, psoType);
 
     spso.optimize();
 
