@@ -458,5 +458,5 @@ CMaterialPropNode::CMaterialPropNode(CMaterialProp *material)
 
 CMaterialPropNode::~CMaterialPropNode()
 {
-    qDebug()<<Q_FUNC_INFO;
+//    qDebug()<<Q_FUNC_INFO;
 }

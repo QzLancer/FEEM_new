@@ -2,6 +2,8 @@
 
 #include "ioutputpane.h"
 
+namespace OutputPlugin {
+
 OutputPaneManager::OutputPaneManager(QWidget *parent) : QWidget(parent)
 {
 
@@ -17,3 +19,5 @@ IOutputPane::~IOutputPane()
 {
 
 }
+
+} // namespace OutputPlugin

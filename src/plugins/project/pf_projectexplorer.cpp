@@ -38,6 +38,7 @@
 #include <QDir>
 #include <QMenu>
 #include <QUuid>
+#include <QFileDialog>
 
 #include <cstdlib>
 
@@ -327,6 +328,21 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
     ActionContainer* page = ActionManager::actionContainer(Core::Constants::P_HOME);
     ActionContainer* group = ActionManager::createRibbonGroup(Constants::G_HOME_PROJECT);
     group->ribbonGroup()->setTitle(tr("Project"));
+
+    auto action = new QAction(tr("New Project"));
+    action->setIcon(QIcon(":/imgs/projects.png"));
+    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
+    connect(action, &QAction::triggered, this,&PF_ProjectExplorerPlugin::openNewProjectDialog);
+
+    action = new QAction(tr("Open Project"));
+    action->setIcon(QIcon(":/imgs/openfile.png"));
+    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
+    connect(action, &QAction::triggered, this,&PF_ProjectExplorerPlugin::openOpenProjectDialog);
+
+    action = new QAction(tr("Save Project"));
+    action->setIcon(QIcon(":/imgs/filesave.png"));
+    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
+
     page->appendGroup(Constants::G_HOME_PROJECT);
     page->addRibbonGroup(group,Constants::G_HOME_PROJECT);
 
@@ -553,7 +569,12 @@ void PF_ProjectExplorerPlugin::openNewProjectDialog()
 
 void PF_ProjectExplorerPlugin::openOpenProjectDialog()
 {
-
+    /** 寻找上次记录的文件夹位置 **/
+    /** 打开文件对话框 **/
+    const QStringList files = QFileDialog::getOpenFileNames(ICore::dialogParent(),
+                                                      tr("Open File"));
+    if (!files.isEmpty())
+        ICore::openFiles(files, ICore::SwitchMode);
 }
 
 void PF_ProjectExplorerPluginPrivate::updateContextMenuActions()

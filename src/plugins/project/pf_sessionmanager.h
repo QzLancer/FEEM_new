@@ -1,6 +1,8 @@
 #ifndef PF_SESSIONMANAGER_H
 #define PF_SESSIONMANAGER_H
 
+#include "project_export.h"
+
 #include <QObject>
 #include <QDateTime>
 #include <QString>
@@ -13,7 +15,7 @@ class PF_Project;
  * @brief 主要用来管理所有的project
  *
  */
-class PF_SessionManager : public QObject
+class FEEM_PROJECT_EXPORT PF_SessionManager : public QObject
 {
     Q_OBJECT
 

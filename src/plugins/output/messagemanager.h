@@ -6,7 +6,7 @@
 #include <QObject>
 
 class MainWindow;
-
+namespace OutputPlugin {
 class MessageManager : public QObject
 {
     Q_OBJECT
@@ -35,5 +35,5 @@ private:
     static void init();
     friend class MainWindow;
 };
-
+} // namespace OutputPlugin
 #endif // MESSAGEMANAGER_H

@@ -1,6 +1,8 @@
 #ifndef PF_PROJECT_H
 #define PF_PROJECT_H
 
+#include "project_export.h"
+
 #include <QObject>
 #include <functional>
 #include <memory>
@@ -32,7 +34,7 @@ private:
 };
 
 
-class PF_Project : public QObject
+class FEEM_PROJECT_EXPORT PF_Project : public QObject
 {
     friend class PF_SessionManager; // for setActiveTarget
     friend class PF_ProjectExplorerPlugin; // for projectLoaded

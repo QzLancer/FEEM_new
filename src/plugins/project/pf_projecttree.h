@@ -1,6 +1,8 @@
 #ifndef PF_PROJECTTREE_H
 #define PF_PROJECTTREE_H
 
+#include "project_export.h"
+
 #include <QObject>
 
 namespace ProjectExplorer {
@@ -13,7 +15,7 @@ class PF_Project;
  \brief 用来管理多个tree的接口，保存状态
 
 */
-class PF_ProjectTree : public QObject
+class FEEM_PROJECT_EXPORT PF_ProjectTree : public QObject
 {
     Q_OBJECT
 public:

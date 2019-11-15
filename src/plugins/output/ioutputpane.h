@@ -5,6 +5,8 @@
 #include <QString>
 #include <QList>
 
+namespace OutputPlugin {
+
 class IOutputPane : public QObject
 {
     Q_OBJECT
@@ -15,14 +17,17 @@ public:
     IOutputPane(QObject* parent = nullptr);
     ~IOutputPane() override;
 
+    virtual QWidget *outputWidget() const = 0;
+
     virtual QString displayName() const = 0;
 
     virtual void clearContents() = 0;
+
 public slots:
 
 signals:
 
-
 };
 
+} // namespace OutputPlugin
 #endif // IOUTPUTPANE_H

@@ -2,6 +2,7 @@
 
 #include "messageoutputwindow.h"
 
+namespace OutputPlugin {
 static MessageManager* m_instance = nullptr;
 static MessageOutputWindow* m_messageOutputWindow = nullptr;
 
@@ -17,9 +18,9 @@ void MessageManager::showOutputPane(PrintToOutputPaneFlags flags)
 
 void MessageManager::write(const QString &text, PrintToOutputPaneFlags flags)
 {
-    if (!m_messageOutputWindow)
-        return;
-    showOutputPane(flags);
+//    if (!m_messageOutputWindow)
+//        return;
+//    showOutputPane(flags);
 //    m_messageOutputWindow->append(text + QLatin1Char('\n'));
 }
 
@@ -43,3 +44,4 @@ void MessageManager::init()
 //    m_messageOutputWindow = new MessageOutputWindow;
 //    ExtensionSystem::PluginManager::addObject(m_messageOutputWindow);
 }
+} // namespace OutputPlugin

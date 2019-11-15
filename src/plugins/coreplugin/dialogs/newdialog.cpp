@@ -161,9 +161,9 @@ NewDialog::NewDialog(QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
 //    ICore::registerWindow(this, Context("Core.NewDialog"));
     m_ui->setupUi(this);
-    QPalette p = m_ui->frame->palette();
-    p.setColor(QPalette::Window, p.color(QPalette::Base));
-    m_ui->frame->setPalette(p);
+//    QPalette p = m_ui->frame->palette();
+//    p.setColor(QPalette::Window, p.color(QPalette::Base));
+//    m_ui->frame->setPalette(p);
 
     m_okButton = m_ui->buttonBox->button(QDialogButtonBox::Ok);
     m_okButton->setDefault(true);
@@ -178,6 +178,7 @@ NewDialog::NewDialog(QWidget *parent) :
     m_ui->templateCategoryView->setModel(m_filterProxyModel);
     m_ui->templateCategoryView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     m_ui->templateCategoryView->setItemDelegate(new FancyTopLevelDelegate);
+    m_ui->templateCategoryView->setIconSize(QSize(ICON_SIZE, ICON_SIZE));
 
     m_ui->templatesView->setModel(m_filterProxyModel);
     m_ui->templatesView->setIconSize(QSize(ICON_SIZE, ICON_SIZE));
@@ -408,6 +409,12 @@ static QIcon iconWithText(const QIcon &icon, const QString &text)
     return iconWithText;
 }
 
+/*!
+ \brief
+
+ \param topLevelCategoryItem
+ \param factory
+*/
 void NewDialog::addItem(QStandardItem *topLevelCategoryItem, IWizardFactory *factory)
 {
     const QString categoryName = factory->category();
@@ -423,6 +430,7 @@ void NewDialog::addItem(QStandardItem *topLevelCategoryItem, IWizardFactory *fac
         categoryItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
         categoryItem->setText(QLatin1String("  ") + factory->displayCategory());
         categoryItem->setData(factory->category(), Qt::UserRole);
+        categoryItem->setIcon(iconWithText(factory->categoryIcon(), factory->categoryIconText()));
     }
 
     QStandardItem *wizardItem = new QStandardItem(factory->displayName());
@@ -463,37 +471,37 @@ void NewDialog::currentCategoryChanged(const QModelIndex &index)
 */
 void NewDialog::currentItemChanged(const QModelIndex &index)
 {
-    QModelIndex sourceIndex = m_filterProxyModel->mapToSource(index);
-    QStandardItem* cat = (m_model->itemFromIndex(sourceIndex));
-    if (const IWizardFactory *wizard = factoryOfItem(cat)) {
-        QString desciption = wizard->description();
-//        QStringList displayNamesForSupportedPlatforms;
-//        foreach (Id platform, wizard->supportedPlatforms())
-//            displayNamesForSupportedPlatforms << IWizardFactory::displayNameForPlatform(platform);
-//        Utils::sort(displayNamesForSupportedPlatforms);
-        if (!Qt::mightBeRichText(desciption))
-            desciption.replace(QLatin1Char('\n'), QLatin1String("<br>"));
-        desciption += QLatin1String("<br><br><b>");
-//        if (wizard->flags().testFlag(IWizardFactory::PlatformIndependent))
-//            desciption += tr("Platform independent") + QLatin1String("</b>");
-//        else
-//            desciption += tr("Supported Platforms")
-//                    + QLatin1String("</b>: <tt>")
-////                    + displayNamesForSupportedPlatforms.join(QLatin1Char(' '))
-//                    + QLatin1String("</tt>");
+//    QModelIndex sourceIndex = m_filterProxyModel->mapToSource(index);
+//    QStandardItem* cat = (m_model->itemFromIndex(sourceIndex));
+//    if (const IWizardFactory *wizard = factoryOfItem(cat)) {
+//        QString desciption = wizard->description();
+////        QStringList displayNamesForSupportedPlatforms;
+////        foreach (Id platform, wizard->supportedPlatforms())
+////            displayNamesForSupportedPlatforms << IWizardFactory::displayNameForPlatform(platform);
+////        Utils::sort(displayNamesForSupportedPlatforms);
+//        if (!Qt::mightBeRichText(desciption))
+//            desciption.replace(QLatin1Char('\n'), QLatin1String("<br>"));
+//        desciption += QLatin1String("<br><br><b>");
+////        if (wizard->flags().testFlag(IWizardFactory::PlatformIndependent))
+////            desciption += tr("Platform independent") + QLatin1String("</b>");
+////        else
+////            desciption += tr("Supported Platforms")
+////                    + QLatin1String("</b>: <tt>")
+//////                    + displayNamesForSupportedPlatforms.join(QLatin1Char(' '))
+////                    + QLatin1String("</tt>");
 
-        m_ui->templateDescription->setHtml(desciption);
+//        m_ui->templateDescription->setHtml(desciption);
 
-        if (!wizard->descriptionImage().isEmpty()) {
-            m_ui->imageLabel->setVisible(true);
-            m_ui->imageLabel->setPixmap(wizard->descriptionImage());
-        } else {
-            m_ui->imageLabel->setVisible(false);
-        }
+//        if (!wizard->descriptionImage().isEmpty()) {
+//            m_ui->imageLabel->setVisible(true);
+//            m_ui->imageLabel->setPixmap(wizard->descriptionImage());
+//        } else {
+//            m_ui->imageLabel->setVisible(false);
+//        }
 
-    } else {
-        m_ui->templateDescription->clear();
-    }
+//    } else {
+//        m_ui->templateDescription->clear();
+//    }
     updateOkButton();
 }
 

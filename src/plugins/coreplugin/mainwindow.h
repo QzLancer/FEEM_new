@@ -35,12 +35,19 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    IContext *contextObject(QWidget *widget);
+    void addContextObject(IContext *context);
+    void removeContextObject(IContext *context);
+
     void init();
 
     void extensionsInitialized();
 
     void registerDefaultContainers();
     void registerDefaultActions();
+private:
+    void updateContextObject(const QList<IContext *> &context);
+    void updateContext();
 
 public slots:
 
