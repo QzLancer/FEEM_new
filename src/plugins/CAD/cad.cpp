@@ -1,13 +1,17 @@
 #include "cad.h"
 #include "pf_actionhandler.h"
 #include "cadconstants.h"
+#include "pf_cadwidget.h"
 
 #include "qtribbon/include/QtnRibbonGroup.h"
+
+#include <QtAdvancedDock/DockManager.h>
 
 #include <coreplugin/actionmanager/actionmanager.h>
 #include <coreplugin/actionmanager/actioncontainer.h>
 #include <coreplugin/actionmanager/command.h>
 #include <coreplugin/constants.h>
+#include <coreplugin/workpage.h>
 
 #include <extensionsystem/pluginerroroverview.h>
 #include <extensionsystem/pluginmanager.h>
@@ -51,6 +55,13 @@ bool CADPlugin::initialize(const QStringList &arguments, QString *errorMessage)
 {
     registerDefaultContainers();
     registerDefaultActions();
+
+    PF_CADWidget* cad = new PF_CADWidget;
+    ads::CDockWidget* DockWidget = new ads::CDockWidget(tr("Geometry builder"));
+    DockWidget->setWidget(cad);
+    // Add the dock widget to the top dock widget area
+    Core::WorkPage::DockManager()->addDockWidget(ads::TopDockWidgetArea, DockWidget);
+
     return true;
 }
 

@@ -2,6 +2,6 @@
     <qresource prefix="/">
         <file>imgs/magnetic_fields_32.png</file>
         <file>imgs/model_2d_axi_32.png</file>
-        <file>imgs/model_3d_32.png</file>
+        <file>imgs/model3d32.png</file>
     </qresource>
 </RCC>

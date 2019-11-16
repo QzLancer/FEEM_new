@@ -39,10 +39,7 @@ WorkPage::WorkPage()
 
     // Create a dock widget with the title Label 1 and set the created label
     // as the dock widget content
-    ads::CDockWidget* DockWidget = new ads::CDockWidget(tr("Geometry builder"));
-//    DockWidget->setWidget(l);
-    // Add the dock widget to the top dock widget area
-    m_DockManager->addDockWidget(ads::TopDockWidgetArea, DockWidget);
+
 
     /** 先添加中间的几何控件 **/
 //    QVBoxLayout *m_rightSplitWidgetLayout = new QVBoxLayout;

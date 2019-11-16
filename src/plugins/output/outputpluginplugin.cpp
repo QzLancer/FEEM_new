@@ -37,11 +37,6 @@ bool OutputPluginPlugin::initialize(const QStringList &arguments, QString *error
 {
     m_messagePane = new MessageOutputPane();
 
-    return true;
-}
-
-void OutputPluginPlugin::extensionsInitialized()
-{
     ads::CDockWidget* DockWidget1 = new ads::CDockWidget(tr("Message outputpane"));
     DockWidget1->setWidget(m_messagePane->outputWidget());
     Core::WorkPage::DockManager()->addDockWidget(ads::BottomDockWidgetArea, DockWidget1);
@@ -49,6 +44,12 @@ void OutputPluginPlugin::extensionsInitialized()
     QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss ddd");
     m_messagePane->appendMessage(current_date);
     m_messagePane->appendMessage(tr("Welcome to FEEM!"));
+    return true;
+}
+
+void OutputPluginPlugin::extensionsInitialized()
+{
+
 }
 
 ExtensionSystem::IPlugin::ShutdownFlag OutputPluginPlugin::aboutToShutdown()

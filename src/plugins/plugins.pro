@@ -3,14 +3,14 @@ include(../../feem.pri)
 TEMPLATE  = subdirs
 
 SUBDIRS   = \
-    coreplugin \
-    output \
+    coreplugin \  
     CAD \
     material \
     mesh \
     solver \
     postoperation \
     project \
+    output \
     bounce \
     welcome \
     optimize \

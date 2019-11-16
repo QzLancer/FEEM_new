@@ -14,7 +14,7 @@
 
 QStatusBar* PF_CADWidget::statusbar = nullptr;
 
-PF_CADWidget::PF_CADWidget(PF_Document* doc, QWidget *parent)
+PF_CADWidget::PF_CADWidget(/*PF_Document* doc,*/ QWidget *parent)
     : QWidget(parent)
     ,toolBar(new QWidget(this))
     ,zoom(new QToolButton(this))
@@ -23,11 +23,11 @@ PF_CADWidget::PF_CADWidget(PF_Document* doc, QWidget *parent)
     ,zoomout(new QToolButton(this))
     ,zoomselected(new QToolButton(this))
 {
-    if(doc == nullptr){
+//    if(doc == nullptr){
 
-    }else{
-        document = doc;
-    }
+//    }else{
+//        document = doc;
+//    }
     init();
     setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
 }
@@ -39,15 +39,15 @@ PF_CADWidget::~PF_CADWidget()
 
 void PF_CADWidget::init()
 {    
-    QPalette p;
-    p.setBrush(toolBar->backgroundRole(),QBrush(QColor(251,253,253)));
-    toolBar->setPalette(p);
+//    QPalette p;
+//    p.setBrush(toolBar->backgroundRole(),QBrush(QColor(251,253,253)));
+//    toolBar->setPalette(p);
 //    toolBar->setBackgroundRole(QPalette::Button);
     toolBar->setAutoFillBackground(true);
 //    toolBar->setIconSize(QSize(24,24));
     toolBar->setObjectName("ToolBar");
 
-    zoom->setIcon(QIcon(":/main/zoombox.png"));
+    zoom->setIcon(QIcon(":/cad/imgs/zoombox.png"));
     zoom->setCheckable(true);
     zoom->setToolTip(tr("Zoom box"));
     zoom->setAttribute(Qt::WA_TranslucentBackground);
@@ -58,7 +58,7 @@ void PF_CADWidget::init()
         this->zoom->setChecked(zoom->isChecked());
     });
 
-    zoomextents->setIcon(QIcon(":/main/zoomextents.png"));
+    zoomextents->setIcon(QIcon(":/cad/imgs/zoomextents.png"));
     zoomextents->setToolTip(tr("Zoom Extents"));
     zoomextents->setAutoRaise(true);
     connect(zoomextents,&QToolButton::clicked,[this]()
@@ -68,7 +68,7 @@ void PF_CADWidget::init()
         //this->zoomextents->setChecked(zoomextents->isChecked());
     });
 
-    zoomin->setIcon(QIcon(":/main/zoomin.png"));
+    zoomin->setIcon(QIcon(":/cad/imgs/zoomin.png"));
     zoomin->setToolTip(tr("Zoom In"));
     zoomin->setAttribute(Qt::WA_TranslucentBackground);
 //    zoomin->setCheckable(true);
@@ -80,7 +80,7 @@ void PF_CADWidget::init()
         //this->zoomin->setChecked(zoomin->isChecked());
     });
 
-    zoomout->setIcon(QIcon(":/main/zoomout.png"));
+    zoomout->setIcon(QIcon(":/cad/imgs/zoomout.png"));
     zoomout->setToolTip(tr("Zoom Out"));
     zoomout->setAttribute(Qt::WA_TranslucentBackground);
 //    zoomout->setCheckable(true);
@@ -92,7 +92,7 @@ void PF_CADWidget::init()
         //this->zoomout->setChecked(zoomout->isChecked());
     });
 
-    zoomselected->setIcon(QIcon(":/main/zoomselected.png"));
+    zoomselected->setIcon(QIcon(":/cad/imgs/zoomselected.png"));
     zoomselected->setToolTip(tr("Zoom to Selected"));
     zoomselected->setCheckable(true);
     zoomselected->setAttribute(Qt::WA_TranslucentBackground);
@@ -116,7 +116,7 @@ void PF_CADWidget::init()
     toolBar->setLayout(toolbarlayout);
     toolBar->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
 
-    view = new PF_GraphicView(document,this);
+    view = new PF_GraphicView(/*document,*/this);
 
     QVBoxLayout* cadlayout = new QVBoxLayout(this);
     cadlayout->setMargin(5);
@@ -141,10 +141,10 @@ PF_GraphicView* PF_CADWidget::getGraphicView()
     return view ? view : nullptr;
 }
 
-PF_Document* PF_CADWidget::getDocument()
-{
-    return document;
-}
+//PF_Document* PF_CADWidget::getDocument()
+//{
+//    return document;
+//}
 
 /*!
  \brief 将当前的绘图导出为gmsh的geo文件
@@ -152,7 +152,7 @@ PF_Document* PF_CADWidget::getDocument()
 */
 void PF_CADWidget::exportGmshGeo()
 {
-    FILE* fp = NULL;
+//    FILE* fp = NULL;
 
 }
 
