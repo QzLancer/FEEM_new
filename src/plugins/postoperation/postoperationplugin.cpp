@@ -1,6 +1,8 @@
 #include "postoperationplugin.h"
 #include "postoperationconstants.h"
 
+#include "contourtest/contourtestwidget.h"
+
 #include "qtribbon/include/QtnRibbonGroup.h"
 
 #include <coreplugin/actionmanager/actionmanager.h>
@@ -54,7 +56,8 @@ bool PostoperationPlugin::initialize(const QStringList &arguments, QString *erro
 
 void PostoperationPlugin::extensionsInitialized()
 {
-
+//    ContourTestWidget* w = new ContourTestWidget;
+//    w->show();
 }
 
 bool PostoperationPlugin::delayedInitialize()

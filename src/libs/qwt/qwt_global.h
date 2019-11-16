@@ -24,7 +24,7 @@
 #pragma warning(disable: 4250)
 #endif // _MSC_VER
 
-#ifdef QWT_DLL
+//#ifdef QWT_DLL
 
 #if defined(QWT_MAKEDLL)     // create a Qwt DLL library
 #define QWT_EXPORT Q_DECL_EXPORT
@@ -32,7 +32,7 @@
 #define QWT_EXPORT Q_DECL_IMPORT
 #endif
 
-#endif // QWT_DLL
+//#endif // QWT_DLL
 
 #ifndef QWT_EXPORT
 #define QWT_EXPORT
