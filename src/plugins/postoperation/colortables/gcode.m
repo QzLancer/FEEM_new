@@ -30,5 +30,5 @@ for i=1:size(dirOutput,1)
    fprintf(fp1,'break;\n');
    fprintf(fp1,'}\n');   
    fprintf(fp1,'\n');
-   fclose(fp);
 end
+fclose(fp1);

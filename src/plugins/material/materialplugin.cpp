@@ -2,6 +2,7 @@
 #include "materialconstants.h"
 
 #include "pf_materiallibrary.h"
+#include "pf_magmaterialdialog.h"
 
 #include "qtribbon/include/QtnRibbonGroup.h"
 
@@ -12,6 +13,10 @@
 #include <coreplugin/actionmanager/actioncontainer.h>
 #include <coreplugin/actionmanager/command.h>
 #include <coreplugin/workpage.h>
+
+#include <project/projectexplorerconstants.h>
+#include <project/pf_node.h>
+#include <project/pf_projecttree.h>
 
 #include <extensionsystem/pluginerroroverview.h>
 #include <extensionsystem/pluginmanager.h>
@@ -31,6 +36,7 @@
 #include <cstdlib>
 
 using namespace Core;
+using namespace ProjectExplorer;
 
 namespace Material {
 static MaterialPlugin *m_instance = nullptr;
@@ -48,6 +54,26 @@ MaterialPlugin::~MaterialPlugin()
 MaterialPlugin *MaterialPlugin::instance()
 {
     return m_instance;
+}
+
+void MaterialPlugin::addBlankMaterial()
+{
+    /** 这里有问题，如果不是从tree操作进来的，那么node就不对了 **/
+    Node *node = PF_ProjectTree::findCurrentNode();
+    FolderNode *folderNode = node ? node->asFolderNode() : nullptr;
+    /** 需要判断为文件夹，不清楚需不需要判断是材料类型
+        感觉不需要，因为右键菜单就是根据材料进来的   **/
+    if(!folderNode) return;
+
+    PF_MagMaterialDialog* dialog = new PF_MagMaterialDialog();
+    int result = dialog->exec();
+    if(result == QDialog::Accepted){
+        qDebug()<<"addBlankMaterial OK";
+        folderNode->addNode(std::make_unique<LeafNode>(QString(QObject::tr("Material")),LeafType::Header));
+        PF_ProjectTree::emitSubtreeChanged(folderNode);
+    }else{
+        qDebug()<<"addBlankMaterial Cancle";
+    }
 }
 
 bool MaterialPlugin::initialize(const QStringList &arguments, QString *errorMessage)
@@ -100,5 +126,30 @@ void MaterialPlugin::registerDefaultActions()
     auto group = ActionManager::actionContainer(Constants::G_MATERIAL_LIBRARY);
     group->ribbonGroup()->addAction(QIcon(":/material/imgs/addmaterial.png"), tr("Add material"), Qt::ToolButtonTextUnderIcon);
     group->ribbonGroup()->addAction(QIcon(":/material/imgs/materiallibrary.png"), tr("Material library"), Qt::ToolButtonTextUnderIcon);
+
+    /** 材料 节点 **/
+    ActionContainer *mmaterialContextMenu =
+        ActionManager::createMenu(ProjectExplorer::Constants::M_MATERIALCONTEXT);
+    mmaterialContextMenu->appendGroup(ProjectExplorer::Constants::G_HELP);
+
+    /************material******************/
+    m_addMaterial = new QAction(QIcon(":/material/imgs/material_picker.png"),tr("add Material"), this);
+    Command* cmd = ActionManager::registerAction(m_addMaterial, Constants::ADDMATERIAL);
+    //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
+    mmaterialContextMenu->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
+
+    m_addBlankMaterial = new QAction(QIcon(":/material/imgs/more_materials.png"),tr("add Blank Material"), this);
+    cmd = ActionManager::registerAction(m_addBlankMaterial, Constants::ADDBLANKMATERIAL);
+    //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
+
+    mmaterialContextMenu->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
+    // help
+    m_help = new QAction(QIcon(":/imgs/help_16.png"),tr("Help"), this);
+    cmd = ActionManager::command(Constants::HELP);
+    mmaterialContextMenu->addSeparator(ProjectExplorer::Constants::G_HELP);
+    mmaterialContextMenu->addAction(cmd,ProjectExplorer::Constants::G_HELP);
+
+    connect(m_addBlankMaterial,&QAction::triggered,this,&MaterialPlugin::addBlankMaterial);
+
 }
 }//namespace Material

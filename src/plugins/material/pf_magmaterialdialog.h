@@ -5,7 +5,6 @@
 
 class QLineEdit;
 class QTabWidget;
-class FolderNode;
 class CMaterialProp;
 
 /*!

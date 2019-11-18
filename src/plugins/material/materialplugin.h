@@ -1,6 +1,9 @@
 #pragma once
 
 #include <extensionsystem/iplugin.h>
+
+#include <QAction>
+
 namespace Material {
 
 class MaterialPlugin : public ExtensionSystem::IPlugin
@@ -13,6 +16,8 @@ public:
     ~MaterialPlugin() override;
 
     static MaterialPlugin *instance();
+
+    void addBlankMaterial();
 
     bool initialize(const QStringList &arguments, QString *errorMessage = nullptr) override;
     void extensionsInitialized() override;
@@ -27,6 +32,9 @@ public:
 public slots:
 
 private:
+    QAction* m_addBlankMaterial = nullptr;
+    QAction* m_addMaterial = nullptr;
+    QAction* m_help = nullptr;
 };
 
 } // namespace Material
