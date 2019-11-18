@@ -21,6 +21,28 @@ ContourTestWidget::ContourTestWidget(QWidget *parent)
     mapBox->addItem( "Indexed Colors" );
     mapBox->addItem( "Hue" );
     mapBox->addItem( "Alpha" );
+    mapBox->addItem("AuroraAustralis");
+    mapBox->addItem("AuroraBorealis");
+    mapBox->addItem("Cividis");
+    mapBox->addItem("Cyclic");
+    mapBox->addItem("Disco");
+    mapBox->addItem("DiscoLight");
+    mapBox->addItem("GrayPrint");
+    mapBox->addItem("GrayScale");
+    mapBox->addItem("HeatCamera");
+    mapBox->addItem("HeatCameraLight");
+    mapBox->addItem("JupiterAuroraBorealis");
+    mapBox->addItem("Rainbow");
+    mapBox->addItem("RainbowLight");
+    mapBox->addItem("Spectrum");
+    mapBox->addItem("Thermal");
+    mapBox->addItem("ThermalEquidistant");
+    mapBox->addItem("ThermalLight");
+    mapBox->addItem("Traffic");
+    mapBox->addItem("TrafficLight");
+    mapBox->addItem("Twilight");
+    mapBox->addItem("Wave");
+    mapBox->addItem("WaveLight");
     mapBox->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
     hbox->addWidget( mapBox );
     connect( mapBox, SIGNAL( currentIndexChanged( int ) ),

@@ -1,3 +1,5 @@
+#include "colortables/pf_colortables.h"
+
 #include <qprinter.h>
 #include <qprintdialog.h>
 #include <qnumeric.h>
@@ -189,9 +191,9 @@ Plot::Plot( QWidget *parent ):
 
     QwtPlotZoomer* zoomer = new MyZoomer( canvas() );
     zoomer->setMousePattern( QwtEventPattern::MouseSelect2,
-        Qt::RightButton, Qt::ControlModifier );
+                             Qt::RightButton, Qt::ControlModifier );
     zoomer->setMousePattern( QwtEventPattern::MouseSelect3,
-        Qt::RightButton );
+                             Qt::RightButton );
 
     QwtPlotPanner *panner = new QwtPlotPanner( canvas() );
     panner->setAxisEnabled( QwtPlot::yRight, false );
@@ -219,7 +221,7 @@ void Plot::showSpectrogram( bool on )
 {
     d_spectrogram->setDisplayMode( QwtPlotSpectrogram::ImageMode, on );
     d_spectrogram->setDefaultContourPen(
-        on ? QPen( Qt::black, 0 ) : QPen( Qt::NoPen ) );
+                on ? QPen( Qt::black, 0 ) : QPen( Qt::NoPen ) );
 
     replot();
 }
@@ -234,31 +236,185 @@ void Plot::setColorMap( int type )
     int alpha = d_alpha;
     switch( type )
     {
-        case Plot::HueMap:
-        {
-            d_spectrogram->setColorMap( new HueColorMap() );
-            axis->setColorMap( zInterval, new HueColorMap() );
-            break;
-        }
-        case Plot::AlphaMap:
-        {
-            alpha = 255;
-            d_spectrogram->setColorMap( new AlphaColorMap() );
-            axis->setColorMap( zInterval, new AlphaColorMap() );
-            break;
-        }
-        case Plot::IndexMap:
-        {
-            d_spectrogram->setColorMap( new LinearColorMapIndexed() );
-            axis->setColorMap( zInterval, new LinearColorMapIndexed() );
-            break;
-        }
-        case Plot::RGBMap:
-        default:
-        {
-            d_spectrogram->setColorMap( new LinearColorMapRGB() );
-            axis->setColorMap( zInterval, new LinearColorMapRGB() );
-        }
+    case Plot::HueMap:
+    {
+        d_spectrogram->setColorMap( new HueColorMap() );
+        axis->setColorMap( zInterval, new HueColorMap() );
+        break;
+    }
+    case Plot::AlphaMap:
+    {
+        alpha = 255;
+        d_spectrogram->setColorMap( new AlphaColorMap() );
+        axis->setColorMap( zInterval, new AlphaColorMap() );
+        break;
+    }
+    case Plot::IndexMap:
+    {
+        d_spectrogram->setColorMap( new LinearColorMapIndexed() );
+        axis->setColorMap( zInterval, new LinearColorMapIndexed() );
+        break;
+    }
+    case Plot::RGBMap:
+    {
+        d_spectrogram->setColorMap( new LinearColorMapRGB() );
+        axis->setColorMap( zInterval, new LinearColorMapRGB() );
+    }
+    case Plot::AuroraAustralis:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::AuroraAustralis));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::AuroraAustralis));
+        break;
+    }
+
+    case Plot::AuroraBorealis:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::AuroraBorealis));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::AuroraBorealis));
+        break;
+    }
+
+    case Plot::Cividis:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Cividis));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Cividis));
+        break;
+    }
+
+    case Plot::Cyclic:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Cyclic));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Cyclic));
+        break;
+    }
+
+    case Plot::Disco:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Disco));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Disco));
+        break;
+    }
+
+    case Plot::DiscoLight:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::DiscoLight));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::DiscoLight));
+        break;
+    }
+
+    case Plot::GrayPrint:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::GrayPrint));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::GrayPrint));
+        break;
+    }
+
+    case Plot::GrayScale:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::GrayScale));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::GrayScale));
+        break;
+    }
+
+    case Plot::HeatCamera:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::HeatCamera));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::HeatCamera));
+        break;
+    }
+
+    case Plot::HeatCameraLight:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::HeatCameraLight));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::HeatCameraLight));
+        break;
+    }
+
+    case Plot::JupiterAuroraBorealis:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::JupiterAuroraBorealis));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::JupiterAuroraBorealis));
+        break;
+    }
+
+    case Plot::Rainbow:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Rainbow));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Rainbow));
+        break;
+    }
+
+    case Plot::RainbowLight:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::RainbowLight));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::RainbowLight));
+        break;
+    }
+
+    case Plot::Spectrum:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Spectrum));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Spectrum));
+        break;
+    }
+
+    case Plot::Thermal:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Thermal));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Thermal));
+        break;
+    }
+
+    case Plot::ThermalEquidistant:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::ThermalEquidistant));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::ThermalEquidistant));
+        break;
+    }
+
+    case Plot::ThermalLight:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::ThermalLight));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::ThermalLight));
+        break;
+    }
+
+    case Plot::Traffic:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Traffic));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Traffic));
+        break;
+    }
+
+    case Plot::TrafficLight:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::TrafficLight));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::TrafficLight));
+        break;
+    }
+
+    case Plot::Twilight:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Twilight));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Twilight));
+        break;
+    }
+
+    case Plot::Wave:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Wave));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::Wave));
+        break;
+    }
+
+    case Plot::WaveLight:
+    {
+        d_spectrogram->setColorMap( new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::WaveLight));
+        axis->setColorMap( zInterval, new Postoperation::PF_ColorMap(Postoperation::PF_ColorMap::WaveLight));
+        break;
+    }
+
+
     }
     d_spectrogram->setAlpha( alpha );
 

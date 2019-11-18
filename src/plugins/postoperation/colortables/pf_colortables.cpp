@@ -28,9 +28,10 @@ PF_ColorMap::~PF_ColorMap()
 
 void PF_ColorMap::setColorData(PF_ColorBarStyle style)
 {
-    int alpha = 255;
+//    int alpha = 255;
     int n = 0;
     QVector<QColor> cTab;
+    cTab.resize(20);
     switch (style) {
     case AuroraAustralis:
         cTab[n++].setRgbF(1.000000,1.000000,1.000000);
@@ -277,9 +278,9 @@ void PF_ColorMap::setColorData(PF_ColorBarStyle style)
         break;
 
     }
-    setColorInterval(cTab[0],cTab.last());
-    for(int i = 1; i < n-1;i++){
-        addColorStop( double(i/n), cTab.at(i));
+    setColorInterval(cTab[0],cTab[n-1]);
+    for(int i = 1; i < n-2;i++){
+        addColorStop( double(i)/double(n-1), cTab.at(i));
     }
 }
 
