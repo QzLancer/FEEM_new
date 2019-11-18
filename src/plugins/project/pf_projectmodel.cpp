@@ -24,8 +24,9 @@ PF_ProjectModel::PF_ProjectModel(QObject *parent)
     connect(sm, &PF_SessionManager::projectAdded, this, &PF_ProjectModel::handleProjectAdded);
 //    connect(sm, &PF_SessionManager::startupProjectChanged, this, [this] { layoutChanged(); });
 
-//    for (Project *project : SessionManager::projects())
-//        handleProjectAdded(project);
+    /** 应该是加载现有的projects **/
+    for (PF_Project *project : PF_SessionManager::projects())
+        handleProjectAdded(project);
 
 //    m_disabledTextColor = Utils::creatorTheme()->color(Utils::Theme::TextColorDisabled);
 //    m_enabledTextColor = Utils::creatorTheme()->color(Utils::Theme::TextColorNormal);

@@ -12,13 +12,15 @@ HEADERS += \
     postoperationplugin.h \
     qcustomplot/qcustomplot.h \
     contourtest/plot.h \
-    contourtest/contourtestwidget.h
+    contourtest/contourtestwidget.h \
+    colortables/pf_colortables.h
 
 SOURCES += \
     postoperationplugin.cpp \
     qcustomplot/qcustomplot.cpp \
     contourtest/plot.cpp \
-    contourtest/contourtestwidget.cpp
+    contourtest/contourtestwidget.cpp \
+    colortables/pf_colortables.cpp
 
 include(./plot/plotwidget.pri)
 
