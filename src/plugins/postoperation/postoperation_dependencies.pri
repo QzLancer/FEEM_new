@@ -3,6 +3,7 @@ FEEM_LIB_DEPENDS += \
     extensionsystem \
     utils \
     qtribbon \
+    qwt \
 
 FEEM_PLUGIN_DEPENDS += \
     coreplugin

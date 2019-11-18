@@ -6,7 +6,8 @@ SUBDIRS   += \
     extensionsystem \
     utils \
     qtribbon \
-	QtAdvancedDock \
+    QtAdvancedDock \
+    qwt \
 
 for(l, SUBDIRS) {
     FEEM_LIB_DEPENDS =
