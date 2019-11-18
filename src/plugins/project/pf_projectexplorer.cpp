@@ -324,23 +324,22 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
     ActionContainer* page = ActionManager::actionContainer(Core::Constants::P_HOME);
     ActionContainer* group = ActionManager::createRibbonGroup(Constants::G_HOME_PROJECT);
     group->ribbonGroup()->setTitle(tr("Project"));
+    page->appendGroup(Constants::G_HOME_PROJECT);
+    page->addRibbonGroup(group,Constants::G_HOME_PROJECT);
 
-    auto action = new QAction(tr("New Project"));
+    QAction* action = new QAction(tr("New Project"));
     action->setIcon(QIcon(":/imgs/projects.png"));
-    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
     connect(action, &QAction::triggered, this,&PF_ProjectExplorerPlugin::openNewProjectDialog);
+    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
 
     action = new QAction(tr("Open Project"));
     action->setIcon(QIcon(":/imgs/openfile.png"));
-    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
     connect(action, &QAction::triggered, this,&PF_ProjectExplorerPlugin::openOpenProjectDialog);
+    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
 
     action = new QAction(tr("Save Project"));
     action->setIcon(QIcon(":/imgs/filesave.png"));
     group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
-
-    page->appendGroup(Constants::G_HOME_PROJECT);
-    page->addRibbonGroup(group,Constants::G_HOME_PROJECT);
 
     Context projecTreeContext(Constants::C_PROJECT_TREE);
     //   actions

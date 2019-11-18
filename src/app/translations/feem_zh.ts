@@ -679,18 +679,33 @@ Reason: %3</source>
 <context>
     <name>Material::MaterialPlugin</name>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="93"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="119"/>
         <source>Material</source>
         <translation>材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="101"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="127"/>
         <source>Add material</source>
         <translation>添加材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="59"/>
-        <location filename="../../plugins/material/materialplugin.cpp" line="102"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="136"/>
+        <source>add Material</source>
+        <translation type="unfinished">添加材料</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/materialplugin.cpp" line="141"/>
+        <source>add Blank Material</source>
+        <translation type="unfinished">添加空白材料</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/materialplugin.cpp" line="147"/>
+        <source>Help</source>
+        <translation type="unfinished">帮助</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/materialplugin.cpp" line="85"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="128"/>
         <source>Material library</source>
         <translation>材料库</translation>
     </message>
@@ -1263,7 +1278,7 @@ Reason: %3</source>
 <context>
     <name>Postoperation::PostoperationPlugin</name>
     <message>
-        <location filename="../../plugins/postoperation/postoperationplugin.cpp" line="81"/>
+        <location filename="../../plugins/postoperation/postoperationplugin.cpp" line="84"/>
         <source>Postoperation Setting</source>
         <translation type="unfinished">后处理设置</translation>
     </message>
@@ -1347,93 +1362,91 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::PF_ProjectExplorerPlugin</name>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="330"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="326"/>
         <source>Project</source>
         <translation type="unfinished">项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="332"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="330"/>
         <source>New Project</source>
         <translation type="unfinished">新建项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="337"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="335"/>
         <source>Open Project</source>
         <translation type="unfinished">打开项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="342"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="340"/>
         <source>Save Project</source>
         <translation type="unfinished">保存项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="384"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="377"/>
         <source>Add Model</source>
         <translation type="unfinished">添加模型</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="391"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="384"/>
         <source>Add Study</source>
         <translation type="unfinished">添加研究</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="397"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="390"/>
         <source>3D</source>
         <translation type="unfinished">三维</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="402"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="395"/>
         <source>2D Axisymmetric</source>
         <translation type="unfinished">二维轴对称</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="407"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="400"/>
         <source>2D</source>
         <translation type="unfinished">二维</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="415"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="408"/>
         <source>Static Magnetic Field</source>
         <translation type="unfinished">静磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="420"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="413"/>
         <source>Transient Magnetic Field</source>
         <translation type="unfinished">瞬态磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="425"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="418"/>
         <source>Heat Field</source>
         <translation type="unfinished">热场</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="433"/>
         <source>add Material</source>
-        <translation type="unfinished">添加材料</translation>
+        <translation type="obsolete">添加材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="438"/>
         <source>add Blank Material</source>
-        <translation type="unfinished">添加空白材料</translation>
+        <translation type="obsolete">添加空白材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="445"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="426"/>
         <source>Help</source>
         <translation type="unfinished">帮助</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="456"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="434"/>
         <source>Model tree</source>
         <translation type="unfinished">模型树</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="565"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="543"/>
         <source>New Project</source>
         <comment>Title of dialog</comment>
         <translation type="unfinished">新建项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="578"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="556"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1775,6 +1788,11 @@ Reason: %3</source>
         <source>New Material</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../plugins/material/materialplugin.cpp" line="72"/>
+        <source>Material</source>
+        <translation type="unfinished">材料</translation>
+    </message>
 </context>
 <context>
     <name>Qtitan::AboutDialog</name>
@@ -1919,6 +1937,26 @@ Reason: %3</source>
     <message>
         <location filename="../../libs/qtribbon/src/styles/QtnRibbonStyle.cpp" line="621"/>
         <source>AccessHeader</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QwtPlotRenderer</name>
+    <message>
+        <location filename="../../libs/qwt/qwt_plot_renderer.cpp" line="1017"/>
+        <location filename="../../libs/qwt/qwt_plot_renderer.cpp" line="1020"/>
+        <location filename="../../libs/qwt/qwt_plot_renderer.cpp" line="1023"/>
+        <source>Documents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/qwt/qwt_plot_renderer.cpp" line="1028"/>
+        <source>Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/qwt/qwt_plot_renderer.cpp" line="1043"/>
+        <source>Export File Name</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
