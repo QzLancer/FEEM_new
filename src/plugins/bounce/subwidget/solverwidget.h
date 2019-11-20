@@ -25,14 +25,19 @@ public:
     QComboBox *mSolverBox;
     QComboBox *mStepTypeBox;
     QLineEdit *mFixedStepSizeEdit;
+
+    QTabWidget *mTabWidget;
+
 signals:
 
 public slots:
+    void slotChangeSolver(int index);
+    void slotChangeStepType(int index);
 
 private:
     void addSimulationTab();
     void addSolverOptionsTab();
-    QTabWidget *mTabWidget;
+
     QWidget *mStepTypeWidget;
     Solver mSolver;
     StepType mStepType;

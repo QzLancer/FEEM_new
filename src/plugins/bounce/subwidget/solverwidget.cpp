@@ -16,6 +16,21 @@ SolverWidget::SolverWidget(QWidget *parent)
     addSolverOptionsTab();
 }
 
+void SolverWidget::slotChangeSolver(int index)
+{
+    mSolver = static_cast<Solver>(index);
+}
+
+void SolverWidget::slotChangeStepType(int index)
+{
+    mStepType = static_cast<StepType>(index);
+    switch (mStepType) {
+    case FIXEDSTEP:
+        mTabWidget->show();
+        break;
+    }
+}
+
 void SolverWidget::addSimulationTab()
 {
     QWidget *simulationtab = new QWidget(this);
@@ -33,6 +48,10 @@ void SolverWidget::addSimulationTab()
     vlayout->addStretch();
 
     mTabWidget->addTab(simulationtab, tr("Simulation Time"));
+
+    /**LineEdit初始值**/
+    mStartTimeEdit->setText("0");
+    mStopTimeEdit->setText("0.08");
 }
 
 void SolverWidget::addSolverOptionsTab()
@@ -68,4 +87,10 @@ void SolverWidget::addSolverOptionsTab()
     mainlayout->addWidget(solverbox);
     mainlayout->addWidget(steptypebox);
     mainlayout->addStretch();
+
+    connect(mSolverBox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotChangeStepType(int)));
+    connect(mStepTypeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotChangeStepType(int)));
+
+    /**LineEdit初始值**/
+    mFixedStepSizeEdit->setText("0.00001");
 }

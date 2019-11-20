@@ -1,4 +1,7 @@
 #include "bouncedialog.h"
+#include "bouncecore.h"
+
+#include <postoperation/plot/plotwidget.h>
 
 BounceDialog::BounceDialog(QWidget *parent)
     : QDialog(parent),
@@ -45,5 +48,46 @@ BounceDialog::~BounceDialog()
 
 void BounceDialog::slotRun()
 {
+    double opendistance = mParamWidget->mOpenDistanceEdit->text().toDouble();
+    double stroke = mParamWidget->mStrokeEdit->text().toDouble();
+    double movingcontactmass = mParamWidget->mMovingMassEdit->text().toDouble();
+    double concentratedmass = mParamWidget->mConcentratedMassEdit->text().toDouble();
+    double contactspringstiffness = mParamWidget->mContactSpringStiffnessEdit->text().toDouble();
+    double returnspringstiffness = mParamWidget->mReturnSpringStiffnessEdit->text().toDouble();
+    double contactspringpreloads = mParamWidget->mContactSpringPreloadsEdit->text().toDouble();
+    double returnspringpreloads = mParamWidget->mReturnSpringPreloadsEdit->text().toDouble();
+    double contactstiffness = mParamWidget->mContactStiffnessEdit->text().toDouble();
+    double contactpenetration = mParamWidget->mContactPenetrationEdit->text().toDouble();
+    double contactdamping = mParamWidget->mContactDampingEdit->text().toDouble();
+    double contactcoefficient = mParamWidget->mContactCoefficientEdit->text().toDouble();
+    double starttime = mSolverWidget->mStartTimeEdit->text().toDouble();
+    double stoptime = mSolverWidget->mStopTimeEdit->text().toDouble();
+    double fixedstepsize = mSolverWidget->mFixedStepSizeEdit->text().toDouble();
 
+    BounceCore *core = new BounceCore(opendistance,
+                                      stroke,
+                                      movingcontactmass,
+                                      concentratedmass,
+                                      contactspringstiffness,
+                                      returnspringstiffness,
+                                      contactspringpreloads,
+                                      returnspringpreloads,
+                                      contactstiffness,
+                                      contactpenetration,
+                                      contactdamping,
+                                      contactcoefficient,
+                                      starttime,
+                                      stoptime,
+                                      fixedstepsize);
+    core->bounceCalculate();
+
+    PlotWidget *pw = new PlotWidget;
+    pw->addPlot(core->gett(), core->getxd(), tr("Moving Contact Displacement"));
+    pw->addPlot(core->gett(), core->getxx(), tr("Armature Displacement"));
+    pw->addTableColumn(core->gett(), tr("time"));
+    pw->addTableColumn(core->getxd(), tr("Moving Contact Displacement"));
+    pw->addTableColumn(core->getxx(), tr("Armature Displacement"));
+    pw->show();
+
+    delete core;
 }

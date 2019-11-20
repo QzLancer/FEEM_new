@@ -30,156 +30,134 @@
 <context>
     <name>BounceDialog</name>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="11"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="10"/>
         <source>Run</source>
         <translation>运行</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="12"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="11"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="41"/>
-        <source>Error: Some properties are empty!</source>
-        <translation>错误：一些属性不能为空！</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="56"/>
-        <source>Error: Properties must be number!</source>
-        <translation>错误：输入必须为数字！</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="126"/>
-        <source>Open distance: </source>
-        <translation>开距：</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="127"/>
-        <source>Stroke: </source>
-        <translation>行程：</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="128"/>
-        <source>Moving contact mass: </source>
-        <translation>动触头质量：</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="129"/>
-        <source>Armature mass: </source>
-        <translation>衔铁质量：</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="141"/>
-        <source>Stiffness of overtravel spring: </source>
-        <translation>超程弹簧刚度：</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="142"/>
-        <source>Stiffness of return spring: </source>
-        <translation>返回弹簧刚度</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="143"/>
-        <source>Pre-pressure of overtravel spring: </source>
-        <translation>超程弹簧预压力：</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="144"/>
-        <source>Pre-pressure of return spring: </source>
-        <translation>返回弹簧预压力：</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="156"/>
-        <source>Stiffness: </source>
-        <translation>碰撞刚度：</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="157"/>
-        <source>Depth: </source>
-        <translation>碰撞深度：</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="158"/>
-        <source>Damping: </source>
-        <translation>碰撞阻尼系数：</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="159"/>
-        <source>Index: </source>
-        <translation>碰撞指数：</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="170"/>
-        <source>Initial time: </source>
-        <translation>仿真开始时间：</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="171"/>
-        <source>End time: </source>
-        <translation>仿真结束时间：</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="172"/>
-        <source>Step size: </source>
-        <translation>仿真步长：</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="80"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="83"/>
-        <source>Moving Contact Displacement</source>
-        <translation>动触头位移</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="81"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="84"/>
-        <source>Armature Displacement</source>
-        <translation>衔铁位移</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="82"/>
-        <source>time</source>
-        <translation>时间</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="92"/>
-        <source>Bounce calculate</source>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="18"/>
+        <source>Bounce Calculate</source>
         <translation>弹跳计算</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="130"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="20"/>
+        <source>Dynamic Characteristics Input</source>
+        <translation>动态特性输入</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="21"/>
+        <source>Parameters Settings</source>
+        <translation>参数设置</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="22"/>
+        <source>Solver</source>
+        <translation>求解器</translation>
+    </message>
+    <message>
+        <source>Error: Some properties are empty!</source>
+        <translation type="vanished">错误：一些属性不能为空！</translation>
+    </message>
+    <message>
+        <source>Error: Properties must be number!</source>
+        <translation type="vanished">错误：输入必须为数字！</translation>
+    </message>
+    <message>
+        <source>Open distance: </source>
+        <translation type="vanished">开距：</translation>
+    </message>
+    <message>
+        <source>Stroke: </source>
+        <translation type="vanished">行程：</translation>
+    </message>
+    <message>
+        <source>Moving contact mass: </source>
+        <translation type="vanished">动触头质量：</translation>
+    </message>
+    <message>
+        <source>Armature mass: </source>
+        <translation type="vanished">衔铁质量：</translation>
+    </message>
+    <message>
+        <source>Stiffness of overtravel spring: </source>
+        <translation type="vanished">超程弹簧刚度：</translation>
+    </message>
+    <message>
+        <source>Stiffness of return spring: </source>
+        <translation type="vanished">返回弹簧刚度</translation>
+    </message>
+    <message>
+        <source>Pre-pressure of overtravel spring: </source>
+        <translation type="vanished">超程弹簧预压力：</translation>
+    </message>
+    <message>
+        <source>Pre-pressure of return spring: </source>
+        <translation type="vanished">返回弹簧预压力：</translation>
+    </message>
+    <message>
+        <source>Stiffness: </source>
+        <translation type="vanished">碰撞刚度：</translation>
+    </message>
+    <message>
+        <source>Depth: </source>
+        <translation type="vanished">碰撞深度：</translation>
+    </message>
+    <message>
+        <source>Damping: </source>
+        <translation type="vanished">碰撞阻尼系数：</translation>
+    </message>
+    <message>
+        <source>Index: </source>
+        <translation type="vanished">碰撞指数：</translation>
+    </message>
+    <message>
+        <source>Initial time: </source>
+        <translation type="vanished">仿真开始时间：</translation>
+    </message>
+    <message>
+        <source>End time: </source>
+        <translation type="vanished">仿真结束时间：</translation>
+    </message>
+    <message>
+        <source>Step size: </source>
+        <translation type="vanished">仿真步长：</translation>
+    </message>
+    <message>
+        <source>Moving Contact Displacement</source>
+        <translation type="vanished">动触头位移</translation>
+    </message>
+    <message>
+        <source>Armature Displacement</source>
+        <translation type="vanished">衔铁位移</translation>
+    </message>
+    <message>
+        <source>time</source>
+        <translation type="vanished">时间</translation>
+    </message>
+    <message>
+        <source>Bounce calculate</source>
+        <translation type="vanished">弹跳计算</translation>
+    </message>
+    <message>
         <source>Material properties</source>
-        <translation>材料属性</translation>
+        <translation type="vanished">材料属性</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="145"/>
         <source>Spring reaction force</source>
-        <translation>弹簧反力</translation>
+        <translation type="vanished">弹簧反力</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="160"/>
         <source>Collision contact</source>
-        <translation>碰撞接触</translation>
+        <translation type="vanished">碰撞接触</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="173"/>
         <source>Solve properties</source>
-        <translation>求解属性</translation>
+        <translation type="vanished">求解属性</translation>
     </message>
 </context>
 <context>
@@ -187,7 +165,7 @@
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="60"/>
         <source>Geometry builder</source>
-        <translation type="unfinished">几何建模</translation>
+        <translation>几何建模</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/cad.cpp" line="98"/>
@@ -580,6 +558,19 @@ Reason: %3</source>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="146"/>
         <source>Error: Properties must be number!</source>
         <translation>错误：输入参数必须为数字！</translation>
+    </message>
+</context>
+<context>
+    <name>InputWidget</name>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/inputwidget.cpp" line="11"/>
+        <source>Select the Dynamic Characteristics Input</source>
+        <translation>输入的动态特性</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/inputwidget.cpp" line="12"/>
+        <source>The Electromagnetic Force-Time Curve</source>
+        <translation>电磁力-时间曲线</translation>
     </message>
 </context>
 <context>
@@ -1289,6 +1280,124 @@ Reason: %3</source>
     </message>
 </context>
 <context>
+    <name>ParamWidget</name>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="25"/>
+        <source>Open Distance(m)</source>
+        <translation>开距（m）</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="27"/>
+        <source>Stroke(m)</source>
+        <translation>行程（m）</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="29"/>
+        <source>The Mass of Moving Contact(kg)</source>
+        <translation>动触头的质量（kg）</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="31"/>
+        <source>Concentrated Mass(kg)</source>
+        <translation>可动部件的质量（kg）</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="45"/>
+        <source>Physics</source>
+        <translation>物理属性</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="52"/>
+        <source>The Stiffness of the Contact Spring(N/m)</source>
+        <translation>触头弹簧系统（N/m）</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="54"/>
+        <source>The Stiffness of the Return Spring(N/m)</source>
+        <translation>返回弹簧系统（N/m）</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="56"/>
+        <source>The Preloads of Contact Spring(N)</source>
+        <translation>触头弹簧预压力（N）</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="58"/>
+        <source>The Preloads of Return Spring(N)</source>
+        <translation>返回弹簧预压力（N）</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="72"/>
+        <source>Reaction System</source>
+        <translation>反力系统</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="80"/>
+        <source>Contact Type</source>
+        <translation>接触类型</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="82"/>
+        <source>Plane-Plane</source>
+        <translation>平面接触</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="83"/>
+        <source>Sphere-Sphere</source>
+        <translation>球-球接触</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="84"/>
+        <source>Curve-Plane</source>
+        <translation>线-面接触</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="85"/>
+        <source>Curve-Curve</source>
+        <translation>线-线接触</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="90"/>
+        <source>Contact Stiffness(N/m)</source>
+        <translation>接触刚度（N/m）</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="92"/>
+        <source>Contact Penetration(m)</source>
+        <translation>接触深度（m）</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="94"/>
+        <source>Contact Damping</source>
+        <translation>接触阻尼</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="96"/>
+        <source>Contact Coefficient</source>
+        <translation>接触系数</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="111"/>
+        <source>Calculate Type</source>
+        <translation>计算方法</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="113"/>
+        <source>Impact</source>
+        <translation>冲击</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="114"/>
+        <source>Fractal</source>
+        <translation>分形</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/paramwidget.cpp" line="125"/>
+        <source>Collision Contact</source>
+        <translation>碰撞接触</translation>
+    </message>
+</context>
+<context>
     <name>PluginManager</name>
     <message>
         <location filename="../../libs/extensionsystem/optionsparser.cpp" line="128"/>
@@ -1405,7 +1514,7 @@ Reason: %3</source>
 <context>
     <name>Postoperation::PostoperationPlugin</name>
     <message>
-        <location filename="../../plugins/postoperation/postoperationplugin.cpp" line="81"/>
+        <location filename="../../plugins/postoperation/postoperationplugin.cpp" line="84"/>
         <source>Postoperation Setting</source>
         <translation type="unfinished">后处理设置</translation>
     </message>
@@ -2063,6 +2172,26 @@ Reason: %3</source>
     </message>
 </context>
 <context>
+    <name>QwtPlotRenderer</name>
+    <message>
+        <location filename="../../libs/qwt/qwt_plot_renderer.cpp" line="1017"/>
+        <location filename="../../libs/qwt/qwt_plot_renderer.cpp" line="1020"/>
+        <location filename="../../libs/qwt/qwt_plot_renderer.cpp" line="1023"/>
+        <source>Documents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/qwt/qwt_plot_renderer.cpp" line="1028"/>
+        <source>Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/qwt/qwt_plot_renderer.cpp" line="1043"/>
+        <source>Export File Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RibbonWindow</name>
     <message>
         <location filename="../../libs/qtribbon/ribbonsample/shared/ribbonwindow.cpp" line="56"/>
@@ -2458,6 +2587,54 @@ Reason: %3</source>
         <location filename="../../plugins/solver/solverplugin.cpp" line="103"/>
         <source>Clear Solution</source>
         <translation type="unfinished">删除结果</translation>
+    </message>
+</context>
+<context>
+    <name>SolverWidget</name>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/solverwidget.cpp" line="38"/>
+        <source>Start Time(s)</source>
+        <translation>初始时间（s）</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/solverwidget.cpp" line="40"/>
+        <source>Stop Time(s)</source>
+        <translation>结束时间（s）</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/solverwidget.cpp" line="50"/>
+        <source>Simulation Time</source>
+        <translation>仿真时间</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/solverwidget.cpp" line="58"/>
+        <source>Solver</source>
+        <translation>求解器</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/solverwidget.cpp" line="60"/>
+        <source>ode4(Runge-Kutta)</source>
+        <translation>ode4(Runge-Kutta)</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/solverwidget.cpp" line="65"/>
+        <source>Step Type</source>
+        <translation>步长类型</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/solverwidget.cpp" line="67"/>
+        <source>Fixed-Step</source>
+        <translation>固定步长</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/solverwidget.cpp" line="73"/>
+        <source>Fixed-Step Size</source>
+        <translation>固定步长大小</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/bounce/subwidget/solverwidget.cpp" line="81"/>
+        <source>Solver Options</source>
+        <translation>求解器选择</translation>
     </message>
 </context>
 <context>

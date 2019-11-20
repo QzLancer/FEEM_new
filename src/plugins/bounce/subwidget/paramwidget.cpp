@@ -43,6 +43,12 @@ void ParamWidget::addPhysicsTab()
     vlayout->addStretch();
 
     mTabWidget->addTab(physicstab, tr("Physics"));
+
+    /**LineEdit初始值**/
+    mOpenDistanceEdit->setText("0.0017");
+    mStrokeEdit->setText("0.00268");
+    mMovingMassEdit->setText("0.007");
+    mConcentratedMassEdit->setText("0.0129");
 }
 
 void ParamWidget::addReactionTab()
@@ -70,6 +76,12 @@ void ParamWidget::addReactionTab()
     vlayout->addStretch();
 
     mTabWidget->addTab(reactiontab, tr("Reaction System"));
+
+    /**LineEdit初始值**/
+    mContactSpringStiffnessEdit->setText("13000");
+    mReturnSpringStiffnessEdit->setText("370");
+    mContactSpringPreloadsEdit->setText("7");
+    mReturnSpringPreloadsEdit->setText("6");
 }
 
 void ParamWidget::addCollisionTab()
@@ -126,6 +138,12 @@ void ParamWidget::addCollisionTab()
 
     connect(mContactTypeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotChangeContactType(int)));
     connect(mCalculateTypeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotChangeCalculateType(int)));
+
+    /**LineEdit初始值**/
+    mContactStiffnessEdit->setText("5.3e+8");
+    mContactPenetrationEdit->setText("0.0001");
+    mContactDampingEdit->setText("1000");
+    mContactCoefficientEdit->setText("1.5");
 }
 
 void ParamWidget::slotChangeContactType(int index)
@@ -136,9 +154,12 @@ void ParamWidget::slotChangeContactType(int index)
 void ParamWidget::slotChangeCalculateType(int index)
 {
     mCalculateType = static_cast<CalculateType>(index);
-    if(mCalculateType == IMPACT){
+    switch (mCalculateType) {
+    case IMPACT:
         mImpactWidget->show();
-    }else if(mCalculateType == FRACTAL){
+        break;
+    case FRACTAL:
         mImpactWidget->hide();
+        break;
     }
 }

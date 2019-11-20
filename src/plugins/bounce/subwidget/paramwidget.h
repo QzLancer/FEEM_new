@@ -50,17 +50,19 @@ public:
     ContactType mContactType;
     CalculateType mCalculateType;
 
+    QTabWidget *mTabWidget;
+
 signals:
 
 public slots:
     void slotChangeContactType(int index);
     void slotChangeCalculateType(int index);
+
 private:
     void addPhysicsTab();
     void addReactionTab();
     void addCollisionTab();
 
-    QTabWidget *mTabWidget;
     QWidget *mImpactWidget;
 };
 
