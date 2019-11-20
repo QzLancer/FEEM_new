@@ -23,9 +23,8 @@ signals:
 public slots:
 
 private:
-    QVBoxLayout mVLayout;
     QFormLayout mFLayout;
-    QMap<QString, QLineEdit*> *mLineEditMap;
+    QMap<QString, QLineEdit*> mLineEditMap;
 };
 
 #endif // BOUNCETAB_H
