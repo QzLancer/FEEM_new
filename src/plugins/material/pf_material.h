@@ -20,6 +20,7 @@ public:
 
     CMaterialProp();
     ~CMaterialProp();
+    CMaterialProp& operator = (const CMaterialProp & material);
     void StripBHData(QString &b, QString &h);
     void BHDataToCString(QString &b, QString &h);
 

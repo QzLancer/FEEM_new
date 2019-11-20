@@ -6,22 +6,24 @@
 #include <QVBoxLayout>
 #include <QPalette>
 
-BounceDialog::BounceDialog(QWidget *parent) : QDialog(parent),
-    mTabWidget(new QTabWidget(this)),
-    mRunButton(new QPushButton(tr("Run"), this)),
-    mCancelButton(new QPushButton(tr("Cancel"), this)),
-    mWarningLabel(new QLabel(this))
+BounceDialog::BounceDialog(QWidget *parent)
+    : QDialog(parent)
+    , mTabWidget(new QTabWidget(this))
+    , mRunButton(new QPushButton(tr("Run"),this))
+    , mCancelButton(new QPushButton(tr("Cancel"),this))
+    , mWarningLabel(new QLabel(this))
 {    
-//    setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
+    setWindowFlags(windowFlags() | Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
     initialization();
+    setMinimumSize(500,300);
 }
 
 BounceDialog::~BounceDialog()
 {
-    delete mWarningLabel;
-    delete mCancelButton;
-    delete mRunButton;
-    delete mTabWidget;
+//    delete mWarningLabel;
+//    delete mCancelButton;
+//    delete mRunButton;
+//    delete mTabWidget;
 }
 
 void BounceDialog::Run()
@@ -105,11 +107,11 @@ void BounceDialog::initialization()
     hlayout->addWidget(mRunButton);
     hlayout->addWidget(mCancelButton);
 
-    QVBoxLayout *vlayout = new QVBoxLayout(/*this*/);
-    setLayout(vlayout);
+    QVBoxLayout *vlayout = new QVBoxLayout(this);
     vlayout->addWidget(mTabWidget);
     vlayout->addWidget(mWarningLabel);
     vlayout->addLayout(hlayout);
+    setLayout(vlayout);
 
     connect(mCancelButton, &QPushButton::clicked, [this]{this->reject();});
     connect(mRunButton, &QPushButton::clicked, this, &BounceDialog::Run);

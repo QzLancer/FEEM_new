@@ -214,10 +214,15 @@ PF_ProjectTreeWidget::PF_ProjectTreeWidget(QWidget *parent) : QWidget(parent)
 //            this, &PF_ProjectTreeWidget::renamed);
     connect(m_model, &PF_ProjectModel::requestExpansion,
             m_view, &QTreeView::expand);
-    connect(m_view, &QAbstractItemView::activated,
+    /** 节点被选中的操作 ,如果是activated，需要双击或者回车
+        如果是clicked，好像只支持鼠标单击触发**/
+    connect(m_view, &QAbstractItemView::clicked,
             this, &PF_ProjectTreeWidget::openItem);
+//    connect(m_view, &QAbstractItemView::activated,
+//            this, &PF_ProjectTreeWidget::openItem);
     connect(m_view->selectionModel(), &QItemSelectionModel::currentChanged,
             this, &PF_ProjectTreeWidget::handleCurrentItemChange);
+    /** 处理右键操作 **/
     connect(m_view, &QWidget::customContextMenuRequested,
             this, &PF_ProjectTreeWidget::showContextMenu);
     connect(m_view, &QTreeView::expanded,
@@ -291,6 +296,20 @@ void PF_ProjectTreeWidget::showContextMenu(const QPoint &pos)
 void PF_ProjectTreeWidget::openItem(const QModelIndex &mainIndex)
 {
     Node *node = m_model->nodeForIndex(mainIndex);
+    if (!node /*|| node->asLeafNode()*/)
+        return;
+    /** 不同的节点，跳转到相应的视图 **/
+    switch (node->nodeType()) {
+        case NodeType::Geometry:
+        {
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+    qDebug()<<Q_FUNC_INFO<<node->displayName()<<" Clicked!";
 }
 
 /*!

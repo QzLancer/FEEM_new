@@ -1,4 +1,8 @@
 #include "pf_materiallibrary.h"
+#include "pf_magmaterialdialog.h"
+#include "pf_materialtreemodel.h"
+
+#include <coreplugin/icore.h>
 
 #include <utils/navigationtreeview.h>
 #include <project/pf_projecttree.h>
@@ -190,7 +194,7 @@ PF_MaterialLibraryWidget::PF_MaterialLibraryWidget(QWidget *parent)
     this->setLayout(layout);
 
     /** 信号连接 **/
-    connect(m_view, &QAbstractItemView::activated,
+    connect(m_view, &QAbstractItemView::doubleClicked,
             this, &PF_MaterialLibraryWidget::openItem);
     connect(m_view->selectionModel(), &QItemSelectionModel::currentChanged,
             this, &PF_MaterialLibraryWidget::handleCurrentItemChange);
@@ -239,9 +243,24 @@ void PF_MaterialLibraryWidget::showContextMenu(const QPoint &pos)
     Node *node = m_model->nodeForIndex(index);
 }
 
+/*!
+ \brief 打开编辑对话框
+
+ \param mainIndex
+*/
 void PF_MaterialLibraryWidget::openItem(const QModelIndex &mainIndex)
 {
+    Node *node = m_model->nodeForIndex(mainIndex);
+    if (node && node->nodeType()==NodeType::Leaf){
+        CMaterialPropNode* m = dynamic_cast<CMaterialPropNode*>(node);
+        PF_MagMaterialDialog* dialog = new PF_MagMaterialDialog(Core::ICore::dialogParent());
+        dialog->setWindowTitle(m->displayName());
+        dialog->setMaterial(*m->m_material);
+        int result = dialog->exec();
+        if(result == QDialog::Accepted){
 
+        }
+    }
 }
 
 void PF_MaterialLibraryWidget::setCurrentItem(Node *node)

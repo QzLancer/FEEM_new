@@ -13,6 +13,7 @@
 #include <coreplugin/actionmanager/actioncontainer.h>
 #include <coreplugin/actionmanager/command.h>
 #include <coreplugin/workpage.h>
+#include <coreplugin/icore.h>
 
 #include <project/projectexplorerconstants.h>
 #include <project/pf_node.h>
@@ -65,7 +66,8 @@ void MaterialPlugin::addBlankMaterial()
         感觉不需要，因为右键菜单就是根据材料进来的   **/
     if(!folderNode) return;
 
-    PF_MagMaterialDialog* dialog = new PF_MagMaterialDialog();
+    PF_MagMaterialDialog* dialog = new PF_MagMaterialDialog(Core::ICore::dialogParent());
+    dialog->setWindowTitle(tr("Add Blank Material"));
     int result = dialog->exec();
     if(result == QDialog::Accepted){
         qDebug()<<"addBlankMaterial OK";

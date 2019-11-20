@@ -1382,63 +1382,63 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="377"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="374"/>
         <source>Add Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="384"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="381"/>
         <source>Add Study</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="390"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="387"/>
         <source>3D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="395"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="392"/>
         <source>2D Axisymmetric</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="400"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="397"/>
         <source>2D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="408"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="405"/>
         <source>Static Magnetic Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="413"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="410"/>
         <source>Transient Magnetic Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="418"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="415"/>
         <source>Heat Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="426"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="423"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="434"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="431"/>
         <source>Model tree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="543"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="540"/>
         <source>New Project</source>
         <comment>Title of dialog</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="556"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="553"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>

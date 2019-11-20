@@ -1,4 +1,5 @@
 #include "pf_magmaterialdialog.h"
+#include "pf_material.h"
 
 #include <QFormLayout>
 #include <QHBoxLayout>
@@ -11,9 +12,19 @@
 #include <QTabWidget>
 #include <QPushButton>
 
-PF_MagMaterialDialog::PF_MagMaterialDialog()
+PF_MagMaterialDialog::PF_MagMaterialDialog(QWidget *parent)
+    :QDialog (parent)
+    ,m_material(new CMaterialProp())
 {
     initialization();
+    resize(650,500);
+    updateDialog();
+}
+
+PF_MagMaterialDialog::~PF_MagMaterialDialog()
+{
+    delete m_material;
+    m_material = nullptr;
 }
 
 void PF_MagMaterialDialog::initialization()
@@ -52,8 +63,7 @@ void PF_MagMaterialDialog::initialization()
 
     /** 作用对话框关闭时，自动销毁对话框 **/
     this->setAttribute(Qt::WA_DeleteOnClose);
-    this->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
-    this->setWindowTitle(tr("Add Blank Material"));
+    this->setWindowFlags(windowFlags() | Qt::WindowCloseButtonHint);
 }
 
 QWidget *PF_MagMaterialDialog::createBasicPage()
@@ -129,14 +139,14 @@ QWidget *PF_MagMaterialDialog::createMagneticPage()
     gbox_corer->setTitle(tr("Coercivity"));
     QFormLayout* form_coer = new QFormLayout;
     edit_coer = new QLineEdit(w);
-    form_coer->addRow(tr("J,MA"),edit_coer);
+    form_coer->addRow(tr("T"),edit_coer);
     gbox_corer->setLayout(form_coer);
 
     QGroupBox* gbox_conduct = new QGroupBox(w);
     gbox_conduct->setTitle(tr("Electrical Conductivity"));
     QFormLayout* form_conduct = new QFormLayout;
     edit_conduct = new QLineEdit(w);
-    form_conduct->addRow(tr("J,MA"),edit_conduct);
+    form_conduct->addRow(tr("S/m"),edit_conduct);
     gbox_conduct->setLayout(form_conduct);
 
     QHBoxLayout* coer_conduct = new QHBoxLayout;
@@ -149,7 +159,7 @@ QWidget *PF_MagMaterialDialog::createMagneticPage()
     gbox_source->setTitle(tr("Source Current Density"));
     QFormLayout* form_current = new QFormLayout;
     edit_current = new QLineEdit(w);
-    form_current->addRow(tr("J,MA"),edit_current);
+    form_current->addRow(tr("A/(m2)"),edit_current);
     gbox_source->setLayout(form_current);
 
     mainlayout->addWidget(gbox_source);
@@ -179,4 +189,31 @@ QWidget *PF_MagMaterialDialog::createHeatPage()
 
 
     return w;
+}
+
+/*!
+ \brief 赋值材料属性
+
+ \param material
+*/
+void PF_MagMaterialDialog::setMaterial(const CMaterialProp &material)
+{
+    *m_material = material;
+    updateDialog();
+}
+
+/*!
+ \brief 更新材料值的显示
+
+*/
+void PF_MagMaterialDialog::updateDialog()
+{
+    edit_name->setText(m_material->BlockName);
+    edit_ux->setText(QString::number(m_material->mu_x));
+    edit_uy->setText(QString::number(m_material->mu_y));
+    edit_hx->setText(QString::number(m_material->Theta_hx));
+    edit_hy->setText(QString::number(m_material->Theta_hy));
+    edit_conduct->setText(QString::number(m_material->Cduct));
+    edit_coer->setText(QString::number(m_material->H_c));
+    edit_current->setText(QString::number(m_material->Jsrc.re));
 }

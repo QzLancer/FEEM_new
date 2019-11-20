@@ -15,13 +15,18 @@ class PF_MagMaterialDialog : public QDialog
 {
     Q_OBJECT
 public:
-    PF_MagMaterialDialog();
+    PF_MagMaterialDialog(QWidget* parent = nullptr);
+    ~PF_MagMaterialDialog();
 
     void initialization();
 
     QWidget* createBasicPage();
     QWidget* createMagneticPage();
     QWidget* createHeatPage();
+
+    void setMaterial(const CMaterialProp & material);
+
+    void updateDialog();
 private:
     QLineEdit* edit_name;
     QLineEdit* edit_comment;

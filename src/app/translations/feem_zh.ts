@@ -1046,92 +1046,92 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="24"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">名称</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="25"/>
         <source>Comment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">备注</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="31"/>
         <source>Basic Material</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">基本材料属性</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="32"/>
         <source>Magnetic Material</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">电磁材料属性</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="33"/>
         <source>Heat Material</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">热学材料属性</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="36"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">确定</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="38"/>
         <source>Cancle</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">取消</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="56"/>
         <source>Add Blank Material</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">添加空白材料</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="76"/>
         <source>Linear B-H relationship</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">线性B-H关系</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="77"/>
         <source>Nonlinear B-H curve</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">非线性B-H曲线</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="80"/>
         <source>B-H curve</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">B-H曲线</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="93"/>
         <source>Relative ux:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">相对磁导率ux</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="94"/>
         <source>Relative hx:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">相对磁场强度hx</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="96"/>
         <source>Relative uy:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">相对磁导率uy</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="97"/>
         <source>Relative hy:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">相对磁场强度hy</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="101"/>
         <source>Linear Material Properties</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">线性材料属性</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="107"/>
         <source>Nonlinear Material Properties</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">非线性材料属性</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="110"/>
         <source>B-H Curve</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">B-H曲线</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="115"/>
@@ -1141,7 +1141,7 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="129"/>
         <source>Coercivity</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">矫顽力</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="132"/>
@@ -1153,12 +1153,12 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="136"/>
         <source>Electrical Conductivity</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">电导率</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="149"/>
         <source>Source Current Density</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">电流密度</translation>
     </message>
 </context>
 <context>
@@ -1382,42 +1382,42 @@ Reason: %3</source>
         <translation type="unfinished">保存项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="377"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="374"/>
         <source>Add Model</source>
         <translation type="unfinished">添加模型</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="384"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="381"/>
         <source>Add Study</source>
         <translation type="unfinished">添加研究</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="390"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="387"/>
         <source>3D</source>
         <translation type="unfinished">三维</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="395"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="392"/>
         <source>2D Axisymmetric</source>
         <translation type="unfinished">二维轴对称</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="400"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="397"/>
         <source>2D</source>
         <translation type="unfinished">二维</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="408"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="405"/>
         <source>Static Magnetic Field</source>
         <translation type="unfinished">静磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="413"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="410"/>
         <source>Transient Magnetic Field</source>
         <translation type="unfinished">瞬态磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="418"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="415"/>
         <source>Heat Field</source>
         <translation type="unfinished">热场</translation>
     </message>
@@ -1430,23 +1430,23 @@ Reason: %3</source>
         <translation type="obsolete">添加空白材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="426"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="423"/>
         <source>Help</source>
         <translation type="unfinished">帮助</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="434"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="431"/>
         <source>Model tree</source>
         <translation type="unfinished">模型树</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="543"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="540"/>
         <source>New Project</source>
         <comment>Title of dialog</comment>
         <translation type="unfinished">新建项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="556"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="553"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>
