@@ -683,7 +683,7 @@ CMaterialProp &CMaterialProp::operator =(const CMaterialProp &material)
 
     this->BHpoints = material.BHpoints;
     if(this->BHpoints > 0){
-        this->BHdata=(CComplex *)calloc(this->BHpoints,sizeof(CComplex));
+        this->BHdata=static_cast<CComplex *>(calloc(this->BHpoints,sizeof(CComplex)));
         memcpy(this->BHdata,material.BHdata,this->BHpoints*sizeof(CComplex));
     }
     return *this;

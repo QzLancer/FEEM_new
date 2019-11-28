@@ -7,4 +7,5 @@ FEEM_PLUGIN_DEPENDS += \
     coreplugin \
     project \
     material \
+    mesh \
     solver \

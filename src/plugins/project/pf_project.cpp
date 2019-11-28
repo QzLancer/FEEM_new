@@ -68,7 +68,7 @@ PF_Project::PF_Project(QObject *parent)
     : QObject(parent)
     , d(new PF_ProjectPrivate())
 {
-    setRootProjectNode(PF_NodeTreeBuilder::buildTree(this));
+//    setRootProjectNode(PF_NodeTreeBuilder::buildTree(this));
 }
 
 PF_Project::~PF_Project()
@@ -79,7 +79,7 @@ PF_Project::~PF_Project()
 QString PF_Project::displayName() const
 {
     if(d->m_displayName.isEmpty()){
-        d->m_displayName = QString(tr("untitled"))+QString(".mph");
+        d->m_displayName = QString(tr("untitled"));
     }
 
     return d->m_displayName;
