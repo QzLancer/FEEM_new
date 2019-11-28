@@ -5,4 +5,5 @@ FEEM_LIB_DEPENDS += \
     qtribbon \
 
 FEEM_PLUGIN_DEPENDS += \
-    coreplugin
+    coreplugin \
+    material \
