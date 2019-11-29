@@ -71,7 +71,7 @@ void MaterialPlugin::addBlankMaterial()
     int result = dialog->exec();
     if(result == QDialog::Accepted){
         qDebug()<<"addBlankMaterial OK";
-        folderNode->addNode(std::make_unique<LeafNode>(QString(QObject::tr("Material")),LeafType::Header));
+        folderNode->addNode(std::make_unique<LeafNode>(QString(QObject::tr("Material")),LeafType::CMaterialProp));
         PF_ProjectTree::emitSubtreeChanged(folderNode);
     }else{
         qDebug()<<"addBlankMaterial Cancle";

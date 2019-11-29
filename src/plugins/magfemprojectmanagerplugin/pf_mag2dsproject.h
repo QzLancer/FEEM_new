@@ -1,6 +1,9 @@
 #ifndef PF_MAG2DSPROJECT_H
 #define PF_MAG2DSPROJECT_H
 
+#include <utils/pf_variabledict.h>
+#include <material/pf_material.h>
+
 #include <project/pf_project.h>
 
 #include <QVector>
@@ -12,6 +15,10 @@ class PF_Mag2DSProject : public ProjectExplorer::PF_Project
 public:
     PF_Mag2DSProject();
     ~PF_Mag2DSProject();
+
+    QVector<CMaterialProp> m_materialList;
+    Utils::PF_VariableDict m_variables;
+public:
 
 private:
 

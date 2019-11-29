@@ -6,12 +6,14 @@ HEADERS += \
     treemodel.h \
     viewitem.h \
     wizard.h \
-    wizardpage.h
+    wizardpage.h \
+    pf_variabledict.h
 
 SOURCES += \
     navigationtreeview.cpp \
     treemodel.cpp \
     viewitem.cpp \
     wizard.cpp \
-    wizardpage.cpp
+    wizardpage.cpp \
+    pf_variabledict.cpp
 

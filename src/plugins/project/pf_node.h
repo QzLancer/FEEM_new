@@ -37,14 +37,6 @@ enum class NodeType : quint16 {
 };
 enum class LeafType : quint16 {
     Unknown = 0,
-    Header,
-    Source,
-    Form,
-    StateChart,
-    Resource,
-    QML,
-    Project,
-    FileTypeSize,
     CMaterialProp
 };
 enum ProjectAction {

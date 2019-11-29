@@ -1,15 +1,18 @@
 #ifndef PF_VARIABLEDICT_H
 #define PF_VARIABLEDICT_H
 
+#include "utils_global.h"
+
 #include <QHash>
 #include <QVariant>
 
 class QString;
+namespace Utils {
 /*!
  \brief 用来保存变量
 
 */
-class PF_VariableDict
+class FEEM_UTILS_EXPORT PF_VariableDict
 {
 public:
     PF_VariableDict() = default;
@@ -40,5 +43,5 @@ public:
 private:
     QHash<QString, double> variables;
 };
-
+}//namespace Utils
 #endif // PF_VARIABLEDICT_H
