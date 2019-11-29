@@ -309,7 +309,7 @@ void PF_ProjectTreeWidget::openItem(const QModelIndex &mainIndex)
             break;
         }
     }
-    qDebug()<<Q_FUNC_INFO<<node->displayName()<<" Clicked!";
+//    qDebug()<<Q_FUNC_INFO<<node->displayName()<<" Clicked!";
 }
 
 /*!

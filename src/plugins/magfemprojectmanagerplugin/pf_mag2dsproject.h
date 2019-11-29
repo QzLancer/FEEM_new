@@ -16,8 +16,10 @@ public:
     PF_Mag2DSProject();
     ~PF_Mag2DSProject();
 
-    QVector<CMaterialProp> m_materialList;
-    Utils::PF_VariableDict m_variables;
+    void updateData();
+
+    QVector<CMaterialProp> m_materialList;//
+    Utils::PF_VariableDict m_variables;//
 public:
 
 private:

@@ -9,3 +9,4 @@ FEEM_PLUGIN_DEPENDS += \
     material \
     mesh \
     solver \
+    output \

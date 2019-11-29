@@ -25,8 +25,10 @@ public:
     QWidget* createHeatPage();
 
     void setMaterial(const CMaterialProp & material);
+    CMaterialProp* getMaterial();
 
     void updateDialog();
+
 private:
     QLineEdit* edit_name;
     QLineEdit* edit_comment;

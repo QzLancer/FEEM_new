@@ -3,6 +3,7 @@
 
 #include "pf_materiallibrary.h"
 #include "pf_magmaterialdialog.h"
+#include "pf_material.h"
 
 #include "qtribbon/include/QtnRibbonGroup.h"
 
@@ -69,10 +70,16 @@ void MaterialPlugin::addBlankMaterial()
     PF_MagMaterialDialog* dialog = new PF_MagMaterialDialog(Core::ICore::dialogParent());
     dialog->setWindowTitle(tr("Add Blank Material"));
     int result = dialog->exec();
+    /** 获取result之后，对话框已经关闭了，变量不存在了，
+        解决方法，不设置WA_DeleteOnClose，但是对话框要设置parents，
+        不然会内存泄漏**/
     if(result == QDialog::Accepted){
-        qDebug()<<"addBlankMaterial OK";
-        folderNode->addNode(std::make_unique<LeafNode>(QString(QObject::tr("Material")),LeafType::CMaterialProp));
-        PF_ProjectTree::emitSubtreeChanged(folderNode);
+        emit materialAdded(dialog->getMaterial());
+        /** 但是这个也不能直接添加吧，如果重名的话，就不能添加，
+            主要的问题在于现在的插件依赖关系，是Project依赖material插件，
+            所以，material不能反向去包含Project插件。。。。。**/
+        /** 如何把这个材料值传到Project当中进行保存？主要问题是，
+            不清楚是哪一个Project要这个东西，应该是要传给active的Project。**/
     }else{
         qDebug()<<"addBlankMaterial Cancle";
     }

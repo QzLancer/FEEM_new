@@ -2,6 +2,9 @@
 #include "pf_magfemnode.h"
 
 #include <project/pf_node.h>
+#include <project/pf_projecttree.h>
+
+#include <material/materialplugin.h>
 
 #include <QString>
 #include <QHash>
@@ -14,21 +17,51 @@ namespace MagFEMProjectManagerPlugin {
 PF_Mag2DSProject::PF_Mag2DSProject()
     :ProjectExplorer::PF_Project ()
 {
-    m_materialList.push_back(CMaterialProp());
-    m_materialList.push_back(CMaterialProp());
-    m_materialList.push_back(CMaterialProp());
-    m_materialList.push_back(CMaterialProp());
+    //    m_materialList.push_back(CMaterialProp());
+    //    m_materialList.push_back(CMaterialProp());
+    //    m_materialList.push_back(CMaterialProp());
+    //    m_materialList.push_back(CMaterialProp());
 
-    m_variables.add("length",1);
-    m_variables.add("length1",1);
-    m_variables.add("length2",1);
-    m_variables.add("length3",1);
+    //    m_variables.add("length",1);
+    //    m_variables.add("length1",1);
+    //    m_variables.add("length2",1);
+    //    m_variables.add("length3",1);
     setRootProjectNode(PF_Mag2DSNodeTreeBuilder::buildTree(this));
+
+    connect(Material::MaterialPlugin::instance(),&Material::MaterialPlugin::materialAdded
+            ,[this](CMaterialProp* material)
+    {
+        /** 因为connect连接的是创建的具体对象，所以不会出现，同样的Project都会打开 **/
+        /** 判断材料名是否存在 **/
+        for(auto m : m_materialList)
+        {
+            if(m.BlockName == material->BlockName){
+                qDebug()<<"Material "<<material->BlockName<<"exists.";
+                return;
+            }
+        }
+        m_materialList.push_back(*material);
+        /** 更新tree **/
+        /** 这里有问题，如果不是从tree操作进来的，那么node就不对了 **/
+        Node *node = PF_ProjectTree::findCurrentNode();
+        FolderNode *folderNode = node ? node->asFolderNode() : nullptr;
+        /** 需要判断为文件夹，不清楚需不需要判断是材料类型
+            感觉不需要，因为右键菜单就是根据材料进来的   **/
+        if(!folderNode) return;
+        folderNode->addNode(std::make_unique<LeafNode>(material->BlockName,LeafType::CMaterialProp));
+        PF_ProjectTree::emitSubtreeChanged(folderNode);
+        qDebug()<<"addBlankMaterial OK";
+    });
 }
 
 PF_Mag2DSProject::~PF_Mag2DSProject()
 {
 
+}
+
+void PF_Mag2DSProject::updateData()
+{
+    setRootProjectNode(PF_Mag2DSNodeTreeBuilder::buildTree(this));
 }
 
 /**
@@ -55,7 +88,7 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
     {
         iter.next();
         def_node->addNode(std::make_unique<LeafNode>(iter.key(),LeafType::Unknown));
-//        qDebug() << iter.key() << ": " << iter.value();
+        //        qDebug() << iter.key() << ": " << iter.value();
     }
     /** 添加材料 **/
     auto material_node = std::make_unique<FolderNode>(QString(QObject::tr("Materials: Materials")),NodeType::Material,QIcon(":/imgs/material.png"));

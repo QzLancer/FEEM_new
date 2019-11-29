@@ -61,8 +61,10 @@ void PF_MagMaterialDialog::initialization()
 
     setLayout(vbox);
 
-    /** 作用对话框关闭时，自动销毁对话框 **/
-    this->setAttribute(Qt::WA_DeleteOnClose);
+    /** 作用对话框关闭时，自动销毁对话框，但是，这里不能设置
+        自动销毁，不然，按下ok之后，对话框销毁，就无法访问
+        内部的变量**/
+//    this->setAttribute(Qt::WA_DeleteOnClose);
     this->setWindowFlags(windowFlags() | Qt::WindowCloseButtonHint);
 }
 
@@ -202,6 +204,14 @@ void PF_MagMaterialDialog::setMaterial(const CMaterialProp &material)
     updateDialog();
 }
 
+CMaterialProp *PF_MagMaterialDialog::getMaterial()
+{
+    if(m_material)
+        return m_material;
+    else
+        return nullptr;
+}
+
 /*!
  \brief 更新材料值的显示
 
@@ -217,3 +227,5 @@ void PF_MagMaterialDialog::updateDialog()
     edit_coer->setText(QString::number(m_material->H_c));
     edit_current->setText(QString::number(m_material->Jsrc.re));
 }
+
+
