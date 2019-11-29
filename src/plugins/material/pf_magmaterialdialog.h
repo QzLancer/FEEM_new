@@ -28,6 +28,9 @@ public:
     CMaterialProp* getMaterial();
 
     void updateDialog();
+    void updateMaterial();
+
+    void accept();
 
 private:
     QLineEdit* edit_name;

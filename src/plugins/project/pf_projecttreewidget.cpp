@@ -218,6 +218,8 @@ PF_ProjectTreeWidget::PF_ProjectTreeWidget(QWidget *parent) : QWidget(parent)
         如果是clicked，好像只支持鼠标单击触发**/
     connect(m_view, &QAbstractItemView::clicked,
             this, &PF_ProjectTreeWidget::openItem);
+    connect(m_view, &QAbstractItemView::doubleClicked,
+            this, &PF_ProjectTreeWidget::doubleopenItem);
 //    connect(m_view, &QAbstractItemView::activated,
 //            this, &PF_ProjectTreeWidget::openItem);
     connect(m_view->selectionModel(), &QItemSelectionModel::currentChanged,
@@ -309,7 +311,33 @@ void PF_ProjectTreeWidget::openItem(const QModelIndex &mainIndex)
             break;
         }
     }
-//    qDebug()<<Q_FUNC_INFO<<node->displayName()<<" Clicked!";
+    //    qDebug()<<Q_FUNC_INFO<<node->displayName()<<" Clicked!";
+}
+
+/*!
+ \brief 适用于双击实现动作，这种情况下，节点必须是Leaf类型。
+
+ \param mainIndex
+*/
+void PF_ProjectTreeWidget::doubleopenItem(const QModelIndex &mainIndex)
+{
+    Node *node = m_model->nodeForIndex(mainIndex);
+    if (!node || node->asFolderNode())
+        return;
+    /** 不同的节点，跳转到相应的视图 **/
+    LeafNode* lNode = dynamic_cast<LeafNode*>(node);
+    switch (lNode->leafType()) {
+        case LeafType::CMaterialProp:
+        {
+            /** 查看编辑材料 **/
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+    qDebug()<<Q_FUNC_INFO<<node->displayName()<<" Clicked!";
 }
 
 /*!

@@ -5,6 +5,7 @@
 #include <project/pf_projecttree.h>
 
 #include <material/materialplugin.h>
+#include <output/outputpluginplugin.h>
 
 #include <QString>
 #include <QHash>
@@ -36,7 +37,8 @@ PF_Mag2DSProject::PF_Mag2DSProject()
         for(auto m : m_materialList)
         {
             if(m.BlockName == material->BlockName){
-                qDebug()<<"Material "<<material->BlockName<<"exists.";
+                QString s("Material "+material->BlockName+" exists.");
+                OutputPlugin::OutputPluginPlugin::write(s);
                 return;
             }
         }
@@ -50,7 +52,7 @@ PF_Mag2DSProject::PF_Mag2DSProject()
         if(!folderNode) return;
         folderNode->addNode(std::make_unique<LeafNode>(material->BlockName,LeafType::CMaterialProp));
         PF_ProjectTree::emitSubtreeChanged(folderNode);
-        qDebug()<<"addBlankMaterial OK";
+        OutputPlugin::OutputPluginPlugin::write("Material "+material->BlockName+" Added.");
     });
 }
 
@@ -91,29 +93,46 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
         //        qDebug() << iter.key() << ": " << iter.value();
     }
     /** 添加材料 **/
-    auto material_node = std::make_unique<FolderNode>(QString(QObject::tr("Materials: Materials")),NodeType::Material,QIcon(":/imgs/material.png"));
+    auto material_node = std::make_unique<FolderNode>(QString(QObject::tr("Materials")),NodeType::Material,QIcon(":/imgs/material.png"));
     for(auto m : pro->m_materialList)
     {
         material_node->addNode(std::make_unique<LeafNode>(m.BlockName,LeafType::CMaterialProp));
     }
     /** 添加几何 **/
-    auto geo_node = std::make_unique<FolderNode>(QString(QObject::tr("Geometry1")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
-
+    auto geo_node = std::make_unique<FolderNode>(QString(QObject::tr("Geometry")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
+    auto point_node = std::make_unique<FolderNode>(QString(QObject::tr("Point")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
+    auto line_node = std::make_unique<FolderNode>(QString(QObject::tr("Line")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
+    auto face_node = std::make_unique<FolderNode>(QString(QObject::tr("Face")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
     /** 添加分网 **/
-    auto mesh_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh1")),NodeType::Mesh,QIcon(":/imgs/mesh.png"));
+    auto mesh_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh")),NodeType::Mesh,QIcon(":/imgs/mesh.png"));
+    auto mesh_point_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh Point")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
+    auto mesh_line_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh Line")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
+    auto mesh_face_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh Face")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
 
-    auto globaldef_node = std::make_unique<FolderNode>(QString(QObject::tr("Global Definitions")),NodeType::Definition,QIcon(":/imgs/global_branch.png"));
+//    auto globaldef_node = std::make_unique<FolderNode>(QString(QObject::tr("Global Definitions")),NodeType::Definition,QIcon(":/imgs/global_branch.png"));
 
-    auto comp_node = std::make_unique<FolderNode>(QString(QObject::tr("Component: Component1")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
+    auto comp_node = std::make_unique<FolderNode>(QString(QObject::tr("Physics")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
 
-    globaldef_node->addNode(std::move(def_node));
-    globaldef_node->addNode(std::move(material_node));
+    auto solver_node = std::make_unique<FolderNode>(QString(QObject::tr("Solver")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
 
-    comp_node->addNode(std::move(geo_node));
-    comp_node->addNode(std::move(mesh_node));
+    auto result_node = std::make_unique<FolderNode>(QString(QObject::tr("Result")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
 
-    node->addNode(std::move(globaldef_node));
+    geo_node->addNode(std::move(def_node));
+    geo_node->addNode(std::move(point_node));
+    geo_node->addNode(std::move(line_node));
+    geo_node->addNode(std::move(face_node));
+
+    mesh_node->addNode(std::move(mesh_point_node));
+    mesh_node->addNode(std::move(mesh_line_node));
+    mesh_node->addNode(std::move(mesh_face_node));
+
+    comp_node->addNode(std::move(material_node));
+
+    node->addNode(std::move(geo_node));
+    node->addNode(std::move(mesh_node));
     node->addNode(std::move(comp_node));
+    node->addNode(std::move(solver_node));
+    node->addNode(std::move(result_node));
 }
 
 /**

@@ -28,6 +28,7 @@ private:
     void handleCurrentItemChange(const QModelIndex &current);
     void showContextMenu(const QPoint &pos);
     void openItem(const QModelIndex &mainIndex);
+    void doubleopenItem(const QModelIndex &mainIndex);
 
     void setCurrentItem(Node *node);
 

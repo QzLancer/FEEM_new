@@ -30,154 +30,154 @@
 <context>
     <name>BounceDialog</name>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="11"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="12"/>
         <source>Run</source>
         <translation>运行</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="12"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="13"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="41"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="43"/>
         <source>Error: Some properties are empty!</source>
         <translation>错误：一些属性不能为空！</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="56"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="58"/>
         <source>Error: Properties must be number!</source>
         <translation>错误：输入必须为数字！</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="126"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="128"/>
         <source>Open distance: </source>
         <translation>开距：</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="127"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="129"/>
         <source>Stroke: </source>
         <translation>行程：</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="128"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="130"/>
         <source>Moving contact mass: </source>
         <translation>动触头质量：</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="129"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="131"/>
         <source>Armature mass: </source>
         <translation>衔铁质量：</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="141"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="143"/>
         <source>Stiffness of overtravel spring: </source>
         <translation>超程弹簧刚度：</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="142"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="144"/>
         <source>Stiffness of return spring: </source>
         <translation>返回弹簧刚度</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="143"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="145"/>
         <source>Pre-pressure of overtravel spring: </source>
         <translation>超程弹簧预压力：</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="144"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="146"/>
         <source>Pre-pressure of return spring: </source>
         <translation>返回弹簧预压力：</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="156"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="72"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="158"/>
         <source>Stiffness: </source>
         <translation>碰撞刚度：</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="157"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="72"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="159"/>
         <source>Depth: </source>
         <translation>碰撞深度：</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="158"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="72"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="160"/>
         <source>Damping: </source>
         <translation>碰撞阻尼系数：</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="159"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="72"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="161"/>
         <source>Index: </source>
         <translation>碰撞指数：</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="170"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="73"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="172"/>
         <source>Initial time: </source>
         <translation>仿真开始时间：</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="171"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="73"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="173"/>
         <source>End time: </source>
         <translation>仿真结束时间：</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="172"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="73"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="174"/>
         <source>Step size: </source>
         <translation>仿真步长：</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="80"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="83"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="82"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="85"/>
         <source>Moving Contact Displacement</source>
         <translation>动触头位移</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="81"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="84"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="83"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="86"/>
         <source>Armature Displacement</source>
         <translation>衔铁位移</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="82"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="84"/>
         <source>time</source>
         <translation>时间</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="92"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="94"/>
         <source>Bounce calculate</source>
         <translation>弹跳计算</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="130"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="132"/>
         <source>Material properties</source>
         <translation>材料属性</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="145"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="147"/>
         <source>Spring reaction force</source>
         <translation>弹簧反力</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="160"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="162"/>
         <source>Collision contact</source>
         <translation>碰撞接触</translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="173"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="175"/>
         <source>Solve properties</source>
         <translation>求解属性</translation>
     </message>
@@ -665,13 +665,13 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagfieldWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="31"/>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="32"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="33"/>
         <source>Magnetic field</source>
         <translation type="unfinished">磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="33"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="34"/>
         <source>2D Axis Magnetic Static field simulation</source>
         <translation type="unfinished">二维轴对称静磁场</translation>
     </message>
@@ -679,33 +679,38 @@ Reason: %3</source>
 <context>
     <name>Material::MaterialPlugin</name>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="119"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="71"/>
+        <source>Add Blank Material</source>
+        <translation type="unfinished">添加空白材料</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/materialplugin.cpp" line="128"/>
         <source>Material</source>
         <translation>材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="127"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="136"/>
         <source>Add material</source>
         <translation>添加材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="136"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="145"/>
         <source>add Material</source>
         <translation type="unfinished">添加材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="141"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="150"/>
         <source>add Blank Material</source>
         <translation type="unfinished">添加空白材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="147"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="156"/>
         <source>Help</source>
         <translation type="unfinished">帮助</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="85"/>
-        <location filename="../../plugins/material/materialplugin.cpp" line="128"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="94"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="137"/>
         <source>Material library</source>
         <translation>材料库</translation>
     </message>
@@ -926,12 +931,12 @@ Reason: %3</source>
 <context>
     <name>OutputPlugin::OutputPluginPlugin</name>
     <message>
-        <location filename="../../plugins/output/outputpluginplugin.cpp" line="40"/>
+        <location filename="../../plugins/output/outputpluginplugin.cpp" line="44"/>
         <source>Message outputpane</source>
         <translation type="unfinished">信息输出</translation>
     </message>
     <message>
-        <location filename="../../plugins/output/outputpluginplugin.cpp" line="46"/>
+        <location filename="../../plugins/output/outputpluginplugin.cpp" line="50"/>
         <source>Welcome to FEEM!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1044,119 +1049,126 @@ Reason: %3</source>
 <context>
     <name>PF_MagMaterialDialog</name>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="24"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="35"/>
         <source>Name</source>
         <translation type="unfinished">名称</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="25"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="36"/>
         <source>Comment</source>
         <translation type="unfinished">备注</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="31"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="42"/>
         <source>Basic Material</source>
         <translation type="unfinished">基本材料属性</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="32"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="43"/>
         <source>Magnetic Material</source>
         <translation type="unfinished">电磁材料属性</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="33"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="44"/>
         <source>Heat Material</source>
         <translation type="unfinished">热学材料属性</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="36"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="47"/>
         <source>OK</source>
         <translation type="unfinished">确定</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="38"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="49"/>
         <source>Cancle</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="56"/>
         <source>Add Blank Material</source>
-        <translation type="unfinished">添加空白材料</translation>
+        <translation type="obsolete">添加空白材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="76"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="88"/>
         <source>Linear B-H relationship</source>
         <translation type="unfinished">线性B-H关系</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="77"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="89"/>
         <source>Nonlinear B-H curve</source>
         <translation type="unfinished">非线性B-H曲线</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="80"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="92"/>
         <source>B-H curve</source>
         <translation type="unfinished">B-H曲线</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="93"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="105"/>
         <source>Relative ux:</source>
         <translation type="unfinished">相对磁导率ux</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="94"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="106"/>
         <source>Relative hx:</source>
         <translation type="unfinished">相对磁场强度hx</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="96"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="108"/>
         <source>Relative uy:</source>
         <translation type="unfinished">相对磁导率uy</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="97"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="109"/>
         <source>Relative hy:</source>
         <translation type="unfinished">相对磁场强度hy</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="101"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="113"/>
         <source>Linear Material Properties</source>
         <translation type="unfinished">线性材料属性</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="107"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="119"/>
         <source>Nonlinear Material Properties</source>
         <translation type="unfinished">非线性材料属性</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="110"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="122"/>
         <source>B-H Curve</source>
         <translation type="unfinished">B-H曲线</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="115"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="127"/>
         <source>hmax</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="129"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="141"/>
         <source>Coercivity</source>
         <translation type="unfinished">矫顽力</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="132"/>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="139"/>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="152"/>
-        <source>J,MA</source>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="144"/>
+        <source>T</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="136"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="164"/>
+        <source>A/(m2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="148"/>
         <source>Electrical Conductivity</source>
         <translation type="unfinished">电导率</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="149"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="151"/>
+        <source>S/m</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="161"/>
         <source>Source Current Density</source>
         <translation type="unfinished">电流密度</translation>
     </message>
@@ -1462,7 +1474,7 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::ProjectTreeWidgetFactory</name>
     <message>
-        <location filename="../../plugins/project/pf_projecttreewidget.cpp" line="323"/>
+        <location filename="../../plugins/project/pf_projecttreewidget.cpp" line="370"/>
         <source>Projects</source>
         <translation type="unfinished">项目</translation>
     </message>
@@ -1720,6 +1732,7 @@ Reason: %3</source>
     </message>
     <message>
         <location filename="../../plugins/project/pf_nodetreebuilder.cpp" line="20"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="86"/>
         <source>Definitions</source>
         <translation type="unfinished">定义</translation>
     </message>
@@ -1751,12 +1764,12 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/optimize/singleobjectcore/sparticle.cpp" line="135"/>
         <source>Maximize</source>
-        <translation type="unfinished">最大化</translation>
+        <translation>最大化</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectcore/sparticle.cpp" line="138"/>
         <source>Minimize</source>
-        <translation type="unfinished">最小化</translation>
+        <translation>最小化</translation>
     </message>
     <message>
         <location filename="../../libs/QtAdvancedDock/DockAreaTitleBar.cpp" line="147"/>
@@ -1781,17 +1794,76 @@ Reason: %3</source>
     <message>
         <location filename="../../libs/QtAdvancedDock/DockWidgetTab.cpp" line="173"/>
         <source>Close Tab</source>
-        <translation type="unfinished">关闭标签</translation>
+        <translation>关闭标签</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_material.cpp" line="13"/>
+        <location filename="../../plugins/material/pf_material.cpp" line="631"/>
         <source>New Material</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">新材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="72"/>
         <source>Material</source>
+        <translation type="obsolete">材料</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="96"/>
+        <source>Materials</source>
         <translation type="unfinished">材料</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="102"/>
+        <source>Geometry</source>
+        <translation type="unfinished">几何</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="103"/>
+        <source>Point</source>
+        <translation type="unfinished">点</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="104"/>
+        <source>Line</source>
+        <translation type="unfinished">线</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="105"/>
+        <source>Face</source>
+        <translation type="unfinished">面</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="107"/>
+        <source>Mesh</source>
+        <translation type="unfinished">分网</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="108"/>
+        <source>Mesh Point</source>
+        <translation type="unfinished">分网节点单元</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="109"/>
+        <source>Mesh Line</source>
+        <translation type="unfinished">分网线单元</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="110"/>
+        <source>Mesh Face</source>
+        <translation type="unfinished">分网面单元</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="114"/>
+        <source>Physics</source>
+        <translation type="unfinished">物理</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="116"/>
+        <source>Solver</source>
+        <translation type="unfinished">求解</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="118"/>
+        <source>Result</source>
+        <translation type="unfinished">结果</translation>
     </message>
 </context>
 <context>

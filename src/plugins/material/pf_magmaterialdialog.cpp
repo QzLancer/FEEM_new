@@ -213,7 +213,7 @@ CMaterialProp *PF_MagMaterialDialog::getMaterial()
 }
 
 /*!
- \brief 更新材料值的显示
+ \brief 根据材料值，更新对话框的显示，TODO：需要更新
 
 */
 void PF_MagMaterialDialog::updateDialog()
@@ -226,6 +226,25 @@ void PF_MagMaterialDialog::updateDialog()
     edit_conduct->setText(QString::number(m_material->Cduct));
     edit_coer->setText(QString::number(m_material->H_c));
     edit_current->setText(QString::number(m_material->Jsrc.re));
+}
+
+/*!
+ \brief 根据对话框填写更新材料变量，TODO：需要更新
+
+*/
+void PF_MagMaterialDialog::updateMaterial()
+{
+    m_material->BlockName = edit_name->text();
+}
+
+/*!
+ \brief 用户在完成确认之后，对话框关闭之前更新材料变量。
+
+*/
+void PF_MagMaterialDialog::accept()
+{
+    updateMaterial();
+    done(QDialog::Accepted);
 }
 
 
