@@ -123,8 +123,8 @@ GeometryView *GeometryManagerPrivate::viewForCAD(IGeometry *cad)
 void GeometryManagerPrivate::setCurrentCAD(IGeometry *cad)
 {
     /** 可能要重置view **/
-    if(cad)
-        setCurrentView(nullptr);
+//    if(cad)
+//        setCurrentView(nullptr);
     if(d->m_currentCAD == cad)
         return;
 
