@@ -1,6 +1,9 @@
 DEFINES += CAD_LIBRARY
+DEFINES += PF_GraphicView_COMPILE_LIBRARY
 QT += \
     printsupport \
+
+INCLUDEPATH += $$PWD
 
 include(../../feemplugin.pri)
 

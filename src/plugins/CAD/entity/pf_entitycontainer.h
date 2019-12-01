@@ -1,6 +1,7 @@
 #ifndef PF_ENTITYCONTAINER_H
 #define PF_ENTITYCONTAINER_H
 
+#include "../CAD_global.h"
 #include "pf_entity.h"
 #include <QList>
 
@@ -31,7 +32,7 @@ typedef struct _CMesh{
     CElement* eles;
 }CMesh;
 
-class PF_EntityContainer: public PF_Entity
+class FEEM_CAD_EXPORT PF_EntityContainer: public PF_Entity
 {
 public:
     PF_EntityContainer(PF_EntityContainer * parent=nullptr, PF_GraphicView* view=nullptr, bool owner=true);

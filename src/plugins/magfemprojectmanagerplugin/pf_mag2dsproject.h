@@ -8,6 +8,8 @@
 
 #include <QVector>
 
+class PF_Document;
+
 namespace MagFEMProjectManagerPlugin {
 class PF_MagFEMNode;
 class PF_Mag2DSProject : public ProjectExplorer::PF_Project
@@ -20,6 +22,7 @@ public:
 
     QVector<CMaterialProp> m_materialList;//
     Utils::PF_VariableDict m_variables;//
+    PF_Document* m_document;
 public:
 
 private:

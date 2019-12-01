@@ -14,7 +14,7 @@
 
 QStatusBar* PF_CADWidget::statusbar = nullptr;
 
-PF_CADWidget::PF_CADWidget(/*PF_Document* doc,*/ QWidget *parent)
+PF_CADWidget::PF_CADWidget(PF_Document* doc, QWidget *parent)
     : QWidget(parent)
     ,toolBar(new QWidget(this))
     ,zoom(new QToolButton(this))
@@ -23,11 +23,11 @@ PF_CADWidget::PF_CADWidget(/*PF_Document* doc,*/ QWidget *parent)
     ,zoomout(new QToolButton(this))
     ,zoomselected(new QToolButton(this))
 {
-//    if(doc == nullptr){
-
-//    }else{
-//        document = doc;
-//    }
+    if(doc == nullptr){
+        qDebug()<<Q_FUNC_INFO<<"doc is null";
+    }else{
+        document = doc;
+    }
     init();
     setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
 }
@@ -116,7 +116,7 @@ void PF_CADWidget::init()
     toolBar->setLayout(toolbarlayout);
     toolBar->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
 
-    view = new PF_GraphicView(/*document,*/this);
+    view = new PF_GraphicView(document,this);
 
     QVBoxLayout* cadlayout = new QVBoxLayout(this);
     cadlayout->setMargin(5);

@@ -121,16 +121,13 @@ class QCPBars;
 #define PF_GraphicView_VERSION 0x020001
 
 // decl definitions for shared library compilation/usage:
-#if defined(QT_STATIC_BUILD)
-#  define QCP_LIB_DECL
-#elif defined(PF_GraphicView_COMPILE_LIBRARY)
+#if defined(PF_GraphicView_COMPILE_LIBRARY)
 #  define QCP_LIB_DECL Q_DECL_EXPORT
-#elif defined(PF_GraphicView_USE_LIBRARY)
-#  define QCP_LIB_DECL Q_DECL_IMPORT
-#else
+#elif defined(QT_STATIC_BUILD)
 #  define QCP_LIB_DECL
+#else
+#  define QCP_LIB_DECL Q_DECL_IMPORT
 #endif
-
 // define empty macro for Q_DECL_OVERRIDE if it doesn't exist (Qt < 5)
 #ifndef Q_DECL_OVERRIDE
 #  define Q_DECL_OVERRIDE
