@@ -167,6 +167,7 @@ IGeometry *GeometryManagerPrivate::activateCAD(GeometryView *view, IGeometry *ca
     /** 将cad放置到view上 **/
     cad = placeCAD(view,cad);
 
+    setCurrentCAD(cad);
     view->setCurrentCAD(cad);
     return cad;
 }
@@ -266,6 +267,11 @@ IGeometry *GeometryManager::openCAD(IGeometry* cad, Id editorId/*, bool *newGeoE
 {
     return GeometryManagerPrivate::openCAD(GeometryManagerPrivate::currentGeoView(),
                                            cad,editorId/*,newGeoEditor*/);
+}
+
+IGeometry* GeometryManager::currentCAD()
+{
+    return d->m_currentCAD;
 }
 
 }//namespace Core
