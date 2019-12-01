@@ -1,8 +1,8 @@
 #ifndef GEOMETRYMANAGER_H
 #define GEOMETRYMANAGER_H
 
-#include "core_global.h"
-#include "id.h"
+#include "../core_global.h"
+#include "../id.h"
 
 #include <QWidget>
 #include <QList>
@@ -32,11 +32,13 @@ class FEEM_CORE_EXPORT GeometryManager : public QObject
     Q_OBJECT
 public:
     static GeometryManager* instance();
-    static IGeometry* openCAD(const QString &fileName, Id editorId = Id(),
-                              bool* newGeoEditor = nullptr);
+    static IGeometry* openCAD(IGeometry* cad, Id editorId = Id()
+                              /*bool* newGeoEditor = nullptr*/);
     static IGeometry *currentCAD();
 
     static void activateCAD(IGeometry* cad);
+signals:
+    void currentCADChanged(IGeometry* cad);
 private:
     /** 私有构造函数，只能在MainWindow当中构造，单例模式 **/
     explicit GeometryManager(QObject *parent);

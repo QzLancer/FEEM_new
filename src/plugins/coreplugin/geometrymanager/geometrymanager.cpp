@@ -1,5 +1,7 @@
 #include "geometrymanager.h"
 #include "geometrymanager_p.h"
+#include "igeometry.h"
+#include "icore.h"
 
 #include "geometryview.h"
 
@@ -81,6 +83,133 @@ void GeometryManagerPrivate::setCurrentView(GeometryView *view)
         view->update();
 }
 
+/**
+ * @brief 激活view
+ *
+ * @param view
+ */
+void GeometryManagerPrivate::activateView(GeometryView *view)
+{
+    if(!view) return;
+    QWidget* focusWidget;
+    if(IGeometry* cad = view->currentCAD()){
+        setCurrentCAD(cad);
+        focusWidget = cad->widget();
+    }else{
+        setCurrentView(view);
+        focusWidget = view;
+    }
+    focusWidget->setFocus();
+    ICore::raiseWindow(focusWidget);
+}
+
+GeometryView *GeometryManagerPrivate::viewForCAD(IGeometry *cad)
+{
+    QWidget* w = cad->widget();
+    while(w){
+        w = w->parentWidget();
+        if(auto view = qobject_cast<GeometryView*>(w)){
+            return view;
+        }
+    }
+    return nullptr;
+}
+
+/**
+ * @brief
+ *
+ * @param cad
+ */
+void GeometryManagerPrivate::setCurrentCAD(IGeometry *cad)
+{
+    /** 可能要重置view **/
+    if(cad)
+        setCurrentView(nullptr);
+    if(d->m_currentCAD == cad)
+        return;
+
+    d->m_currentCAD = cad;
+    if(cad){
+        if(GeometryView* view = viewForCAD(cad)){
+            view->setCurrentCAD(cad);
+        }
+    }
+    emit m_instance->currentCADChanged(cad);
+}
+
+/**
+ * @brief 需要在view上打开一个cad，打开的时候，应该知道是什么模型吧？
+ * 二维还是三维？
+ *
+ * @param view
+ * @param fileName
+ * @param cadId
+ * @param newCAD
+ * @return IGeometry
+ */
+IGeometry *GeometryManagerPrivate::openCAD(GeometryView *view, IGeometry* cad, Id cadId/*, bool *newCAD*/)
+{
+    cad = activateCAD(view,cad);
+
+    return cad;
+}
+
+/**
+ * @brief
+ *
+ * @param view
+ * @param cad
+ * @return IGeometry
+ */
+IGeometry *GeometryManagerPrivate::activateCAD(GeometryView *view, IGeometry *cad)
+{
+    if(!cad) return nullptr;
+    /** 将cad放置到view上 **/
+    cad = placeCAD(view,cad);
+
+    view->setCurrentCAD(cad);
+    return cad;
+}
+
+void GeometryManagerPrivate::closeCAD(IGeometry *cad)
+{
+
+}
+
+void GeometryManagerPrivate::closeCADs(const QList<IGeometry *> &cads)
+{
+
+}
+
+/**
+ * @brief
+ *
+ * @param view
+ * @param cad
+ * @return IGeometry
+ */
+IGeometry *GeometryManagerPrivate::placeCAD(GeometryView *view, IGeometry *cad)
+{
+    /** 查找是不是已经有了 **/
+    if(view->hasCAD(cad))
+        return cad;
+    /** cad是不是在另外的view **/
+    if(GeometryView* sourceView = viewForCAD(cad)){
+        if(cad != sourceView->currentCAD()){
+            sourceView->removeCAD(cad);
+            view->addCAD(cad);
+            view->setCurrentCAD(cad);
+            /** sourceView是否关闭了所有？ **/
+            if(!sourceView->currentCAD()){
+
+            }
+        }
+        return  cad;
+    }
+    view->addCAD(cad);
+    return cad;
+}
+
 GeometryManagerPrivate::GeometryManagerPrivate(QObject *parent)
     :QObject (parent)
 {
@@ -121,6 +250,22 @@ GeometryManager::~GeometryManager()
 GeometryManager *GeometryManager::instance()
 {
     return m_instance;
+}
+
+/**
+ * @brief 按照那种根据文件类型判断cad的方式，似乎有点复杂，
+ * 还不如，直接在用的时候，创建，然后再显示。也就是，每个project
+ * 自己去选择哪个cad，文件本身就有，直接自己搞定就可以了。
+ *
+ * @param cad
+ * @param editorId
+ * @param newGeoEditor
+ * @return IGeometry
+ */
+IGeometry *GeometryManager::openCAD(IGeometry* cad, Id editorId/*, bool *newGeoEditor*/)
+{
+    return GeometryManagerPrivate::openCAD(GeometryManagerPrivate::currentGeoView(),
+                                           cad,editorId/*,newGeoEditor*/);
 }
 
 }//namespace Core

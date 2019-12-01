@@ -38,14 +38,12 @@ MagfieldWizard::MagfieldWizard()
 
 Core::BaseFileWizard *MagfieldWizard::create(QWidget *parent, const Core::WizardDialogParameters &parameters) const
 {
-
-    /** 切换到工作页面 **/
-    Core::PageManager::activatePage(Core::Constants::PAGE_WORK);
     /** 新建一个项目 **/
     auto pro = new PF_Mag2DSProject();
     ProjectExplorer::PF_SessionManager::instance()->addProject(pro);
     ProjectExplorer::PF_ProjectTree::instance()->expandAll();
-
+    /** 切换到工作页面 **/
+    Core::PageManager::activatePage(Core::Constants::PAGE_WORK);
     return nullptr;
 }
 

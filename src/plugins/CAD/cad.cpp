@@ -13,6 +13,7 @@
 #include <coreplugin/constants.h>
 #include <coreplugin/workpage.h>
 #include <coreplugin/geometrymanager/geometryview.h>
+#include <coreplugin/geometrymanager/geometrymanager_p.h>
 
 #include <extensionsystem/pluginerroroverview.h>
 #include <extensionsystem/pluginmanager.h>
@@ -60,6 +61,7 @@ bool CADPlugin::initialize(const QStringList &arguments, QString *errorMessage)
     /** 如果将CAD看作一个文件编辑器，那么这里应该是创建一个占位的控件，
         当需要打开文件的时候，才会创建相应的控件，并进行激活和切换。**/
     auto* cad = new GeometryView;
+    GeometryManagerPrivate::instance()->setCurrentView(cad);
     ads::CDockWidget* DockWidget = new ads::CDockWidget(tr("Geometry builder"));
     DockWidget->setWidget(cad);
     // Add the dock widget to the top dock widget area

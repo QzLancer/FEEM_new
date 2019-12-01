@@ -4,6 +4,9 @@
 #include <project/pf_node.h>
 #include <project/pf_projecttree.h>
 
+#include <CAD/geometry2d.h>
+#include <coreplugin/geometrymanager/geometrymanager.h>
+
 #include <material/materialplugin.h>
 #include <output/outputpluginplugin.h>
 
@@ -54,6 +57,9 @@ PF_Mag2DSProject::PF_Mag2DSProject()
         PF_ProjectTree::emitSubtreeChanged(folderNode);
         OutputPlugin::OutputPluginPlugin::write("Material "+material->BlockName+" Added.");
     });
+    /** 添加CAD **/
+    Geometry2D* cad = new Geometry2D();
+    Core::GeometryManager::openCAD(cad);
 }
 
 PF_Mag2DSProject::~PF_Mag2DSProject()
