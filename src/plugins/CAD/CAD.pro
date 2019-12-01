@@ -18,6 +18,7 @@ HEADERS += \
     pf.h \
     cadconstants.h \
     pf_actionhandler.h \
+    geometry2d.h
 
 SOURCES += \
     pf_cadwidget.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
     pf_plot.cpp \
     cad.cpp \
     pf_actionhandler.cpp \
+    geometry2d.cpp
 
 RESOURCES += \
     cad.qrc

@@ -118,4 +118,9 @@ GeometryManager::~GeometryManager()
     m_instance = nullptr;
 }
 
+GeometryManager *GeometryManager::instance()
+{
+    return m_instance;
+}
+
 }//namespace Core

@@ -169,6 +169,11 @@ public:
 
         return m_cachedSize;
     }
+    QSize sizeHint() const override
+    {
+        return QSize(sizeHintForColumn(0) /*+ verticalScrollBar()->width()+ frameWidth() * 2*/ ,
+                     viewportSizeHint().height() + frameWidth() * 2);
+    }
 
 private:
     mutable int m_cachedSize = -1;

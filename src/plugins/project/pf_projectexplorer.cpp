@@ -431,7 +431,7 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
     ads::CDockWidget* DockWidget = new ads::CDockWidget(tr("Model tree"));
     DockWidget->setWidget(widgetProjectTree);
     Core::WorkPage::DockManager()->addDockWidget(ads::LeftDockWidgetArea, DockWidget);
-
+    qDebug()<<Q_FUNC_INFO;
     return true;
 }
 

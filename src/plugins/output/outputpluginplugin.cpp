@@ -48,6 +48,7 @@ bool OutputPluginPlugin::initialize(const QStringList &arguments, QString *error
     QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss ddd");
     m_messagePane->appendMessage(current_date+QLatin1Char('\n'));
     m_messagePane->appendMessage(tr("Welcome to FEEM!")+QLatin1Char('\n'));
+    qDebug()<<Q_FUNC_INFO;
     return true;
 }
 

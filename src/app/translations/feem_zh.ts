@@ -1838,17 +1838,17 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="108"/>
         <source>Mesh Point</source>
-        <translation type="unfinished">分网节点单元</translation>
+        <translation type="unfinished">节点单元</translation>
     </message>
     <message>
         <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="109"/>
         <source>Mesh Line</source>
-        <translation type="unfinished">分网线单元</translation>
+        <translation type="unfinished">线单元</translation>
     </message>
     <message>
         <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="110"/>
         <source>Mesh Face</source>
-        <translation type="unfinished">分网面单元</translation>
+        <translation type="unfinished">面单元</translation>
     </message>
     <message>
         <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="114"/>
