@@ -954,17 +954,17 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawface.cpp" line="85"/>
         <source>Set Surface loop.(Press right click to abort)</source>
-        <translation></translation>
+        <translation type="unfinished">选择曲面的闭合边界(右键终止选择)</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawface.cpp" line="88"/>
         <source>Continue to set sureface loop.(Press right click to abort)</source>
-        <translation></translation>
+        <translation type="unfinished">继续选择曲面的边界(右键终止选择)</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawface.cpp" line="91"/>
         <source>Status error.</source>
-        <translation></translation>
+        <translation type="unfinished">状态错误</translation>
     </message>
 </context>
 <context>
@@ -972,17 +972,17 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawline.cpp" line="70"/>
         <source>Set start point.(Press right click to abort)</source>
-        <translation></translation>
+        <translation type="unfinished">单击选择起始点(右键终止选择)</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawline.cpp" line="73"/>
         <source>Set end point.(Press right click to abort)</source>
-        <translation></translation>
+        <translation type="unfinished">单击选择结束点(右键终止选择)</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawline.cpp" line="76"/>
         <source>Status error.</source>
-        <translation></translation>
+        <translation type="unfinished">状态错误</translation>
     </message>
 </context>
 <context>
@@ -990,32 +990,32 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawpoint.cpp" line="26"/>
         <source>Add point</source>
-        <translation></translation>
+        <translation type="unfinished">添加点</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawpoint.cpp" line="32"/>
         <source>Cancel</source>
-        <translation></translation>
+        <translation type="unfinished">取消</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawpoint.cpp" line="39"/>
         <source>position x:</source>
-        <translation></translation>
+        <translation type="unfinished">位置 x：</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawpoint.cpp" line="40"/>
         <source>position y:</source>
-        <translation></translation>
+        <translation type="unfinished">位置 y：</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawpoint.cpp" line="51"/>
         <source>Set point&apos;s coordinate</source>
-        <translation></translation>
+        <translation type="unfinished">设置点的坐标</translation>
     </message>
     <message>
         <location filename="../../plugins/CAD/action/pf_actiondrawpoint.cpp" line="88"/>
         <source>Single click to set point.(Press right click to abort)</source>
-        <translation></translation>
+        <translation type="unfinished">单击选择点的位置(右键终止选择)</translation>
     </message>
 </context>
 <context>

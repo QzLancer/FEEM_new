@@ -204,9 +204,22 @@ void CADPlugin::registerDefaultActions()
     group->ribbonGroup()->addAction(QIcon(":/cad/imgs/delete32x32.png"), tr("Delete"), Qt::ToolButtonTextUnderIcon);
     /** 视图 **/
     group = ActionManager::actionContainer(Constants::G_GEOMETRY_VIEW);
-    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/zoomin32x32.png"), tr("Zoom In"), Qt::ToolButtonTextUnderIcon);
-    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/zoomout32x32.png"), tr("Zoom Out"), Qt::ToolButtonTextUnderIcon);
-    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/zoomauto32x32.png"), tr("Zoom Auto"), Qt::ToolButtonTextUnderIcon);
+    action = new QAction(tr("Zoom In"));
+    action->setIcon(QIcon(":/cad/imgs/zoomin32x32.png"));
+    connect(action, SIGNAL(triggered()), action_handler, SLOT(slotZoomIn()));
+    action->setObjectName("zoomin");
+    group->ribbonGroup()->addAction(action,Qt::ToolButtonTextUnderIcon);
 
+    action = new QAction(tr("Zoom Out"));
+    action->setIcon(QIcon(":/cad/imgs/zoomout32x32.png"));
+    connect(action, SIGNAL(triggered()), action_handler, SLOT(slotZoomOut()));
+    action->setObjectName("zoomout");
+    group->ribbonGroup()->addAction(action,Qt::ToolButtonTextUnderIcon);
+
+    action = new QAction(tr("Zoom Auto"));
+    action->setIcon(QIcon(":/cad/imgs/zoomauto32x32.png"));
+    connect(action, SIGNAL(triggered()), action_handler, SLOT(slotZoomAuto()));
+    action->setObjectName("zoomauto");
+    group->ribbonGroup()->addAction(action,Qt::ToolButtonTextUnderIcon);
 }
 }//namespace CAD

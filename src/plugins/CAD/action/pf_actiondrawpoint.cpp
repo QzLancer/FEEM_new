@@ -85,7 +85,7 @@ void PF_ActionDrawPoint::mouseMoveEvent(QMouseEvent *e)
 
 //    PF_CADWidget::statusbar->clearMessage();
 
-    PF_CADWidget::statusbar->showMessage(mouse.toString()+QString(tr("Single click to set point.(Press right click to abort)")));
+    PF_CADWidget::statusbar->showMessage(QString(tr("Single click to set point.(Press right click to abort)"))+mouse.toString());
 }
 
 void PF_ActionDrawPoint::mouseReleaseEvent(QMouseEvent *e)
