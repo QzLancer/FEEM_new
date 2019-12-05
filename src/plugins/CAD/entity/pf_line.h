@@ -15,6 +15,7 @@ struct PF_LineData{
 
 class PF_Line : public PF_AtomicEntity
 {
+    Q_OBJECT
 public:
     PF_Line()=default;
     PF_Line(PF_EntityContainer* parent,PF_GraphicView *view, const PF_LineData& d);

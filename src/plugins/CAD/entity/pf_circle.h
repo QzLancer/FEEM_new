@@ -17,6 +17,7 @@ struct PF_CircleData
 
 class PF_Circle: public PF_AtomicEntity
 {
+    Q_OBJECT
 public:
     PF_Circle()=default;
     PF_Circle(PF_EntityContainer* parent, PF_GraphicView* view, const PF_CircleData &d);

@@ -205,6 +205,7 @@ void PF_EntityContainer::addEntity(PF_Entity *entity)
 
     entities.append(entity);
     //qDebug()<<"PF_EntityContainer::addEntity:size:"<<entities.size();
+    emit EntityChanged();
 }
 
 

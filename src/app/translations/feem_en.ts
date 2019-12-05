@@ -185,137 +185,137 @@
 <context>
     <name>CAD::CADPlugin</name>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="60"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="65"/>
         <source>Geometry builder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="98"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="103"/>
         <source>Import/Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="103"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="108"/>
         <source>BuildGeometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="108"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="113"/>
         <source>Draw</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="113"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="118"/>
         <source>DrawSetting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="118"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="123"/>
         <source>DrawOperation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="123"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="128"/>
         <source>View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="136"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="141"/>
         <source>Import Geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="137"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="142"/>
         <source>Export Geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="140"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="145"/>
         <source>Build Geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="144"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="149"/>
         <source>DrawPoint</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="151"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="156"/>
         <source>DrawLine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="158"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="163"/>
         <source>DrawFace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="165"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="170"/>
         <source>DrawCircle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="173"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="178"/>
         <source>Snap to grid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="174"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="179"/>
         <source>Snap to geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="175"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="180"/>
         <source>Solid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="178"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="183"/>
         <source>SelectSingle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="184"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="189"/>
         <source>SelectAll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="190"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="195"/>
         <source>DeSelectAll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="196"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="201"/>
         <source>Cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="197"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="202"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="198"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="203"/>
         <source>Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="199"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="204"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="202"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="207"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="203"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="213"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="204"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="219"/>
         <source>Zoom Auto</source>
         <translation type="unfinished"></translation>
     </message>
@@ -354,8 +354,8 @@
 <context>
     <name>Core::GeometryView</name>
     <message>
-        <location filename="../../plugins/coreplugin/geometrymanager/geometryview.cpp" line="32"/>
-        <source>Hello!</source>
+        <location filename="../../plugins/coreplugin/geometrymanager/geometryview.cpp" line="34"/>
+        <source>Please select a file.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1332,37 +1332,37 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::PF_Project</name>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="82"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="84"/>
         <source>untitled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="101"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="103"/>
         <source>Global Definitions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="102"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="104"/>
         <source>Materials: Materials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="103"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="105"/>
         <source>Component: Component1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="104"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="106"/>
         <source>Definitions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="105"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="107"/>
         <source>Geometry1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="106"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="108"/>
         <source>Mesh1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1720,7 +1720,7 @@ Reason: %3</source>
     </message>
     <message>
         <location filename="../../plugins/project/pf_nodetreebuilder.cpp" line="20"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="86"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="99"/>
         <source>Definitions</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1790,62 +1790,62 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="96"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="109"/>
         <source>Materials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="102"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="115"/>
         <source>Geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="103"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="116"/>
         <source>Point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="104"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="117"/>
         <source>Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="105"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="118"/>
         <source>Face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="107"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="145"/>
         <source>Mesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="108"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="146"/>
         <source>Mesh Point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="109"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="147"/>
         <source>Mesh Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="110"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="148"/>
         <source>Mesh Face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="114"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="152"/>
         <source>Physics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="116"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="154"/>
         <source>Solver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="118"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="156"/>
         <source>Result</source>
         <translation type="unfinished"></translation>
     </message>

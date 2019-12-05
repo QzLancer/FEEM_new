@@ -52,6 +52,7 @@ public:
     void handleSubTreeChanged(FolderNode *node);
 
     virtual ProjectNode* rootProjectNode() const;
+    virtual ProjectNode* containerNode() const;
 
 signals:
     void displayNameChanged();

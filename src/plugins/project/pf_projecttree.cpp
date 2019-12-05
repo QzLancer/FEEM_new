@@ -88,6 +88,8 @@ bool PF_ProjectTree::hasNode(const Node* node)
         if (ProjectNode *projectNode = project->rootProjectNode()) {
             if(project->rootProjectNode()->findNode([node](const Node *n) { return n == node; }))
                 return true;
+            if(project->containerNode() == node)
+                return true;
         }
     }
 //    return Utils::contains(SessionManager::projects(), [node](const Project *p) {

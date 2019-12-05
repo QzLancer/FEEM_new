@@ -185,137 +185,137 @@
 <context>
     <name>CAD::CADPlugin</name>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="60"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="65"/>
         <source>Geometry builder</source>
         <translation type="unfinished">几何建模</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="98"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="103"/>
         <source>Import/Export</source>
         <translation>导入/导出</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="103"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="108"/>
         <source>BuildGeometry</source>
         <translation>建立几何模型</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="108"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="113"/>
         <source>Draw</source>
         <translation>绘图</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="113"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="118"/>
         <source>DrawSetting</source>
         <translation>绘图设置</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="118"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="123"/>
         <source>DrawOperation</source>
         <translation>绘图操作</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="123"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="128"/>
         <source>View</source>
         <translation>视图</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="136"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="141"/>
         <source>Import Geometry</source>
         <translation>导入几何模型</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="137"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="142"/>
         <source>Export Geometry</source>
         <translation>导出几何模型</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="140"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="145"/>
         <source>Build Geometry</source>
         <translation>构建几何模型</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="144"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="149"/>
         <source>DrawPoint</source>
         <translation>点</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="151"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="156"/>
         <source>DrawLine</source>
         <translation>线段</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="158"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="163"/>
         <source>DrawFace</source>
         <translation>平面</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="165"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="170"/>
         <source>DrawCircle</source>
         <translation>圆</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="173"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="178"/>
         <source>Snap to grid</source>
         <translation>捕捉网格</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="174"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="179"/>
         <source>Snap to geometry</source>
         <translation>捕捉几何</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="175"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="180"/>
         <source>Solid</source>
         <translation>实心</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="178"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="183"/>
         <source>SelectSingle</source>
         <translation>单个选择</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="184"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="189"/>
         <source>SelectAll</source>
         <translation>全部选择</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="190"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="195"/>
         <source>DeSelectAll</source>
         <translation>反向选择</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="196"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="201"/>
         <source>Cut</source>
         <translation>剪切</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="197"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="202"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="198"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="203"/>
         <source>Paste</source>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="199"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="204"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="202"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="207"/>
         <source>Zoom In</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="203"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="213"/>
         <source>Zoom Out</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="204"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="219"/>
         <source>Zoom Auto</source>
         <translation>自动缩放</translation>
     </message>
@@ -354,8 +354,8 @@
 <context>
     <name>Core::GeometryView</name>
     <message>
-        <location filename="../../plugins/coreplugin/geometrymanager/geometryview.cpp" line="32"/>
-        <source>Hello!</source>
+        <location filename="../../plugins/coreplugin/geometrymanager/geometryview.cpp" line="34"/>
+        <source>Please select a file.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -766,7 +766,7 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/mesh/meshplugin.cpp" line="125"/>
         <source>Clear mesh</source>
-        <translation type="unfinished">清楚分网</translation>
+        <translation type="unfinished">清除分网</translation>
     </message>
 </context>
 <context>
@@ -1336,37 +1336,37 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::PF_Project</name>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="82"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="84"/>
         <source>untitled</source>
         <translation type="unfinished">未定义</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="101"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="103"/>
         <source>Global Definitions</source>
         <translation type="unfinished">全局变量</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="102"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="104"/>
         <source>Materials: Materials</source>
         <translation type="unfinished">材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="103"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="105"/>
         <source>Component: Component1</source>
         <translation type="unfinished">组件</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="104"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="106"/>
         <source>Definitions</source>
         <translation type="unfinished">定义</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="105"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="107"/>
         <source>Geometry1</source>
         <translation type="unfinished">几何</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="106"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="108"/>
         <source>Mesh1</source>
         <translation type="unfinished">分网</translation>
     </message>
@@ -1732,7 +1732,7 @@ Reason: %3</source>
     </message>
     <message>
         <location filename="../../plugins/project/pf_nodetreebuilder.cpp" line="20"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="86"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="99"/>
         <source>Definitions</source>
         <translation type="unfinished">定义</translation>
     </message>
@@ -1806,62 +1806,62 @@ Reason: %3</source>
         <translation type="obsolete">材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="96"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="109"/>
         <source>Materials</source>
         <translation type="unfinished">材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="102"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="115"/>
         <source>Geometry</source>
         <translation type="unfinished">几何</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="103"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="116"/>
         <source>Point</source>
         <translation type="unfinished">点</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="104"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="117"/>
         <source>Line</source>
         <translation type="unfinished">线</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="105"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="118"/>
         <source>Face</source>
         <translation type="unfinished">面</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="107"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="145"/>
         <source>Mesh</source>
         <translation type="unfinished">分网</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="108"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="146"/>
         <source>Mesh Point</source>
         <translation type="unfinished">节点单元</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="109"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="147"/>
         <source>Mesh Line</source>
         <translation type="unfinished">线单元</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="110"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="148"/>
         <source>Mesh Face</source>
         <translation type="unfinished">面单元</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="114"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="152"/>
         <source>Physics</source>
         <translation type="unfinished">物理</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="116"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="154"/>
         <source>Solver</source>
         <translation type="unfinished">求解</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="118"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="156"/>
         <source>Result</source>
         <translation type="unfinished">结果</translation>
     </message>

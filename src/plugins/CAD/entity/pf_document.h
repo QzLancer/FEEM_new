@@ -6,6 +6,7 @@
 
 class FEEM_CAD_EXPORT PF_Document : public PF_EntityContainer
 {
+    Q_OBJECT
 public:
     PF_Document(PF_EntityContainer* parent=nullptr);
     ~PF_Document()=default;

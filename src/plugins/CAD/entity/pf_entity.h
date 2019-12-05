@@ -7,6 +7,8 @@
 
 #include "../pf_plot.h"
 #include "../pf_flag.h"
+
+#include <QObject>
 //2018-02-11
 //by Poofee
 /**实体类，基类**/
@@ -18,6 +20,7 @@ class PF_Line;
 
 class FEEM_CAD_EXPORT PF_Entity : public QCPLayerable, public PF_Flag
 {
+    Q_OBJECT
 public:
     PF_Entity()=default;
     PF_Entity(PF_EntityContainer*parent, PF_GraphicView *plot);

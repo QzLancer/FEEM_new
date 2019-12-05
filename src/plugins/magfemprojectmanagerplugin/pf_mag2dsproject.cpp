@@ -6,6 +6,7 @@
 
 #include <CAD/geometry2d.h>
 #include <CAD/entity/pf_document.h>
+#include <CAD/pf.h>
 
 #include <coreplugin/geometrymanager/geometrymanager.h>
 
@@ -63,11 +64,14 @@ PF_Mag2DSProject::PF_Mag2DSProject()
     /** 添加CAD **/
     Geometry2D* cad = new Geometry2D(m_document);
     Core::GeometryManager::openCAD(cad);
+
+    /** 检测cad的变化 **/
+    connect(m_document,&PF_Document::EntityChanged,this,&PF_Mag2DSProject::updateData);
 }
 
 PF_Mag2DSProject::~PF_Mag2DSProject()
 {
-
+    setRootProjectNode(nullptr);
 }
 
 void PF_Mag2DSProject::updateData()
@@ -112,7 +116,32 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
     auto point_node = std::make_unique<FolderNode>(QString(QObject::tr("Point")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
     auto line_node = std::make_unique<FolderNode>(QString(QObject::tr("Line")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
     auto face_node = std::make_unique<FolderNode>(QString(QObject::tr("Face")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
-    /** 添加分网 **/
+
+    for(auto e : pro->m_document->getEntityList()){
+        switch (e->rtti()) {
+        case PF::EntityPoint:
+        {
+            point_node->addNode(std::make_unique<LeafNode>(QObject::tr("Point")+QString("%1").arg(e->index()),LeafType::Point));
+            break;
+        }
+        case PF::EntityLine:
+        {
+            line_node->addNode(std::make_unique<LeafNode>(QObject::tr("Line")+QString("%1").arg(e->index()),LeafType::Line));
+            break;
+        }
+        case PF::EntityFace:
+        {
+            face_node->addNode(std::make_unique<LeafNode>(QObject::tr("Face")+QString("%1").arg(e->index()),LeafType::Face));
+            break;
+        }
+        default:
+        {
+            qDebug()<<"No such entity.";
+            break;
+        }
+        }
+    }
+     /** 添加分网 **/
     auto mesh_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh")),NodeType::Mesh,QIcon(":/imgs/mesh.png"));
     auto mesh_point_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh Point")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
     auto mesh_line_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh Line")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
@@ -153,8 +182,12 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
  */
 std::unique_ptr<PF_MagFEMNode> PF_Mag2DSNodeTreeBuilder::buildTree(PF_Mag2DSProject *pro)
 {
-    /** 先创建一个root节点 **/
-    auto root = std::make_unique<PF_MagFEMNode>(pro);
+    /** 先创建一个root节点，这里应该有一点问题，
+        后面tree变化的时候，检测的是subtree，
+        而subtree又是要找特定的node来改变，每一次都重新生成projectnode
+        就不对了**/
+
+    auto   root = std::make_unique<PF_MagFEMNode>(pro);
 
     /** 生成root的子节点 **/
     createTree(pro,root.get());
