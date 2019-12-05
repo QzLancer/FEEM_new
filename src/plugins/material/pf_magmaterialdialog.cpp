@@ -123,8 +123,8 @@ QWidget *PF_MagMaterialDialog::createMagneticPage()
     QHBoxLayout* hbox1 = new QHBoxLayout;
     hbox1->addWidget(bt_bhcurve);
     formlayout_linear1 = new QFormLayout;
-    edit_hx = new QLineEdit(w);
-    formlayout_linear1->addRow(tr("hmax"),edit_hx);
+    edit_hmax = new QLineEdit(w);
+    formlayout_linear1->addRow(tr("hmax"),edit_hmax);
     formlayout_linear1->setFormAlignment(Qt::AlignCenter);
 //    hbox_linear->addStretch();
     hbox_linear->addLayout(hbox1,1);

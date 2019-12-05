@@ -43,6 +43,7 @@ private:
     QLineEdit* edit_conduct;
     QLineEdit* edit_coer;
     QLineEdit* edit_current;
+    QLineEdit* edit_hmax;
     CMaterialProp* m_material;
 };
 

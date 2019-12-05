@@ -679,38 +679,38 @@ Reason: %3</source>
 <context>
     <name>Material::MaterialPlugin</name>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="71"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="73"/>
         <source>Add Blank Material</source>
         <translation type="unfinished">添加空白材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="128"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="131"/>
         <source>Material</source>
         <translation>材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="136"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="139"/>
         <source>Add material</source>
         <translation>添加材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="145"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="148"/>
         <source>add Material</source>
         <translation type="unfinished">添加材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="150"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="153"/>
         <source>add Blank Material</source>
         <translation type="unfinished">添加空白材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="156"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="159"/>
         <source>Help</source>
         <translation type="unfinished">帮助</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="94"/>
-        <location filename="../../plugins/material/materialplugin.cpp" line="137"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="97"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="140"/>
         <source>Material library</source>
         <translation>材料库</translation>
     </message>
@@ -767,6 +767,11 @@ Reason: %3</source>
         <location filename="../../plugins/mesh/meshplugin.cpp" line="125"/>
         <source>Clear mesh</source>
         <translation type="unfinished">清除分网</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="132"/>
+        <source>Auto mesh</source>
+        <translation type="unfinished">自动分网</translation>
     </message>
 </context>
 <context>
@@ -1336,37 +1341,37 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::PF_Project</name>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="84"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="86"/>
         <source>untitled</source>
         <translation type="unfinished">未定义</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="103"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="105"/>
         <source>Global Definitions</source>
         <translation type="unfinished">全局变量</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="104"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="106"/>
         <source>Materials: Materials</source>
         <translation type="unfinished">材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="105"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="107"/>
         <source>Component: Component1</source>
         <translation type="unfinished">组件</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="106"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="108"/>
         <source>Definitions</source>
         <translation type="unfinished">定义</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="107"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="109"/>
         <source>Geometry1</source>
         <translation type="unfinished">几何</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="108"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="110"/>
         <source>Mesh1</source>
         <translation type="unfinished">分网</translation>
     </message>
@@ -1474,7 +1479,7 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::ProjectTreeWidgetFactory</name>
     <message>
-        <location filename="../../plugins/project/pf_projecttreewidget.cpp" line="370"/>
+        <location filename="../../plugins/project/pf_projecttreewidget.cpp" line="379"/>
         <source>Projects</source>
         <translation type="unfinished">项目</translation>
     </message>
@@ -1732,7 +1737,7 @@ Reason: %3</source>
     </message>
     <message>
         <location filename="../../plugins/project/pf_nodetreebuilder.cpp" line="20"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="99"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="134"/>
         <source>Definitions</source>
         <translation type="unfinished">定义</translation>
     </message>
@@ -1806,64 +1811,87 @@ Reason: %3</source>
         <translation type="obsolete">材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="109"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="144"/>
         <source>Materials</source>
         <translation type="unfinished">材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="115"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="150"/>
         <source>Geometry</source>
         <translation type="unfinished">几何</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="116"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="151"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="159"/>
         <source>Point</source>
         <translation type="unfinished">点</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="117"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="152"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="164"/>
         <source>Line</source>
         <translation type="unfinished">线</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="118"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="153"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="169"/>
         <source>Face</source>
         <translation type="unfinished">面</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="145"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="180"/>
         <source>Mesh</source>
         <translation type="unfinished">分网</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="146"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="181"/>
         <source>Mesh Point</source>
         <translation type="unfinished">节点单元</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="147"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="182"/>
         <source>Mesh Line</source>
         <translation type="unfinished">线单元</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="148"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="183"/>
         <source>Mesh Face</source>
         <translation type="unfinished">面单元</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="152"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="187"/>
         <source>Physics</source>
         <translation type="unfinished">物理</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="154"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="188"/>
+        <source>Domains</source>
+        <translation type="unfinished">区域</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="190"/>
         <source>Solver</source>
         <translation type="unfinished">求解</translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="156"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="191"/>
+        <source>Settings</source>
+        <translation type="unfinished">设置</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="193"/>
         <source>Result</source>
-        <translation type="unfinished">结果</translation>
+        <translation>结果</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="194"/>
+        <source>2D curve</source>
+        <translation type="unfinished">二维曲线图</translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="195"/>
+        <source>2D surface</source>
+        <translation type="unfinished">二维平面图</translation>
     </message>
 </context>
 <context>

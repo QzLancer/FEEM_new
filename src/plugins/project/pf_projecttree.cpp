@@ -176,6 +176,26 @@ void PF_ProjectTree::showContextMenu(PF_ProjectTreeWidget *focus, const QPoint &
             contextMenu = ActionManager::actionContainer(Constants::M_MATERIALCONTEXT)->menu();
             break;
         }
+        case NodeType::Mesh:{
+            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
+            break;
+        }
+        case NodeType::Domain:{
+            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
+            break;
+        }
+        case NodeType::Plot2D:{
+            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
+            break;
+        }
+        case NodeType::Surface2D:{
+            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
+            break;
+        }
+        case NodeType::Solve:{
+            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
+            break;
+        }
         case NodeType::Folder:
 //            contextMenu = ActionManager::actionContainer(Constants::M_FOLDERCONTEXT)->menu();
             break;

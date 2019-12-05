@@ -185,10 +185,14 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
 //    auto globaldef_node = std::make_unique<FolderNode>(QString(QObject::tr("Global Definitions")),NodeType::Definition,QIcon(":/imgs/global_branch.png"));
 
     auto comp_node = std::make_unique<FolderNode>(QString(QObject::tr("Physics")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
+    auto domain_node = std::make_unique<FolderNode>(QString(QObject::tr("Domains")),NodeType::Domain,QIcon(":/imgs/model_2d_axi.png"));
 
-    auto solver_node = std::make_unique<FolderNode>(QString(QObject::tr("Solver")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
+    auto solver_node = std::make_unique<FolderNode>(QString(QObject::tr("Solver")),NodeType::Solve,QIcon(":/imgs/model_2d_axi.png"));
+    auto solversetting_node = std::make_unique<FolderNode>(QString(QObject::tr("Settings")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
 
     auto result_node = std::make_unique<FolderNode>(QString(QObject::tr("Result")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
+    auto curve2d_node = std::make_unique<FolderNode>(QString(QObject::tr("2D curve")),NodeType::Plot2D,QIcon(":/imgs/model_2d_axi.png"));
+    auto surface2d_node = std::make_unique<FolderNode>(QString(QObject::tr("2D surface")),NodeType::Surface2D,QIcon(":/imgs/model_2d_axi.png"));
 
     geo_node->addNode(std::move(def_node));
     geo_node->addNode(std::move(point_node));
@@ -200,6 +204,12 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
     mesh_node->addNode(std::move(mesh_face_node));
 
     comp_node->addNode(std::move(material_node));
+    comp_node->addNode(std::move(domain_node));
+
+    solver_node->addNode(std::move(solversetting_node));
+
+    result_node->addNode(std::move(curve2d_node));
+    result_node->addNode(std::move(surface2d_node));
 
     node->addNode(std::move(geo_node));
     node->addNode(std::move(mesh_node));
