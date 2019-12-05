@@ -141,6 +141,7 @@ class FEEM_MATERIAL_EXPORT CMaterialProp
 public:
 
     CMaterialProp();
+    CMaterialProp(const CMaterialProp & material);
 //    ~CMaterialProp();
 
     CMaterialProp& operator = (const CMaterialProp & material);

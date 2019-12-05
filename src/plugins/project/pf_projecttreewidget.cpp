@@ -331,12 +331,14 @@ void PF_ProjectTreeWidget::doubleopenItem(const QModelIndex &mainIndex)
     Node *node = m_model->nodeForIndex(mainIndex);
     if (!node || node->asFolderNode())
         return;
+    PF_Project* pro = PF_ProjectTree::projectForNode(node);
     /** 不同的节点，跳转到相应的视图 **/
     LeafNode* lNode = dynamic_cast<LeafNode*>(node);
     switch (lNode->leafType()) {
         case LeafType::CMaterialProp:
         {
             /** 查看编辑材料 **/
+            pro->editMaterial(node);
             break;
         }
         default:

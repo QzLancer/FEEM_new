@@ -10,6 +10,9 @@
 
 class PF_Document;
 class Geometry2D;
+namespace ProjectExplorer {
+class Node;
+}
 
 namespace MagFEMProjectManagerPlugin {
 class PF_MagFEMNode;
@@ -21,7 +24,8 @@ public:
 
     void updateData();
 
-    Core::IGeometry* CAD() const;
+    Core::IGeometry* CAD() const override;
+    void editMaterial(ProjectExplorer::Node* node) override;
 
     QVector<CMaterialProp> m_materialList;//
     Utils::PF_VariableDict m_variables;//

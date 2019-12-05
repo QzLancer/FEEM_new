@@ -650,6 +650,33 @@ CMaterialProp::CMaterialProp()
     Jsrc.re=0.;
 }
 
+CMaterialProp::CMaterialProp(const CMaterialProp &material)
+{
+    qDebug()<<"CMaterialProp copy constructor";
+    this->BlockName = material.BlockName;
+    this->mu_x = material.mu_x;
+    this->mu_y = material.mu_y;
+    this->LamType = material.LamType;
+    this->LamFill = material.LamFill;
+    this->Theta_m = material.Theta_m;
+    this->H_c = material.H_c;
+    this->Cduct = material.Cduct;
+    this->Lam_d = material.Lam_d;
+    this->Theta_hn = material.Theta_hn;
+    this->Theta_hx = material.Theta_hx;
+    this->Theta_hy = material.Theta_hy;
+    this->NStrands = material.NStrands;
+    this->WireD = material.WireD;
+    this->Jsrc.im = material.Jsrc.im;
+    this->Jsrc.re = material.Jsrc.re;
+
+    this->BHpoints = material.BHpoints;
+    if(this->BHpoints > 0){
+        this->BHdata=static_cast<CComplex *>(calloc(this->BHpoints,sizeof(CComplex)));
+        memcpy(this->BHdata,material.BHdata,this->BHpoints*sizeof(CComplex));
+    }
+}
+
 //CMaterialProp::~CMaterialProp()
 //{
 ////    qDebug()<<Q_FUNC_INFO;

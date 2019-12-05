@@ -10,8 +10,11 @@
 
 #include <coreplugin/geometrymanager/geometrymanager.h>
 #include <coreplugin/geometrymanager/igeometry.h>
+#include <coreplugin/icore.h>
 
 #include <material/materialplugin.h>
+#include <material/pf_magmaterialdialog.h>
+
 #include <output/outputpluginplugin.h>
 
 #include <QString>
@@ -50,6 +53,7 @@ PF_Mag2DSProject::PF_Mag2DSProject()
                 return;
             }
         }
+        /** 这个地方为什么会调用两次拷贝构造函数？ **/
         m_materialList.push_back(*material);
         this->updateData();
         /** 更新tree **/
@@ -84,6 +88,30 @@ void PF_Mag2DSProject::updateData()
 Core::IGeometry *PF_Mag2DSProject::CAD() const
 {
     return cad2d;
+}
+
+/*!
+ \brief 打开材料对话框并进行编辑。
+
+ \param node
+*/
+void PF_Mag2DSProject::editMaterial(Node *node)
+{
+    if(!node) return;
+    qDebug()<<Q_FUNC_INFO;
+    /** 根据节点名称查询材料 **/
+    for(int i = 0; i < m_materialList.size();i++)
+    {
+        if(m_materialList[i].BlockName == node->displayName()){
+            qDebug()<<"found!"<<m_materialList[i].BlockName;
+            PF_MagMaterialDialog* dialog = new PF_MagMaterialDialog(Core::ICore::dialogParent());
+            dialog->setMaterial(m_materialList[i]);
+            dialog->setWindowTitle(m_materialList[i].BlockName);
+            int result = dialog->exec();
+            break;
+        }
+    }
+
 }
 
 /**

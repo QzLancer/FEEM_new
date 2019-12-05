@@ -14,17 +14,17 @@
 
 PF_MagMaterialDialog::PF_MagMaterialDialog(QWidget *parent)
     :QDialog (parent)
-    ,m_material(new CMaterialProp())
+    ,m_material(/*new CMaterialProp()*/)
 {
     initialization();
     resize(650,500);
-    updateDialog();
+//    updateDialog();
 }
 
 PF_MagMaterialDialog::~PF_MagMaterialDialog()
 {
-    delete m_material;
-    m_material = nullptr;
+//    delete m_material;
+//    m_material = nullptr;
 }
 
 void PF_MagMaterialDialog::initialization()
@@ -198,9 +198,9 @@ QWidget *PF_MagMaterialDialog::createHeatPage()
 
  \param material
 */
-void PF_MagMaterialDialog::setMaterial(const CMaterialProp &material)
+void PF_MagMaterialDialog::setMaterial(CMaterialProp &material)
 {
-    *m_material = material;
+    m_material = &material;
     updateDialog();
 }
 
@@ -235,6 +235,13 @@ void PF_MagMaterialDialog::updateDialog()
 void PF_MagMaterialDialog::updateMaterial()
 {
     m_material->BlockName = edit_name->text();
+    m_material->mu_x = edit_ux->text().toDouble();
+    m_material->mu_y = edit_uy->text().toDouble();
+    m_material->Theta_hx = edit_hx->text().toDouble();
+    m_material->Theta_hy = edit_hy->text().toDouble();
+    m_material->Cduct = edit_conduct->text().toDouble();
+    m_material->H_c = edit_coer->text().toDouble();
+    m_material->Jsrc.re = edit_current->text().toDouble();
 }
 
 /*!

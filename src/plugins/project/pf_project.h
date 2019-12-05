@@ -58,6 +58,7 @@ public:
     virtual ProjectNode* containerNode() const;
 
     virtual Core::IGeometry* CAD() const;
+    virtual void editMaterial(Node* node);
 
 signals:
     void displayNameChanged();

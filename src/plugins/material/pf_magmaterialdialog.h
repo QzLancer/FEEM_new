@@ -1,6 +1,6 @@
 #ifndef PF_MAGMATERIALDIALOG_H
 #define PF_MAGMATERIALDIALOG_H
-
+#include "material_global.h"
 #include <QDialog>
 
 class QLineEdit;
@@ -11,7 +11,7 @@ class CMaterialProp;
  \brief 创建一个电磁材料的材料设置窗口
 
 */
-class PF_MagMaterialDialog : public QDialog
+class FEEM_MATERIAL_EXPORT PF_MagMaterialDialog : public QDialog
 {
     Q_OBJECT
 public:
@@ -24,7 +24,7 @@ public:
     QWidget* createMagneticPage();
     QWidget* createHeatPage();
 
-    void setMaterial(const CMaterialProp & material);
+    void setMaterial(CMaterialProp & material);
     CMaterialProp* getMaterial();
 
     void updateDialog();

@@ -67,13 +67,16 @@ void MaterialPlugin::addBlankMaterial()
         感觉不需要，因为右键菜单就是根据材料进来的   **/
     if(!folderNode) return;
 
+    CMaterialProp m;
     PF_MagMaterialDialog* dialog = new PF_MagMaterialDialog(Core::ICore::dialogParent());
+    dialog->setMaterial(m);
     dialog->setWindowTitle(tr("Add Blank Material"));
     int result = dialog->exec();
     /** 获取result之后，对话框已经关闭了，变量不存在了，
         解决方法，不设置WA_DeleteOnClose，但是对话框要设置parents，
         不然会内存泄漏**/
     if(result == QDialog::Accepted){
+        /** emit传过去的变量会在接收之前析构吗？ **/
         emit materialAdded(dialog->getMaterial());
         /** 但是这个也不能直接添加吧，如果重名的话，就不能添加，
             主要的问题在于现在的插件依赖关系，是Project依赖material插件，

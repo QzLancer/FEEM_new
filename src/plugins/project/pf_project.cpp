@@ -185,6 +185,11 @@ Core::IGeometry *PF_Project::CAD() const
     return nullptr;
 }
 
+void PF_Project::editMaterial(Node *node)
+{
+
+}
+
 PF_ProjectPrivate::PF_ProjectPrivate()
 {
 
