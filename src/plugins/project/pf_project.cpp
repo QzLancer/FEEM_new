@@ -5,6 +5,8 @@
 #include "pf_nodetreebuilder.h"
 #include "pf_projecttree.h"
 
+#include <coreplugin/geometrymanager/igeometry.h>
+
 #include <memory>
 #include <QDebug>
 
@@ -176,6 +178,11 @@ ProjectNode* PF_Project::rootProjectNode() const
 ProjectNode *PF_Project::containerNode() const
 {
     return d->m_containerNode.get();
+}
+
+Core::IGeometry *PF_Project::CAD() const
+{
+    return nullptr;
 }
 
 PF_ProjectPrivate::PF_ProjectPrivate()

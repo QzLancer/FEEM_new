@@ -9,6 +9,7 @@
 #include <QVector>
 
 class PF_Document;
+class Geometry2D;
 
 namespace MagFEMProjectManagerPlugin {
 class PF_MagFEMNode;
@@ -20,13 +21,15 @@ public:
 
     void updateData();
 
+    Core::IGeometry* CAD() const;
+
     QVector<CMaterialProp> m_materialList;//
     Utils::PF_VariableDict m_variables;//
     PF_Document* m_document;
 public:
 
 private:
-
+    Geometry2D* cad2d;
 };
 
 class PF_Mag2DSNodeTreeBuilder

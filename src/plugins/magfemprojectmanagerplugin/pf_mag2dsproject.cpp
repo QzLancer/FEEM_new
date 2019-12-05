@@ -9,6 +9,7 @@
 #include <CAD/pf.h>
 
 #include <coreplugin/geometrymanager/geometrymanager.h>
+#include <coreplugin/geometrymanager/igeometry.h>
 
 #include <material/materialplugin.h>
 #include <output/outputpluginplugin.h>
@@ -63,8 +64,8 @@ PF_Mag2DSProject::PF_Mag2DSProject()
         OutputPlugin::OutputPluginPlugin::write("Material "+material->BlockName+" Added.");
     });
     /** 添加CAD **/
-    Geometry2D* cad = new Geometry2D(m_document);
-    Core::GeometryManager::openCAD(cad);
+    cad2d = new Geometry2D(m_document);
+    Core::GeometryManager::openCAD(cad2d);
 
     /** 检测cad的变化 **/
     connect(m_document,&PF_Document::EntityChanged,this,&PF_Mag2DSProject::updateData);
@@ -78,6 +79,11 @@ PF_Mag2DSProject::~PF_Mag2DSProject()
 void PF_Mag2DSProject::updateData()
 {
     setRootProjectNode(PF_Mag2DSNodeTreeBuilder::buildTree(this));
+}
+
+Core::IGeometry *PF_Mag2DSProject::CAD() const
+{
+    return cad2d;
 }
 
 /**

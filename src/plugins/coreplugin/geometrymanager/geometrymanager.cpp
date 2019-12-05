@@ -274,4 +274,16 @@ IGeometry* GeometryManager::currentCAD()
     return d->m_currentCAD;
 }
 
+/*!
+ \brief 激活显示cad
+
+ \param cad
+*/
+void GeometryManager::activateCAD(IGeometry *cad)
+{
+    if(!cad)
+        return;
+    /** 查找是不是在view上 **/
+}
+
 }//namespace Core

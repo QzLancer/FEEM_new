@@ -4,6 +4,9 @@
 #include "pf_projectmodel.h"
 #include "pf_projecttree.h"
 #include "pf_node.h"
+#include "pf_project.h"
+
+#include <coreplugin/geometrymanager/geometrymanager.h>
 
 #include <QApplication>
 #include <QSettings>
@@ -312,6 +315,10 @@ void PF_ProjectTreeWidget::openItem(const QModelIndex &mainIndex)
         }
     }
     //    qDebug()<<Q_FUNC_INFO<<node->displayName()<<" Clicked!";
+    /** 激活几何视图 **/
+    PF_Project* pro = PF_ProjectTree::projectForNode(node);
+    if(pro)
+        Core::GeometryManager::instance()->openCAD(pro->CAD());
 }
 
 /*!

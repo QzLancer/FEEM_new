@@ -9,6 +9,9 @@
 
 #include <coreplugin/idocument.h>
 
+namespace Core {
+class IGeometry;
+}
 namespace ProjectExplorer {
 class FolderNode;
 class Node;
@@ -53,6 +56,8 @@ public:
 
     virtual ProjectNode* rootProjectNode() const;
     virtual ProjectNode* containerNode() const;
+
+    virtual Core::IGeometry* CAD() const;
 
 signals:
     void displayNameChanged();
