@@ -121,7 +121,7 @@ PF_Project* PF_ProjectTree::projectForNode(const Node* node)
 
     /** 寻找projectnode对应的project **/
     return Utils::findOrDefault(PF_SessionManager::projects(), [folder](const PF_Project *pro) {
-        return pro->rootProjectNode() == folder;
+        return pro->containerNode() == folder;
     });
 }
 

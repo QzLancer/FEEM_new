@@ -50,15 +50,16 @@ PF_Mag2DSProject::PF_Mag2DSProject()
             }
         }
         m_materialList.push_back(*material);
+        this->updateData();
         /** 更新tree **/
         /** 这里有问题，如果不是从tree操作进来的，那么node就不对了 **/
-        Node *node = PF_ProjectTree::findCurrentNode();
-        FolderNode *folderNode = node ? node->asFolderNode() : nullptr;
+//        Node *node = PF_ProjectTree::findCurrentNode();
+//        FolderNode *folderNode = node ? node->asFolderNode() : nullptr;
         /** 需要判断为文件夹，不清楚需不需要判断是材料类型
             感觉不需要，因为右键菜单就是根据材料进来的   **/
-        if(!folderNode) return;
-        folderNode->addNode(std::make_unique<LeafNode>(material->BlockName,LeafType::CMaterialProp));
-        PF_ProjectTree::emitSubtreeChanged(folderNode);
+//        if(!folderNode) return;
+//        folderNode->addNode(std::make_unique<LeafNode>(material->BlockName,LeafType::CMaterialProp));
+//        PF_ProjectTree::emitSubtreeChanged(folderNode);
         OutputPlugin::OutputPluginPlugin::write("Material "+material->BlockName+" Added.");
     });
     /** 添加CAD **/
