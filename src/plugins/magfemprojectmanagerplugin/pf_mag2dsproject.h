@@ -26,6 +26,7 @@ public:
 
     Core::IGeometry* CAD() const override;
     void editMaterial(ProjectExplorer::Node* node) override;
+    void doMesh() override;
 
     QVector<CMaterialProp> m_materialList;//
     Utils::PF_VariableDict m_variables;//

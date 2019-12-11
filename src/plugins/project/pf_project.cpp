@@ -190,6 +190,11 @@ void PF_Project::editMaterial(Node *node)
 
 }
 
+void PF_Project::doMesh()
+{
+
+}
+
 PF_ProjectPrivate::PF_ProjectPrivate()
 {
 

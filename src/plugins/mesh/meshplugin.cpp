@@ -8,6 +8,9 @@
 #include <coreplugin/actionmanager/command.h>
 #include <coreplugin/constants.h>
 
+#include <project/pf_sessionmanager.h>
+#include <project/pf_project.h>
+
 #include <extensionsystem/pluginerroroverview.h>
 #include <extensionsystem/pluginmanager.h>
 #include <extensionsystem/pluginspec.h>
@@ -72,6 +75,16 @@ QObject *MeshPlugin::remoteCommand(const QStringList &, const QString &workingDi
     return nullptr;
 }
 
+/*!
+ \brief 调用当前的分网器对几何进行自动分网。
+
+*/
+void MeshPlugin::automesh()
+{
+    qDebug()<<Q_FUNC_INFO;
+    ProjectExplorer::PF_SessionManager::instance()->startupProject()->doMesh();
+}
+
 void MeshPlugin::registerDefaultContainers()
 {
     /** 添加 group **/
@@ -133,7 +146,7 @@ void MeshPlugin::registerDefaultContainers()
     Command* cmd = ActionManager::registerAction(m_autoMesh, Constants::G_MESH_AUTO);
     //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
     meshContextMenu->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
-
+    connect(m_autoMesh,&QAction::triggered,this,&MeshPlugin::automesh);
 }
 
 void MeshPlugin::registerDefaultActions()

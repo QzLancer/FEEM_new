@@ -25,6 +25,8 @@ public:
                            const QString &workingDirectory,
                            const QStringList &args) override;
 
+    void automesh();
+
     void registerDefaultContainers();
     void registerDefaultActions();
 public slots:

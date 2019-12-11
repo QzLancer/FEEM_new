@@ -10,6 +10,8 @@ include(../../feemplugin.pri)
 include(./entity/entity.pri)
 include(./action/action.pri)
 
+INCLUDEPATH += $$PWD/gmsh
+
 HEADERS += \
     CAD_global.h \
     pf_cadwidget.h \
@@ -21,7 +23,8 @@ HEADERS += \
     pf.h \
     cadconstants.h \
     pf_actionhandler.h \
-    geometry2d.h
+    geometry2d.h \
+    gmsh/gmsh.h
 
 SOURCES += \
     pf_cadwidget.cpp \
@@ -34,5 +37,8 @@ SOURCES += \
 
 RESOURCES += \
     cad.qrc
+
+win32:CONFIG(release, debug|release): LIBS += -L$$_PRO_FILE_PWD_/../../../bin/ -lgmsh
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$_PRO_FILE_PWD_/../../../bin/ -lgmsh
 
 

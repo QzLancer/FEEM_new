@@ -1,7 +1,7 @@
 #include "pf_entitycontainer.h"
 #include "pf_graphicview.h"
 #include "pf_line.h"
-//#include "gmsh.h"
+#include "gmsh.h"
 #include <stdio.h>
 
 #include <QDebug>
@@ -879,14 +879,14 @@ bool PF_EntityContainer::exportGeofile()
 
 void PF_EntityContainer::doMesh()
 {
-//    exportGeofile();
-//    int myargn = 3;
-//    char *myargv[] = {(char*)"gmsh",(char*)"-format",(char*)"msh2"};
-//    gmsh::initialize(myargn,myargv);
-//    gmsh::option::setNumber("General.Terminal", 1);
-//    gmsh::open("D:/model.geo");
-//    gmsh::model::mesh::generate(2);
-//    gmsh::write("D:/model.msh");
+    exportGeofile();
+    int myargn = 3;
+    char *myargv[] = {(char*)"gmsh",(char*)"-format",(char*)"msh2"};
+    gmsh::initialize(myargn,myargv);
+    gmsh::option::setNumber("General.Terminal", 1);
+    gmsh::open("D:/model.geo");
+    gmsh::model::mesh::generate(2);
+    gmsh::write("D:/model.msh");
 //    CMesh* mesh = loadGmsh22("D:/model.msh");
 //    PF_Point** points = (PF_Point**)malloc(mesh->numNode * sizeof (PF_Point*));
 //    for(int i = 0;i < mesh->numNode;++i){
@@ -907,7 +907,7 @@ void PF_EntityContainer::doMesh()
 //        }
 //    }
 //    this->mParentPlot->replot();
-//    gmsh::finalize();
+    gmsh::finalize();
 }
 
 int PF_EntityContainer::index() const

@@ -59,6 +59,7 @@ public:
 
     virtual Core::IGeometry* CAD() const;
     virtual void editMaterial(Node* node);
+    virtual void doMesh();
 
 signals:
     void displayNameChanged();

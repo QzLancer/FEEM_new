@@ -114,6 +114,18 @@ void PF_Mag2DSProject::editMaterial(Node *node)
 
 }
 
+/*!
+ \brief 项目树右键菜单进行分网
+
+ \param node
+*/
+void PF_Mag2DSProject::doMesh()
+{
+    qDebug()<<Q_FUNC_INFO;
+    m_document->doMesh();
+    m_document->setVisible(false);
+}
+
 /**
  * @brief
  *
@@ -144,7 +156,7 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
     auto material_node = std::make_unique<FolderNode>(QString(QObject::tr("Materials")),NodeType::Material,QIcon(":/imgs/material.png"));
     for(auto m : pro->m_materialList)
     {
-        material_node->addNode(std::make_unique<LeafNode>(m.BlockName,LeafType::CMaterialProp));
+        material_node->addNode(std::make_unique<LeafNode>(m.BlockName,LeafType::CMaterialProp,NodeType::Leaf,QIcon(":/imgs/material.png")));
     }
     /** 添加几何 **/
     auto geo_node = std::make_unique<FolderNode>(QString(QObject::tr("Geometry")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
@@ -156,17 +168,17 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
         switch (e->rtti()) {
         case PF::EntityPoint:
         {
-            point_node->addNode(std::make_unique<LeafNode>(QObject::tr("Point")+QString("%1").arg(e->index()),LeafType::Point));
+            point_node->addNode(std::make_unique<LeafNode>(QObject::tr("Point")+QString("%1").arg(e->index()),LeafType::Point,NodeType::Leaf,QIcon(":/imgs/material.png")));
             break;
         }
         case PF::EntityLine:
         {
-            line_node->addNode(std::make_unique<LeafNode>(QObject::tr("Line")+QString("%1").arg(e->index()),LeafType::Line));
+            line_node->addNode(std::make_unique<LeafNode>(QObject::tr("Line")+QString("%1").arg(e->index()),LeafType::Line,NodeType::Leaf,QIcon(":/imgs/material.png")));
             break;
         }
         case PF::EntityFace:
         {
-            face_node->addNode(std::make_unique<LeafNode>(QObject::tr("Face")+QString("%1").arg(e->index()),LeafType::Face));
+            face_node->addNode(std::make_unique<LeafNode>(QObject::tr("Face")+QString("%1").arg(e->index()),LeafType::Face,NodeType::Leaf,QIcon(":/imgs/material.png")));
             break;
         }
         default:

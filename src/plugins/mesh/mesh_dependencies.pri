@@ -6,4 +6,6 @@ FEEM_LIB_DEPENDS += \
 
 FEEM_PLUGIN_DEPENDS += \
     coreplugin \
+    project \
     material \
+    CAD \
