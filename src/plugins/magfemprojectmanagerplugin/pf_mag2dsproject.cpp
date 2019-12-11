@@ -51,14 +51,15 @@ PF_Mag2DSProject::PF_Mag2DSProject()
         for(auto m : m_materialList)
         {
             if(m.BlockName == material->BlockName){
-                QString s("Material "+material->BlockName+" exists.");
-                OutputPlugin::OutputPluginPlugin::write(s);
+                QString s(tr("Material ")+material->BlockName+tr(" exists"));
+                PoofeeSay<<s;
                 return;
             }
         }
         /** 这个地方为什么会调用两次拷贝构造函数？ **/
         m_materialList.push_back(*material);
         this->updateData();
+        PoofeeSay<<tr("Material ")+material->BlockName+tr(" Added.");
         /** 更新tree **/
         /** 这里有问题，如果不是从tree操作进来的，那么node就不对了 **/
 //        Node *node = PF_ProjectTree::findCurrentNode();
@@ -68,7 +69,7 @@ PF_Mag2DSProject::PF_Mag2DSProject()
 //        if(!folderNode) return;
 //        folderNode->addNode(std::make_unique<LeafNode>(material->BlockName,LeafType::CMaterialProp));
 //        PF_ProjectTree::emitSubtreeChanged(folderNode);
-        OutputPlugin::OutputPluginPlugin::write("Material "+material->BlockName+" Added.");
+//        OutputPlugin::OutputPluginPlugin::write("Material "+material->BlockName+" Added.");
     });
     /** 添加CAD **/
     cad2d = new Geometry2D(m_document);

@@ -1,8 +1,11 @@
 #pragma once
 
 #include "outputplugin_global.h"
+#include "messageoutputpane.h"
 
 #include <extensionsystem/iplugin.h>
+
+#define PoofeeSay *OutputPlugin::OutputPluginPlugin::MessagePane()
 
 namespace OutputPlugin {
 
@@ -20,8 +23,7 @@ public:
     bool initialize(const QStringList &arguments, QString *errorString);
     void extensionsInitialized();
     ShutdownFlag aboutToShutdown();
-
-    static void write(const QString &text);
+    static MessageOutputPane *MessagePane();
 private:
 //    MessageOutputPane* m_messagePane;
 };

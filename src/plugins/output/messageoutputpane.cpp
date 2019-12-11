@@ -82,4 +82,21 @@ void MessageOutputPane::appendMessage(const QString &out)
     m_outputWindow->appendText(out);
 }
 
+void MessageOutputPane::write(const QString &out)
+{
+    m_outputWindow->appendText(out+QLatin1Char('\n'));
+}
+
+void MessageOutputPane::operator <<(const QString &out)
+{
+    m_outputWindow->appendText(out+QLatin1Char('\n'));
+}
+
+void MessageOutputPane::operator<<(const char *out)
+{
+    m_outputWindow->appendText(QString::fromUtf8(out)+QLatin1Char('\n'));
+}
+
+
+
 }// namespace OutputPlugin
