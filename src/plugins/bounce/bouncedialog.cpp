@@ -48,21 +48,37 @@ BounceDialog::~BounceDialog()
 
 void BounceDialog::slotRun()
 {
-    double opendistance = mParamWidget->mOpenDistanceEdit->text().toDouble();
-    double stroke = mParamWidget->mStrokeEdit->text().toDouble();
-    double movingcontactmass = mParamWidget->mMovingMassEdit->text().toDouble();
-    double concentratedmass = mParamWidget->mConcentratedMassEdit->text().toDouble();
-    double contactspringstiffness = mParamWidget->mContactSpringStiffnessEdit->text().toDouble();
-    double returnspringstiffness = mParamWidget->mReturnSpringStiffnessEdit->text().toDouble();
-    double contactspringpreloads = mParamWidget->mContactSpringPreloadsEdit->text().toDouble();
-    double returnspringpreloads = mParamWidget->mReturnSpringPreloadsEdit->text().toDouble();
-    double contactstiffness = mParamWidget->mContactStiffnessEdit->text().toDouble();
-    double contactpenetration = mParamWidget->mContactPenetrationEdit->text().toDouble();
-    double contactdamping = mParamWidget->mContactDampingEdit->text().toDouble();
-    double contactcoefficient = mParamWidget->mContactCoefficientEdit->text().toDouble();
-    double starttime = mSolverWidget->mStartTimeEdit->text().toDouble();
-    double stoptime = mSolverWidget->mStopTimeEdit->text().toDouble();
-    double fixedstepsize = mSolverWidget->mFixedStepSizeEdit->text().toDouble();
+    bool opendistanceok;
+    bool strokeok;
+    bool movingcontactmassok;
+    bool concentratedmassok;
+    bool contactspringstiffnessok;
+    bool returnspringstiffnessok;
+    bool contactspringpreloadsok;
+    bool returnspringpreloadsok;
+    bool contactstiffnessok;
+    bool contactpenetrationok;
+    bool contactdampingok;
+    bool contactcoefficientok;
+    bool starttimeok;
+    bool stoptimeok;
+    bool fixedstepsizeok;
+
+    double opendistance = mParamWidget->mOpenDistanceEdit->text().toDouble(&opendistanceok);
+    double stroke = mParamWidget->mStrokeEdit->text().toDouble(&strokeok);
+    double movingcontactmass = mParamWidget->mMovingMassEdit->text().toDouble(&movingcontactmassok);
+    double concentratedmass = mParamWidget->mConcentratedMassEdit->text().toDouble(&concentratedmassok);
+    double contactspringstiffness = mParamWidget->mContactSpringStiffnessEdit->text().toDouble(&contactspringstiffnessok);
+    double returnspringstiffness = mParamWidget->mReturnSpringStiffnessEdit->text().toDouble(&returnspringstiffnessok);
+    double contactspringpreloads = mParamWidget->mContactSpringPreloadsEdit->text().toDouble(&contactspringpreloadsok);
+    double returnspringpreloads = mParamWidget->mReturnSpringPreloadsEdit->text().toDouble(&returnspringpreloadsok);
+    double contactstiffness = mParamWidget->mContactStiffnessEdit->text().toDouble(&contactstiffnessok);
+    double contactpenetration = mParamWidget->mContactPenetrationEdit->text().toDouble(&contactpenetrationok);
+    double contactdamping = mParamWidget->mContactDampingEdit->text().toDouble(&contactdampingok);
+    double contactcoefficient = mParamWidget->mContactCoefficientEdit->text().toDouble(&contactcoefficientok);
+    double starttime = mSolverWidget->mStartTimeEdit->text().toDouble(&starttimeok);
+    double stoptime = mSolverWidget->mStopTimeEdit->text().toDouble(&stoptimeok);
+    double fixedstepsize = mSolverWidget->mFixedStepSizeEdit->text().toDouble(&fixedstepsizeok);
 
     BounceCore *core = new BounceCore(opendistance,
                                       stroke,
