@@ -10,6 +10,12 @@
 #include "pf_document.h"
 #include "pf_graphicview.h"
 
+#include "geometry2d.h"
+
+#include <coreplugin/geometrymanager/geometrymanager.h>
+#include <coreplugin/geometrymanager/igeometry.h>
+
+
 PF_ActionHandler::PF_ActionHandler(QObject *parent) : QObject(parent)
 {
 
@@ -25,6 +31,16 @@ PF_ActionInterface *PF_ActionHandler::getCurrentAction()
 
 PF_ActionInterface *PF_ActionHandler::setCurrentAction(PF::ActionType typeId)
 {
+    /** 因为现在的模式是多个cad页面切换，所以，
+        绘图的时候，应该在当前的页面绘制，所以，
+        在使用之前需要更新一下。**/
+    Core::IGeometry* ig = Core::GeometryManager::instance()->currentCAD();
+    if(Geometry2D* ig2 = qobject_cast<Geometry2D*>(ig)){
+        set_document(ig2->document());
+        set_view(ig2->view());
+    }else{
+        return nullptr;
+    }
     PF_ActionInterface* a = nullptr;
 
     switch (typeId) {

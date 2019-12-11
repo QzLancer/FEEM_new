@@ -1,11 +1,14 @@
 #ifndef PF_ENTITY_H
 #define PF_ENTITY_H
 
-#include "pf.h"
+#include "../pf.h"
+#include "../CAD_global.h"
 #include "pf_vector.h"
 
-#include "pf_plot.h"
-#include "pf_flag.h"
+#include "../pf_plot.h"
+#include "../pf_flag.h"
+
+#include <QObject>
 //2018-02-11
 //by Poofee
 /**实体类，基类**/
@@ -15,8 +18,9 @@ class PF_Vector;
 class PF_EntityContainer;
 class PF_Line;
 
-class PF_Entity : public QCPLayerable, public PF_Flag
+class FEEM_CAD_EXPORT PF_Entity : public QCPLayerable, public PF_Flag
 {
+    Q_OBJECT
 public:
     PF_Entity()=default;
     PF_Entity(PF_EntityContainer*parent, PF_GraphicView *plot);

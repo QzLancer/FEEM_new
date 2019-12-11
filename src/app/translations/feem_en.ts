@@ -30,154 +30,154 @@
 <context>
     <name>BounceDialog</name>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="11"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="12"/>
         <source>Run</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="12"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="13"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="41"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="43"/>
         <source>Error: Some properties are empty!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="56"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="58"/>
         <source>Error: Properties must be number!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="126"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="128"/>
         <source>Open distance: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="127"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="129"/>
         <source>Stroke: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="128"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="130"/>
         <source>Moving contact mass: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="68"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="129"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="131"/>
         <source>Armature mass: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="141"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="143"/>
         <source>Stiffness of overtravel spring: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="142"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="144"/>
         <source>Stiffness of return spring: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="143"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="145"/>
         <source>Pre-pressure of overtravel spring: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="69"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="144"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="146"/>
         <source>Pre-pressure of return spring: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="156"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="72"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="158"/>
         <source>Stiffness: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="157"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="72"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="159"/>
         <source>Depth: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="158"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="72"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="160"/>
         <source>Damping: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="70"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="159"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="72"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="161"/>
         <source>Index: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="170"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="73"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="172"/>
         <source>Initial time: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="171"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="73"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="173"/>
         <source>End time: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="71"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="172"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="73"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="174"/>
         <source>Step size: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="80"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="83"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="82"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="85"/>
         <source>Moving Contact Displacement</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="81"/>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="84"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="83"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="86"/>
         <source>Armature Displacement</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="82"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="84"/>
         <source>time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="92"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="94"/>
         <source>Bounce calculate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="130"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="132"/>
         <source>Material properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="145"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="147"/>
         <source>Spring reaction force</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="160"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="162"/>
         <source>Collision contact</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/bounce/bouncedialog.cpp" line="173"/>
+        <location filename="../../plugins/bounce/bouncedialog.cpp" line="175"/>
         <source>Solve properties</source>
         <translation type="unfinished"></translation>
     </message>
@@ -185,137 +185,137 @@
 <context>
     <name>CAD::CADPlugin</name>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="60"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="65"/>
         <source>Geometry builder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="98"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="103"/>
         <source>Import/Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="103"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="108"/>
         <source>BuildGeometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="108"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="113"/>
         <source>Draw</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="113"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="118"/>
         <source>DrawSetting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="118"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="123"/>
         <source>DrawOperation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="123"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="128"/>
         <source>View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="136"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="141"/>
         <source>Import Geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="137"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="142"/>
         <source>Export Geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="140"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="145"/>
         <source>Build Geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="144"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="149"/>
         <source>DrawPoint</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="151"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="156"/>
         <source>DrawLine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="158"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="163"/>
         <source>DrawFace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="165"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="170"/>
         <source>DrawCircle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="173"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="178"/>
         <source>Snap to grid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="174"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="179"/>
         <source>Snap to geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="175"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="180"/>
         <source>Solid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="178"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="183"/>
         <source>SelectSingle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="184"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="189"/>
         <source>SelectAll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="190"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="195"/>
         <source>DeSelectAll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="196"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="201"/>
         <source>Cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="197"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="202"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="198"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="203"/>
         <source>Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="199"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="204"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="202"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="207"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="203"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="213"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="204"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="219"/>
         <source>Zoom Auto</source>
         <translation type="unfinished"></translation>
     </message>
@@ -354,8 +354,8 @@
 <context>
     <name>Core::GeometryView</name>
     <message>
-        <location filename="../../plugins/coreplugin/geometrymanager/geometryview.cpp" line="32"/>
-        <source>Hello!</source>
+        <location filename="../../plugins/coreplugin/geometrymanager/geometryview.cpp" line="34"/>
+        <source>Please select a file.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -670,13 +670,13 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagfieldWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="31"/>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="32"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="33"/>
         <source>Magnetic field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="33"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="34"/>
         <source>2D Axis Magnetic Static field simulation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -684,18 +684,38 @@ Reason: %3</source>
 <context>
     <name>Material::MaterialPlugin</name>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="93"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="73"/>
+        <source>Add Blank Material</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/materialplugin.cpp" line="131"/>
         <source>Material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="101"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="139"/>
         <source>Add material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="59"/>
-        <location filename="../../plugins/material/materialplugin.cpp" line="102"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="148"/>
+        <source>add Material</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/materialplugin.cpp" line="153"/>
+        <source>add Blank Material</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/materialplugin.cpp" line="159"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/materialplugin.cpp" line="97"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="140"/>
         <source>Material library</source>
         <translation type="unfinished"></translation>
     </message>
@@ -751,6 +771,11 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/mesh/meshplugin.cpp" line="125"/>
         <source>Clear mesh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="132"/>
+        <source>Auto mesh</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1049,12 +1074,12 @@ Reason: %3</source>
 <context>
     <name>OutputPlugin::OutputPluginPlugin</name>
     <message>
-        <location filename="../../plugins/output/outputpluginplugin.cpp" line="40"/>
+        <location filename="../../plugins/output/outputpluginplugin.cpp" line="44"/>
         <source>Message outputpane</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/output/outputpluginplugin.cpp" line="46"/>
+        <location filename="../../plugins/output/outputpluginplugin.cpp" line="50"/>
         <source>Welcome to FEEM!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1167,119 +1192,122 @@ Reason: %3</source>
 <context>
     <name>PF_MagMaterialDialog</name>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="24"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="35"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="25"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="36"/>
         <source>Comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="31"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="42"/>
         <source>Basic Material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="32"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="43"/>
         <source>Magnetic Material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="33"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="44"/>
         <source>Heat Material</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="36"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="47"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="38"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="49"/>
         <source>Cancle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="56"/>
-        <source>Add Blank Material</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="76"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="88"/>
         <source>Linear B-H relationship</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="77"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="89"/>
         <source>Nonlinear B-H curve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="80"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="92"/>
         <source>B-H curve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="93"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="105"/>
         <source>Relative ux:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="94"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="106"/>
         <source>Relative hx:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="96"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="108"/>
         <source>Relative uy:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="97"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="109"/>
         <source>Relative hy:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="101"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="113"/>
         <source>Linear Material Properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="107"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="119"/>
         <source>Nonlinear Material Properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="110"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="122"/>
         <source>B-H Curve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="115"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="127"/>
         <source>hmax</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="129"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="141"/>
         <source>Coercivity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="132"/>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="139"/>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="152"/>
-        <source>J,MA</source>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="144"/>
+        <source>T</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="136"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="164"/>
+        <source>A/(m2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="148"/>
         <source>Electrical Conductivity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="149"/>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="151"/>
+        <source>S/m</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="161"/>
         <source>Source Current Density</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1401,7 +1429,7 @@ Reason: %3</source>
 <context>
     <name>Postoperation::PostoperationPlugin</name>
     <message>
-        <location filename="../../plugins/postoperation/postoperationplugin.cpp" line="81"/>
+        <location filename="../../plugins/postoperation/postoperationplugin.cpp" line="84"/>
         <source>Postoperation Setting</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1447,37 +1475,37 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::PF_Project</name>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="82"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="86"/>
         <source>untitled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="101"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="105"/>
         <source>Global Definitions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="102"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="106"/>
         <source>Materials: Materials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="103"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="107"/>
         <source>Component: Component1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="104"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="108"/>
         <source>Definitions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="105"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="109"/>
         <source>Geometry1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_project.cpp" line="106"/>
+        <location filename="../../plugins/project/pf_project.cpp" line="110"/>
         <source>Mesh1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1485,93 +1513,83 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::PF_ProjectExplorerPlugin</name>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="330"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="326"/>
         <source>Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="332"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="330"/>
         <source>New Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="337"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="335"/>
         <source>Open Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="342"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="340"/>
         <source>Save Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="384"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="374"/>
         <source>Add Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="391"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="381"/>
         <source>Add Study</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="397"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="387"/>
         <source>3D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="402"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="392"/>
         <source>2D Axisymmetric</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="407"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="397"/>
         <source>2D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="415"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="405"/>
         <source>Static Magnetic Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="420"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="410"/>
         <source>Transient Magnetic Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="425"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="415"/>
         <source>Heat Field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="433"/>
-        <source>add Material</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="438"/>
-        <source>add Blank Material</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="445"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="423"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="456"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="431"/>
         <source>Model tree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="565"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="540"/>
         <source>New Project</source>
         <comment>Title of dialog</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="578"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="553"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1587,7 +1605,7 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::ProjectTreeWidgetFactory</name>
     <message>
-        <location filename="../../plugins/project/pf_projecttreewidget.cpp" line="323"/>
+        <location filename="../../plugins/project/pf_projecttreewidget.cpp" line="379"/>
         <source>Projects</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1845,6 +1863,7 @@ Reason: %3</source>
     </message>
     <message>
         <location filename="../../plugins/project/pf_nodetreebuilder.cpp" line="20"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="134"/>
         <source>Definitions</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1899,8 +1918,91 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/material/pf_material.cpp" line="13"/>
+        <location filename="../../plugins/material/pf_material.cpp" line="631"/>
         <source>New Material</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="144"/>
+        <source>Materials</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="150"/>
+        <source>Geometry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="151"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="159"/>
+        <source>Point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="152"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="164"/>
+        <source>Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="153"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="169"/>
+        <source>Face</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="180"/>
+        <source>Mesh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="181"/>
+        <source>Mesh Point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="182"/>
+        <source>Mesh Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="183"/>
+        <source>Mesh Face</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="187"/>
+        <source>Physics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="188"/>
+        <source>Domains</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="190"/>
+        <source>Solver</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="191"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="193"/>
+        <source>Result</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="194"/>
+        <source>2D curve</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="195"/>
+        <source>2D surface</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2047,6 +2149,26 @@ Reason: %3</source>
     <message>
         <location filename="../../libs/qtribbon/src/styles/QtnRibbonStyle.cpp" line="621"/>
         <source>AccessHeader</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QwtPlotRenderer</name>
+    <message>
+        <location filename="../../libs/qwt/qwt_plot_renderer.cpp" line="1017"/>
+        <location filename="../../libs/qwt/qwt_plot_renderer.cpp" line="1020"/>
+        <location filename="../../libs/qwt/qwt_plot_renderer.cpp" line="1023"/>
+        <source>Documents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/qwt/qwt_plot_renderer.cpp" line="1028"/>
+        <source>Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../libs/qwt/qwt_plot_renderer.cpp" line="1043"/>
+        <source>Export File Name</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

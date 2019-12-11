@@ -9,6 +9,9 @@
 
 #include <coreplugin/idocument.h>
 
+namespace Core {
+class IGeometry;
+}
 namespace ProjectExplorer {
 class FolderNode;
 class Node;
@@ -52,6 +55,10 @@ public:
     void handleSubTreeChanged(FolderNode *node);
 
     virtual ProjectNode* rootProjectNode() const;
+    virtual ProjectNode* containerNode() const;
+
+    virtual Core::IGeometry* CAD() const;
+    virtual void editMaterial(Node* node);
 
 signals:
     void displayNameChanged();

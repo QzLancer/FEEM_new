@@ -8,7 +8,7 @@ namespace OutputPlugin {
 
 class MessageOutputPane;
 
-class OutputPluginPlugin : public ExtensionSystem::IPlugin
+class OUTPUTPLUGINSHARED_EXPORT OutputPluginPlugin : public ExtensionSystem::IPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.hit.feem.feemPlugin" FILE "OutputPlugin.json")
@@ -21,8 +21,9 @@ public:
     void extensionsInitialized();
     ShutdownFlag aboutToShutdown();
 
+    static void write(const QString &text);
 private:
-    MessageOutputPane* m_messagePane;
+//    MessageOutputPane* m_messagePane;
 };
 
 } // namespace OutputPlugin

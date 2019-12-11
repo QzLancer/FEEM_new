@@ -5,6 +5,8 @@
 #include "pf_nodetreebuilder.h"
 #include "pf_projecttree.h"
 
+#include <coreplugin/geometrymanager/igeometry.h>
+
 #include <memory>
 #include <QDebug>
 
@@ -60,6 +62,7 @@ public:
     /** 保存真实的文件 **/
     std::unique_ptr<Core::IDocument> m_document;
     std::unique_ptr<ProjectNode> m_rootProjectNode;
+    std::unique_ptr<ProjectNode> m_containerNode;
 
     QString m_displayName;
 };
@@ -68,7 +71,8 @@ PF_Project::PF_Project(QObject *parent)
     : QObject(parent)
     , d(new PF_ProjectPrivate())
 {
-    setRootProjectNode(PF_NodeTreeBuilder::buildTree(this));
+    d->m_containerNode = std::make_unique<ProjectNode>(this);
+//    setRootProjectNode(PF_NodeTreeBuilder::buildTree(this));
 }
 
 PF_Project::~PF_Project()
@@ -79,7 +83,7 @@ PF_Project::~PF_Project()
 QString PF_Project::displayName() const
 {
     if(d->m_displayName.isEmpty()){
-        d->m_displayName = QString(tr("untitled"))+QString(".mph");
+        d->m_displayName = QString(tr("untitled"));
     }
 
     return d->m_displayName;
@@ -135,16 +139,16 @@ void PF_Project::setRootProjectNode(std::unique_ptr<ProjectNode> &&root)
         root.reset();
     }
 
-//    if (root) {
+    if (root) {
 //        ProjectTree::applyTreeManager(root.get());
-//        root->setParentFolderNode(d->m_containerNode.get());
-//    }
+        root->setParentFolderNode(d->m_containerNode.get());
+    }
 
     std::unique_ptr<ProjectNode> oldNode = std::move(d->m_rootProjectNode);
 
     d->m_rootProjectNode = std::move(root);
     if (oldNode || d->m_rootProjectNode)
-        handleSubTreeChanged(d->m_rootProjectNode.get());
+        handleSubTreeChanged(d->m_containerNode.get());
 }
 
 /*!
@@ -169,6 +173,21 @@ void PF_Project::handleSubTreeChanged(FolderNode* node)
 ProjectNode* PF_Project::rootProjectNode() const
 {
     return d->m_rootProjectNode.get();
+}
+
+ProjectNode *PF_Project::containerNode() const
+{
+    return d->m_containerNode.get();
+}
+
+Core::IGeometry *PF_Project::CAD() const
+{
+    return nullptr;
+}
+
+void PF_Project::editMaterial(Node *node)
+{
+
 }
 
 PF_ProjectPrivate::PF_ProjectPrivate()

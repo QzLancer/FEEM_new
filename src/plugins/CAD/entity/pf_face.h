@@ -45,6 +45,7 @@ public:
 */
 class PF_Face : public PF_AtomicEntity
 {
+    Q_OBJECT
 public:
     PF_Face()=default;
     PF_Face(PF_EntityContainer* parent, PF_GraphicView* view, const PF_FaceData &d);

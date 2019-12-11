@@ -657,3 +657,49 @@ note：
 命名空间不需要命名，它的成员不需要限定就可以使用。
 如果在一个文件中包含了两个相同成员的无名命名空间，其含义是不明确的，会导致重复定义的错误。
 无名命名空间可以替代全局作用域的static数据成员
+
+\subsection{warning: use of old-style cast}
+reinterpret\_cast, static\_cast, dynamic\_cast and const\_cast are the c++ cast alternatives.
+
+const\_cast to remove const/volatile from a const variable.
+
+dynamic\_cast to perform runtime validity checks when casting in between polymorphic types
+
+static\_cast to perform e.g up/down-cast in a inheritance hierarchy, but with no runtime checks, or to explicitly perform conversions that could be implicit (e.g. float to int)
+
+reinterpret\_cast to convert in between unrelated types.
+
+Casting is simply converting one type of data into an other type of data.
+
+The old type C-style cast is allowed in C++, but I would highly discourage it.
+
+\begin{lstlisting}
+// DO NOT USE
+int low = 1500;
+short lower = (short) low;    
+\end{lstlisting}
+
+Use the static\_cast construct instead. It’s more safe and it does some type checking and it always does the same. The (short) cast could possibly do harmfull stuff to your program and computer when used wrong.
+
+\begin{lstlisting}
+// use instead of (short)
+int low = 1500;
+short lower = static_cast<short>( low );    
+\end{lstlisting}
+
+The next type of cast is dynamic\_cast. It’s function is to downcast and upcast to/from a base type to a type further down/up in the hierarchy.
+
+\begin{lstlisting}
+class A;
+class B : public A;
+// B inherits A
+B *b = new B();
+// Cast up to A
+A *a = dynamic_cast<A*>( b );
+// Cast down from A to B
+B *bcast = dynamic_cast<B*>( a );   
+\end{lstlisting}
+
+With the next to casts we’re getting our hands dirty. reinterpret\_cast takes some data and pretends it’s something else. const\_cast removes the const modifier to a variable and is also troublesome. If you are in the need for const\_cast, I’d say you have something wrong with the design of your application.
+
+In my experience, reinterpret\_cast is good for casting from and to void*.

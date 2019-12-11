@@ -29,6 +29,10 @@ enum class NodeType : quint16 {
     Mesh,
     Definition,
     Component,
+    Domain,
+    Solve,
+    Plot2D,
+    Surface2D,
     Material,
     Variable,
     Parameter,
@@ -37,15 +41,10 @@ enum class NodeType : quint16 {
 };
 enum class LeafType : quint16 {
     Unknown = 0,
-    Header,
-    Source,
-    Form,
-    StateChart,
-    Resource,
-    QML,
-    Project,
-    FileTypeSize,
-    CMaterialProp
+    CMaterialProp,
+    Point,
+    Line,
+    Face
 };
 enum ProjectAction {
     // Special value to indicate that the actions are handled by the parent
@@ -207,6 +206,7 @@ class FEEM_PROJECT_EXPORT ProjectNode : public FolderNode
 {
 public:
     explicit ProjectNode(PF_Project* project);
+    ~ProjectNode();
 
     bool supportsAction(ProjectAction action, const Node *node) const override;
 

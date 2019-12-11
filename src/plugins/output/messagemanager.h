@@ -33,7 +33,7 @@ private:
     MessageManager();
     ~MessageManager() override;
     static void init();
-    friend class MainWindow;
+//    friend class MainWindow;
 };
 } // namespace OutputPlugin
 #endif // MESSAGEMANAGER_H

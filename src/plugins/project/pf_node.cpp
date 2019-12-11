@@ -119,6 +119,11 @@ ProjectNode::ProjectNode(PF_Project *project)
 {
 
 }
+
+ProjectNode::~ProjectNode()
+{
+    qDebug()<<Q_FUNC_INFO;
+}
 /*!
  \brief
 

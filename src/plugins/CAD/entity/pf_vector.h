@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <iosfwd>
-#include "pf.h"
+#include "../pf.h"
 #include <QString>
 
 class PF_Vector

@@ -82,13 +82,13 @@ void PF_ActionDrawFace::mouseMoveEvent(QMouseEvent *e)
     //    PF_CADWidget::statusbar->clearMessage();
     switch(getStatus()){
     case SetFirstLoop:
-        PF_CADWidget::statusbar->showMessage(mouse.toString()+QString(tr("Set Surface loop.(Press right click to abort)")));
+        PF_CADWidget::statusbar->showMessage(QString(tr("Set Surface loop.(Press right click to abort)"))+mouse.toString());
         break;
     case SetOtherLoop:
-        PF_CADWidget::statusbar->showMessage(mouse.toString()+QString(tr("Continue to set sureface loop.(Press right click to abort)")));
+        PF_CADWidget::statusbar->showMessage(QString(tr("Continue to set sureface loop.(Press right click to abort)"))+mouse.toString());
         break;
     default:
-        PF_CADWidget::statusbar->showMessage(mouse.toString()+QString(tr("Status error.")));
+        PF_CADWidget::statusbar->showMessage(QString(tr("Status error."))+mouse.toString());
         break;
     }
     if(getStatus() == SetOtherLoop){

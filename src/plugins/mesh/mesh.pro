@@ -7,7 +7,8 @@ include(../../feemplugin.pri)
 HEADERS += \
     meshconstants.h \
     mesh_global.h \
-    meshplugin.h
+    meshplugin.h \
+    meshfemm.h
 
 SOURCES += \
     meshplugin.cpp

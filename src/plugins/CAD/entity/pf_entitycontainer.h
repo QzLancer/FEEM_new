@@ -1,6 +1,7 @@
 #ifndef PF_ENTITYCONTAINER_H
 #define PF_ENTITYCONTAINER_H
 
+#include "../CAD_global.h"
 #include "pf_entity.h"
 #include <QList>
 
@@ -31,8 +32,9 @@ typedef struct _CMesh{
     CElement* eles;
 }CMesh;
 
-class PF_EntityContainer: public PF_Entity
+class FEEM_CAD_EXPORT PF_EntityContainer: public PF_Entity
 {
+    Q_OBJECT
 public:
     PF_EntityContainer(PF_EntityContainer * parent=nullptr, PF_GraphicView* view=nullptr, bool owner=true);
     ~PF_EntityContainer() override;
@@ -140,6 +142,8 @@ public:
     void doMesh();
     CMesh *loadGmsh22(const char fn[]);
     int index() const override;
+signals:
+    void EntityChanged();
 protected:
     QList<PF_Entity*> entities;/**保存所有实体**/
 private:

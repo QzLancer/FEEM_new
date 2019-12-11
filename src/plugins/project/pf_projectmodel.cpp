@@ -256,7 +256,7 @@ WrapperNode *PF_ProjectModel::nodeForProject(const PF_Project *project) const
     if(!project)
         return nullptr;
     /** 计算project的rootnode **/
-    ProjectNode *containerNode = project->rootProjectNode();
+    ProjectNode *containerNode = project->containerNode();
     if(!containerNode)
         return nullptr;
     /** 在tree当中查找containerNode，项目节点肯定在第一层 **/
@@ -278,11 +278,13 @@ void PF_ProjectModel::addOrRebuildProjectModel(PF_Project *project)
     /** 查找模型当中有没有project，注意，如果存在的话，会先清空 **/
     WrapperNode *container = nodeForProject(project);
     if (container) {
+        /** 如果项目列表中有这个项目，将tree的数据删掉 **/
         container->removeChildren();
-//        project->rootProjectNode()->removeAllChildren();
+        /** 将Project的node都删掉 **/
+        project->containerNode()->removeAllChildren();
     } else {
         /** project的rootnode应该在构造的时候生成好 **/
-        container = new WrapperNode(project->rootProjectNode());
+        container = new WrapperNode(project->containerNode());
         rootItem()->appendChild(container);
 //        rootItem()->insertOrderedChild(container, &compareProjectNames);
     }

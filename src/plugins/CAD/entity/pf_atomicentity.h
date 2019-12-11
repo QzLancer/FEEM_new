@@ -9,6 +9,7 @@
 /**基本实体类，包括线段，圆弧，椭圆等**/
 class PF_AtomicEntity: public PF_Entity
 {
+    Q_OBJECT
 public:
     PF_AtomicEntity(PF_EntityContainer *parent=nullptr, PF_GraphicView* view=nullptr);
 

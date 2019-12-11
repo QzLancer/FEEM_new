@@ -112,7 +112,7 @@
 /*!
   Constructs a PF_GraphicView and sets reasonable default values.
 */
-PF_GraphicView::PF_GraphicView(/*PF_Document *doc,*/ QWidget *parent)
+PF_GraphicView::PF_GraphicView(PF_Document *doc, QWidget *parent)
     : QWidget(parent),
     xAxis(nullptr),
     yAxis(nullptr),
@@ -147,10 +147,10 @@ PF_GraphicView::PF_GraphicView(/*PF_Document *doc,*/ QWidget *parent)
     mOpenGlCacheLabelsBackup(true)
 {
     //qDebug()<<"PF_GraphicView::PF_GraphicView";
-//    if(doc){
-//        setContainer(doc);
-//        container->mParentPlot = this;
-//    }
+    if(doc){
+        setContainer(doc);
+        container->mParentPlot = this;
+    }
 
     /**鼠标跟踪失效（默认），当鼠标被移动的时候只有在至少一个鼠标按键被按下时，
     这个窗口部件才会接收鼠标移动事件。**/
@@ -224,7 +224,7 @@ PF_GraphicView::PF_GraphicView(/*PF_Document *doc,*/ QWidget *parent)
     yAxis2->grid()->setLayer(QLatin1String("grid"));
     legend->setLayer(QLatin1String("legend"));
     /**将container添加到main层，这样才能够进行绘制**/
-//    container->setLayer(QLatin1String("main"));
+    container->setLayer(QLatin1String("main"));
     /**设置坐标轴背景**/
     defaultAxisRect->setBackground(QBrush(QColor(248,253,255)));
     /**设置xy轴等比例**/
@@ -449,10 +449,10 @@ void PF_GraphicView::back()
     }
 }
 
-//void PF_GraphicView::setContainer(PF_EntityContainer *_container)
-//{
-//    this->container = _container;
-//}
+void PF_GraphicView::setContainer(PF_EntityContainer *_container)
+{
+    this->container = _container;
+}
 
 void PF_GraphicView::setCurrentAction(PF_ActionInterface *action)
 {
@@ -2123,31 +2123,31 @@ void PF_GraphicView::zoomOut(double f, const PF_Vector& center)
  */
 void PF_GraphicView::zoomAuto(bool axis, bool keepAspectRatio)
 {
-//    if(container){
-//        container->calculateBorders();
+    if(container){
+        container->calculateBorders();
 
-//        double sx,sy;
-//        sx = container->getSize().x;
-//        sy = container->getSize().y;
+        double sx,sy;
+        sx = container->getSize().x;
+        sy = container->getSize().y;
 
-//        /** 判断在xy哪个方向上进行缩放  **/
-//        if(sx > PF_TOLERANCE && sy > PF_TOLERANCE){
-//            auto const center = (container->getMax()+container->getMin())*0.5;
-//            double factor = xAxis->range().size()/yAxis->range().size();
-//            if((sx/xAxis->range().size())>=(sy/yAxis->range().size())){
+        /** 判断在xy哪个方向上进行缩放  **/
+        if(sx > PF_TOLERANCE && sy > PF_TOLERANCE){
+            auto const center = (container->getMax()+container->getMin())*0.5;
+            double factor = xAxis->range().size()/yAxis->range().size();
+            if((sx/xAxis->range().size())>=(sy/yAxis->range().size())){
 //                qDebug()<<"zoom in x direction";
-//                xAxis->setRange(QCPRange(center.x-sx*0.505,center.x+sx*0.505));
-//                yAxis->setRange(QCPRange(center.y-(sx/factor)*0.51,center.y+(sx/factor)*0.51));
-//            }else{
+                xAxis->setRange(QCPRange(center.x-sx*0.505,center.x+sx*0.505));
+                yAxis->setRange(QCPRange(center.y-(sx/factor)*0.51,center.y+(sx/factor)*0.51));
+            }else{
 //                qDebug()<<"zoom in y direction";
-//                yAxis->setRange(QCPRange(center.y-sy*0.505,center.y+sy*0.505));
-//                xAxis->setRange(QCPRange(center.x-(sy*factor)*0.51,center.x+(sy*factor)*0.51));
-//            }
-//        }
+                yAxis->setRange(QCPRange(center.y-sy*0.505,center.y+sy*0.505));
+                xAxis->setRange(QCPRange(center.x-(sy*factor)*0.51,center.x+(sy*factor)*0.51));
+            }
+        }
 
 //        qDebug()<<"sx,"<<sx<<"sy,"<<sy;
 
-//    }
+    }
     replot();
 }
 

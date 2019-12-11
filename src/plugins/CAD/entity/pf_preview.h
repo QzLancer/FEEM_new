@@ -4,6 +4,7 @@
 
 class PF_Preview : public PF_EntityContainer
 {
+    Q_OBJECT
 public:
     PF_Preview(PF_EntityContainer*parent=nullptr, PF_GraphicView *view=nullptr);
     ~PF_Preview()=default;

@@ -88,6 +88,8 @@ bool PF_ProjectTree::hasNode(const Node* node)
         if (ProjectNode *projectNode = project->rootProjectNode()) {
             if(project->rootProjectNode()->findNode([node](const Node *n) { return n == node; }))
                 return true;
+            if(project->containerNode() == node)
+                return true;
         }
     }
 //    return Utils::contains(SessionManager::projects(), [node](const Project *p) {
@@ -119,7 +121,7 @@ PF_Project* PF_ProjectTree::projectForNode(const Node* node)
 
     /** 寻找projectnode对应的project **/
     return Utils::findOrDefault(PF_SessionManager::projects(), [folder](const PF_Project *pro) {
-        return pro->rootProjectNode() == folder;
+        return pro->containerNode() == folder;
     });
 }
 
@@ -172,6 +174,26 @@ void PF_ProjectTree::showContextMenu(PF_ProjectTreeWidget *focus, const QPoint &
 //        case NodeType::VirtualFolder:
         case NodeType::Material:{
             contextMenu = ActionManager::actionContainer(Constants::M_MATERIALCONTEXT)->menu();
+            break;
+        }
+        case NodeType::Mesh:{
+            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
+            break;
+        }
+        case NodeType::Domain:{
+            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
+            break;
+        }
+        case NodeType::Plot2D:{
+            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
+            break;
+        }
+        case NodeType::Surface2D:{
+            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
+            break;
+        }
+        case NodeType::Solve:{
+            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
             break;
         }
         case NodeType::Folder:

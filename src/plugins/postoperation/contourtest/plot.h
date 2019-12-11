@@ -11,7 +11,29 @@ public:
         RGBMap,
         IndexMap,
         HueMap,
-        AlphaMap
+        AlphaMap,
+        AuroraAustralis,
+        AuroraBorealis,
+        Cividis,
+        Cyclic,
+        Disco,
+        DiscoLight,
+        GrayPrint,
+        GrayScale,
+        HeatCamera,
+        HeatCameraLight,
+        JupiterAuroraBorealis,
+        Rainbow,
+        RainbowLight,
+        Spectrum,
+        Thermal,
+        ThermalEquidistant,
+        ThermalLight,
+        Traffic,
+        TrafficLight,
+        Twilight,
+        Wave,
+        WaveLight
     };
 
     Plot( QWidget * = NULL );

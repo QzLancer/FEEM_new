@@ -5,6 +5,10 @@ FEEM_LIB_DEPENDS += \
 
 FEEM_PLUGIN_DEPENDS += \
     coreplugin \
+    CAD \
+    output \
     project \
     material \
+    mesh \
     solver \
+

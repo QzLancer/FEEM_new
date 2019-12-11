@@ -8,9 +8,6 @@ HEADERS += \
     material_global.h \
     materialconstants.h \
     materialplugin.h \
-    material_global.h \
-    materialconstants.h \
-    materialplugin.h \
     pf_magmaterialdialog.h \
     pf_material.h \
     pf_materiallibrary.h \
@@ -18,7 +15,6 @@ HEADERS += \
     pf_materialtreemodel.h
 
 SOURCES += \
-    materialplugin.cpp \
     materialplugin.cpp \
     pf_magmaterialdialog.cpp \
     pf_material.cpp \

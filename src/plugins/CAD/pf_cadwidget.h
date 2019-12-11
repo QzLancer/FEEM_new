@@ -1,6 +1,8 @@
 #ifndef PF_CADWIDGET_H
 #define PF_CADWIDGET_H
 
+#include "CAD_global.h"
+
 #include <QWidget>
 
 class QToolButton;
@@ -15,11 +17,11 @@ class PF_Document;
  \brief 包含坐标轴和上方的按钮。
 
 */
-class PF_CADWidget : public QWidget
+class FEEM_CAD_EXPORT PF_CADWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit PF_CADWidget(/*PF_Document* doc, */QWidget *parent = nullptr);
+    explicit PF_CADWidget(PF_Document* doc, QWidget *parent = nullptr);
     ~PF_CADWidget();
 
     void init();
@@ -41,7 +43,7 @@ private:
     QToolButton* zoomselected;
 
     PF_GraphicView* view;
-//    PF_Document* document;
+    PF_Document* document;
 signals:
 
 public slots:

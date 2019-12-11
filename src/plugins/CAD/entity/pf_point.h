@@ -13,6 +13,7 @@ struct PF_PointData{
 //point entity
 class PF_Point : public PF_AtomicEntity
 {
+    Q_OBJECT
 public:
     PF_Point(PF_EntityContainer* parent, PF_GraphicView* view, const PF_PointData & d);
 

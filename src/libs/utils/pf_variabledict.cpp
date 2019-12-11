@@ -2,6 +2,7 @@
 
 #include <QDebug>
 
+namespace Utils {
 void PF_VariableDict::clear()
 {
     variables.clear();
@@ -29,4 +30,4 @@ double PF_VariableDict::getValue(const QString& key)
     }
     return 0.0;
 }
-
+}//namespace Utils

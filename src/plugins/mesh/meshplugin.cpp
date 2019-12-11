@@ -125,6 +125,15 @@ void MeshPlugin::registerDefaultContainers()
     action = new QAction(tr("Clear mesh"));
     action->setIcon(QIcon(":/imgs/clearmesh.png"));
     group->ribbonGroup()->addAction(action,Qt::ToolButtonTextUnderIcon);
+
+    /** projecttree当中的右键菜单 **/
+    ActionContainer *meshContextMenu =
+        ActionManager::createMenu(Constants::M_MESHCONTEXT);
+    m_autoMesh = new QAction(tr("Auto mesh"), this);
+    Command* cmd = ActionManager::registerAction(m_autoMesh, Constants::G_MESH_AUTO);
+    //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
+    meshContextMenu->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
+
 }
 
 void MeshPlugin::registerDefaultActions()

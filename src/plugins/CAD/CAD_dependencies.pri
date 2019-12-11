@@ -6,4 +6,5 @@ FEEM_LIB_DEPENDS += \
     QtAdvancedDock \
 
 FEEM_PLUGIN_DEPENDS += \
-    coreplugin
+    coreplugin \
+    output \

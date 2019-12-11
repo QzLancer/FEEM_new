@@ -56,14 +56,14 @@ public:
                          };
     Q_ENUMS(RefreshPriority)
 
-    explicit PF_GraphicView(/*PF_Document* doc,*/ QWidget *parent = nullptr);
+    explicit PF_GraphicView(PF_Document* doc, QWidget *parent = nullptr);
     ~PF_GraphicView() override;
 
     void drawLayer1(QPainter * painter);
 //    void getPixmapForView(QPixmap **pm);
 
     void back();
-//    void setContainer(PF_EntityContainer* _container);
+    void setContainer(PF_EntityContainer* _container);
 
     void setCurrentAction(PF_ActionInterface* action);
     PF_ActionInterface* getCurrentAction();
@@ -257,7 +257,7 @@ protected:
 
     PF_EventHandler* eventHandler;
 
-//    PF_EntityContainer* container;/**保存所有实体**/
+    PF_EntityContainer* container;/**保存所有实体**/
 
     PF::RedrawMethod redrawMethod;
 

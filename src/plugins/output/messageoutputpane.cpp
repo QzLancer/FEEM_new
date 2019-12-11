@@ -79,7 +79,7 @@ void MessageOutputPane::clearContents()
 
 void MessageOutputPane::appendMessage(const QString &out)
 {
-    m_outputWindow->appendText(out+QLatin1Char('\n'));
+    m_outputWindow->appendText(out);
 }
 
 }// namespace OutputPlugin

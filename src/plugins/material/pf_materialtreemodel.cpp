@@ -398,11 +398,11 @@ bool PF_MaterialTreeModel::loadBuiltinMaterials()
     nodes.emplace_back(std::make_unique<FolderNode>(QString("root")));
 
     // read in materials library;
-    if ((fp=fopen(LibName,"rt")) == NULL)
+    if ((fp=fopen(LibName,"rt")) == nullptr)
         return true;
 
 
-    while (fgets(s,1024,fp) != NULL)
+    while (fgets(s,1024,fp) != nullptr)
     {
         int result = ParseLine(s,fp,MProp,nodes);
         if(result == BEGINBLOCK){/**  **/

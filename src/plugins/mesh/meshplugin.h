@@ -2,6 +2,7 @@
 #define MESHPLUGIN_H
 
 #include <extensionsystem/iplugin.h>
+class QAction;
 
 namespace Mesh {
 
@@ -29,6 +30,7 @@ public:
 public slots:
 
 private:
+    QAction* m_autoMesh;
 };
 
 }//namespace Mesh
