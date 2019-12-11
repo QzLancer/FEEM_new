@@ -6,36 +6,54 @@
 #include <material/pf_material.h>
 /////////////////////////////////////////////////////////////////////////////
 // CNode -- structure that holds information about each mesh point.
-
-class FEEM_MESH_EXPORT CNode
-{
-public:
-
-    double x,y;
-    int bc;
-
-private:
-
-};
-
-class CMeshline
-{
-public:
-
-    int n0,n1;
-
-private:
+enum GmshElementType{
+    LINE_NODE2=1,
+    TRIANGLE_NODE3,
+    QUAD_NODE4
 };
 
 class FEEM_MESH_EXPORT CElement
 {
 public:
+    int n[3];// ni, nj, nk;//
+    int ele_type;
+    int physic_tag;
+    int geometry_tag;
 
-    int p[3];
-    int e[3];
     CComplex mu1,mu2;
     int blk;
     int lbl;
+};
+
+class FEEM_MESH_EXPORT CNode
+{
+public:
+
+    double x,y,z;
+    int bc;
+
+private:
+
+};
+class FEEM_MESH_EXPORT CMesh{
+public:
+    CMesh();
+    ~CMesh();
+
+    int numNode;
+    int numEle;
+    CNode* nodes;
+    CElement* eles;
+
+    void loadGsh22(const char fn[]);
+private:
+
+};
+class CMeshline
+{
+public:
+
+    int n0,n1;
 
 private:
 };

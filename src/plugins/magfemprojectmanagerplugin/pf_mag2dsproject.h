@@ -10,6 +10,8 @@
 
 class PF_Document;
 class Geometry2D;
+
+class CMesh;
 namespace ProjectExplorer {
 class Node;
 }
@@ -31,6 +33,7 @@ public:
     QVector<CMaterialProp> m_materialList;//
     Utils::PF_VariableDict m_variables;//
     PF_Document* m_document;
+    CMesh* m_mesh;
 public:
 
 private:

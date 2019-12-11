@@ -12,6 +12,8 @@
 #include <coreplugin/geometrymanager/igeometry.h>
 #include <coreplugin/icore.h>
 
+#include <mesh/meshfemm.h>
+
 #include <material/materialplugin.h>
 #include <material/pf_magmaterialdialog.h>
 
@@ -28,6 +30,7 @@ namespace MagFEMProjectManagerPlugin {
 PF_Mag2DSProject::PF_Mag2DSProject()
     :ProjectExplorer::PF_Project()
     ,m_document(new PF_Document())
+    ,m_mesh(new CMesh())
 {
     //    m_materialList.push_back(CMaterialProp());
     //    m_materialList.push_back(CMaterialProp());
@@ -123,7 +126,7 @@ void PF_Mag2DSProject::doMesh()
 {
     qDebug()<<Q_FUNC_INFO;
     m_document->doMesh();
-    m_document->setVisible(false);
+    m_mesh->loadGsh22("D:/model.msh");
 }
 
 /**
