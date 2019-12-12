@@ -4,6 +4,7 @@
 #include "pf_materiallibrary.h"
 #include "pf_magmaterialdialog.h"
 #include "pf_material.h"
+//#include "pf_bhcurvedialog.h"
 
 #include "qtribbon/include/QtnRibbonGroup.h"
 
@@ -99,6 +100,9 @@ bool MaterialPlugin::initialize(const QStringList &arguments, QString *errorMess
     // Add the dock widget to the top dock widget area
     Core::WorkPage::DockManager()->addDockWidget(ads::RightDockWidgetArea, DockWidget3);
     qDebug()<<Q_FUNC_INFO;
+
+//    PF_BHCurveDialog *dialog = new PF_BHCurveDialog;
+//    dialog->show();
     return true;
 }
 
