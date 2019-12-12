@@ -21,6 +21,8 @@ public:
 
     PF_Document* document()  const;
     PF_GraphicView* view() const;
+
+    void replot();
 private:
     PF_Document* m_document;
     PF_CADWidget* w;

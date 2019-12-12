@@ -110,7 +110,6 @@ void PF_Face::draw(QCPPainter *painter)
         return;
     }
     painter->save();
-
     /** 绘制面 **/
     QPainterPath path;
     PF_Line* line1,*line2;

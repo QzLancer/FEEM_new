@@ -53,6 +53,10 @@ void PF_ActionDrawFace::trigger()
 {
     PF_ActionPreviewInterface::trigger();
     /** 添加对象 **/
+    /** 如果用户直接右键取消了呢？？也要创建一个？？ **/
+    if(data->faceData.isEmpty()){
+        return;
+    }
     PF_Face * face = new PF_Face(container,view, *data);
     container->addEntity(face);
     setStatus(SetFirstLoop);
@@ -159,7 +163,7 @@ void PF_ActionDrawFace::mouseReleaseEvent(QMouseEvent *e)
         default:
             break;
         }
-    }else if(e->button() == Qt::RightButton){
+    }else if(e->button() == Qt::RightButton){/** 只要是右键就被trigger？？ **/
         deletePreview();
         drawPreview();
         /** 取消选择 **/

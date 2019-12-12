@@ -8,29 +8,6 @@
 //2018-02-15
 //by Poofee
 /**该类实现entity的组合功能，也就是一个数组列表**/
-enum GmshElementType{
-    LINE_NODE2=1,
-    TRIANGLE_NODE3,
-    QUAD_NODE4
-};
-typedef struct _CNode
-{
-    double x, y, z;
-}CNode;
-
-typedef struct _CElement
-{
-    int n[3];// ni, nj, nk;//
-    int ele_type;
-    int physic_tag;
-    int geometry_tag;
-}CElement;
-typedef struct _CMesh{
-    int numNode;
-    int numEle;
-    CNode* nodes;
-    CElement* eles;
-}CMesh;
 
 class FEEM_CAD_EXPORT PF_EntityContainer: public PF_Entity
 {
@@ -47,6 +24,10 @@ public:
     bool isContainer() const override{
         return true;
     }
+
+    bool setSelected(bool select) override;
+    bool toggleSelected() override;
+    bool isSelected() const override;
 
     /** @return PF::EntityContainer */
     PF::EntityType rtti() const override{
@@ -140,7 +121,7 @@ public:
     QString toGeoString() override;
     bool exportGeofile();
     void doMesh();
-    CMesh *loadGmsh22(const char fn[]);
+//    CMesh *loadGmsh22(const char fn[]);
     int index() const override;
 signals:
     void EntityChanged();

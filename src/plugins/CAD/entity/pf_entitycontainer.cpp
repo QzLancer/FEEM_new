@@ -1,145 +1,13 @@
 #include "pf_entitycontainer.h"
 #include "pf_graphicview.h"
 #include "pf_line.h"
-//#include "gmsh.h"
-#include <stdio.h>
+#include "gmsh.h"
+
+#include <output/outputpluginplugin.h>
 
 #include <QDebug>
 
-int next_int(char **start)
-{
-    int i;
-    char *end;
 
-    i = strtol(*start,&end,10);
-    *start = end;
-    return(i);
-}
-/*!
- \brief 读入msh2.2版本的分网文件，这个版本的格式比较容易读取。
- 格式简要如下：
-$MeshFormat
-版本号（2.2） 文件类型（0代表ASCII文件） 数据大小
-$EndMeshFormat
-$Nodes
-节点数目
-节点编号 x y z
-...
-$EndNodes
-$Elements
-单元数目
-单元编号 单元类型 标签数 标签1（物理实体编号） 标签2（几何实体编号） ... 节点1 节点2 节点3 ...
-...
-$EndElements
- \param mshFilename
- \return bool
-*/
-CMesh* PF_EntityContainer::loadGmsh22(const char fn[]){
-    char *ch = (char *)calloc(256,sizeof (char));
-    //------------open file----------------------------------
-    FILE * fp = nullptr;
-    CElement *elementList = nullptr;
-    CNode *nodeList = nullptr;
-    CMesh* mesh = new CMesh;
-    fp = fopen(fn, "r");
-    if (fp == nullptr) {
-        qDebug() << "Error: openning file!";
-        return nullptr;
-    }
-    while(!feof(fp)){
-        fgets(ch, 256, fp);
-
-        if(strstr(ch,"$MeshFormat")){
-            double version;
-            int file_type;
-            int data_size;
-            if(fscanf(fp,"%lf %d %d\n",&version,&file_type,&data_size) != 3){
-                qDebug()<<"error reading format";
-                return nullptr;
-            }else{
-                qDebug()<<version<<file_type<<data_size;
-                if(version > 2.2){
-                    qDebug()<<"Can only open gmsh version 2.2 format";
-                    return nullptr;
-                }
-            }
-            fgets(ch, 256, fp);
-            if(!strstr(ch,"$EndMeshFormat")) {
-                printf("$MeshFormat section should end to string $EndMeshFormat:\n%s\n",ch);
-            }
-        }else if(strstr(ch,"$Nodes")){
-            int number_nodes;
-            if(fscanf(fp,"%d\n",&number_nodes) != 1)
-            {
-                return nullptr;
-            }else{
-                /**读取节点坐标**/
-                nodeList = (CNode *)malloc(number_nodes * sizeof (CNode));
-                mesh->numNode = number_nodes;
-                int index;
-                for(int i = 0;i < number_nodes;++i){
-                    fscanf(fp,"%d %lf %lf %lf\n",&index,&nodeList[i].x,&nodeList[i].y,&nodeList[i].z);
-                    //qDebug()<<index<<nodeList[i].x<<nodeList[i].y<<nodeList[i].z;
-                }
-            }
-            fgets(ch, 256, fp);
-            if(!strstr(ch,"$EndNodes")) {
-                printf("$Node section should end to string $EndNodes:\n%s\n",ch);
-            }
-        }else if(strstr(ch,"$Elements")){
-            int number_ele;
-            int ele_number;
-            //    int elm_type;
-            int number_of_tags;
-            char * chtmp;
-            if(fscanf(fp,"%d\n",&number_ele) != 1){
-                return nullptr;
-            }else{
-                elementList = (CElement *)calloc(number_ele, sizeof (CElement));
-                mesh->numEle = number_ele;
-                for(int i = 0;i < number_ele;++i){
-                    chtmp = fgets(ch, 256, fp);
-                    ele_number = next_int(&chtmp);
-                    elementList[i].ele_type = next_int(&chtmp);
-                    number_of_tags = next_int(&chtmp);
-                    elementList[i].physic_tag = next_int(&chtmp);
-                    elementList[i].geometry_tag = next_int(&chtmp);
-
-                    int element_nodes = 0;
-                    switch (elementList[i].ele_type) {
-                    case 15:
-                        element_nodes = 1;
-                        break;
-                    case 1:
-                        element_nodes = 2;
-                        break;
-                    case 2:
-                        element_nodes = 3;
-                        break;
-                    default:
-                        element_nodes = 0;
-                        break;
-                    }
-
-                    for(int j = 0; j < element_nodes;++j)
-                        elementList[i].n[j] = next_int(&chtmp)-1;
-//                    qDebug()<<elementList[i].geometry_tag<<elementList[i].physic_tag
-//                           <<elementList[i].n[0]<<elementList[i].n[1]<<elementList[i].n[2];
-
-                }
-            }
-            fgets(ch, 256, fp);
-            if(!strstr(ch,"$EndElements")) {
-                printf("$Element section should end to string $EndElements:\n%s\n",ch);
-            }
-        }
-    }
-
-    mesh->nodes = nodeList;
-    mesh->eles = elementList;
-    fclose(fp);
-    return mesh;
-}
 PF_EntityContainer::PF_EntityContainer(PF_EntityContainer *parent, PF_GraphicView *view, bool owner)
     :PF_Entity(parent,view)
 {
@@ -168,6 +36,30 @@ void PF_EntityContainer::clear()
         entities.clear();
     }
     //qDebug()<<"PF_EntityContainer::clear: OK.";
+}
+
+bool PF_EntityContainer::setSelected(bool select)
+{
+    if(select){
+        for(auto e : entities){
+            e->setFlag(PF::FlagSelected);
+        }
+    }else{
+        for(auto e : entities){
+            e->delFlag(PF::FlagSelected);
+        }
+    }
+    return true;
+}
+
+bool PF_EntityContainer::toggleSelected()
+{
+    return setSelected(!isSelected());
+}
+
+bool PF_EntityContainer::isSelected() const
+{
+    return isVisible() && getFlag(PF::FlagSelected);
 }
 
 unsigned PF_EntityContainer::count() const
@@ -879,14 +771,15 @@ bool PF_EntityContainer::exportGeofile()
 
 void PF_EntityContainer::doMesh()
 {
-//    exportGeofile();
-//    int myargn = 3;
-//    char *myargv[] = {(char*)"gmsh",(char*)"-format",(char*)"msh2"};
-//    gmsh::initialize(myargn,myargv);
-//    gmsh::option::setNumber("General.Terminal", 1);
-//    gmsh::open("D:/model.geo");
-//    gmsh::model::mesh::generate(2);
-//    gmsh::write("D:/model.msh");
+    PoofeeSay<<"start mesh...";
+    exportGeofile();
+    int myargn = 3;
+    char *myargv[] = {(char*)"gmsh",(char*)"-format",(char*)"msh2"};
+    gmsh::initialize(myargn,myargv);
+    gmsh::option::setNumber("General.Terminal", 1);
+    gmsh::open("D:/model.geo");
+    gmsh::model::mesh::generate(2);
+    gmsh::write("D:/model.msh");
 //    CMesh* mesh = loadGmsh22("D:/model.msh");
 //    PF_Point** points = (PF_Point**)malloc(mesh->numNode * sizeof (PF_Point*));
 //    for(int i = 0;i < mesh->numNode;++i){
@@ -907,7 +800,8 @@ void PF_EntityContainer::doMesh()
 //        }
 //    }
 //    this->mParentPlot->replot();
-//    gmsh::finalize();
+    gmsh::finalize();    
+    PoofeeSay<<"Mesh over...";
 }
 
 int PF_EntityContainer::index() const

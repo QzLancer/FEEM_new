@@ -82,4 +82,23 @@ void MessageOutputPane::appendMessage(const QString &out)
     m_outputWindow->appendText(out);
 }
 
+void MessageOutputPane::write(const QString &out)
+{
+    QDateTime current_date_time =QDateTime::currentDateTime();
+    QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss ");
+    m_outputWindow->appendText(current_date+out+QLatin1Char('\n'));
+}
+
+void MessageOutputPane::operator <<(const QString &out)
+{
+    this->write(out);
+}
+
+void MessageOutputPane::operator<<(const char *out)
+{
+    this->write(QString::fromUtf8(out));
+}
+
+
+
 }// namespace OutputPlugin

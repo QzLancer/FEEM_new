@@ -129,6 +129,7 @@ void PF_CADWidget::init()
     cadlayout->addWidget(toolBar,0);
     cadlayout->addWidget(view,1);
 
+    /** 此处有问题，建立多个view的时候，就会创建多个bar，然后之前的就。。。 **/
     statusbar = new QStatusBar(this);
     statusbar->setStyleSheet("QStatusBar::item{border: 20 px}");
     cadlayout->addWidget(statusbar,0);

@@ -8,6 +8,8 @@
 
 #include <coreplugin/geometrymanager/geometrymanager.h>
 
+#include <output/outputpluginplugin.h>
+
 #include <QApplication>
 #include <QSettings>
 
@@ -294,7 +296,7 @@ void PF_ProjectTreeWidget::showContextMenu(const QPoint &pos)
 }
 
 /*!
- \brief node选中激活之后的动作。
+ \brief node选中激活之后的动作。应该只有LeafNode才能吧？
 
  \param mainIndex
 */
@@ -319,6 +321,27 @@ void PF_ProjectTreeWidget::openItem(const QModelIndex &mainIndex)
     PF_Project* pro = PF_ProjectTree::projectForNode(node);
     if(pro)
         Core::GeometryManager::instance()->openCAD(pro->CAD());
+    /** 如果是LeafNode，几何形状的话，设置选中，非几何的话，就是没选中 **/
+    if(node->asLeafNode()){
+        switch ((dynamic_cast<LeafNode*>(node)->leafType())) {
+        case LeafType::Point:
+        case LeafType::Line:
+        case LeafType::Face:{
+            PoofeeSay<<"You select "+node->displayName();
+            pro->entitySelected(true,node);
+            break;
+        }
+        case LeafType::CMaterialProp:{
+            PoofeeSay<<"You select "+node->displayName();
+            break;
+        }
+        default:{
+            break;
+        }
+        }
+    }else{
+        pro->entitySelected(false);
+    }
 }
 
 /*!

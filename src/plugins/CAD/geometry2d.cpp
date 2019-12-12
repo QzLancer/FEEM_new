@@ -26,3 +26,8 @@ PF_GraphicView* Geometry2D::view() const
 {
     return w->getGraphicView();
 }
+
+void Geometry2D::replot()
+{
+    view()->replot();
+}

@@ -11,7 +11,8 @@ HEADERS += \
     meshfemm.h
 
 SOURCES += \
-    meshplugin.cpp
+    meshplugin.cpp \
+    meshfemm.cpp
 
 RESOURCES += \
     res.qrc

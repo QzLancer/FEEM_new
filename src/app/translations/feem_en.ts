@@ -682,6 +682,25 @@ Reason: %3</source>
     </message>
 </context>
 <context>
+    <name>MagFEMProjectManagerPlugin::PF_Mag2DSProject</name>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="54"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="62"/>
+        <source>Material </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="54"/>
+        <source> exists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="62"/>
+        <source> Added.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Material::MaterialPlugin</name>
     <message>
         <location filename="../../plugins/material/materialplugin.cpp" line="73"/>
@@ -723,58 +742,58 @@ Reason: %3</source>
 <context>
     <name>Mesh::MeshPlugin</name>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="81"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="94"/>
         <source>BuildMesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="85"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="98"/>
         <source>Build mesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="90"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="103"/>
         <source>Im/ExportMesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="94"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="107"/>
         <source>Import mesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="98"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="111"/>
         <source>Export mesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="103"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="116"/>
         <source>Mesh Generator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="107"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="120"/>
         <source>Mesh generator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="112"/>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="116"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="125"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="129"/>
         <source>Statics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="121"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="134"/>
         <source>ClearMesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="125"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="138"/>
         <source>Clear mesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="132"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="145"/>
         <source>Auto mesh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1076,11 +1095,6 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/output/outputpluginplugin.cpp" line="44"/>
         <source>Message outputpane</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/output/outputpluginplugin.cpp" line="50"/>
-        <source>Welcome to FEEM!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1863,7 +1877,7 @@ Reason: %3</source>
     </message>
     <message>
         <location filename="../../plugins/project/pf_nodetreebuilder.cpp" line="20"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="134"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="150"/>
         <source>Definitions</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1923,85 +1937,85 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="144"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="160"/>
         <source>Materials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="150"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="166"/>
         <source>Geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="151"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="159"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="167"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="175"/>
         <source>Point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="152"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="164"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="168"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="180"/>
         <source>Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="153"/>
         <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="169"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="185"/>
         <source>Face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="180"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="196"/>
         <source>Mesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="181"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="197"/>
         <source>Mesh Point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="182"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="198"/>
         <source>Mesh Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="183"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="199"/>
         <source>Mesh Face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="187"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="203"/>
         <source>Physics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="188"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="204"/>
         <source>Domains</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="190"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="206"/>
         <source>Solver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="191"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="207"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="193"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="209"/>
         <source>Result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="194"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="210"/>
         <source>2D curve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="195"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="211"/>
         <source>2D surface</source>
         <translation type="unfinished"></translation>
     </message>

@@ -12,6 +12,8 @@
 #include <coreplugin/geometrymanager/igeometry.h>
 #include <coreplugin/icore.h>
 
+#include <mesh/meshfemm.h>
+
 #include <material/materialplugin.h>
 #include <material/pf_magmaterialdialog.h>
 
@@ -28,6 +30,7 @@ namespace MagFEMProjectManagerPlugin {
 PF_Mag2DSProject::PF_Mag2DSProject()
     :ProjectExplorer::PF_Project()
     ,m_document(new PF_Document())
+    ,m_mesh(new CMesh())
 {
     //    m_materialList.push_back(CMaterialProp());
     //    m_materialList.push_back(CMaterialProp());
@@ -49,13 +52,14 @@ PF_Mag2DSProject::PF_Mag2DSProject()
         {
             if(m.BlockName == material->BlockName){
                 QString s("Material "+material->BlockName+" exists.");
-                OutputPlugin::OutputPluginPlugin::write(s);
+                PoofeeSay<<s;
                 return;
             }
         }
         /** 这个地方为什么会调用两次拷贝构造函数？ **/
         m_materialList.push_back(*material);
         this->updateData();
+        PoofeeSay<<"Material "+material->BlockName+" Added.";
         /** 更新tree **/
         /** 这里有问题，如果不是从tree操作进来的，那么node就不对了 **/
 //        Node *node = PF_ProjectTree::findCurrentNode();
@@ -65,7 +69,7 @@ PF_Mag2DSProject::PF_Mag2DSProject()
 //        if(!folderNode) return;
 //        folderNode->addNode(std::make_unique<LeafNode>(material->BlockName,LeafType::CMaterialProp));
 //        PF_ProjectTree::emitSubtreeChanged(folderNode);
-        OutputPlugin::OutputPluginPlugin::write("Material "+material->BlockName+" Added.");
+//        OutputPlugin::OutputPluginPlugin::write("Material "+material->BlockName+" Added.");
     });
     /** 添加CAD **/
     cad2d = new Geometry2D(m_document);
@@ -114,6 +118,62 @@ void PF_Mag2DSProject::editMaterial(Node *node)
 
 }
 
+/*!
+ \brief 项目树右键菜单进行分网
+
+ \param node
+*/
+void PF_Mag2DSProject::doMesh()
+{
+    qDebug()<<Q_FUNC_INFO;
+    m_document->doMesh();
+    m_mesh->loadGsh22("D:/model.msh");
+}
+
+/*!
+ \brief 单个的选择
+
+ \param selected
+ \param node
+*/
+void PF_Mag2DSProject::entitySelected(bool selected, Node *node)
+{
+    m_document->setSelected(false);
+    if(selected){
+        QString displayName = node->displayName();
+        QString entityName;
+        for(auto e : m_document->getEntityList()){
+            switch (e->rtti()) {
+            case PF::EntityPoint:
+            {
+                entityName = QObject::tr("Point")+QString("%1").arg(e->index());
+                break;
+            }
+            case PF::EntityLine:
+            {
+                entityName = QObject::tr("Line")+QString("%1").arg(e->index());
+                break;
+            }
+            case PF::EntityFace:
+            {
+                entityName = QObject::tr("Face")+QString("%1").arg(e->index());
+                break;
+            }
+            default:
+            {
+                qDebug()<<"No such entity.";
+                break;
+            }
+            }
+            if(displayName == entityName){
+                e->setSelected(true);
+                break;
+            }
+        }
+    }
+    cad2d->replot();
+}
+
 /**
  * @brief
  *
@@ -144,7 +204,7 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
     auto material_node = std::make_unique<FolderNode>(QString(QObject::tr("Materials")),NodeType::Material,QIcon(":/imgs/material.png"));
     for(auto m : pro->m_materialList)
     {
-        material_node->addNode(std::make_unique<LeafNode>(m.BlockName,LeafType::CMaterialProp));
+        material_node->addNode(std::make_unique<LeafNode>(m.BlockName,LeafType::CMaterialProp,NodeType::Leaf,QIcon(":/imgs/material.png")));
     }
     /** 添加几何 **/
     auto geo_node = std::make_unique<FolderNode>(QString(QObject::tr("Geometry")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
@@ -156,17 +216,17 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
         switch (e->rtti()) {
         case PF::EntityPoint:
         {
-            point_node->addNode(std::make_unique<LeafNode>(QObject::tr("Point")+QString("%1").arg(e->index()),LeafType::Point));
+            point_node->addNode(std::make_unique<LeafNode>(QObject::tr("Point")+QString("%1").arg(e->index()),LeafType::Point,NodeType::Leaf,QIcon(":/imgs/material.png")));
             break;
         }
         case PF::EntityLine:
         {
-            line_node->addNode(std::make_unique<LeafNode>(QObject::tr("Line")+QString("%1").arg(e->index()),LeafType::Line));
+            line_node->addNode(std::make_unique<LeafNode>(QObject::tr("Line")+QString("%1").arg(e->index()),LeafType::Line,NodeType::Leaf,QIcon(":/imgs/material.png")));
             break;
         }
         case PF::EntityFace:
         {
-            face_node->addNode(std::make_unique<LeafNode>(QObject::tr("Face")+QString("%1").arg(e->index()),LeafType::Face));
+            face_node->addNode(std::make_unique<LeafNode>(QObject::tr("Face")+QString("%1").arg(e->index()),LeafType::Face,NodeType::Leaf,QIcon(":/imgs/material.png")));
             break;
         }
         default:

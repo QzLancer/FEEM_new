@@ -154,6 +154,7 @@ void PF_Entity::setVisible(bool v)
         setFlag(PF::FlagVisible);
     else
         delFlag(PF::FlagVisible);
+    mVisible = v;
 }
 
 PF_Vector PF_Entity::getSize() const
