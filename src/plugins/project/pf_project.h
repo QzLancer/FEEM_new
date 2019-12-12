@@ -61,6 +61,7 @@ public:
     virtual void editMaterial(Node* node);
     virtual void doMesh();
     virtual void entitySelected(bool selected,Node* node=nullptr);
+    virtual void setFaceMaterial(Node* node);
 
 signals:
     void displayNameChanged();

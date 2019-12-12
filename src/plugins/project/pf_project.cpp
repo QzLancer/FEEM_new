@@ -200,6 +200,11 @@ void PF_Project::entitySelected(bool selected, Node *node)
 
 }
 
+void PF_Project::setFaceMaterial(Node *node)
+{
+
+}
+
 PF_ProjectPrivate::PF_ProjectPrivate()
 {
 

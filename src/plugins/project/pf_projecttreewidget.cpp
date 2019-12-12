@@ -364,12 +364,16 @@ void PF_ProjectTreeWidget::doubleopenItem(const QModelIndex &mainIndex)
             pro->editMaterial(node);
             break;
         }
+        case LeafType::Face:{
+        pro->setFaceMaterial(node);
+            break;
+        }
         default:
         {
             break;
         }
     }
-    qDebug()<<Q_FUNC_INFO<<node->displayName()<<" Clicked!";
+//    qDebug()<<Q_FUNC_INFO<<node->displayName()<<" Clicked!";
 }
 
 /*!
