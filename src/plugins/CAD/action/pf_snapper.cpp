@@ -397,10 +397,10 @@ PF_Entity *PF_Snapper::catchEntity(const PF_Vector &pos, PF::EntityType enType, 
 
     if (entity /*&& dist<=getSnapRange()*/) {
         // highlight:
-        qDebug()<<"PF_Snapper::catchEntity: found:"<<entity->toGeoString();
+//        qDebug()<<"PF_Snapper::catchEntity: found:"<<entity->toGeoString();
         return entity;
     } else {
-        qDebug()<<"PF_Snapper::catchEntity: not found";
+//        qDebug()<<"PF_Snapper::catchEntity: not found";
         return nullptr;
     }
 }

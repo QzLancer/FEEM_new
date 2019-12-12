@@ -60,6 +60,7 @@ public:
     virtual Core::IGeometry* CAD() const;
     virtual void editMaterial(Node* node);
     virtual void doMesh();
+    virtual void entitySelected(bool selected,Node* node=nullptr);
 
 signals:
     void displayNameChanged();

@@ -7,6 +7,7 @@
 #include <project/pf_project.h>
 
 #include <QVector>
+#include <QMap>
 
 class PF_Document;
 class Geometry2D;
@@ -29,8 +30,10 @@ public:
     Core::IGeometry* CAD() const override;
     void editMaterial(ProjectExplorer::Node* node) override;
     void doMesh() override;
+    void entitySelected(bool selected,ProjectExplorer::Node* node=nullptr) override;
 
     QVector<CMaterialProp> m_materialList;//
+    QMap<int,QString> m_domains;
     Utils::PF_VariableDict m_variables;//
     PF_Document* m_document;
     CMesh* m_mesh;

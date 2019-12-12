@@ -44,10 +44,10 @@ bool OutputPluginPlugin::initialize(const QStringList &arguments, QString *error
     ads::CDockWidget* DockWidget1 = new ads::CDockWidget(tr("Message outputpane"));
     DockWidget1->setWidget(m_messagePane->outputWidget());
     Core::WorkPage::DockManager()->addDockWidget(ads::BottomDockWidgetArea, DockWidget1);
-    QDateTime current_date_time =QDateTime::currentDateTime();
-    QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss ddd");
-    PoofeeSay<<current_date;
-    PoofeeSay<<"Welcome to FEEM!";
+//    QDateTime current_date_time =QDateTime::currentDateTime();
+//    QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss");
+//    PoofeeSay<<current_date;
+    PoofeeSay<<"Welcome to FEEM! Copyright 2018-2020 HIT. All rights reserved.";
 //    m_messagePane->appendMessage(current_date+QLatin1Char('\n'));
 //    m_messagePane->appendMessage(tr("Welcome to FEEM!")+QLatin1Char('\n'));
     qDebug()<<Q_FUNC_INFO;

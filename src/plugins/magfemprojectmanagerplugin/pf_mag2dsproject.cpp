@@ -51,7 +51,7 @@ PF_Mag2DSProject::PF_Mag2DSProject()
         for(auto m : m_materialList)
         {
             if(m.BlockName == material->BlockName){
-                QString s(tr("Material ")+material->BlockName+tr(" exists"));
+                QString s("Material "+material->BlockName+" exists.");
                 PoofeeSay<<s;
                 return;
             }
@@ -59,7 +59,7 @@ PF_Mag2DSProject::PF_Mag2DSProject()
         /** 这个地方为什么会调用两次拷贝构造函数？ **/
         m_materialList.push_back(*material);
         this->updateData();
-        PoofeeSay<<tr("Material ")+material->BlockName+tr(" Added.");
+        PoofeeSay<<"Material "+material->BlockName+" Added.";
         /** 更新tree **/
         /** 这里有问题，如果不是从tree操作进来的，那么node就不对了 **/
 //        Node *node = PF_ProjectTree::findCurrentNode();
@@ -128,6 +128,50 @@ void PF_Mag2DSProject::doMesh()
     qDebug()<<Q_FUNC_INFO;
     m_document->doMesh();
     m_mesh->loadGsh22("D:/model.msh");
+}
+
+/*!
+ \brief 单个的选择
+
+ \param selected
+ \param node
+*/
+void PF_Mag2DSProject::entitySelected(bool selected, Node *node)
+{
+    m_document->setSelected(false);
+    if(selected){
+        QString displayName = node->displayName();
+        QString entityName;
+        for(auto e : m_document->getEntityList()){
+            switch (e->rtti()) {
+            case PF::EntityPoint:
+            {
+                entityName = QObject::tr("Point")+QString("%1").arg(e->index());
+                break;
+            }
+            case PF::EntityLine:
+            {
+                entityName = QObject::tr("Line")+QString("%1").arg(e->index());
+                break;
+            }
+            case PF::EntityFace:
+            {
+                entityName = QObject::tr("Face")+QString("%1").arg(e->index());
+                break;
+            }
+            default:
+            {
+                qDebug()<<"No such entity.";
+                break;
+            }
+            }
+            if(displayName == entityName){
+                e->setSelected(true);
+                break;
+            }
+        }
+    }
+    cad2d->replot();
 }
 
 /**

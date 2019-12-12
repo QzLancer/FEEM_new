@@ -84,17 +84,19 @@ void MessageOutputPane::appendMessage(const QString &out)
 
 void MessageOutputPane::write(const QString &out)
 {
-    m_outputWindow->appendText(out+QLatin1Char('\n'));
+    QDateTime current_date_time =QDateTime::currentDateTime();
+    QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss ");
+    m_outputWindow->appendText(current_date+out+QLatin1Char('\n'));
 }
 
 void MessageOutputPane::operator <<(const QString &out)
 {
-    m_outputWindow->appendText(out+QLatin1Char('\n'));
+    this->write(out);
 }
 
 void MessageOutputPane::operator<<(const char *out)
 {
-    m_outputWindow->appendText(QString::fromUtf8(out)+QLatin1Char('\n'));
+    this->write(QString::fromUtf8(out));
 }
 
 

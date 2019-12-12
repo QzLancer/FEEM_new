@@ -195,6 +195,11 @@ void PF_Project::doMesh()
 
 }
 
+void PF_Project::entitySelected(bool selected, Node *node)
+{
+
+}
+
 PF_ProjectPrivate::PF_ProjectPrivate()
 {
 

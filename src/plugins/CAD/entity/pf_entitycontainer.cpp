@@ -3,6 +3,8 @@
 #include "pf_line.h"
 #include "gmsh.h"
 
+#include <output/outputpluginplugin.h>
+
 #include <QDebug>
 
 
@@ -34,6 +36,30 @@ void PF_EntityContainer::clear()
         entities.clear();
     }
     //qDebug()<<"PF_EntityContainer::clear: OK.";
+}
+
+bool PF_EntityContainer::setSelected(bool select)
+{
+    if(select){
+        for(auto e : entities){
+            e->setFlag(PF::FlagSelected);
+        }
+    }else{
+        for(auto e : entities){
+            e->delFlag(PF::FlagSelected);
+        }
+    }
+    return true;
+}
+
+bool PF_EntityContainer::toggleSelected()
+{
+    return setSelected(!isSelected());
+}
+
+bool PF_EntityContainer::isSelected() const
+{
+    return isVisible() && getFlag(PF::FlagSelected);
 }
 
 unsigned PF_EntityContainer::count() const
@@ -745,6 +771,7 @@ bool PF_EntityContainer::exportGeofile()
 
 void PF_EntityContainer::doMesh()
 {
+    PoofeeSay<<"start mesh...";
     exportGeofile();
     int myargn = 3;
     char *myargv[] = {(char*)"gmsh",(char*)"-format",(char*)"msh2"};
@@ -773,7 +800,8 @@ void PF_EntityContainer::doMesh()
 //        }
 //    }
 //    this->mParentPlot->replot();
-    gmsh::finalize();
+    gmsh::finalize();    
+    PoofeeSay<<"Mesh over...";
 }
 
 int PF_EntityContainer::index() const

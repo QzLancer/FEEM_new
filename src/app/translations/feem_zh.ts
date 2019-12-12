@@ -682,17 +682,17 @@ Reason: %3</source>
         <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="54"/>
         <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="62"/>
         <source>Material </source>
-        <translation type="unfinished">材料</translation>
+        <translation>材料</translation>
     </message>
     <message>
         <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="54"/>
         <source> exists</source>
-        <translation type="unfinished">已存在</translation>
+        <translation>已存在</translation>
     </message>
     <message>
         <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="62"/>
         <source> Added.</source>
-        <translation type="unfinished">已添加</translation>
+        <translation>已添加</translation>
     </message>
 </context>
 <context>

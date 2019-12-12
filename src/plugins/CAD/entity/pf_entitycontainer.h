@@ -25,6 +25,10 @@ public:
         return true;
     }
 
+    bool setSelected(bool select) override;
+    bool toggleSelected() override;
+    bool isSelected() const override;
+
     /** @return PF::EntityContainer */
     PF::EntityType rtti() const override{
         return PF::EntityContainer;
