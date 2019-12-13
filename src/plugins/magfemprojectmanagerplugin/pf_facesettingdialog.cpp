@@ -11,7 +11,7 @@
 
 namespace MagFEMProjectManagerPlugin {
 
-PF_FaceSettingDialog::PF_FaceSettingDialog(QWidget *parent,PF_Mag2DSProject* pro,int index)
+PF_FaceSettingDialog::PF_FaceSettingDialog(QWidget *parent, PF_CommonFEMProject *pro, int index)
     :QDialog (parent)
     ,m_project(pro)
     ,m_faceIndex(index)

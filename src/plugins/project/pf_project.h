@@ -65,6 +65,7 @@ public:
 
 signals:
     void displayNameChanged();
+    void dataChanged();
 public slots:
 
 private:
