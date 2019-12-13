@@ -1,0 +1,486 @@
+\section{Qt qmake 高级应用}\label{qt-qmake-ux9ad8ux7ea7ux5e94ux7528-1}
+
+大多数的 qmake
+工程文件是用来简单的描述被用在项目中的资源文件和头文件信息的，它们被定义成
+
+\begin{verbatim}
+name = value
+\end{verbatim}
+
+或者
+
+\begin{verbatim}
+name += value
+\end{verbatim}
+
+的形式。qmake
+也提供其它的一些操作符、函数和作用域，用于在处理变量声明时提供必要的信息。这些高级功能使得在多个平台从一个单一的项目文件生成
+makefile 文件变得轻而易举。
+
+\subparagraph{操作符}\label{ux64cdux4f5cux7b26}
+
+在大多数工程文件中，分配操作符（=）和添加操作符（+=）可被用来引入（include）有关于项目的几乎全部信息。典型的使用方式是分配给一个变量的值列表，并且我们可以依据各种测试的结果来添加更多的值。由于
+qmake 有时候会使用默认值来初始化某些变量，因此此时使用删除（-
+=）操作符来过滤掉不需要的值就是相当必要的了。以下内容将会讲解用操作符来修改变量的内容的方法。
+
+\begin{enumerate}
+
+\item
+  我们使用 = 操作符将值指定给一个变量：
+\end{enumerate}
+
+\begin{verbatim}
+TARGET = myapp
+\end{verbatim}
+
+在上一行中，设定 TARGET 变量的值为 myapp，这样我们就可以使用一个
+``myapp'' 值来覆盖任何以前设置给 TARGET 的值了。
+
+\begin{enumerate}
+\setcounter{enumi}{1}
+
+\item
+  += 操作符将在一个变量的值列表添加一个新值：
+\end{enumerate}
+
+\begin{verbatim}
+DEFINES += USE_MY_STUFF
+\end{verbatim}
+
+在上面一行语句中我们附加 USE\_MY\_STUFF 到预定义列表，这样我们就可以在
+Makefile 中使用 USE\_MY\_STUFF 这个预定义了。
+
+\begin{enumerate}
+\setcounter{enumi}{2}
+
+\item
+  -= 操作符用于在一个变量的值列表中删除一个值：
+\end{enumerate}
+
+\begin{verbatim}
+DEFINES -= USE_MY_STUFF
+\end{verbatim}
+
+在上面一行语句中我们从预定义列表中移除 USE\_MY\_STUFF 的预定义，这样在
+Makefile 中的有关 USE\_MY\_STUFF 的预定义将会失效。
+
+\begin{enumerate}
+\setcounter{enumi}{3}
+
+\item
+  *=
+  操作符用于在一个变量的值列表中添加一个值，但只有当它不是已存在的时候才有效。这可以防止值被多次的包含在一个变量中。例如：
+\end{enumerate}
+
+\begin{verbatim}
+DEFINES *= USE_MY_STUFF
+\end{verbatim}
+
+上面的语句中，USE\_MY\_STUFF
+将只有在预定义列表中不存在该定义时才会被添加，友情提示，unique()
+函数也可以用来确保一个变量的每个值只包含一个实例。
+
+\begin{enumerate}
+\setcounter{enumi}{4}
+
+\item
+  ～= 操作符用于用指定的值替换任何一个相匹配的正则表达式的值:
+\end{enumerate}
+
+\begin{verbatim}
+DEFINES ~= s/QT_[DT].+/QT
+\end{verbatim}
+
+上面一行语句中，在预定义列表中的任何以 QT\_D 或者 QT\_T
+开头的预定义都将被替换为 QT。
+
+\begin{enumerate}
+\setcounter{enumi}{5}
+
+\item
+  \$\$
+  操作符被用于提取变量的内容，并且也能被用作在变量之间传值，或者传递这些值给函数
+\end{enumerate}
+
+\begin{verbatim}
+EVERYTHING = $$SOURCES $$HEADERS
+message("The project contains the following files:")
+message($$EVERYTHING)
+\end{verbatim}
+
+变量可以用来存储环境变量的内容。这些可以在运行 qmake
+时使用，或者在生成项目时生成的 Makefile 中使用。
+
+要在运行 qmake 时获取环境值的内容，请使用 \$\$(\ldots{}) 运算符：
+
+\begin{verbatim}
+DESTDIR = $$(PWD)
+message(The project will be installed in $$DESTDIR)
+\end{verbatim}
+
+在上面的分配中，当处理项目文件时读取 PWD 环境变量的值。
+
+要在生成的 Makefile 处理时获取环境值的内容，请使用 \$(\ldots{}) 运算符：
+
+\begin{verbatim}
+DESTDIR = $$(PWD)
+message(The project will be installed in $$DESTDIR)
+
+DESTDIR = $(PWD)
+message(The project will be installed in the value of PWD)
+message(when the Makefile is processed.)
+\end{verbatim}
+
+在上面的分配中，处理项目文件时会立即读取 PWD 的值，但在生成的 Makefile
+中将 \$(PWD) 分配给 DESTDIR。这使得构建过程更加灵活，只要在处理 Makefile
+时正确设置环境变量即可。
+
+\begin{enumerate}
+\setcounter{enumi}{6}
+
+\item
+  访问 qmake 属性
+\end{enumerate}
+
+特殊的 \$\${[}\ldots{}{]} 操作符可用于访问 qmake 属性：
+
+\begin{verbatim}
+message(Qt version: $$[QT_VERSION])
+message(Qt is installed in $$[QT_INSTALL_PREFIX])
+message(Qt resources can be found in the following locations:)
+message(Documentation: $$[QT_INSTALL_DOCS])
+message(Header files: $$[QT_INSTALL_HEADERS])
+message(Libraries: $$[QT_INSTALL_LIBS])
+message(Binary files (executables): $$[QT_INSTALL_BINS])
+message(Plugins: $$[QT_INSTALL_PLUGINS])
+message(Data files: $$[QT_INSTALL_DATA])
+message(Translation files: $$[QT_INSTALL_TRANSLATIONS])
+message(Settings: $$[QT_INSTALL_CONFIGURATION])
+message(Examples: $$[QT_INSTALL_EXAMPLES])
+\end{verbatim}
+
+更多内容，大家可以查阅
+\href{https://link.jianshu.com?t=https://doc.qt.io/qt-5/qmake-environment-reference.html}{Configuring
+qmake} 文档
+
+这个操作符可以访问的属性通常用于使第三方插件和组件集成到 Qt 中。
+例如，如果在其项目文件中进行了以下声明，则可以将 Qt Designer 插件与 Qt
+Designer 的内置插件一起安装：
+
+\begin{verbatim}
+target.path = $$[QT_INSTALL_PLUGINS]/designer
+INSTALLS += target
+\end{verbatim}
+
+\subparagraph{条件域}\label{ux6761ux4ef6ux57df}
+
+条件域类似于编程语言中的if语句。如果一个特定的条件是真的,在条件域内的声明将会被处理。
+
+条件域的语法
+
+条件域包含一个条件后跟一个在同一行的左花括号，然后是一系列的命令和定义，最后是在新的一行的一个右花括号。就像下面这样：
+
+\begin{verbatim}
+<condition> {
+     <command or definition>
+     ...
+}
+\end{verbatim}
+
+左花括号必须要和条件写在同一行。条件域可以包扩不止一个条件;可以看一些例子：
+
+条件域和条件的例子
+
+一个条件域被写成一个条件后跟一系列声明包含在一对大括号中，例如：
+
+\begin{verbatim}
+win32 {
+     SOURCES += paintwidget_win.cpp
+}
+\end{verbatim}
+
+如果 qmake 用于 Windows 平台，上面的代码将添加 paintwidget\_win.cpp
+文件到 Makefile 的资源列表。如果 qmake 用于其他的平台，定义将被忽略。
+
+当然我们也可以逆向思维，达到同样的目的，例如我们使用下面的语句：
+
+\begin{verbatim}
+!win32 {
+     SOURCES -= paintwidget_win.cpp
+}
+\end{verbatim}
+
+也可以达到一样的目的。
+
+条件域可嵌套组合多个条件。例如，如果您想要为一个特定的平台中，在满足了调试的被启用后，包含（include）一个特定的文件，然后你就可以写如下代码：
+
+\begin{verbatim}
+macx {
+     debug {
+         HEADERS += debugging.h
+     }
+}
+\end{verbatim}
+
+来满足你的需求。
+
+为了简化嵌套条件域，我们可以使用 :
+操作符，对于上一个例子中的功能，我们可以用如下代码来简化：
+
+\begin{verbatim}
+macx:debug {
+     HEADERS += debugging.h
+}
+\end{verbatim}
+
+我们也可以使用 : 操作符来执行单一线条件的操作，例如：
+
+\begin{verbatim}
+win32:DEFINES += USE_MY_STUFF
+\end{verbatim}
+
+上面一行的作用是，仅在 windows 平台上添加 USE\_MY\_STUFF
+定义到预定义列表。通常，:
+操作符很像是逻辑与（\&\&）操作符，它会拼接一些条件，并且要求它们都为真。
+
+我们也有 \textbar{}
+操作符，用来实现像逻辑或操作符（\textbar{}）一样的功能，它用来连接一些条件，并且仅要求其中至少一个为真。例如：
+
+\begin{verbatim}
+win32|macx {
+     HEADERS += debugging.h
+}
+\end{verbatim}
+
+我们也可以编写复杂的测试语句，对条件进行逐一的测试，这主要依靠 ``else''
+来完成，例如我们可以像下面这样写我们的代码：
+
+\begin{verbatim}
+win32:xml {
+     message(Building for Windows)
+     SOURCES += xmlhandler_win.cpp
+} else:xml {
+     SOURCES += xmlhandler.cpp
+} else {
+     message("Unknown configuration")
+}
+\end{verbatim}
+
+配置和条件域
+
+在 CONFIG 变量中存储的值是由 qmake
+特别处理的。每一个可能的值都可以用作条件域的条件。例如，CONFIG
+保存的列表的值可以使用 opengl 来扩展：
+
+\begin{verbatim}
+CONFIG += opengl
+\end{verbatim}
+
+如果我们像上面那样做的话，任何测试 opengl
+的条件域都将是有效的，并且会被处理，我们可以使用这个功能给最后的可执行文件一个适当的名称：
+
+\begin{verbatim}
+opengl {
+     TARGET = application-gl
+} else {
+     TARGET = application
+}
+\end{verbatim}
+
+这
+个特性使得它很容易为一个项目改变配置，而不失去所有的自定义设置，而我们所要做的，可能只是一个特定的配置。在上面的代码中，在第一个条件域中声明的代
+码将会被处理，因此最终的可执行文件将会被命名为
+``application-gl''。然而，如果 opengl
+没有被指定，声明在第二个条件域内的代码会被
+处理，最终的可执行文件会被称为 ``application''。
+
+正因为我们可以把自定义的值附加给
+CONFIG，我们就可以很方便的定制项目文件和调整 Makefile 文件。
+
+平台条件域值
+
+除了 win32，macx 和 unix
+这样的常用于条件域条件的值，还有其他各种内置平台和编译器具体值也可以在条件域中用于测试。这些基于平台规范在
+Qt 的 mkspecs
+目录中被提供。例如，下面的代码用于显示当前使用的规范并且测试 linux-g++
+规范。
+
+\begin{verbatim}
+message($$QMAKESPEC) 
+
+linux-g++ {
+     message(Linux)
+}
+\end{verbatim}
+
+我们可以测试任何其它平台的编译器组合，只要它的规范在 mkspecs
+目录中存在。
+
+\subparagraph{变量处理功能}\label{ux53d8ux91cfux5904ux7406ux529fux80fd}
+
+qmake
+提供了一个可供选择的内置函数，允许变量的内容被处理。这些函数处理提供给它们的参数，返回一个值或者值的列表作为结果。为了指定一个结果给一个变量，有必要使用
+\$\$
+操作符应用于这种用于以同样的方式分配一个变量的内容到另一个类型的函数，例如：
+
+\begin{verbatim}
+HEADERS = model.h
+
+HEADERS += $$OTHER_HEADERS
+
+HEADERS = $$unique(HEADERS)
+\end{verbatim}
+
+这种类型的函数应该用在右侧赋值（例如，作为操作数）。
+可以定义自己的函数来处理变量的内容。这些函数可以像下面这样定义：
+
+\begin{verbatim}
+defineReplace(functionName){
+     #function code
+}
+\end{verbatim}
+
+下面的示例函数接受一个变量名称作为其唯一的参数，使用 eval()
+内置函数从变量中提取值的列表，并且编制一个文件列表。
+
+\begin{verbatim}
+defineReplace(headersAndSources) {
+
+     variable = $$1
+
+     names = $$eval($$variable)
+
+     headers =
+
+     sources =
+
+      for(name, names) {
+
+         header = $${name}.h
+
+         exists($$header) {
+
+             headers += $$header
+
+         }
+
+         source = $${name}.cpp
+
+         exists($$source) {
+
+             sources += $$source
+
+         }
+
+     }
+
+     return($$headers $$sources)
+
+}
+\end{verbatim}
+
+\subparagraph{条件函数}\label{ux6761ux4ef6ux51fdux6570}
+
+qmake
+提供的内置函数，在写条件域的时候可以作为条件。这些函数不返回值，而是返回
+``成功'' 或者 ``失败'' 的提示：
+
+\begin{verbatim}
+count(options, 2) {
+
+     message(Both release and debug specified.)
+
+}
+\end{verbatim}
+
+这种类型的函数应该只用于条件表达式。
+
+可以定义自己的函数来提供条件给条件域。下面的示例测试列表中的每个文件是否存在，返回true，如果他们都存在，或
+false 如果不存在：
+
+\begin{verbatim}
+defineTest(allFiles) {
+
+     files = $$ARGS
+
+      for(file, files) {
+
+         !exists($$file) {
+
+             return(false)
+
+         }
+
+     }
+
+     return(true)
+}
+\end{verbatim}
+
+添加新配置 Features
+
+qmake 允许您创建自己的
+Features，它们可以被包含在项目文件，我们只需要增加他们的名字到 CONFIG
+变量的列表。Features 是自定义函数和定义的集合，这些被写在 .prf
+文件中，它可以放在任意的标准目录之中。这些目录的位置被定义在许多地方，并且当
+qmake 查找 .prf 文件的时候，它会使用 下面的顺序检查每一个目录:
+
+\begin{enumerate}
+
+\item
+  进入一个目录中列出的QMAKEFEATURES环境变量；这包含在一个以冒号分隔的目录列表中。
+\item
+  进入一个目录列出的QMAKEFEATURES属性变量；这包含一个以冒号分隔的目录列表中。
+\item
+  进入一个存在于一个mkspecs目录中特性目录。mkspecs目录可以位于列出在QMAKEPATH环境变量(以冒号分隔的目录列表)中的任何目录。(\$QMAKEPATH/mkspecs/\textless{}features\textgreater{})
+\item
+  进入特性目录驻留在QMAKESPEC环境变量提供的目录。
+  (\$QMAKESPEC/\textless{}features\textgreater{})
+\item
+  进入特性目录驻留在data\_install/mkspecs目录。(data\_install/mkspecs/\textless{}features\textgreater{})
+\item
+  进入特性目录驻留在QMAKESPEC环境变量指定的兄弟姐妹的目录。(\$QMAKESPEC/../\textless{}features\textgreater{})
+\end{enumerate}
+
+下面的特性目录被用于搜寻属性文件：
+
+\begin{enumerate}
+
+\item
+  features/unix，features/win32，或者features/macx，根据不同的平台使用不同的目录
+\item
+  features/
+\end{enumerate}
+
+例如，考虑下面在一个项目文件的赋值语句：
+
+\begin{verbatim}
+CONFIG += myfeatures
+\end{verbatim}
+
+有了这个附加的配置变量，qmake 将会搜索 myfeatures.prf
+文件上面列出的位置，完成这项搜索后，qmake 才会开始解析项目文件。在 UNIX
+系统中，他可能像下面这样工作：
+
+\begin{enumerate}
+\item
+  \$QMAKEFEATURES/myfeatures.prf（QMAKEFEATURES环境变量中的每一个目录）
+\item
+  \$\$QMAKEFEATURES/myfeatures.prf（QMAKEFEATURES属性变量中的每一个目录）
+\item
+  myfeatures.prf（项目的根目录）
+\item
+  \$QMAKEPATH/mkspecs/features/unix/myfeatures.prf和\$QMAKEPATH/mkspecs/features/myfeatures.prf（QMAKEPATH环境变量中列出的每一个目录）
+\item
+  \$QMAKESPEC/features/unix/myfeatures.prf和
+  \$QMAKESPEC/features/myfeatures.prf
+\item
+  data\_install/mkspecs/features/unix/myfeatures.prf
+  和data\_install/mkspecs/features/myfeatures.prf
+\item
+  \$QMAKESPEC/../features/unix/myfeatures.prf以及\$QMAKESPEC/../features/myfeatures.prf
+\end{enumerate}
+
+注意： .prf 文件必须以小写字母来命名。
+
+PWD的值指的就是那个文件所在的路径，不管是不是被别的给include了。

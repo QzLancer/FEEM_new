@@ -14,26 +14,30 @@
 
 class QCustomPlot;
 
+struct BounceParam{
+    double opendistance;
+    double stroke;
+    double movingcontactmass;
+    double concentratedmass;
+    double contactspringstiffness;
+    double returnspringstiffness;
+    double contactspringpreloads;
+    double returnspringpreloads;
+    double contactstiffness;
+    double contactpenetration;
+    double contactdamping;
+    double contactcoefficient;
+    double starttime;
+    double endtime;
+    double fixedstepsize;
+};
+
 class BounceCore : public QObject
 {
 	Q_OBJECT
 
-public:
-    explicit BounceCore(const double &opendistance,
-                        const double &stroke,
-                        const double &movingcontactmass,
-                        const double &concentratedmass,
-                        const double &contactspringstiffness,
-                        const double &returnspringstiffness,
-                        const double &contactspringpreloads,
-                        const double &returnspringpreloads,
-                        const double &contactstiffness,
-                        const double &contactpenetration,
-                        const double &contactdamping,
-                        const double &contactcoefficient,
-                        const double &starttime,
-                        const double &endtime,
-                        const double &fixedstepsize);
+public:  
+    explicit BounceCore(BounceParam param);
 	~BounceCore();
     void setInput();
     void setOpenDistance(const double &opendistance);

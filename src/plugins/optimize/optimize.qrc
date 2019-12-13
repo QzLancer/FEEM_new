@@ -6,9 +6,6 @@
         <file>imgs/SOO32x32(1).png</file>
     </qresource>
     <qresource prefix="/pic">
-        <file>imgs/son1.jpg</file>
-        <file>imgs/son2.jpg</file>
-        <file>imgs/son3.jpg</file>
         <file>imgs/relay1.jpg</file>
     </qresource>
 </RCC>

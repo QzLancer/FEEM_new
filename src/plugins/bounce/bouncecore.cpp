@@ -3,24 +3,24 @@
 #include <QAxObject>
 #include <QDebug>
 
-BounceCore::BounceCore(const double &opendistance, const double &stroke, const double &movingcontactmass, const double &concentratedmass, const double &contactspringstiffness, const double &returnspringstiffness, const double &contactspringpreloads, const double &returnspringpreloads, const double &contactstiffness, const double &contactpenetration, const double &contactdamping, const double &contactcoefficient, const double &starttime, const double &endtime, const double &fixedstepsize)
+BounceCore::BounceCore(BounceParam param)
 {
     setInput();
-    setOpenDistance(opendistance);
-    setStroke(stroke);
-    setMovingContactMass(movingcontactmass);
-    setConcentratedmass(concentratedmass);
-    setContactSpringStiffness(contactspringstiffness);
-    setReturnSpringStiffness(returnspringstiffness);
-    setContactSpringPreloads(contactspringpreloads);
-    setReturnSpringPreloads(returnspringpreloads);
-    setContactStiffness(contactstiffness);
-    setContactPenetration(contactpenetration);
-    setContactDamping(contactdamping);
-    setContactCoefficient(contactcoefficient);
-    setStartTime(starttime);
-    setEndTime(endtime);
-    setFixedStepSize(fixedstepsize);
+    setOpenDistance(param.opendistance);
+    setStroke(param.stroke);
+    setMovingContactMass(param.movingcontactmass);
+    setConcentratedmass(param.concentratedmass);
+    setContactSpringStiffness(param.contactspringstiffness);
+    setReturnSpringStiffness(param.returnspringstiffness);
+    setContactSpringPreloads(param.contactspringpreloads);
+    setReturnSpringPreloads(param.returnspringpreloads);
+    setContactStiffness(param.contactstiffness);
+    setContactPenetration(param.contactpenetration);
+    setContactDamping(param.contactdamping);
+    setContactCoefficient(param.contactcoefficient);
+    setStartTime(param.starttime);
+    setEndTime(param.endtime);
+    setFixedStepSize(param.fixedstepsize);
 }
 
 BounceCore::~BounceCore()

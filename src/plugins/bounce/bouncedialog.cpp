@@ -64,37 +64,24 @@ void BounceDialog::slotRun()
     bool stoptimeok;
     bool fixedstepsizeok;
 
-    double opendistance = mParamWidget->mOpenDistanceEdit->text().toDouble(&opendistanceok);
-    double stroke = mParamWidget->mStrokeEdit->text().toDouble(&strokeok);
-    double movingcontactmass = mParamWidget->mMovingMassEdit->text().toDouble(&movingcontactmassok);
-    double concentratedmass = mParamWidget->mConcentratedMassEdit->text().toDouble(&concentratedmassok);
-    double contactspringstiffness = mParamWidget->mContactSpringStiffnessEdit->text().toDouble(&contactspringstiffnessok);
-    double returnspringstiffness = mParamWidget->mReturnSpringStiffnessEdit->text().toDouble(&returnspringstiffnessok);
-    double contactspringpreloads = mParamWidget->mContactSpringPreloadsEdit->text().toDouble(&contactspringpreloadsok);
-    double returnspringpreloads = mParamWidget->mReturnSpringPreloadsEdit->text().toDouble(&returnspringpreloadsok);
-    double contactstiffness = mParamWidget->mContactStiffnessEdit->text().toDouble(&contactstiffnessok);
-    double contactpenetration = mParamWidget->mContactPenetrationEdit->text().toDouble(&contactpenetrationok);
-    double contactdamping = mParamWidget->mContactDampingEdit->text().toDouble(&contactdampingok);
-    double contactcoefficient = mParamWidget->mContactCoefficientEdit->text().toDouble(&contactcoefficientok);
-    double starttime = mSolverWidget->mStartTimeEdit->text().toDouble(&starttimeok);
-    double stoptime = mSolverWidget->mStopTimeEdit->text().toDouble(&stoptimeok);
-    double fixedstepsize = mSolverWidget->mFixedStepSizeEdit->text().toDouble(&fixedstepsizeok);
+    BounceParam param;
+    param.opendistance = mParamWidget->mOpenDistanceEdit->text().toDouble(&opendistanceok);
+    param.stroke = mParamWidget->mStrokeEdit->text().toDouble(&strokeok);
+    param.movingcontactmass = mParamWidget->mMovingMassEdit->text().toDouble(&movingcontactmassok);
+    param.concentratedmass = mParamWidget->mConcentratedMassEdit->text().toDouble(&concentratedmassok);
+    param.contactspringstiffness = mParamWidget->mContactSpringStiffnessEdit->text().toDouble(&contactspringstiffnessok);
+    param.returnspringstiffness = mParamWidget->mReturnSpringStiffnessEdit->text().toDouble(&returnspringstiffnessok);
+    param.contactspringpreloads = mParamWidget->mContactSpringPreloadsEdit->text().toDouble(&contactspringpreloadsok);
+    param.returnspringpreloads = mParamWidget->mReturnSpringPreloadsEdit->text().toDouble(&returnspringpreloadsok);
+    param.contactstiffness = mParamWidget->mContactStiffnessEdit->text().toDouble(&contactstiffnessok);
+    param.contactpenetration = mParamWidget->mContactPenetrationEdit->text().toDouble(&contactpenetrationok);
+    param.contactdamping = mParamWidget->mContactDampingEdit->text().toDouble(&contactdampingok);
+    param.contactcoefficient = mParamWidget->mContactCoefficientEdit->text().toDouble(&contactcoefficientok);
+    param.starttime = mSolverWidget->mStartTimeEdit->text().toDouble(&starttimeok);
+    param.endtime = mSolverWidget->mStopTimeEdit->text().toDouble(&stoptimeok);
+    param.fixedstepsize = mSolverWidget->mFixedStepSizeEdit->text().toDouble(&fixedstepsizeok);
 
-    BounceCore *core = new BounceCore(opendistance,
-                                      stroke,
-                                      movingcontactmass,
-                                      concentratedmass,
-                                      contactspringstiffness,
-                                      returnspringstiffness,
-                                      contactspringpreloads,
-                                      returnspringpreloads,
-                                      contactstiffness,
-                                      contactpenetration,
-                                      contactdamping,
-                                      contactcoefficient,
-                                      starttime,
-                                      stoptime,
-                                      fixedstepsize);
+    BounceCore *core = new BounceCore(param);
     core->bounceCalculate();
 
     PlotWidget *pw = new PlotWidget;
