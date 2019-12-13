@@ -15,13 +15,13 @@
 #include <QTabWidget>
 #include <QPushButton>
 
-PF_MagMaterialDialog::PF_MagMaterialDialog(QWidget *parent)
+PF_MagMaterialDialog::PF_MagMaterialDialog(CMaterialProp *material, QWidget *parent)
     :QDialog (parent)
-    ,m_material(/*new CMaterialProp()*/)
+    ,m_material(material)
 {
     initialization();
     resize(650,500);
-//    updateDialog();
+    updateDialog();
 }
 
 PF_MagMaterialDialog::~PF_MagMaterialDialog()
@@ -87,7 +87,7 @@ QWidget *PF_MagMaterialDialog::createMagneticPage()
     /** Name & B-H curve **/
     QFormLayout* formlayout = new QFormLayout;
 //    QLineEdit* edit_name = new QLineEdit(w);
-    QComboBox* combo_bhtype = new QComboBox(w);
+    combo_bhtype = new QComboBox(w);
     combo_bhtype->addItem(tr("Linear B-H relationship"));
     combo_bhtype->addItem(tr("Nonlinear B-H curve"));
 
@@ -181,8 +181,14 @@ QWidget *PF_MagMaterialDialog::createMagneticPage()
             gbox_nonl->setEnabled(true);
         }
     });
-    combo_bhtype->setCurrentIndex(1);
-    combo_bhtype->setCurrentIndex(0);
+    /** 根据材料的属性设置，有可能材料是非线性的，但是暂时没有设置bh数据 **/
+    if(m_material->m_linear){
+        combo_bhtype->setCurrentIndex(0);
+        emit combo_bhtype->currentIndexChanged(0);
+    }else{
+        combo_bhtype->setCurrentIndex(1);
+        emit combo_bhtype->currentIndexChanged(1);
+    }
 
     connect(bt_bhcurve, &QPushButton::clicked, this, &PF_MagMaterialDialog::slotAddBHCurve);
     mainlayout->addStretch();
@@ -202,9 +208,9 @@ QWidget *PF_MagMaterialDialog::createHeatPage()
 
  \param material
 */
-void PF_MagMaterialDialog::setMaterial(CMaterialProp &material)
+void PF_MagMaterialDialog::setMaterial(CMaterialProp *material)
 {
-    m_material = &material;
+    m_material = material;
     updateDialog();
 }
 
@@ -230,6 +236,13 @@ void PF_MagMaterialDialog::updateDialog()
     edit_conduct->setText(QString::number(m_material->Cduct));
     edit_coer->setText(QString::number(m_material->H_c));
     edit_current->setText(QString::number(m_material->Jsrc.re));
+    if(m_material->m_linear){
+        combo_bhtype->setCurrentIndex(0);
+        emit combo_bhtype->currentIndexChanged(0);
+    }else{
+        combo_bhtype->setCurrentIndex(1);
+        emit combo_bhtype->currentIndexChanged(1);
+    }
 }
 
 /*!
@@ -246,6 +259,11 @@ void PF_MagMaterialDialog::updateMaterial()
     m_material->Cduct = edit_conduct->text().toDouble();
     m_material->H_c = edit_coer->text().toDouble();
     m_material->Jsrc.re = edit_current->text().toDouble();
+    if(combo_bhtype->currentIndex() == 0){
+        m_material->m_linear = true;
+    }else{
+        m_material->m_linear = false;
+    }
 }
 
 /*!

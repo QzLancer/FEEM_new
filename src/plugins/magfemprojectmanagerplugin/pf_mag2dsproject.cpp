@@ -446,7 +446,7 @@ bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
 //    do {
 //        pctr = 0;
 //        if (Iter > 0) L.Wipe();
-//        /**  **/
+//        /** 单元计算 **/
 //        for (i = 0; i < NumEls; i++) {
 //            j = (i * 20) / NumEls + 1;
 //            if (j > pctr) {
@@ -473,7 +473,7 @@ bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
 //            q[0] = meshnode[n[2]].x - meshnode[n[1]].x;
 //            q[1] = meshnode[n[0]].x - meshnode[n[2]].x;
 //            q[2] = meshnode[n[1]].x - meshnode[n[0]].x;
-//            /**  **/
+//            /** 计算单元棱长 **/
 //            for (j = 0, k = 1; j < 3; k++, j++) {
 //                if (k == 3) k = 0;
 //                l[j] = sqrt(pow(meshnode[n[k]].x - meshnode[n[j]].x, 2.) +
@@ -482,47 +482,25 @@ bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
 //            a = (p[0] * q[1] - p[1] * q[0]) / 2.;
 //            r = (meshnode[n[0]].x + meshnode[n[1]].x + meshnode[n[2]].x) / 3.;
 
-//            // x-contribution; only need to do main diagonal and above;
+//            /** x方向的贡献 **/
 //            K = (-1. / (4.*a));
 //            for (j = 0; j < 3; j++)
 //                for (k = j; k < 3; k++) {
 //                    Mx[j][k] += K*p[j] * p[k];
 //                    if (j != k) Mx[k][j] += K*p[j] * p[k];
 //                }
-//            // y-contribution; only need to do main diagonal and above;
+//            /** y方向的贡献 **/
 //            K = (-1. / (4.*a));
-//            for (j = 0; j < 3; j++)
+//            for (j = 0; j < 3; j++){
 //                for (k = j; k < 3; k++) {
 //                    My[j][k] += K*q[j] * q[k];
 //                    if (j != k) My[k][j] += K*q[j] * q[k];
 //                }
+//            }
 
-//            /** 边界 **/
-//            //                for (j = 0; j < 3; j++) {
-//            //                    if (El->e[j] >= 0)
-//            //                        if (lineproplist[El->e[j]].BdryFormat == 2) {
-//            //                            // conversion factor is 10^(-4) (I think...)
-//            //                            K = -0.0001*c*lineproplist[El->e[j]].c0.re*l[j] / 6.;
-//            //                            k = j + 1; if (k == 3) k = 0;
-//            //                            Me[j][j] += K*2.;
-//            //                            Me[k][k] += K*2.;
-//            //                            Me[j][k] += K;
-//            //                            Me[k][j] += K;
-
-//            //                            K = (lineproplist[El->e[j]].c1.re*l[j] / 2.)*0.0001;
-//            //                            be[j] += K;
-//            //                            be[k] += K;
-//            //                        }
-//            //                }
 //            /** 电流密度 **/
 //            for (j = 0; j < 3; j++) {
-//                if (labellist[El->lbl].InCircuit >= 0) {
-//                    k = labellist[El->lbl].InCircuit;
-//                    if (circproplist[k].Case == 1) t = circproplist[k].J.Re();
-//                    if (circproplist[k].Case == 0)
-//                        t = -circproplist[k].dV.Re()*blockproplist[El->blk].Cduct;
-//                } else t = 0;
-//                K = -(blockproplist[El->blk].Jr + t)*a / 3.;
+//                K = -(blockproplist[El->blk].Jr)*a / 3.;
 //                be[j] += K;
 //            }
 //            /** 永磁 **/
@@ -562,8 +540,7 @@ bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
 //                be[j] += K;
 //                be[k] += K;
 //            }
-//            //////// Nonlinear Part
-//            // update permeability for the element;
+//            /** 更新非线性单元 **/
 //            if (Iter == 0) {
 //                k = meshele[i].blk;
 //                if (blockproplist[k].BHpoints != 0) LinearFlag = false;
@@ -661,7 +638,7 @@ bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
 //                            Mn[j][w] = K*(v[j] * u[w] + v[w] * u[j]);
 //                }
 //            }
-//            /** combine block matrices into global matrices **/
+//            /** 装配大矩阵 **/
 //            for (j = 0; j < 3; j++)
 //                for (k = 0; k < 3; k++) {
 //                    Me[j][k] += (Mx[j][k] / Re(El->mu2) + My[j][k] / Re(El->mu1) + Mn[j][k]);
@@ -672,13 +649,13 @@ bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
 //                    L.Put(L.Get(n[j], n[k]) - Me[j][k], n[j], n[k]);
 //                L.b[n[j]] -= be[j];
 //            }
-//        }
+//        }//end Elments iteration
 //        // add in contribution from point currents;
 //        //            for (i = 0; i < NumNodes; i++)
 //        //                if (meshnode[i].bc >= 0)
 //        //                    L.b[i] += (0.01*nodeproplist[meshnode[i].bc].Jr);
 
-//        /** apply fixed boundary conditions at points; **/
+//        /** 设置固定边界 **/
 //        for (i = 0; i < NumNodes; i++)
 //            if (meshnode[i].bc >= 0)
 //                if ((nodeproplist[meshnode[i].bc].Jr == 0) &&
@@ -744,22 +721,23 @@ bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
 //                    }
 //            }
 //        // Apply SDI boundary condition;
-//        if ((SDIflag == true) && (sdi_iter == 1)) for (i = 0; i < NumEls; i++)
-//            for (j = 0; j < 3; j++) {
-//                k = j + 1; if (k == 3) k = 0;
-//                if (meshele[i].e[j] >= 0)
-//                    if (lineproplist[meshele[i].e[j]].BdryFormat == 3) {
-//                        L.SetValue(meshele[i].p[j], 0.);
-//                        L.SetValue(meshele[i].p[k], 0.);
-//                    }
-//            }
+////        if ((SDIflag == true) && (sdi_iter == 1)) for (i = 0; i < NumEls; i++)
+////            for (j = 0; j < 3; j++) {
+////                k = j + 1; if (k == 3) k = 0;
+////                if (meshele[i].e[j] >= 0)
+////                    if (lineproplist[meshele[i].e[j]].BdryFormat == 3) {
+////                        L.SetValue(meshele[i].p[j], 0.);
+////                        L.SetValue(meshele[i].p[k], 0.);
+////                    }
+////            }
 //        // Apply any periodicity/antiperiodicity boundary conditions that we have
 //        //            for (k = 0; k < NumPBCs; k++) {
 //        //                if (pbclist[k].t == 0) L.Periodicity(pbclist[k].x, pbclist[k].y);
 //        //                if (pbclist[k].t == 1) L.AntiPeriodicity(pbclist[k].x, pbclist[k].y);
 //        //            }
-//        // solve the problem;
-//        if (SDIflag == false) for (j = 0; j < NumNodes; j++) V_old[j] = L.V[j];
+//        /** 求解 **/
+//        if (SDIflag == false) for (j = 0; j < NumNodes; j++)
+//            V_old[j] = L.V[j];
 //        else {
 //            if (sdi_iter == 0)
 //                for (j = 0; j < NumNodes; j++) V_sdi[j] = L.V[j];
@@ -772,11 +750,10 @@ bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
 //        if (L.PCGSolve(Iter + sdi_iter) == false) return false;
 
 //        if (sdi_iter == 1)
-//            for (j = 0; j < NumNodes; j++) L.V[j] = (V_sdi[j] + L.V[j]) / 2.;
-
+//            for (j = 0; j < NumNodes; j++)
+//                L.V[j] = (V_sdi[j] + L.V[j]) / 2.;
 
 //        if (LinearFlag == false) {
-
 //            for (j = 0, x = 0, y = 0; j < NumNodes; j++) {
 //                x += (L.V[j] - V_old[j])*(L.V[j] - V_old[j]);
 //                y += (L.V[j] * L.V[j]);
@@ -1680,9 +1657,11 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
     }
     /** 添加材料 **/
     auto material_node = std::make_unique<FolderNode>(QString(QObject::tr("Materials")),NodeType::Material,QIcon(":/imgs/material.png"));
-    for(auto m : pro->m_materialList)
+    QMapIterator<QString,CMaterialProp*> it(pro->m_materialList);
+    while(it.hasNext())
     {
-        material_node->addNode(std::make_unique<LeafNode>(m.BlockName,LeafType::CMaterialProp,NodeType::Leaf,QIcon(":/imgs/material.png")));
+        it.next();
+        material_node->addNode(std::make_unique<LeafNode>(it.value()->BlockName,LeafType::CMaterialProp,NodeType::Leaf,QIcon(":/imgs/material.png")));
     }
     /** 添加几何 **/
     auto geo_node = std::make_unique<FolderNode>(QString(QObject::tr("Geometry")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));

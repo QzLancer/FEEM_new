@@ -644,6 +644,7 @@ CMaterialProp::CMaterialProp()
     ,Theta_hy(0)
     ,NStrands(0)
     ,WireD(0)
+    ,m_linear(true)
 
 {
     Jsrc.im=0;
@@ -670,8 +671,10 @@ CMaterialProp::CMaterialProp(const CMaterialProp &material)
     this->Jsrc.im = material.Jsrc.im;
     this->Jsrc.re = material.Jsrc.re;
 
+    this->m_linear = material.m_linear;
     this->BHpoints = material.BHpoints;
     if(this->BHpoints > 0){
+        this->m_linear = false;
         this->BHdata=static_cast<CComplex *>(calloc(this->BHpoints,sizeof(CComplex)));
         memcpy(this->BHdata,material.BHdata,this->BHpoints*sizeof(CComplex));
     }

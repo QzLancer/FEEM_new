@@ -258,9 +258,8 @@ void PF_MaterialLibraryWidget::openItem(const QModelIndex &mainIndex)
     Node *node = m_model->nodeForIndex(mainIndex);
     if (node && node->nodeType()==NodeType::Leaf){
         CMaterialPropNode* m = dynamic_cast<CMaterialPropNode*>(node);
-        PF_MagMaterialDialog* dialog = new PF_MagMaterialDialog(Core::ICore::dialogParent());
+        PF_MagMaterialDialog* dialog = new PF_MagMaterialDialog(m->m_material,Core::ICore::dialogParent());
         dialog->setWindowTitle(m->displayName());
-        dialog->setMaterial(*m->m_material);
         int result = dialog->exec();
         if(result == QDialog::Accepted){
 

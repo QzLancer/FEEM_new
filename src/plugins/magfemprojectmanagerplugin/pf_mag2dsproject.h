@@ -30,20 +30,20 @@ public:
 public:
     // General problem attributes
 //    double  Frequency;
-    double  Precision;
-    double  Relax;
-    int		LengthUnits;
-    int		ACSolver;
-    bool    ProblemType;
-    bool	Coords;
+//
+//    double  Relax;
+//    int		LengthUnits;
+//    int		ACSolver;
+//    bool    ProblemType;
+//    bool	Coords;
 
     // axisymmetric external region parameters
-    double  extRo,extRi,extZo;
+//    double  extRo,extRi,extZo;
 
     //	CFknDlg *TheView;
 
     // CArrays containing the mesh information
-    int	BandWidth;
+//    int	BandWidth;
 //    CNode *meshnode;
 //    CElement	*meshele;
 
@@ -51,20 +51,20 @@ public:
 //    int NumEls;
 
     // lists of properties
-    int NumBlockProps;
-    int NumPBCs;
-    int NumLineProps;
-    int NumPointProps;
-    int NumCircProps;
-    int NumBlockLabels;
-    int NumCircPropsOrig;
+//    int NumBlockProps;
+//    int NumPBCs;
+//    int NumLineProps;
+//    int NumPointProps;
+//    int NumCircProps;
+//    int NumBlockLabels;
+//    int NumCircPropsOrig;
 
-    CMaterialProp	*blockproplist;
-    CBoundaryProp	*lineproplist;
-    CPointProp		*nodeproplist;
-    CCircuit		*circproplist;
-    CBlockLabel		*labellist;
-    CCommonPoint	*pbclist;
+//    CMaterialProp	*blockproplist;
+//    CBoundaryProp	*lineproplist;
+//    CPointProp		*nodeproplist;
+//    CCircuit		*circproplist;
+//    CBlockLabel		*labellist;
+//    CCommonPoint	*pbclist;
 };
 
 class PF_Mag2DSNodeTreeBuilder

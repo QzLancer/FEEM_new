@@ -67,9 +67,8 @@ void MaterialPlugin::addBlankMaterial()
         感觉不需要，因为右键菜单就是根据材料进来的   **/
     if(!folderNode) return;
 
-    CMaterialProp m;
-    PF_MagMaterialDialog* dialog = new PF_MagMaterialDialog(Core::ICore::dialogParent());
-    dialog->setMaterial(m);
+    CMaterialProp* m = new CMaterialProp;
+    PF_MagMaterialDialog* dialog = new PF_MagMaterialDialog(m,Core::ICore::dialogParent());
     dialog->setWindowTitle(tr("Add Blank Material"));
     int result = dialog->exec();
     /** 获取result之后，对话框已经关闭了，变量不存在了，

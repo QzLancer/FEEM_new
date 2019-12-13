@@ -181,6 +181,7 @@ public:
     double Theta_hy;		// and y-direction, for anisotropic linear problems.
     int    NStrands;		// number of strands per wire
     double WireD;			// strand diameter, mm
+    bool m_linear;
 };
 
 #endif // PF_MATERIAL_H

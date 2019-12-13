@@ -39,11 +39,12 @@ public:
 
     PF_Entity* findEntity(const QString &displayName);
 
-    QVector<CMaterialProp> m_materialList;//
-    QMap<int,QString> m_domains;
+    QMap<QString,CMaterialProp*> m_materialList;/** 材料名称，材料值 **/
+    QMap<int,CMaterialProp*> m_domains;/** 域编号，材料 **/
     Utils::PF_VariableDict m_variables;//
     PF_Document* m_document;
     CMesh* m_mesh;
+    double  Precision;
 private:
     Geometry2D* cad2d;
 };
