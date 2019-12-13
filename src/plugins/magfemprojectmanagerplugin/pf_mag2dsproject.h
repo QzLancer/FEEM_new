@@ -11,6 +11,7 @@
 
 class PF_Document;
 class Geometry2D;
+class PF_Entity;
 
 class CMesh;
 namespace ProjectExplorer {
@@ -27,10 +28,13 @@ public:
 
     void updateData();
 
+    PF_Entity* findEntity(const QString &displayName);
+
     Core::IGeometry* CAD() const override;
     void editMaterial(ProjectExplorer::Node* node) override;
     void doMesh() override;
     void entitySelected(bool selected,ProjectExplorer::Node* node=nullptr) override;
+    void setFaceMaterial(ProjectExplorer::Node* node) override;
 
     QVector<CMaterialProp> m_materialList;//
     QMap<int,QString> m_domains;

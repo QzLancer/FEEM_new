@@ -1,5 +1,6 @@
 #include "pf_mag2dsproject.h"
 #include "pf_magfemnode.h"
+#include "pf_facesettingdialog.h"
 
 #include <project/pf_node.h>
 #include <project/pf_projecttree.h>
@@ -22,6 +23,7 @@
 #include <QString>
 #include <QHash>
 #include <QDebug>
+#include <QDialog>
 
 using namespace ProjectExplorer;
 
@@ -89,6 +91,45 @@ void PF_Mag2DSProject::updateData()
     setRootProjectNode(PF_Mag2DSNodeTreeBuilder::buildTree(this));
 }
 
+/*!
+ \brief 主要是通过名字查找entity
+
+ \param displayName
+ \return PF_Entity
+*/
+PF_Entity *PF_Mag2DSProject::findEntity(const QString &displayName)
+{
+    QString entityName;
+    for(auto e : m_document->getEntityList()){
+        switch (e->rtti()) {
+        case PF::EntityPoint:
+        {
+            entityName = QObject::tr("Point")+QString("%1").arg(e->index());
+            break;
+        }
+        case PF::EntityLine:
+        {
+            entityName = QObject::tr("Line")+QString("%1").arg(e->index());
+            break;
+        }
+        case PF::EntityFace:
+        {
+            entityName = QObject::tr("Face")+QString("%1").arg(e->index());
+            break;
+        }
+        default:
+        {
+            qDebug()<<"No such entity.";
+            break;
+        }
+        }
+        if(displayName == entityName){
+            return e;
+        }
+    }
+    return nullptr;
+}
+
 Core::IGeometry *PF_Mag2DSProject::CAD() const
 {
     return cad2d;
@@ -140,38 +181,28 @@ void PF_Mag2DSProject::entitySelected(bool selected, Node *node)
 {
     m_document->setSelected(false);
     if(selected){
-        QString displayName = node->displayName();
-        QString entityName;
-        for(auto e : m_document->getEntityList()){
-            switch (e->rtti()) {
-            case PF::EntityPoint:
-            {
-                entityName = QObject::tr("Point")+QString("%1").arg(e->index());
-                break;
-            }
-            case PF::EntityLine:
-            {
-                entityName = QObject::tr("Line")+QString("%1").arg(e->index());
-                break;
-            }
-            case PF::EntityFace:
-            {
-                entityName = QObject::tr("Face")+QString("%1").arg(e->index());
-                break;
-            }
-            default:
-            {
-                qDebug()<<"No such entity.";
-                break;
-            }
-            }
-            if(displayName == entityName){
-                e->setSelected(true);
-                break;
-            }
+        auto e = findEntity(node->displayName());
+        if(e){
+            e->setSelected(true);
         }
     }
     cad2d->replot();
+}
+
+/*!
+ \brief 应该是弹出一个对话框，然后选择材料
+
+ \param node
+*/
+void PF_Mag2DSProject::setFaceMaterial(Node *node)
+{
+    auto e = findEntity(node->displayName());
+    int index = -1;
+    if(e) index = e->index();
+    auto dialog = new PF_FaceSettingDialog(Core::ICore::dialogParent(),this,index);
+    QString title = QObject::tr("Set ")+node->displayName()+QObject::tr(" properties");
+    dialog->setWindowTitle(title);
+    dialog->exec();
 }
 
 /**

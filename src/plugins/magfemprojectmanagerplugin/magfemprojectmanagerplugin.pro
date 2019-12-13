@@ -12,7 +12,8 @@ HEADERS += \
     magfield3dtransintwizard.h \
     pf_mag2dsproject.h \
     pf_magfemnode.h \
-    pf_magfemfile.h
+    pf_magfemfile.h \
+    pf_facesettingdialog.h
 
 SOURCES += \
     magfemprojectmanagerpluginplugin.cpp \
@@ -22,7 +23,8 @@ SOURCES += \
     magfield3dtransintwizard.cpp \
     pf_mag2dsproject.cpp \
     pf_magfemnode.cpp \
-    pf_magfemfile.cpp
+    pf_magfemfile.cpp \
+    pf_facesettingdialog.cpp
 
 RESOURCES += \
     res.qrc
