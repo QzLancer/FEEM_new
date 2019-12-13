@@ -6,8 +6,10 @@ SPSO::SPSO()
 
 }
 
-SPSO::SPSO(int _numberOfParticles, int _numberOfVariables, double *_lowerBounds, double *_upperBounds, double *_vmax, void (*_objectiveFunction)(SParticle *), double _lowerWeight, double _upperWeight, int _maxIteration, double _c1, double _c2, double _threshold, QString _optimizemode, QString _stoppingCriteria, QString _psoType)
+SPSO::SPSO(int _numberOfParticles, int _numberOfVariables, double *_lowerBounds, double *_upperBounds, double *_vmax, void (*_objectiveFunction)(SParticle *), double _lowerWeight, double _upperWeight, int _maxIteration, double _c1, double _c2, double _threshold, SParticle::OptimizeMode _optimizemode, QString _stoppingCriteria, QString _psoType)
 {
+    qDebug() << Q_FUNC_INFO << _optimizemode;
+
     int i = 0;
 
     numberOfParticles = _numberOfParticles;

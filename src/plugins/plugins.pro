@@ -15,6 +15,7 @@ SUBDIRS   = \
     welcome \
     optimize \
     magfemprojectmanagerplugin \
+    heatplugin \
 
 for(p, SUBDIRS) {
     FEEM_PLUGIN_DEPENDS =

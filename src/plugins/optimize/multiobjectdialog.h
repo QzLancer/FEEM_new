@@ -1,13 +1,15 @@
 #ifndef MULTIOBJECTDIALOG_H
 #define MULTIOBJECTDIALOG_H
+
+#include "inputparamwidget.h"
+#include "objectwidget.h"
+#include "multiobjectcore/pso.h"
+
 #include <QDialog>
 #include <QGroupBox>
 #include <QList>
 #include <QString>
 #include <QLineEdit>
-#include "inputparamwidget.h"
-#include "targetwidget.h"
-#include "multiobjectcore/pso.h"
 
 class MultiObjectDialog : public QDialog
 {
@@ -39,7 +41,7 @@ private:
     QStringList mInputList;
     QStringList mTargetList;
     InputParamWidget *mInputWidget;
-    TargetWidget *mTargetWidget;
+    ObjectWidget *mTargetWidget;
     QLabel *mWarningLabel;
 
     //所有LineEdit

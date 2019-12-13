@@ -15,7 +15,7 @@ MultiObjectDialog::MultiObjectDialog(QWidget *parent)
       mGroup1(new QGroupBox(this)),
       mGroup2(new QGroupBox(this)),
       mInputWidget(new InputParamWidget(mGroup1)),
-      mTargetWidget(new TargetWidget(mGroup1)),
+      mTargetWidget(new ObjectWidget(mGroup1)),
       mWarningLabel(new QLabel(mGroup2)),
       mSizeEdit(new QLineEdit("50", mGroup2)),
       mTimeEdit(new QLineEdit("100", mGroup2)),
@@ -91,7 +91,7 @@ void MultiObjectDialog::setInputList(QStringList inputlist)
 void MultiObjectDialog::setTargetList(QStringList targetlist)
 {
     mTargetList = targetlist;
-    mTargetWidget->setTargetList(mTargetList);
+    mTargetWidget->setObjectList(mTargetList);
 }
 
 QStringList MultiObjectDialog::getInputList()
@@ -104,75 +104,75 @@ QStringList MultiObjectDialog::getInputList()
 
 void MultiObjectDialog::slotOptimize()
 {
-    qDebug() << "MultiObjectDialog::slotOptimize";
-    if(isParamError()){
-        qDebug() << "Input parameter OK!";
-        //optimize mode
-        QStringList TargetMode;
-        QMap<QString, QString> TargetModeMap = mTargetWidget->getTargetModeMap();
-        for(auto iter = TargetModeMap.begin(); iter != TargetModeMap.end(); ++iter){
-            qDebug() << iter.key() << iter.value();
-            mTargetName.append(iter.key());
-            TargetMode.append(iter.value());
-        }
-        mInputName = mInputWidget->getInputName();
-        //将input parameter转换成可以传递的形式
-        QList<QList<double>> InputValue = mInputWidget->getInputValue();
-        double *lower = new double[static_cast<unsigned long long>(InputValue.size())];
-        double *upper = new double[static_cast<unsigned long long>(InputValue.size())];
-        double *vmax = new double[static_cast<unsigned long long>(InputValue.size())]; //粒子最大速度
-        for(int i = 0; i < InputValue.size(); ++i){
-            lower[i] = InputValue[i][0];
-            upper[i] = InputValue[i][1];
-            vmax[i] = 0.5;
-        }
-        //读取各个lineedit中的数据，目前变异概率不使用
-        int numberOfParticles = mSizeEdit->text().toInt();
-        int numberOfExtraParticles = mEliteEdit->text().toInt();
-        int numberOfVariables = InputValue.size();
-        int numberOfObjectives = TargetMode.size();
-        int maxIteration = mTimeEdit->text().toInt();
-        double lowerWeight = mWLowerEdit->text().toDouble();
-        double upperWeight = mWUpperEdit->text().toDouble();
-        double c1 = mC1Edit->text().toDouble();
-        double c2 = mC2Edit->text().toDouble();
-        QString stoppingCriteria = "none";
-        QString psoType = "Classic";
-        double vari = 0.05;
+//    qDebug() << "MultiObjectDialog::slotOptimize";
+//    if(isParamError()){
+//        qDebug() << "Input parameter OK!";
+//        //optimize mode
+//        QStringList TargetMode;
+//        QMap<QString, QString> TargetModeMap = mTargetWidget->getObjectModeMap();
+//        for(auto iter = TargetModeMap.begin(); iter != TargetModeMap.end(); ++iter){
+//            qDebug() << iter.key() << iter.value();
+//            mTargetName.append(iter.key());
+//            TargetMode.append(iter.value());
+//        }
+//        mInputName = mInputWidget->getInputName();
+//        //将input parameter转换成可以传递的形式
+//        QList<QList<double>> InputValue = mInputWidget->getInputValue();
+//        double *lower = new double[static_cast<unsigned long long>(InputValue.size())];
+//        double *upper = new double[static_cast<unsigned long long>(InputValue.size())];
+//        double *vmax = new double[static_cast<unsigned long long>(InputValue.size())]; //粒子最大速度
+//        for(int i = 0; i < InputValue.size(); ++i){
+//            lower[i] = InputValue[i][0];
+//            upper[i] = InputValue[i][1];
+//            vmax[i] = 0.5;
+//        }
+//        //读取各个lineedit中的数据，目前变异概率不使用
+//        int numberOfParticles = mSizeEdit->text().toInt();
+//        int numberOfExtraParticles = mEliteEdit->text().toInt();
+//        int numberOfVariables = InputValue.size();
+//        int numberOfObjectives = TargetMode.size();
+//        int maxIteration = mTimeEdit->text().toInt();
+//        double lowerWeight = mWLowerEdit->text().toDouble();
+//        double upperWeight = mWUpperEdit->text().toDouble();
+//        double c1 = mC1Edit->text().toDouble();
+//        double c2 = mC2Edit->text().toDouble();
+//        QString stoppingCriteria = "none";
+//        QString psoType = "Classic";
+//        double vari = 0.05;
 
-        //观察输入参数
-        qDebug() << "lower: " << lower[0] << lower[1];
-        qDebug() << "upper: " << upper[0] << upper[1];
-        qDebug() << "vmax: " << vmax[0] << vmax[1];
-        qDebug() << "numberOfParticles: " << numberOfParticles;
-        qDebug() << "numberOfExtraParticles: " << numberOfExtraParticles;
-        qDebug() << "numberOfVariables: " << numberOfVariables;
-        qDebug() << "numberOfobjectives: " << numberOfObjectives;
-        qDebug() << "maxIteration: " << maxIteration;
-        qDebug() << "lowerWeight: " << lowerWeight;
-        qDebug() << "upperWeight: " << upperWeight;
-        qDebug() << "c1: " << c1;
-        qDebug() << "c2: " << c2;
+//        //观察输入参数
+//        qDebug() << "lower: " << lower[0] << lower[1];
+//        qDebug() << "upper: " << upper[0] << upper[1];
+//        qDebug() << "vmax: " << vmax[0] << vmax[1];
+//        qDebug() << "numberOfParticles: " << numberOfParticles;
+//        qDebug() << "numberOfExtraParticles: " << numberOfExtraParticles;
+//        qDebug() << "numberOfVariables: " << numberOfVariables;
+//        qDebug() << "numberOfobjectives: " << numberOfObjectives;
+//        qDebug() << "maxIteration: " << maxIteration;
+//        qDebug() << "lowerWeight: " << lowerWeight;
+//        qDebug() << "upperWeight: " << upperWeight;
+//        qDebug() << "c1: " << c1;
+//        qDebug() << "c2: " << c2;
 
-        PSO pso(numberOfParticles, numberOfVariables, numberOfObjectives, numberOfExtraParticles, lower, upper, vmax, MultiObjectDialog::objectiveFunction, lowerWeight, upperWeight, maxIteration, c1, c2, vari, TargetMode, stoppingCriteria, psoType);
-        pso.optimize();
-        pso.printBest();
+//        PSO pso(numberOfParticles, numberOfVariables, numberOfObjectives, numberOfExtraParticles, lower, upper, vmax, MultiObjectDialog::objectiveFunction, lowerWeight, upperWeight, maxIteration, c1, c2, vari, TargetMode, stoppingCriteria, psoType);
+//        pso.optimize();
+//        pso.printBest();
 
-        //绘图窗口输出,it is not necessary, as not all results are 2D
-        QVector<QVector<double>> position = pso.getBestPosition();
-        QVector<QVector<double>> value = pso.getBestValue();
+//        //绘图窗口输出,it is not necessary, as not all results are 2D
+//        QVector<QVector<double>> position = pso.getBestPosition();
+//        QVector<QVector<double>> value = pso.getBestValue();
 
-        PlotWidget *pw = new PlotWidget;
-        pw->addScatter(position[0], position[1], tr("Input"));
-        pw->addScatter(value[0], value[1], tr("Optimization"));
-        for(int i = 0; i < mInputName.size(); ++i){
-            pw->addTableColumn(position[i], mInputName[i]);
-        }
-        for(int i = 0; i < mTargetName.size(); ++i){
-            pw->addTableColumn(value[i], mTargetName[i]);
-        }
-        pw->show();
-    }
+//        PlotWidget *pw = new PlotWidget;
+//        pw->addScatter(position[0], position[1], tr("Input"));
+//        pw->addScatter(value[0], value[1], tr("Optimization"));
+//        for(int i = 0; i < mInputName.size(); ++i){
+//            pw->addTableColumn(position[i], mInputName[i]);
+//        }
+//        for(int i = 0; i < mTargetName.size(); ++i){
+//            pw->addTableColumn(value[i], mTargetName[i]);
+//        }
+//        pw->show();
+//    }
 }
 
 void MultiObjectDialog::initializeGroup1()
@@ -238,7 +238,7 @@ void MultiObjectDialog::initializeGroup2()
 bool MultiObjectDialog::isParamError()
 {
     //判断输入参数是否为空
-    if(mTargetWidget->getTargetList().size() == 0){
+    if(mTargetWidget->getObjectList().size() == 0){
         mWarningLabel->setText(tr("Error: Target is Empty!"));
         return false;
     }

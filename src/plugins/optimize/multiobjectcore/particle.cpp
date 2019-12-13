@@ -35,7 +35,7 @@ Particle::Particle(int _numberOfVariables,
 	const double *_weight, 
 	const double *_vari,
     void(*_functionPtr)(Particle *),
-    QStringList _optimizeMode)
+    QList<OptimizeMode> _optimizeMode)
 {
     optimizeMode = _optimizeMode;
 
@@ -249,20 +249,21 @@ const double *Particle::getValue()
 
 void Particle::setValue(const double *_value)
 {
-//    for (int i = 0; i < numberOfObjectives; i++){
-//        if(optimizeMode[i] == QObject::tr("Maximize")){
-//            value[i] = _value[i];
-//        }
-//        else if(optimizeMode[i] == QObject::tr("Minimize")){
-//            value[i] = 1/_value[i];
-//        }
-//        else{
-//            qDebug() << "Error: Particle::setValue!";
-//        }
-//    }
-    for(int i = 0; i < numberOfObjectives; ++i){
-        value[i] = _value[i];
+    for (int i = 0; i < numberOfObjectives; i++){
+        if(optimizeMode[i] == MAXIMIZE){
+            value[i] = _value[i];
+        }
+        else if(optimizeMode[i] == MINIMIZE){
+            value[i] = 1/_value[i];
+        }
+        else{
+            qDebug() << "Error: Particle::setValue!";
+        }
     }
+//    for(int i = 0; i < numberOfObjectives; ++i){
+//        qDebug() << optimizeMode[i];
+//        value[i] = _value[i];
+//    }
 }
 
 void Particle::setConstraits(double _constraits)

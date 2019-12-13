@@ -5,4 +5,7 @@
         <file>imgs/MOO32x32(1).png</file>
         <file>imgs/SOO32x32(1).png</file>
     </qresource>
+    <qresource prefix="/pic">
+        <file>imgs/relay1.jpg</file>
+    </qresource>
 </RCC>

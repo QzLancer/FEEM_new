@@ -19,7 +19,7 @@ public:
          double _c1,
          double _c2,
          double _threshold,
-         QString _optimizemode,
+         SParticle::OptimizeMode _optimizemode,
          QString _stoppingCriteria,
          QString _psoType);
     ~SPSO();

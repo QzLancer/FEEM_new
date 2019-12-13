@@ -1,54 +1,45 @@
-#ifndef BOUNCEWIDGET_H
-#define BOUNCEWIDGET_H
+#ifndef BOUNCEDIALOG_H
+#define BOUNCEDIALOG_H
+
+#include "bouncestack.h"
+#include "subwidget/inputwidget.h"
+#include "subwidget/paramwidget.h"
+#include "subwidget/solverwidget.h"
 
 #include <QDialog>
-#include <QWidget>
-#include <QTabWidget>
-#include "bouncetab.h"
+#include <QListWidget>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QStackedWidget>
 #include <QPushButton>
-#include <QString>
-#include <QLineEdit>
-#include <QMap>
-#include <QLabel>
 
 class BounceDialog : public QDialog
 {
     Q_OBJECT
-public:
-    explicit BounceDialog(QWidget *parent = nullptr);
-    ~BounceDialog();
-    QMap<QString, QLineEdit*> mLineEditMap;
 
-signals:
+public:
+    BounceDialog(QWidget *parent = nullptr);
+    ~BounceDialog();
+    QListWidget *mListWidget;
+    QStackedWidget *mStackedWidget;
 
 public slots:
-    void Run();
+    void slotRun();
 
 private:
-    void initialization();
-    void addMaterialPropertiesTab();
-    void addSpringReactionForceTab();
-    void addCollisionContactTab();
-    void addSolvePropertiesTab();
 
-    QTabWidget *mTabWidget;
+    QHBoxLayout *mHBoxLayout;
+    QVBoxLayout *mVBoxLayout;
+    QHBoxLayout *mButtonLayout;
     QPushButton *mRunButton;
     QPushButton *mCancelButton;
-    QMap<QString, double> mData;
-    QLabel *mWarningLabel;
 
-//    QObjectList *mLineEditList;
-
-//    QLineEdit *mOpenDistanceEdit;
-//    QLineEdit *mStrokeEdit;
-//    QLineEdit *mMovingContactMassEdit;
-//    QLineEdit *mQualityMass;
-
-//    QLineEdit *mStiffofOutofRangeSpring;
-//    QLineEdit *mStiffofReturnSpring;
-//    QLineEdit *mPrePressofOutofRangeSpring;
-//    QLineEdit *mPrePressofReturnSpring;
-
+    /**动态特性输入窗口**/
+    InputWidget *mInputWidget;
+    /**参数设置窗口**/
+    ParamWidget *mParamWidget;
+    /**求解器窗口**/
+    SolverWidget *mSolverWidget;
 };
 
-#endif // BOUNCEWIDGET_H
+#endif // BOUNCEDIALOG_H
