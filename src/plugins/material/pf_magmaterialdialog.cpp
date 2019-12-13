@@ -1,5 +1,8 @@
 #include "pf_magmaterialdialog.h"
 #include "pf_material.h"
+#include "pf_bhcurvedialog.h"
+
+#include <coreplugin/icore.h>
 
 #include <QFormLayout>
 #include <QHBoxLayout>
@@ -181,6 +184,7 @@ QWidget *PF_MagMaterialDialog::createMagneticPage()
     combo_bhtype->setCurrentIndex(1);
     combo_bhtype->setCurrentIndex(0);
 
+    connect(bt_bhcurve, &QPushButton::clicked, this, &PF_MagMaterialDialog::slotAddBHCurve);
     mainlayout->addStretch();
     return w;
 }
@@ -252,6 +256,19 @@ void PF_MagMaterialDialog::accept()
 {
     updateMaterial();
     done(QDialog::Accepted);
+}
+
+void PF_MagMaterialDialog::slotAddBHCurve()
+{
+    qDebug() << Q_FUNC_INFO;
+    PF_BHCurveDialog *bhcurve = new PF_BHCurveDialog(Core::ICore::dialogParent());
+    if(!bhcurve->exec()){
+        m_material->BHpoints = bhcurve->getBHPoints();
+        if(m_material->BHdata != nullptr){
+            free(m_material->BHdata);
+        }
+        m_material->BHdata = bhcurve->getItemData();
+    };
 }
 
 

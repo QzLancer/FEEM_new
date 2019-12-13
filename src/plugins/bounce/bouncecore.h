@@ -13,19 +13,45 @@
 #include <QMap>
 
 class QCustomPlot;
+
 class BounceCore : public QObject
 {
 	Q_OBJECT
 
 public:
-    BounceCore();
-    BounceCore(QString fileName);
+    explicit BounceCore(const double &opendistance,
+                        const double &stroke,
+                        const double &movingcontactmass,
+                        const double &concentratedmass,
+                        const double &contactspringstiffness,
+                        const double &returnspringstiffness,
+                        const double &contactspringpreloads,
+                        const double &returnspringpreloads,
+                        const double &contactstiffness,
+                        const double &contactpenetration,
+                        const double &contactdamping,
+                        const double &contactcoefficient,
+                        const double &starttime,
+                        const double &endtime,
+                        const double &fixedstepsize);
 	~BounceCore();
-    void Init(QString fileName);
-    void initMaterialProperties(double open_distance, double stroke, double mov_contact_mass, double armatrue_mass);
-    void initSpringReactionForce(double overtravel_spring_stiffness, double return_spring_stiffness, double overtravel_spring_preload, double return_spring_preload);
-    void initCollisionContact(double stiffness, double depth, double damping, double index);
-    void initSolveProperties(double initial_time, double end_time, double step_size);
+    void setInput();
+    void setOpenDistance(const double &opendistance);
+    void setStroke(const double &stroke);
+    void setMovingContactMass(const double &movingcontactmass);
+    void setConcentratedmass(const double &concentratedmass);
+    void setContactSpringStiffness(const double &contactspringstiffness);
+    void setReturnSpringStiffness(const double &returnspringstiffness);
+    void setContactSpringPreloads(const double &contactspringpreloads);
+    void setReturnSpringPreloads(const double &returnspringpreloads);
+    void setContactStiffness(const double &contactstiffness);
+    void setContactPenetration(const double &contactpenetration);
+    void setContactDamping(const double &contactdamping);
+    void setContactCoefficient(const double &contactcoefficient);
+    void setStartTime(const double &starttime);
+    void setEndTime(const double &endtime);
+    void setFixedStepSize(const double &fixedstepsize);
+
     void bounceCalculate();
     QVector<double> gett() const;
     QVector<double> getxd() const;
@@ -56,6 +82,7 @@ private:
     QVector<double> t;
     QVector<double> xd;
     QVector<double> xx;
+
 };
 
 #endif // BOUNCECAL_H

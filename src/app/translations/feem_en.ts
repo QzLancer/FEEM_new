@@ -539,40 +539,45 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="22"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="17"/>
+        <source>OrthDisign</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../plugins/optimize/inputparamwidget.cpp" line="23"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="24"/>
         <source>Input parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="24"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="25"/>
         <source>Minimum of input parameters: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="25"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="26"/>
         <source>Maximum of input Parameters: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="32"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="33"/>
         <source>Minimum of input parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="32"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="33"/>
         <source>Maximum of input parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="106"/>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="133"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="114"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="141"/>
         <source>Error: The minimum must be less than the maximum!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="109"/>
-        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="138"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="117"/>
+        <location filename="../../plugins/optimize/inputparamwidget.cpp" line="146"/>
         <source>Error: Properties must be number!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -794,20 +799,28 @@ Reason: %3</source>
     </message>
 </context>
 <context>
-    <name>MultiObjectDialog</name>
+    <name>MultiObjWizard</name>
     <message>
-        <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="64"/>
-        <source>To optimize</source>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjwizard.cpp" line="88"/>
+        <source>Maximize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="166"/>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjwizard.cpp" line="103"/>
         <source>Input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="167"/>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjwizard.cpp" line="104"/>
         <source>Optimization</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MultiObjectDialog</name>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="64"/>
+        <source>To optimize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -912,19 +925,140 @@ Reason: %3</source>
     </message>
 </context>
 <context>
+    <name>MultiObjectPage</name>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjectpage.cpp" line="16"/>
+        <source>Object to be optimized &amp; Input parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjectpage.cpp" line="31"/>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjectpage.cpp" line="37"/>
+        <source>Electromagnetic force</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjectpage.cpp" line="33"/>
+        <source>Pick-up time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multiobjectpage.cpp" line="35"/>
+        <source>Release time</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MultiPSOPage</name>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="18"/>
+        <source>Multi-object PSO parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="25"/>
+        <source>Number of Particles: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="29"/>
+        <source>Max iteration: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="33"/>
+        <source>Number of eliet Particles: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="37"/>
+        <source>Mutation rate: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="41"/>
+        <source>Lower weight: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="45"/>
+        <source>Upper weight: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="49"/>
+        <source>c1: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/multiobjectcore/multipsopage.cpp" line="53"/>
+        <source>c2: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ObjectWidget</name>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="15"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="16"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="24"/>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="33"/>
+        <source>Object to be optimized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="26"/>
+        <source>Object to be optimized: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="28"/>
+        <source>Optimize mode: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="33"/>
+        <source>Optimize mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="46"/>
+        <source>Maximize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="46"/>
+        <source>Minimize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/objectwidget.cpp" line="113"/>
+        <source>Error: Current Object Exist!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Optimize::OptimizePlugin</name>
     <message>
-        <location filename="../../plugins/optimize/optimizeplugin.cpp" line="76"/>
+        <location filename="../../plugins/optimize/optimizeplugin.cpp" line="78"/>
         <source>Optimization</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/optimizeplugin.cpp" line="84"/>
+        <location filename="../../plugins/optimize/optimizeplugin.cpp" line="86"/>
         <source>Single-Objective Optimization</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/optimizeplugin.cpp" line="89"/>
+        <location filename="../../plugins/optimize/optimizeplugin.cpp" line="91"/>
         <source>Multi-Objective Optimization</source>
         <translation type="unfinished"></translation>
     </message>
@@ -932,6 +1066,9 @@ Reason: %3</source>
 <context>
     <name>OutputPlugin::MessageOutputPane</name>
     <message>
+<<<<<<< HEAD
+        <location filename="../../plugins/output/messageoutputpane.cpp" line="69"/>
+=======
         <location filename="../../plugins/output/messageoutputpane.cpp" line="23"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
@@ -948,6 +1085,7 @@ Reason: %3</source>
     </message>
     <message>
         <location filename="../../plugins/output/messageoutputpane.cpp" line="72"/>
+>>>>>>> b4d4cde1991283a9895c16c8f2bfacbeb9bbb175
         <source>Message Outputpane</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1769,16 +1907,6 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectcore/sparticle.cpp" line="135"/>
-        <source>Maximize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/optimize/singleobjectcore/sparticle.cpp" line="138"/>
-        <source>Minimize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../libs/QtAdvancedDock/DockAreaTitleBar.cpp" line="147"/>
         <source>List all tabs</source>
         <translation type="unfinished"></translation>
@@ -2206,6 +2334,24 @@ Reason: %3</source>
     </message>
 </context>
 <context>
+    <name>SingleObjWizard</name>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="79"/>
+        <source>Maximize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="112"/>
+        <source>Value: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjwizard.cpp" line="114"/>
+        <source>Feasible: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SingleObjectDialog</name>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="58"/>
@@ -2213,18 +2359,8 @@ Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="180"/>
-        <source>Value: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="182"/>
-        <source>Feasible: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="199"/>
-        <source>Target to be optimized &amp;&amp; input parameters</source>
+        <source>Object to be optimized &amp;&amp; input parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2294,7 +2430,7 @@ Reason: %3</source>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="288"/>
-        <source>Error: Number of particles must be a number!</source>
+        <source>Error: Number of particles must be a integer!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2329,6 +2465,93 @@ Reason: %3</source>
     </message>
 </context>
 <context>
+    <name>SingleObjectPage</name>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="35"/>
+        <source>Object to be optimized &amp; Input parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="54"/>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="59"/>
+        <source>Electromagnetic force</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="56"/>
+        <source>Pick-up time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="58"/>
+        <source>Release time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="124"/>
+        <source>Object to be optimized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="125"/>
+        <source>Optimize Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="128"/>
+        <source>Maximize</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singleobjectpage.cpp" line="129"/>
+        <source>Minimize</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SinglePSOPage</name>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="20"/>
+        <source>Single-object PSO parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="27"/>
+        <source>Number of Particles: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="31"/>
+        <source>Max iteration: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="35"/>
+        <source>Mutation rate: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="39"/>
+        <source>Lower weight: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="43"/>
+        <source>Upper weight: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="47"/>
+        <source>c1: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/optimize/singleobjectcore/singlepsopage.cpp" line="51"/>
+        <source>c2: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Solver::SolverPlugin</name>
     <message>
         <location filename="../../plugins/solver/solverplugin.cpp" line="81"/>
@@ -2350,51 +2573,10 @@ Reason: %3</source>
     </message>
 </context>
 <context>
-    <name>TargetWidget</name>
+    <name>TypePage</name>
     <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="15"/>
-        <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="16"/>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="24"/>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="33"/>
-        <source>Target to be optimized</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="26"/>
-        <source>Target to be optimized: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="28"/>
-        <source>Optimize mode: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="33"/>
-        <source>Optimize mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="46"/>
-        <source>Maximize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="46"/>
-        <source>Minimize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../plugins/optimize/targetwidget.cpp" line="115"/>
-        <source>Error: Current Target Exist!</source>
+        <location filename="../../plugins/optimize/typepage.cpp" line="11"/>
+        <source>Select the type of relay</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

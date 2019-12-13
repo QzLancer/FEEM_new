@@ -25,9 +25,10 @@ public:
     //setter
     void setWarning(QString string);
     void setInputList(QStringList inputlist);
-
+    void appendInputList(QString string);
 
 signals:
+    void inputParamChanged();
 
 private slots:
     void slotAddTableItem();
@@ -45,9 +46,11 @@ private:
     QGridLayout *mGridLayout;
     QPushButton *mDeleteButton;
     QPushButton *mAddButton;
+    QPushButton *mOrthButton;
     QStringList mInputList;
     QStandardItemModel *mInputModel;
     QItemSelectionModel *mInputSelection;
+
     void refreshTable();
 };
 

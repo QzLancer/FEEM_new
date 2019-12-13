@@ -32,6 +32,8 @@ public:
 
     void accept();
 
+public slots:
+    void slotAddBHCurve();
 private:
     QLineEdit* edit_name;
     QLineEdit* edit_comment;

@@ -5,6 +5,11 @@
 class SParticle
 {
 public:
+    enum OptimizeMode{
+        MAXIMIZE,
+        MINIMIZE
+    };
+
     SParticle();
 
     //Class constructor
@@ -15,7 +20,7 @@ public:
                     double _c1, double _c2,
                     const double *_weight,
                     void (*_functionPtr)(SParticle *),
-                    QString _optimizemode);
+                    OptimizeMode _optimizemode);
 
     ~SParticle ();
 
@@ -48,6 +53,9 @@ public:
     void setFeasible (bool);
 
     static int getNumberOfVariables ();
+
+
+
 private:
 
     void updateParticleBest ();
@@ -93,7 +101,7 @@ private:
     //returns the feasibility of the particle
     static void (*functionPtr) (SParticle *);
 
-    QString optimizemode;
+    OptimizeMode optimizemode;
 };
 
 #endif // PARTICLE_H

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>imgs/heat_transfer_32.png</file>
+    </qresource>
+</RCC>

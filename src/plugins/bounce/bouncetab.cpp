@@ -4,8 +4,7 @@
 #include <QHBoxLayout>
 #include "bouncedialog.h"
 
-BounceTab::BounceTab(BounceDialog *parent) : QWidget(parent),
-    mLineEditMap(&parent->mLineEditMap)
+BounceTab::BounceTab(BounceDialog *parent) : QWidget(parent)
 {
     setLayout(&mFLayout);
 }
@@ -13,7 +12,7 @@ BounceTab::BounceTab(BounceDialog *parent) : QWidget(parent),
 void BounceTab::addLine(QString labelname)
 {
     QLineEdit *lineedit = new QLineEdit(this);
-    mLineEditMap->insert(labelname, lineedit);
+    mLineEditMap.insert(labelname, lineedit);
     mFLayout.addRow(labelname, lineedit);
     mFLayout.setSpacing(10);
 }
@@ -21,7 +20,7 @@ void BounceTab::addLine(QString labelname)
 void BounceTab::addLine(QString initialstr, QString labelname)
 {
     QLineEdit *lineedit = new QLineEdit(initialstr, this);
-    mLineEditMap->insert(labelname, lineedit);
+    mLineEditMap.insert(labelname, lineedit);
     mFLayout.addRow(labelname, lineedit);
     mFLayout.setSpacing(10);
 }

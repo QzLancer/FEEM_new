@@ -2,13 +2,25 @@
 #include <math.h>
 #include <QAxObject>
 #include <QDebug>
-BounceCore::BounceCore()
-{
-}
 
-BounceCore::BounceCore(QString fileName)
+BounceCore::BounceCore(const double &opendistance, const double &stroke, const double &movingcontactmass, const double &concentratedmass, const double &contactspringstiffness, const double &returnspringstiffness, const double &contactspringpreloads, const double &returnspringpreloads, const double &contactstiffness, const double &contactpenetration, const double &contactdamping, const double &contactcoefficient, const double &starttime, const double &endtime, const double &fixedstepsize)
 {
-    Init(fileName);
+    setInput();
+    setOpenDistance(opendistance);
+    setStroke(stroke);
+    setMovingContactMass(movingcontactmass);
+    setConcentratedmass(concentratedmass);
+    setContactSpringStiffness(contactspringstiffness);
+    setReturnSpringStiffness(returnspringstiffness);
+    setContactSpringPreloads(contactspringpreloads);
+    setReturnSpringPreloads(returnspringpreloads);
+    setContactStiffness(contactstiffness);
+    setContactPenetration(contactpenetration);
+    setContactDamping(contactdamping);
+    setContactCoefficient(contactcoefficient);
+    setStartTime(starttime);
+    setEndTime(endtime);
+    setFixedStepSize(fixedstepsize);
 }
 
 BounceCore::~BounceCore()
@@ -16,75 +28,84 @@ BounceCore::~BounceCore()
 
 }
 
-/*!
- *  @brief 参数初始化
- */
-void BounceCore::Init(QString fileName)
+void BounceCore::setInput()
 {
-	Ef_t = readExcel(fileName);
-    dt = 0.00001;
-    D_kj = 0.0017;
-    D_xc = 0.00268;
-    K_c = 13000;
-    K_f = 370;
-    M_d = 0.007;
-    M_x = 0.0129;
-    K_p = 5.3E+8;
-    D_p = 0.0001;
-    Da_p = 1000;
-    f10 = 6;
-    f20 = 7;
-    e = 1.5;
-    t0 = 0;
-    tn = 0.08;
-
-
+    Ef_t = readExcel("D:/FEEM/bounce/cosim3D_force.xlsx");
 }
 
-void BounceCore::initMaterialProperties(double open_distance, double stroke, double mov_contact_mass, double armatrue_mass)
+void BounceCore::setOpenDistance(const double &opendistance)
 {
-    D_kj = open_distance;
+    D_kj = opendistance;
+}
+
+void BounceCore::setStroke(const double &stroke)
+{
     D_xc = stroke;
-    M_d = mov_contact_mass;
-    M_x = armatrue_mass;
-    qDebug() << "D_kj = " << D_kj;
-    qDebug() << "D_xc = " << D_xc;
-    qDebug() << "M_d = " << M_d;
-    qDebug() << "M_x = " << M_x;
 }
 
-void BounceCore::initSpringReactionForce(double overtravel_spring_stiffness, double return_spring_stiffness, double overtravel_spring_preload, double return_spring_preload)
+void BounceCore::setMovingContactMass(const double &movingcontactmass)
 {
-    K_c = overtravel_spring_stiffness;
-    K_f = return_spring_stiffness;
-    f20 = overtravel_spring_preload;
-    f10 = return_spring_preload;
-    qDebug() << "K_c = " << K_c;
-    qDebug() << "K_f = " << K_f;
-    qDebug() << "f20 = " << f20;
-    qDebug() << "f10 = " << f10;
+    M_d = movingcontactmass;
 }
 
-void BounceCore::initCollisionContact(double stiffness, double depth, double damping, double index)
+void BounceCore::setConcentratedmass(const double &concentratedmass)
 {
-    K_p = stiffness;
-    D_p = depth;
-    Da_p = damping;
-    e = index;
-    qDebug() << "K_p = " << K_p;
-    qDebug() << "D_p = " << D_p;
-    qDebug() << "Da_p = " << Da_p;
-    qDebug() << "e = " << e;
+    M_x = concentratedmass;
 }
 
-void BounceCore::initSolveProperties(double initial_time, double end_time, double step_size)
+void BounceCore::setContactSpringStiffness(const double &contactspringstiffness)
 {
-    t0 = initial_time;
-    tn = end_time;
-    dt = step_size;
-    qDebug() << "t0 = " << t0;
-    qDebug() << "tn = " << tn;
-    qDebug() << "dt = " << dt;
+    K_c = contactspringstiffness;
+}
+
+void BounceCore::setReturnSpringStiffness(const double &returnspringstiffness)
+{
+    K_f = returnspringstiffness;
+}
+
+void BounceCore::setContactSpringPreloads(const double &contactspringpreloads)
+{
+    f20 = contactspringpreloads;
+}
+
+void BounceCore::setReturnSpringPreloads(const double &returnspringpreloads)
+{
+    f10 = returnspringpreloads;
+}
+
+void BounceCore::setContactStiffness(const double &contactstiffness)
+{
+    K_p = contactstiffness;
+}
+
+void BounceCore::setContactPenetration(const double &contactpenetration)
+{
+    D_p = contactpenetration;
+}
+
+void BounceCore::setContactDamping(const double &contactdamping)
+{
+    Da_p = contactdamping;
+}
+
+void BounceCore::setContactCoefficient(const double &contactcoefficient)
+{
+    e = contactcoefficient;
+}
+
+void BounceCore::setStartTime(const double &starttime)
+{
+    t0 = starttime;
+}
+
+void BounceCore::setEndTime(const double &endtime)
+{
+    tn = endtime;
+}
+
+void BounceCore::setFixedStepSize(const double &fixedstepsize)
+{
+    dt = fixedstepsize;
 }
 
 /*!

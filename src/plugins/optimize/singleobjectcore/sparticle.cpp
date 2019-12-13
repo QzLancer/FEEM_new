@@ -33,7 +33,7 @@ SParticle::SParticle(int _numberOfVariables,
                 double _c1, double _c2,
                 const double *_weight,
                 void (*_functionPtr)(SParticle *),
-                QString _optimizemode)
+                OptimizeMode _optimizemode)
 {
     lowerBounds = _lowerBounds;
     upperBounds = _upperBounds;
@@ -132,10 +132,11 @@ double SParticle::getValue ()
 
 void SParticle::setValue (double _value)
 {
-    if(optimizemode == QObject::tr("Maximize")){
+//    qDebug() << Q_FUNC_INFO << optimizemode;
+    if(optimizemode == MAXIMIZE){
         value = _value;
     }
-    else if(optimizemode == QObject::tr("Minimize")){
+    else if(optimizemode == MINIMIZE){
         value = 1/_value;
     }
     else{

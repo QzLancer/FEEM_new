@@ -24,7 +24,7 @@ PSO::PSO(int _numberOfParticles,
 	double _c1,
 	double _c2,
 	double _vari,
-    QStringList _optimizeMode,
+    QList<Particle::OptimizeMode> _optimizeMode,
     QString _stoppingCriteria,
     QString _psoType)
 {
