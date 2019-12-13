@@ -1,8 +1,6 @@
 #ifndef SPARSEFEMM_H
 #define SPARSEFEMM_H
 
-#include "solver_global.h"
-
 class CEntry
 {
 public:
@@ -17,7 +15,7 @@ private:
 
 #define LAMBDA 1.5
 
-class FEEM_SOLVER_EXPORT CBigLinProb
+class  CBigLinProb
 {
 public:
     // member functions
@@ -37,7 +35,7 @@ public:
     double Dot(double *X, double *Y);
     void ComputeBandwidth();
 
-//    CFknDlg *TheView;
+    //    CFknDlg *TheView;
 
 public:
     // data members

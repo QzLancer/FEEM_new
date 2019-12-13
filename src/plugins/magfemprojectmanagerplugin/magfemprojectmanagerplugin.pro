@@ -13,7 +13,9 @@ HEADERS += \
     pf_mag2dsproject.h \
     pf_magfemnode.h \
     pf_magfemfile.h \
-    pf_facesettingdialog.h
+    pf_facesettingdialog.h \
+    sparsefemm.h \
+    pf_commonfemproject.h
 
 SOURCES += \
     magfemprojectmanagerpluginplugin.cpp \
@@ -24,7 +26,9 @@ SOURCES += \
     pf_mag2dsproject.cpp \
     pf_magfemnode.cpp \
     pf_magfemfile.cpp \
-    pf_facesettingdialog.cpp
+    pf_facesettingdialog.cpp \
+    sparsefemm.cpp \
+    pf_commonfemproject.cpp
 
 RESOURCES += \
     res.qrc

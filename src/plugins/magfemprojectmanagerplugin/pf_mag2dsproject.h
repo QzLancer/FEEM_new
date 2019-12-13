@@ -1,26 +1,17 @@
 #ifndef PF_MAG2DSPROJECT_H
 #define PF_MAG2DSPROJECT_H
 
-#include <utils/pf_variabledict.h>
-#include <material/pf_material.h>
+#include "pf_commonfemproject.h"
 
-#include <project/pf_project.h>
-
-#include <QVector>
-#include <QMap>
-
-class PF_Document;
-class Geometry2D;
-class PF_Entity;
-
-class CMesh;
-namespace ProjectExplorer {
-class Node;
-}
+#define muo 1.2566370614359173e-6
+#define Golden 0.3819660112501051517954131656
+#define PI 3.141592653589793238462643383
+#define DEG 0.01745329251994329576923690768
+#define SmallNo 1.e-14
 
 namespace MagFEMProjectManagerPlugin {
 class PF_MagFEMNode;
-class PF_Mag2DSProject : public ProjectExplorer::PF_Project
+class PF_Mag2DSProject : public PF_CommonFEMProject
 {
 public:
     PF_Mag2DSProject();
@@ -28,23 +19,52 @@ public:
 
     void updateData();
 
-    PF_Entity* findEntity(const QString &displayName);
-
-    Core::IGeometry* CAD() const override;
-    void editMaterial(ProjectExplorer::Node* node) override;
-    void doMesh() override;
-    void entitySelected(bool selected,ProjectExplorer::Node* node=nullptr) override;
-    void setFaceMaterial(ProjectExplorer::Node* node) override;
-
-    QVector<CMaterialProp> m_materialList;//
-    QMap<int,QString> m_domains;
-    Utils::PF_VariableDict m_variables;//
-    PF_Document* m_document;
-    CMesh* m_mesh;
+    bool Cuthill();
+    bool SortElements();
+    bool Static2D(CBigLinProb &L);
+    bool WriteStatic2D(CBigLinProb &L);
+    bool StaticAxisymmetric(CBigLinProb &L);
+    void GetFillFactor(int lbl);
+    double ElmArea(int i);
+    void CleanUp();
 public:
+    // General problem attributes
+//    double  Frequency;
+    double  Precision;
+    double  Relax;
+    int		LengthUnits;
+    int		ACSolver;
+    bool    ProblemType;
+    bool	Coords;
 
-private:
-    Geometry2D* cad2d;
+    // axisymmetric external region parameters
+    double  extRo,extRi,extZo;
+
+    //	CFknDlg *TheView;
+
+    // CArrays containing the mesh information
+    int	BandWidth;
+//    CNode *meshnode;
+//    CElement	*meshele;
+
+//    int NumNodes;
+//    int NumEls;
+
+    // lists of properties
+    int NumBlockProps;
+    int NumPBCs;
+    int NumLineProps;
+    int NumPointProps;
+    int NumCircProps;
+    int NumBlockLabels;
+    int NumCircPropsOrig;
+
+    CMaterialProp	*blockproplist;
+    CBoundaryProp	*lineproplist;
+    CPointProp		*nodeproplist;
+    CCircuit		*circproplist;
+    CBlockLabel		*labellist;
+    CCommonPoint	*pbclist;
 };
 
 class PF_Mag2DSNodeTreeBuilder
