@@ -799,3 +799,8 @@ void CMaterialProp::BHDataToCString(QString &b, QString &h)
     //    h.AnsiToOem();
 }
 
+void CMaterialProp::GetBHProps(double B, double &v, double &dv)
+{
+
+}
+

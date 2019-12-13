@@ -115,7 +115,7 @@ private:
 };
 // useful functions...
 #define I CComplex(0,1)
-double Re( const CComplex& a);
+double FEEM_MATERIAL_EXPORT Re( const CComplex& a);
 double Im( const CComplex& a);
 double abs( const CComplex& x );
 double arg( const CComplex& x );

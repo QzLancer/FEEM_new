@@ -18,7 +18,7 @@ public:
     int n[3];// ni, nj, nk;//
     int ele_type;
     int physic_tag;
-    int geometry_tag;
+    int geometry_tag;/** 与face的编号对应 **/
 
     CComplex mu1,mu2;
     int blk;

@@ -24,6 +24,7 @@
 
 #include <material/materialplugin.h>
 #include <material/pf_magmaterialdialog.h>
+#include <material/pf_material.h>
 
 #include <output/outputpluginplugin.h>
 
@@ -57,6 +58,7 @@ PF_Mag2DSProject::PF_Mag2DSProject()
 PF_Mag2DSProject::~PF_Mag2DSProject()
 {
     setRootProjectNode(nullptr);
+    CleanUp();
 }
 
 void PF_Mag2DSProject::updateData()
@@ -340,329 +342,159 @@ bool PF_Mag2DSProject::SortElements()
 */
 bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
 {
-//    auto meshele = m_mesh->eles;
-//    auto meshnode = m_mesh->nodes;
-//    auto NumNodes = m_mesh->numNode;
-//    auto NumEls = m_mesh->numEle;
+    auto meshele = m_mesh->eles;
+    auto meshnode = m_mesh->nodes;
+    auto NumNodes = m_mesh->numNode;
+    auto NumEls = m_mesh->numEle;
 
-//    int i, j, k, w, s, sdi_iter, sdin;
-//    double Me[3][3], be[3];		// element matrices;
-//    double Mx[3][3], My[3][3], Mn[3][3];
-//    double l[3], p[3], q[3];		// element shape parameters;
-//    int n[3];					// numbers of nodes for a particular element;
-//    double a, K, r, t, x, y, B, B1, B2, mu, v[3], u[3], dv, res, lastres, Cduct;
-//    double *V_old, *V_sdi, *CircInt1, *CircInt2, *CircInt3;
-//    double c = PI*4.e-05;
-//    double units[] = { 2.54, 0.1, 1., 100., 0.00254, 1.e-04 };
-//    int Iter = 0, pctr;
-//    bool LinearFlag = true;
-//    bool SDIflag = false;
-//    res = 0;
-//    CElement *El;
-//    V_old = static_cast<double *>(calloc(NumNodes, sizeof(double)));
+    int i, j, k, w, s, sdi_iter, sdin;
+    double Me[3][3], be[3];		// element matrices;
+    double Mx[3][3], My[3][3], Mn[3][3];
+    double l[3], p[3], q[3];		// element shape parameters;
+    int n[3];					// numbers of nodes for a particular element;
+    double a, K, r, t, x, y, B, B1, B2, mu, v[3], u[3], dv, res, lastres, Cduct;
+    double *V_old, *V_sdi, *CircInt1, *CircInt2, *CircInt3;
+    double c = PI*4.e-05;
+    double units[] = { 2.54, 0.1, 1., 100., 0.00254, 1.e-04 };
+    int Iter = 0, pctr;
+    bool LinearFlag = true;
+    bool SDIflag = false;
+    res = 0;
+    CElement *El;
+    V_old = static_cast<double *>(calloc(NumNodes, sizeof(double)));
 
-//    //    for (i = 0; i < NumBlockLabels; i++) GetFillFactor(i);
+    do {
+        pctr = 0;
+        if (Iter > 0) L.Wipe();
+        /** 单元计算 **/
+        for (i = 0; i < NumEls; i++) {
+            j = (i * 20) / NumEls + 1;
+            if (j > pctr) {
+                j = pctr * 5;
+                if (j > 100) j = 100;
+                pctr++;
+            }
+            /** 初始化单元矩阵 **/
+            for (j = 0; j < 3; j++) {
+                for (k = 0; k < 3; k++) {
+                    Me[j][k] = 0.;/** 合成矩阵 **/
+                    Mx[j][k] = 0.;/** x方向矩阵 **/
+                    My[j][k] = 0.;/** y方向矩阵 **/
+                    Mn[j][k] = 0.;/** 牛顿迭代矩阵 **/
+                }
+                be[j] = 0.;
+            }
+            /** 计算形函数 **/
+            El = &meshele[i];
+            for (k = 0; k < 3; k++) n[k] = El->n[k];
+            p[0] = meshnode[n[1]].y - meshnode[n[2]].y;
+            p[1] = meshnode[n[2]].y - meshnode[n[0]].y;
+            p[2] = meshnode[n[0]].y - meshnode[n[1]].y;
+            q[0] = meshnode[n[2]].x - meshnode[n[1]].x;
+            q[1] = meshnode[n[0]].x - meshnode[n[2]].x;
+            q[2] = meshnode[n[1]].x - meshnode[n[0]].x;
+            /** 计算单元棱长 **/
+            for (j = 0, k = 1; j < 3; k++, j++) {
+                if (k == 3) k = 0;
+                l[j] = sqrt(pow(meshnode[n[k]].x - meshnode[n[j]].x, 2.) +
+                        pow(meshnode[n[k]].y - meshnode[n[j]].y, 2.));
+            }
+            a = (p[0] * q[1] - p[1] * q[0]) / 2.;/** 单元面积 **/
+            r = (meshnode[n[0]].x + meshnode[n[1]].x + meshnode[n[2]].x) / 3.;
 
-//    // check to see if there are any SDI boundaries...
-//    // lineproplist[ meshele[i].e[j] ].BdryFormat==0
-//    //    for (i = 0; i < NumLineProps; i++)
-//    //        if (lineproplist[i].BdryFormat == 3) SDIflag = true;
+            /** x方向的贡献 **/
+            K = (-1. / (4.*a));
+            for (j = 0; j < 3; j++){
+                for (k = j; k < 3; k++) {
+                    Mx[j][k] += K*p[j] * p[k];
+                    /** 下三角 **/
+                    if (j != k)
+                        Mx[k][j] += K*p[j] * p[k];
+                }
+            }
+            /** y方向的贡献 **/
+            K = (-1. / (4.*a));
+            for (j = 0; j < 3; j++){
+                for (k = j; k < 3; k++) {
+                    My[j][k] += K*q[j] * q[k];
+                    /** 下三角 **/
+                    if (j != k)
+                        My[k][j] += K*q[j] * q[k];
+                }
+            }
 
-//    //    if (SDIflag == true) {
-//    //        // there is an SDI boundary defined; check to see if it is in use
-//    //        SDIflag = false;
-//    //        for (i = 0; i < NumEls; i++)
-//    //            for (j = 0; j < 3; j++)
-//    //                if (lineproplist[meshele[i].e[j]].BdryFormat == 3) {
-//    //                    SDIflag = true;
-//    //                    printf("Problem has SDI boundaries\n");
-//    //                    i = NumEls;
-//    //                    j = 3;
-//    //                }
-//    //    }
+            auto material = m_domains.value(El->geometry_tag);
+            /** 电流密度 **/
+            for (j = 0; j < 3; j++) {
+                K = -(material->Jsrc.Re())*a / 3.;
+                be[j] += K;
+            }
+            /** 永磁 **/
+            for (j = 0; j < 3; j++) {
+                k = j + 1; if (k == 3) k = 0;
+                // need to scale so that everything is in proper units...
+                // conversion is 0.0001
+                K = 0.0001*material->H_c*(
+                            cos(t*PI / 180.)*(meshnode[n[k]].x - meshnode[n[j]].x) +
+                        sin(t*PI / 180.)*(meshnode[n[k]].y - meshnode[n[j]].y)) / 2.;
+                be[j] += K;
+                be[k] += K;
+            }
+            /** 更新非线性单元 **/
+            if (Iter == 0) {
+                k = meshele[i].blk;
+                LinearFlag = material->m_linear;
+                meshele[i].mu1 = 1;
+                meshele[i].mu2 = 1;
+            } else {
+                k = meshele[i].blk;
 
-//    //    if (SDIflag == true) {
-//    //        V_sdi = static_cast<double *>(calloc(NumNodes, sizeof(double)));
-//    //        sdin = 2;
-//    //    } else sdin = 1;
+                if ((meshele[i].mu1 == meshele[i].mu2)
+                        && !material->m_linear) {
+                    /** 计算磁感应强度B **/
+                    for (j = 0, B1 = 0., B2 = 0.; j < 3; j++) {
+                        B1 += L.V[n[j]] * q[j];
+                        B2 += L.V[n[j]] * p[j];
+                    }
+                    B = c*sqrt(B1*B1 + B2*B2) / (0.02*a);
+                    // correction for lengths in cm of 1/0.02
 
-//    // check to see if any circuits have been defined and process them;
-//    //    if (NumCircProps > 0) {
-//    //        CircInt1 = static_cast<double *>(calloc(NumCircProps, sizeof(double)));
-//    //        CircInt2 = static_cast<double *>(calloc(NumCircProps, sizeof(double)));
-//    //        CircInt3 = static_cast<double *>(calloc(NumCircProps, sizeof(double)));
-//    //        for (i = 0; i < NumEls; i++) {
-//    //            if (meshele[i].lbl >= 0)
-//    //                if (labellist[meshele[i].lbl].InCircuit != -1) {
-//    //                    El = &meshele[i];
-//    //                    // get element area;
-//    //                    for (k = 0; k < 3; k++) n[k] = El->p[k];
-//    //                    p[0] = meshnode[n[1]].y - meshnode[n[2]].y;
-//    //                    p[1] = meshnode[n[2]].y - meshnode[n[0]].y;
-//    //                    p[2] = meshnode[n[0]].y - meshnode[n[1]].y;
-//    //                    q[0] = meshnode[n[2]].x - meshnode[n[1]].x;
-//    //                    q[1] = meshnode[n[0]].x - meshnode[n[2]].x;
-//    //                    q[2] = meshnode[n[1]].x - meshnode[n[0]].x;
-//    //                    a = (p[0] * q[1] - p[1] * q[0]) / 2.;
-//    //                    //	r=(meshnode[n[0]].x+meshnode[n[1]].x+meshnode[n[2]].x)/3.;
+                    // find out new mu from saturation curve;
+                    material->GetBHProps(B, mu, dv);
+                    mu = 1. / (muo*mu);
+                    meshele[i].mu1 = mu;
+                    meshele[i].mu2 = mu;
+                    for (j = 0; j < 3; j++) {
+                        for (w = 0, v[j] = 0; w < 3; w++)
+                            v[j] += (Mx[j][w] + My[j][w])*L.V[n[w]];
+                    }
+                    K = -200.*c*c*c*dv / a;
+                    for (j = 0; j < 3; j++)
+                        for (w = 0; w < 3; w++)
+                            Mn[j][w] = K*v[j] * v[w];
+                }
+            }
+            /** 装配大矩阵 **/
+            for (j = 0; j < 3; j++)
+                for (k = 0; k < 3; k++) {
+                    Me[j][k] += (Mx[j][k] / Re(El->mu2) + My[j][k] / Re(El->mu1) + Mn[j][k]);
+                    be[j] += Mn[j][k] * L.V[n[k]];
+                }
+            for (j = 0; j < 3; j++) {
+                for (k = j; k < 3; k++)
+                    L.Put(L.Get(n[j], n[k]) - Me[j][k], n[j], n[k]);
+                L.b[n[j]] -= be[j];
+            }
+        }//end Elments iteration
 
-//    //                    // if coils are wound, they act like they have
-//    //                    // a zero "bulk" conductivity...
-//    //                    Cduct = blockproplist[El->blk].Cduct;
-//    //                    if (labellist[El->lbl].bIsWound) Cduct = 0;
-
-//    //                    // evaluate integrals;
-//    //                    CircInt1[labellist[El->lbl].InCircuit] += a;
-//    //                    CircInt2[labellist[El->lbl].InCircuit] +=
-//    //                            a*Cduct;
-//    //                    CircInt3[labellist[El->lbl].InCircuit] +=
-//    //                            blockproplist[El->blk].Jr*a*100.;
-//    //                }
-//    //        }
-
-//    //        for (i = 0; i < NumCircProps; i++) {
-//    //            // Case 0 :: voltage gradient is applied to the region;
-//    //            // Case 1 :: flat current density is applied to the region;
-//    //            if (circproplist[i].CircType == 0) {
-//    //                if (CircInt2[i] == 0) {
-//    //                    circproplist[i].Case = 1;
-//    //                    if (CircInt1[i] == 0.)
-//    //                        circproplist[i].J = 0.;
-//    //                    else
-//    //                        circproplist[i].J = 0.01*(circproplist[i].Amps_re -
-//    //                                                   CircInt3[i]) / CircInt1[i];
-//    //                } else {
-//    //                    circproplist[i].Case = 0;
-//    //                    circproplist[i].dV = -0.01*(circproplist[i].Amps_re -
-//    //                                                CircInt3[i]) / CircInt2[i];
-//    //                }
-//    //            } else {
-//    //                circproplist[i].Case = 0;
-//    //                circproplist[i].dV = circproplist[i].dVolts_re;
-//    //            }
-//    //        }
-//    //    }
-
-//    do {
-//        pctr = 0;
-//        if (Iter > 0) L.Wipe();
-//        /** 单元计算 **/
-//        for (i = 0; i < NumEls; i++) {
-//            j = (i * 20) / NumEls + 1;
-//            if (j > pctr) {
-//                j = pctr * 5;
-//                if (j > 100) j = 100;
-//                pctr++;
-//            }
-//            /** 初始化单元矩阵 **/
-//            for (j = 0; j < 3; j++) {
-//                for (k = 0; k < 3; k++) {
-//                    Me[j][k] = 0.;
-//                    Mx[j][k] = 0.;
-//                    My[j][k] = 0.;
-//                    Mn[j][k] = 0.;
-//                }
-//                be[j] = 0.;
-//            }
-//            /** 计算形函数 **/
-//            El = &meshele[i];
-//            for (k = 0; k < 3; k++) n[k] = El->n[k];
-//            p[0] = meshnode[n[1]].y - meshnode[n[2]].y;
-//            p[1] = meshnode[n[2]].y - meshnode[n[0]].y;
-//            p[2] = meshnode[n[0]].y - meshnode[n[1]].y;
-//            q[0] = meshnode[n[2]].x - meshnode[n[1]].x;
-//            q[1] = meshnode[n[0]].x - meshnode[n[2]].x;
-//            q[2] = meshnode[n[1]].x - meshnode[n[0]].x;
-//            /** 计算单元棱长 **/
-//            for (j = 0, k = 1; j < 3; k++, j++) {
-//                if (k == 3) k = 0;
-//                l[j] = sqrt(pow(meshnode[n[k]].x - meshnode[n[j]].x, 2.) +
-//                        pow(meshnode[n[k]].y - meshnode[n[j]].y, 2.));
-//            }
-//            a = (p[0] * q[1] - p[1] * q[0]) / 2.;
-//            r = (meshnode[n[0]].x + meshnode[n[1]].x + meshnode[n[2]].x) / 3.;
-
-//            /** x方向的贡献 **/
-//            K = (-1. / (4.*a));
-//            for (j = 0; j < 3; j++)
-//                for (k = j; k < 3; k++) {
-//                    Mx[j][k] += K*p[j] * p[k];
-//                    if (j != k) Mx[k][j] += K*p[j] * p[k];
-//                }
-//            /** y方向的贡献 **/
-//            K = (-1. / (4.*a));
-//            for (j = 0; j < 3; j++){
-//                for (k = j; k < 3; k++) {
-//                    My[j][k] += K*q[j] * q[k];
-//                    if (j != k) My[k][j] += K*q[j] * q[k];
-//                }
-//            }
-
-//            /** 电流密度 **/
-//            for (j = 0; j < 3; j++) {
-//                K = -(blockproplist[El->blk].Jr)*a / 3.;
-//                be[j] += K;
-//            }
-//            /** 永磁 **/
-//            t = labellist[El->lbl].MagDir;
-//            if (labellist[El->lbl].MagDirFctn != nullptr) // functional magnetization direction
-//            {
-//                CString str;
-//                CComplex X;
-//                int top1, top2, lua_error_code;
-//                for (j = 0, X = 0; j < 3; j++) X += (meshnode[n[j]].x + I*meshnode[n[j]].y);
-//                X = X / units[LengthUnits] / 3.;
-//                str.Format("x=%.17g\ny=%.17g\nr=x\nz=y\ntheta=%.17g\nR=%.17g\nreturn %s",
-//                           X.re, X.im, arg(X) * 180 / PI, abs(X), labellist[El->lbl].MagDirFctn);
-//                top1 = lua_gettop(lua);
-//                if ((lua_error_code = lua_dostring(lua, str)) != 0) {
-//                    MsgBox("Lua error evaluating \"%s\"", labellist[El->lbl].MagDirFctn);
-//                    exit(7);
-//                }
-//                top2 = lua_gettop(lua);
-//                if (top2 != top1) {
-//                    str = lua_tostring(lua, -1);
-//                    if (str.GetLength() == 0) {
-//                        //                            MsgBox("\"%s\" does not evaluate to a numerical value",
-//                        //                                   labellist[El->lbl].MagDirFctn);
-//                        exit(7);
-//                    } else t = Re(lua_tonumber(lua, -1));
-//                    lua_pop(lua, 1);
-//                }
-//            }
-//            for (j = 0; j < 3; j++) {
-//                k = j + 1; if (k == 3) k = 0;
-//                // need to scale so that everything is in proper units...
-//                // conversion is 0.0001
-//                K = 0.0001*blockproplist[El->blk].H_c*(
-//                            cos(t*PI / 180.)*(meshnode[n[k]].x - meshnode[n[j]].x) +
-//                        sin(t*PI / 180.)*(meshnode[n[k]].y - meshnode[n[j]].y)) / 2.;
-//                be[j] += K;
-//                be[k] += K;
-//            }
-//            /** 更新非线性单元 **/
-//            if (Iter == 0) {
-//                k = meshele[i].blk;
-//                if (blockproplist[k].BHpoints != 0) LinearFlag = false;
-//                if (blockproplist[k].LamType == 0) {
-//                    t = blockproplist[k].LamFill;
-//                    meshele[i].mu1 = blockproplist[k].mu_x*t + (1. - t);
-//                    meshele[i].mu2 = blockproplist[k].mu_y*t + (1. - t);
-//                }
-//                if (blockproplist[k].LamType == 1) {
-//                    t = blockproplist[k].LamFill;
-//                    mu = blockproplist[k].mu_x;
-//                    meshele[i].mu1 = mu*t + (1. - t);
-//                    meshele[i].mu2 = mu / (t + mu*(1. - t));
-//                }
-//                if (blockproplist[k].LamType == 2) {
-//                    t = blockproplist[k].LamFill;
-//                    mu = blockproplist[k].mu_y;
-//                    meshele[i].mu2 = mu*t + (1. - t);
-//                    meshele[i].mu1 = mu / (t + mu*(1. - t));
-//                }
-//                if (blockproplist[k].LamType > 2) {
-//                    meshele[i].mu1 = 1;
-//                    meshele[i].mu2 = 1;
-//                }
-//            } else {
-//                k = meshele[i].blk;
-
-//                if ((blockproplist[k].LamType == 0) &&
-//                        (meshele[i].mu1 == meshele[i].mu2)
-//                        && (blockproplist[k].BHpoints > 0)) {
-//                    for (j = 0, B1 = 0., B2 = 0.; j < 3; j++) {
-//                        B1 += L.V[n[j]] * q[j];
-//                        B2 += L.V[n[j]] * p[j];
-//                    }
-//                    B = c*sqrt(B1*B1 + B2*B2) / (0.02*a);
-//                    // correction for lengths in cm of 1/0.02
-
-//                    // find out new mu from saturation curve;
-//                    blockproplist[k].GetBHProps(B, mu, dv);
-//                    mu = 1. / (muo*mu);
-//                    meshele[i].mu1 = mu;
-//                    meshele[i].mu2 = mu;
-//                    for (j = 0; j < 3; j++) {
-//                        for (w = 0, v[j] = 0; w < 3; w++)
-//                            v[j] += (Mx[j][w] + My[j][w])*L.V[n[w]];
-//                    }
-//                    K = -200.*c*c*c*dv / a;
-//                    for (j = 0; j < 3; j++)
-//                        for (w = 0; w < 3; w++)
-//                            Mn[j][w] = K*v[j] * v[w];
-//                }
-
-//                if ((blockproplist[k].LamType == 1) && (blockproplist[k].BHpoints>0)) {
-//                    t = blockproplist[k].LamFill;
-//                    for (j = 0, B1 = 0., B2 = 0.; j < 3; j++) {
-//                        B1 += L.V[n[j]] * q[j];
-//                        B2 += L.V[n[j]] * p[j] / t;
-//                    }
-//                    B = c*sqrt(B1*B1 + B2*B2) / (0.02*a);
-//                    blockproplist[k].GetBHProps(B, mu, dv);
-//                    mu = 1. / (muo*mu);
-//                    meshele[i].mu1 = mu*t;
-//                    meshele[i].mu2 = mu / (t + mu*(1. - t));
-//                    for (j = 0; j < 3; j++) {
-//                        for (w = 0, v[j] = 0, u[j] = 0; w < 3; w++) {
-//                            v[j] += (My[j][w] / t + Mx[j][w])*L.V[n[w]];
-//                            u[j] += (My[j][w] / t + t*Mx[j][w])*L.V[n[w]];
-//                        }
-//                    }
-//                    K = -100.*c*c*c*dv / (a);
-//                    for (j = 0; j < 3; j++)
-//                        for (w = 0; w < 3; w++)
-//                            Mn[j][w] = K*(v[j] * u[w] + v[w] * u[j]);
-//                }
-//                if ((blockproplist[k].LamType == 2) && (blockproplist[k].BHpoints>0)) {
-//                    t = blockproplist[k].LamFill;
-//                    for (j = 0, B1 = 0., B2 = 0.; j < 3; j++) {
-//                        B1 += (L.V[n[j]] * q[j]) / t;
-//                        B2 += L.V[n[j]] * p[j];
-//                    }
-//                    B = c*sqrt(B1*B1 + B2*B2) / (0.02*a);
-//                    blockproplist[k].GetBHProps(B, mu, dv);
-//                    mu = 1. / (muo*mu);
-//                    meshele[i].mu2 = mu*t;
-//                    meshele[i].mu1 = mu / (t + mu*(1. - t));
-//                    for (j = 0; j < 3; j++) {
-//                        for (w = 0, v[j] = 0, u[j] = 0; w < 3; w++) {
-//                            v[j] += (Mx[j][w] / t + My[j][w])*L.V[n[w]];
-//                            u[j] += (Mx[j][w] / t + t*My[j][w])*L.V[n[w]];
-//                        }
-//                    }
-//                    K = -100.*c*c*c*dv / (a);
-//                    for (j = 0; j < 3; j++)
-//                        for (w = 0; w < 3; w++)
-//                            Mn[j][w] = K*(v[j] * u[w] + v[w] * u[j]);
-//                }
-//            }
-//            /** 装配大矩阵 **/
-//            for (j = 0; j < 3; j++)
-//                for (k = 0; k < 3; k++) {
-//                    Me[j][k] += (Mx[j][k] / Re(El->mu2) + My[j][k] / Re(El->mu1) + Mn[j][k]);
-//                    be[j] += Mn[j][k] * L.V[n[k]];
-//                }
-//            for (j = 0; j < 3; j++) {
-//                for (k = j; k < 3; k++)
-//                    L.Put(L.Get(n[j], n[k]) - Me[j][k], n[j], n[k]);
-//                L.b[n[j]] -= be[j];
-//            }
-//        }//end Elments iteration
-//        // add in contribution from point currents;
-//        //            for (i = 0; i < NumNodes; i++)
-//        //                if (meshnode[i].bc >= 0)
-//        //                    L.b[i] += (0.01*nodeproplist[meshnode[i].bc].Jr);
-
-//        /** 设置固定边界 **/
+        /** 设置固定边界 **/
 //        for (i = 0; i < NumNodes; i++)
 //            if (meshnode[i].bc >= 0)
 //                if ((nodeproplist[meshnode[i].bc].Jr == 0) &&
 //                        (nodeproplist[meshnode[i].bc].Ji == 0) && (sdi_iter == 0))
 //                    L.SetValue(i, nodeproplist[meshnode[i].bc].Ar / c);
 
-//        /** 施加边界条件 **/
+        /** 施加边界条件 **/
 //        for (i = 0; i < NumEls; i++)
 //            for (j = 0; j < 3; j++) {
 //                k = j + 1; if (k == 3) k = 0;
@@ -720,80 +552,62 @@ bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
 
 //                    }
 //            }
-//        // Apply SDI boundary condition;
-////        if ((SDIflag == true) && (sdi_iter == 1)) for (i = 0; i < NumEls; i++)
-////            for (j = 0; j < 3; j++) {
-////                k = j + 1; if (k == 3) k = 0;
-////                if (meshele[i].e[j] >= 0)
-////                    if (lineproplist[meshele[i].e[j]].BdryFormat == 3) {
-////                        L.SetValue(meshele[i].p[j], 0.);
-////                        L.SetValue(meshele[i].p[k], 0.);
-////                    }
-////            }
-//        // Apply any periodicity/antiperiodicity boundary conditions that we have
-//        //            for (k = 0; k < NumPBCs; k++) {
-//        //                if (pbclist[k].t == 0) L.Periodicity(pbclist[k].x, pbclist[k].y);
-//        //                if (pbclist[k].t == 1) L.AntiPeriodicity(pbclist[k].x, pbclist[k].y);
-//        //            }
-//        /** 求解 **/
-//        if (SDIflag == false) for (j = 0; j < NumNodes; j++)
-//            V_old[j] = L.V[j];
-//        else {
-//            if (sdi_iter == 0)
-//                for (j = 0; j < NumNodes; j++) V_sdi[j] = L.V[j];
-//            else
-//                for (j = 0; j < NumNodes; j++) {
-//                    V_old[j] = V_sdi[j];
-//                    V_sdi[j] = L.V[j];
-//                }
-//        }
-//        if (L.PCGSolve(Iter + sdi_iter) == false) return false;
+        /** 求解 **/
+        if (SDIflag == false) for (j = 0; j < NumNodes; j++)
+            V_old[j] = L.V[j];
+        else {
+            if (sdi_iter == 0)
+                for (j = 0; j < NumNodes; j++) V_sdi[j] = L.V[j];
+            else
+                for (j = 0; j < NumNodes; j++) {
+                    V_old[j] = V_sdi[j];
+                    V_sdi[j] = L.V[j];
+                }
+        }
+        if (L.PCGSolve(Iter + sdi_iter) == false) return false;
 
-//        if (sdi_iter == 1)
-//            for (j = 0; j < NumNodes; j++)
-//                L.V[j] = (V_sdi[j] + L.V[j]) / 2.;
+        if (sdi_iter == 1)
+            for (j = 0; j < NumNodes; j++)
+                L.V[j] = (V_sdi[j] + L.V[j]) / 2.;
 
-//        if (LinearFlag == false) {
-//            for (j = 0, x = 0, y = 0; j < NumNodes; j++) {
-//                x += (L.V[j] - V_old[j])*(L.V[j] - V_old[j]);
-//                y += (L.V[j] * L.V[j]);
-//            }
+        if (LinearFlag == false) {
+            for (j = 0, x = 0, y = 0; j < NumNodes; j++) {
+                x += (L.V[j] - V_old[j])*(L.V[j] - V_old[j]);
+                y += (L.V[j] * L.V[j]);
+            }
 
-//            if (y == 0) LinearFlag = true;
-//            else {
-//                lastres = res;
-//                res = sqrt(x / y);
-//            }
-//            // relaxation if we need it
-//            if (Iter > 5) {
-//                if ((res > lastres) && (Relax > 0.125)) Relax /= 2.;
-//                else Relax += 0.1 * (1. - Relax);
+            if (y == 0) LinearFlag = true;
+            else {
+                lastres = res;
+                res = sqrt(x / y);
+            }
+            // relaxation if we need it
+            double Relax = 1;
+            if (Iter > 5) {
+                if ((res > lastres) && (Relax > 0.125)) Relax /= 2.;
+                else Relax += 0.1 * (1. - Relax);
 
-//                for (j = 0; j < NumNodes; j++) L.V[j] = Relax*L.V[j] + (1.0 - Relax)*V_old[j];
-//            }
-//            // report some results
-//            char outstr[256];
-//            sprintf(outstr, "Newton Iteration(%i) Relax=%.4g", Iter, Relax);
-//            //            TheView->SetDlgItemText(IDC_FRAME2, outstr);
-//            j = (int)(100.*log10(res) / (log10(Precision) + 2.));
-//            if (j > 100) j = 100;
-//            //            TheView->m_prog2.SetPos(j);
-//        }
-//        // nonlinear iteration has to have a looser tolerance
-//        // than the linear solver--otherwise, things can't ever
-//        // converge.  Arbitrarily choose 100*tolerance.
-//        if ((res < 100.*Precision) && (Iter>0)) LinearFlag = true;
-//        Iter++;
-//    } while (LinearFlag == false);
+                for (j = 0; j < NumNodes; j++) L.V[j] = Relax*L.V[j] + (1.0 - Relax)*V_old[j];
+            }
+            // report some results
+            char outstr[256];
+            sprintf(outstr, "Newton Iteration(%i) Relax=%.4g", Iter, Relax);
+            //            TheView->SetDlgItemText(IDC_FRAME2, outstr);
+            j = (int)(100.*log10(res) / (log10(Precision) + 2.));
+            if (j > 100) j = 100;
+            //            TheView->m_prog2.SetPos(j);
+        }
+        // nonlinear iteration has to have a looser tolerance
+        // than the linear solver--otherwise, things can't ever
+        // converge.  Arbitrarily choose 100*tolerance.
+        if ((res < 100.*Precision) && (Iter>0)) LinearFlag = true;
+        Iter++;
+    } while (LinearFlag == false);
 
-//    for (i = 0; i < NumNodes; i++) L.b[i] = L.V[i] * c; // convert answer to Amps
-//    free(V_old);
-//    if (SDIflag == true) free(V_sdi);
-//    //    if (NumCircProps > 0) {
-//    //        free(CircInt1);
-//    //        free(CircInt2);
-//    //        free(CircInt3);
-//    //    }
+    for (i = 0; i < NumNodes; i++)
+        L.b[i] = L.V[i] * c; // convert answer to Amps
+    free(V_old);
+
     return true;
 }
 
