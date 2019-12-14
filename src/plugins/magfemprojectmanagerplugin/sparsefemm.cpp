@@ -249,6 +249,13 @@ int CBigLinProb::PCGSolve(int flag)
     return 1;
 }
 
+/*!
+ \brief 如果未知量的某个元素是已知的，将矩阵中对应的列置零，
+ 并且更新右侧向量。
+
+ \param i
+ \param x
+*/
 void CBigLinProb::SetValue(int i, double x)
 {
     int k,fst,lst;
@@ -257,8 +264,7 @@ void CBigLinProb::SetValue(int i, double x)
     if(bdw==0){
         fst=0;
         lst=n;
-    }
-    else{
+    }else{
         fst=i-bdw; if (fst<0) fst=0;
         lst=i+bdw; if (lst>n) lst=n;
     }
@@ -266,12 +272,12 @@ void CBigLinProb::SetValue(int i, double x)
     for(k=fst;k<lst;k++)
     {
         z=Get(k,i);
-        if(z!=0){
-            b[k]=b[k]-(z*x);
+        if(z != 0){
+            b[k] -= (z*x);
             if(i!=k) Put(0.,k,i);
         }
     }
-    b[i]=Get(i,i)*x;
+    b[i] = Get(i,i)*x;
 }
 
 void CBigLinProb::Wipe()

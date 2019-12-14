@@ -5,21 +5,30 @@
 #include <QHeaderView>
 #include <QDebug>
 
-PF_BHCurveDialog::PF_BHCurveDialog(QWidget *parent)
-    : QDialog(parent),
-      mTableView(new QTableView(this)),
-      mItemModel(new QStandardItemModel(1,2)),
-      mOKButton(new QPushButton(tr("Ok"), this)),
-      mCancelButton(new QPushButton(tr("Cancel"), this))
+PF_BHCurveDialog::PF_BHCurveDialog(CMaterialProp* material,QWidget *parent)
+    : QDialog(parent)
+    ,mTableView(new QTableView(this))
+    ,mItemModel(new QStandardItemModel(1,2))
+    ,mOKButton(new QPushButton(tr("Ok"), this))
+    ,mCancelButton(new QPushButton(tr("Cancel"), this))
+    ,m_material(material)
 {
     setWindowTitle(tr("B-H Curve"));
     resize(500, 500);
+    /** 如果有数据，则进行显示。 **/
+    QStandardItem* item = nullptr;
+    for(int i = 0;i < m_material->BHpoints;i++){
+        item = new QStandardItem(QString("%1").arg(m_material->BHdata[i].Re()));
+        mItemModel->setItem(i,0,item);
+        item = new QStandardItem(QString("%1").arg(m_material->BHdata[i].Im()));
+        mItemModel->setItem(i,1,item);
+    }
 
     mTableView->setModel(mItemModel);
     mTableView->setColumnWidth(0, 200);
     mTableView->setColumnWidth(1, 200);
-    mItemModel->setHorizontalHeaderLabels(QStringList() << tr("Field value(A.m-1)") << tr("Flux density value(T)"));
-    mItemModel->setRowCount(1);
+    mItemModel->setHorizontalHeaderLabels(QStringList() << tr("B(Flux density value(T))") << tr("H(Field value(A.m-1))")) ;
+//    mItemModel->setRowCount(1);
 //    mItemModel->setColumnCount(2);
     mTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 

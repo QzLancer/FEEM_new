@@ -340,40 +340,34 @@ bool PF_Mag2DSProject::SortElements()
  \param L
  \return bool
 */
-bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
+bool PF_Mag2DSProject::Static2D()
 {
     auto meshele = m_mesh->eles;
     auto meshnode = m_mesh->nodes;
     auto NumNodes = m_mesh->numNode;
     auto NumEls = m_mesh->numEle;
 
-    int i, j, k, w, s, sdi_iter, sdin;
+    L = new CBigLinProb();
+    L->Create(m_mesh->numNode,m_mesh->numNode);
+
+    int i, j, k, w;
     double Me[3][3], be[3];		// element matrices;
     double Mx[3][3], My[3][3], Mn[3][3];
     double l[3], p[3], q[3];		// element shape parameters;
     int n[3];					// numbers of nodes for a particular element;
     double a, K, r, t, x, y, B, B1, B2, mu, v[3], u[3], dv, res, lastres, Cduct;
-    double *V_old, *V_sdi, *CircInt1, *CircInt2, *CircInt3;
+    double *V_old;
     double c = PI*4.e-05;
-    double units[] = { 2.54, 0.1, 1., 100., 0.00254, 1.e-04 };
-    int Iter = 0, pctr;
+    int Iter = 0;
     bool LinearFlag = true;
-    bool SDIflag = false;
     res = 0;
     CElement *El;
     V_old = static_cast<double *>(calloc(NumNodes, sizeof(double)));
 
-    do {
-        pctr = 0;
-        if (Iter > 0) L.Wipe();
+    do{
+        if (Iter > 0) L->Wipe();
         /** 单元计算 **/
         for (i = 0; i < NumEls; i++) {
-            j = (i * 20) / NumEls + 1;
-            if (j > pctr) {
-                j = pctr * 5;
-                if (j > 100) j = 100;
-                pctr++;
-            }
             /** 初始化单元矩阵 **/
             for (j = 0; j < 3; j++) {
                 for (k = 0; k < 3; k++) {
@@ -430,12 +424,10 @@ bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
                 be[j] += K;
             }
             /** 永磁 **/
+            t=180;
             for (j = 0; j < 3; j++) {
                 k = j + 1; if (k == 3) k = 0;
-                // need to scale so that everything is in proper units...
-                // conversion is 0.0001
-                K = 0.0001*material->H_c*(
-                            cos(t*PI / 180.)*(meshnode[n[k]].x - meshnode[n[j]].x) +
+                K = material->H_c*(cos(t*PI / 180.)*(meshnode[n[k]].x - meshnode[n[j]].x) +
                         sin(t*PI / 180.)*(meshnode[n[k]].y - meshnode[n[j]].y)) / 2.;
                 be[j] += K;
                 be[k] += K;
@@ -447,17 +439,13 @@ bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
                 meshele[i].mu1 = 1;
                 meshele[i].mu2 = 1;
             } else {
-                k = meshele[i].blk;
-
-                if ((meshele[i].mu1 == meshele[i].mu2)
-                        && !material->m_linear) {
+                if (!material->m_linear) {
                     /** 计算磁感应强度B **/
                     for (j = 0, B1 = 0., B2 = 0.; j < 3; j++) {
-                        B1 += L.V[n[j]] * q[j];
-                        B2 += L.V[n[j]] * p[j];
+                        B1 += L->V[n[j]] * q[j];
+                        B2 += L->V[n[j]] * p[j];
                     }
-                    B = c*sqrt(B1*B1 + B2*B2) / (0.02*a);
-                    // correction for lengths in cm of 1/0.02
+                    B = c*sqrt(B1*B1 + B2*B2) / (a);
 
                     // find out new mu from saturation curve;
                     material->GetBHProps(B, mu, dv);
@@ -466,7 +454,7 @@ bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
                     meshele[i].mu2 = mu;
                     for (j = 0; j < 3; j++) {
                         for (w = 0, v[j] = 0; w < 3; w++)
-                            v[j] += (Mx[j][w] + My[j][w])*L.V[n[w]];
+                            v[j] += (Mx[j][w] + My[j][w])*L->V[n[w]];
                     }
                     K = -200.*c*c*c*dv / a;
                     for (j = 0; j < 3; j++)
@@ -478,102 +466,27 @@ bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
             for (j = 0; j < 3; j++)
                 for (k = 0; k < 3; k++) {
                     Me[j][k] += (Mx[j][k] / Re(El->mu2) + My[j][k] / Re(El->mu1) + Mn[j][k]);
-                    be[j] += Mn[j][k] * L.V[n[k]];
+                    be[j] += Mn[j][k] * L->V[n[k]];
                 }
             for (j = 0; j < 3; j++) {
                 for (k = j; k < 3; k++)
-                    L.Put(L.Get(n[j], n[k]) - Me[j][k], n[j], n[k]);
-                L.b[n[j]] -= be[j];
+                    L->Put(L->Get(n[j], n[k]) - Me[j][k], n[j], n[k]);
+                L->b[n[j]] -= be[j];
             }
         }//end Elments iteration
 
         /** 设置固定边界 **/
-//        for (i = 0; i < NumNodes; i++)
-//            if (meshnode[i].bc >= 0)
-//                if ((nodeproplist[meshnode[i].bc].Jr == 0) &&
-//                        (nodeproplist[meshnode[i].bc].Ji == 0) && (sdi_iter == 0))
-//                    L.SetValue(i, nodeproplist[meshnode[i].bc].Ar / c);
 
-        /** 施加边界条件 **/
-//        for (i = 0; i < NumEls; i++)
-//            for (j = 0; j < 3; j++) {
-//                k = j + 1; if (k == 3) k = 0;
-//                if (meshele[i].e[j] >= 0)
-//                    if (lineproplist[meshele[i].e[j]].BdryFormat == 0) {
-//                        if (Coords == 0) {
-//                            // first point on the side;
-//                            x = meshnode[meshele[i].p[j]].x;
-//                            y = meshnode[meshele[i].p[j]].y;
-//                            x /= units[LengthUnits]; y /= units[LengthUnits];
-//                            s = meshele[i].e[j];
-//                            a = lineproplist[s].A0 + x*lineproplist[s].A1 +
-//                                    y*lineproplist[s].A2;
-//                            // just take ``real'' component.
-//                            a *= cos(lineproplist[s].phi*DEG);
-//                            L.SetValue(meshele[i].p[j], a / c);
-
-//                            // second point on the side;
-//                            x = meshnode[meshele[i].p[k]].x;
-//                            y = meshnode[meshele[i].p[k]].y;
-//                            x /= units[LengthUnits]; y /= units[LengthUnits];
-//                            s = meshele[i].e[j];
-//                            a = lineproplist[s].A0 + x*lineproplist[s].A1 +
-//                                    y*lineproplist[s].A2;
-//                            // just take``real'' component.
-//                            a *= cos(lineproplist[s].phi*DEG);
-//                            L.SetValue(meshele[i].p[k], a / c);
-//                        } else {
-//                            // first point on the side;
-//                            x = meshnode[meshele[i].p[j]].x;
-//                            y = meshnode[meshele[i].p[j]].y;
-//                            r = sqrt(x*x + y*y);
-//                            if ((x == 0) && (y == 0)) t = 0;
-//                            else t = atan2(y, x) / DEG;
-//                            r /= units[LengthUnits];
-//                            s = meshele[i].e[j];
-//                            a = lineproplist[s].A0 + r*lineproplist[s].A1 +
-//                                    t*lineproplist[s].A2;
-//                            a *= cos(lineproplist[s].phi*DEG); // just take ``real'' component.
-//                            L.SetValue(meshele[i].p[j], a / c);
-
-//                            // second point on the side;
-//                            x = meshnode[meshele[i].p[k]].x;
-//                            y = meshnode[meshele[i].p[k]].y;
-//                            r = sqrt(x*x + y*y);
-//                            if ((x == 0) && (y == 0)) t = 0;
-//                            else t = atan2(y, x) / DEG;
-//                            r /= units[LengthUnits];
-//                            s = meshele[i].e[j];
-//                            a = lineproplist[s].A0 + r*lineproplist[s].A1 +
-//                                    t*lineproplist[s].A2;
-//                            a *= cos(lineproplist[s].phi*DEG); // just take ``real'' component.
-//                            L.SetValue(meshele[i].p[k], a / c);
-//                        }
-
-//                    }
-//            }
         /** 求解 **/
-        if (SDIflag == false) for (j = 0; j < NumNodes; j++)
-            V_old[j] = L.V[j];
-        else {
-            if (sdi_iter == 0)
-                for (j = 0; j < NumNodes; j++) V_sdi[j] = L.V[j];
-            else
-                for (j = 0; j < NumNodes; j++) {
-                    V_old[j] = V_sdi[j];
-                    V_sdi[j] = L.V[j];
-                }
-        }
-        if (L.PCGSolve(Iter + sdi_iter) == false) return false;
+        for (j = 0; j < NumNodes; j++)
+            V_old[j] = L->V[j];
 
-        if (sdi_iter == 1)
-            for (j = 0; j < NumNodes; j++)
-                L.V[j] = (V_sdi[j] + L.V[j]) / 2.;
+        if (L->PCGSolve(Iter) == false) return false;
 
         if (LinearFlag == false) {
             for (j = 0, x = 0, y = 0; j < NumNodes; j++) {
-                x += (L.V[j] - V_old[j])*(L.V[j] - V_old[j]);
-                y += (L.V[j] * L.V[j]);
+                x += (L->V[j] - V_old[j])*(L->V[j] - V_old[j]);
+                y += (L->V[j] * L->V[j]);
             }
 
             if (y == 0) LinearFlag = true;
@@ -584,28 +497,22 @@ bool PF_Mag2DSProject::Static2D(CBigLinProb &L)
             // relaxation if we need it
             double Relax = 1;
             if (Iter > 5) {
-                if ((res > lastres) && (Relax > 0.125)) Relax /= 2.;
-                else Relax += 0.1 * (1. - Relax);
+                if ((res > lastres) && (Relax > 0.125))
+                    Relax /= 2.;
+                else
+                    Relax += 0.1 * (1. - Relax);
 
-                for (j = 0; j < NumNodes; j++) L.V[j] = Relax*L.V[j] + (1.0 - Relax)*V_old[j];
+                for (j = 0; j < NumNodes; j++)
+                    L->V[j] = Relax*L->V[j] + (1.0 - Relax)*V_old[j];
             }
-            // report some results
-            char outstr[256];
-            sprintf(outstr, "Newton Iteration(%i) Relax=%.4g", Iter, Relax);
-            //            TheView->SetDlgItemText(IDC_FRAME2, outstr);
-            j = (int)(100.*log10(res) / (log10(Precision) + 2.));
-            if (j > 100) j = 100;
-            //            TheView->m_prog2.SetPos(j);
+            PoofeeSay<<QString("Newton Iteration(%i) Relax=%.4g").arg(Iter).arg(Relax);
         }
-        // nonlinear iteration has to have a looser tolerance
-        // than the linear solver--otherwise, things can't ever
-        // converge.  Arbitrarily choose 100*tolerance.
         if ((res < 100.*Precision) && (Iter>0)) LinearFlag = true;
         Iter++;
     } while (LinearFlag == false);
 
     for (i = 0; i < NumNodes; i++)
-        L.b[i] = L.V[i] * c; // convert answer to Amps
+        L->b[i] = L->V[i] * c; // convert answer to Amps
     free(V_old);
 
     return true;

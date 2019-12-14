@@ -4,6 +4,8 @@
 
 #include <coreplugin/icore.h>
 
+#include <output/outputpluginplugin.h>
+
 #include <QFormLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -182,12 +184,12 @@ QWidget *PF_MagMaterialDialog::createMagneticPage()
         }
     });
     /** 根据材料的属性设置，有可能材料是非线性的，但是暂时没有设置bh数据 **/
-    if(m_material->m_linear){
-        combo_bhtype->setCurrentIndex(0);
-        emit combo_bhtype->currentIndexChanged(0);
-    }else{
+    if(!m_material->m_linear || m_material->BHpoints > 0){
         combo_bhtype->setCurrentIndex(1);
         emit combo_bhtype->currentIndexChanged(1);
+    }else{
+        combo_bhtype->setCurrentIndex(0);
+        emit combo_bhtype->currentIndexChanged(0);
     }
 
     connect(bt_bhcurve, &QPushButton::clicked, this, &PF_MagMaterialDialog::slotAddBHCurve);
@@ -278,14 +280,15 @@ void PF_MagMaterialDialog::accept()
 
 void PF_MagMaterialDialog::slotAddBHCurve()
 {
-    qDebug() << Q_FUNC_INFO;
-    PF_BHCurveDialog *bhcurve = new PF_BHCurveDialog(Core::ICore::dialogParent());
+    PoofeeSay<<tr("Edit B-H data.");
+    PF_BHCurveDialog *bhcurve = new PF_BHCurveDialog(m_material,Core::ICore::dialogParent());
     if(!bhcurve->exec()){
         m_material->BHpoints = bhcurve->getBHPoints();
         if(m_material->BHdata != nullptr){
             free(m_material->BHdata);
         }
         m_material->BHdata = bhcurve->getItemData();
+        PoofeeSay<<tr("B-H data is modified!");
     };
 }
 

@@ -13,7 +13,7 @@ class PF_BHCurveDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit PF_BHCurveDialog(QWidget *parent = nullptr);
+    explicit PF_BHCurveDialog(CMaterialProp* material,QWidget *parent = nullptr);
     CComplex *getItemData() const;
     int getBHPoints() const;
 signals:
@@ -28,6 +28,7 @@ private:
     QStandardItemModel *mItemModel;
     QPushButton *mOKButton;
     QPushButton *mCancelButton;
+    CMaterialProp* m_material;
 };
 
 #endif // PF_BHCURVEDIALOG_H

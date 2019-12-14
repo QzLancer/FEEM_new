@@ -21,7 +21,7 @@ public:
 
     bool Cuthill();
     bool SortElements();
-    bool Static2D(CBigLinProb &L);
+    bool Static2D();
     bool WriteStatic2D(CBigLinProb &L);
     bool StaticAxisymmetric(CBigLinProb &L);
     void GetFillFactor(int lbl);
@@ -65,6 +65,7 @@ public:
 //    CCircuit		*circproplist;
 //    CBlockLabel		*labellist;
 //    CCommonPoint	*pbclist;
+    CBigLinProb* L;
 };
 
 class PF_Mag2DSNodeTreeBuilder
