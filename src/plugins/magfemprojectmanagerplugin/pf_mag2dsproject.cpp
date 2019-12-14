@@ -1385,26 +1385,26 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
         material_node->addNode(std::make_unique<LeafNode>(it.value()->BlockName,LeafType::CMaterialProp,NodeType::Leaf,QIcon(":/imgs/material.png")));
     }
     /** 添加几何 **/
-    auto geo_node = std::make_unique<FolderNode>(QString(QObject::tr("Geometry")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
-    auto point_node = std::make_unique<FolderNode>(QString(QObject::tr("Point")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
-    auto line_node = std::make_unique<FolderNode>(QString(QObject::tr("Line")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
-    auto face_node = std::make_unique<FolderNode>(QString(QObject::tr("Face")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
+    auto geo_node = std::make_unique<FolderNode>(QString(QObject::tr("Geometry")),NodeType::Geometry,QIcon(":/imgs/icons8-geometry-16.png"));
+    auto point_node = std::make_unique<FolderNode>(QString(QObject::tr("Point")),NodeType::Geometry,QIcon(":/imgs/icons8-commit-git-24.png"));
+    auto line_node = std::make_unique<FolderNode>(QString(QObject::tr("Line")),NodeType::Geometry,QIcon(":/imgs/icons8-line-chart-30.png"));
+    auto face_node = std::make_unique<FolderNode>(QString(QObject::tr("Face")),NodeType::Geometry,QIcon(":/imgs/icons8-polygon-24.png"));
 
     for(auto e : pro->m_document->getEntityList()){
         switch (e->rtti()) {
         case PF::EntityPoint:
         {
-            point_node->addNode(std::make_unique<LeafNode>(QObject::tr("Point")+QString("%1").arg(e->index()),LeafType::Point,NodeType::Leaf,QIcon(":/imgs/material.png")));
+            point_node->addNode(std::make_unique<LeafNode>(QObject::tr("Point")+QString("%1").arg(e->index()),LeafType::Point,NodeType::Leaf,QIcon(":/imgs/model_0d.png")));
             break;
         }
         case PF::EntityLine:
         {
-            line_node->addNode(std::make_unique<LeafNode>(QObject::tr("Line")+QString("%1").arg(e->index()),LeafType::Line,NodeType::Leaf,QIcon(":/imgs/material.png")));
+            line_node->addNode(std::make_unique<LeafNode>(QObject::tr("Line")+QString("%1").arg(e->index()),LeafType::Line,NodeType::Leaf,QIcon(":/imgs/icons8-line-48.png")));
             break;
         }
         case PF::EntityFace:
         {
-            face_node->addNode(std::make_unique<LeafNode>(QObject::tr("Face")+QString("%1").arg(e->index()),LeafType::Face,NodeType::Leaf,QIcon(":/imgs/material.png")));
+            face_node->addNode(std::make_unique<LeafNode>(QObject::tr("Face")+QString("%1").arg(e->index()),LeafType::Face,NodeType::Leaf,QIcon(":/imgs/icons8-rectangle-40.png")));
             break;
         }
         default:

@@ -1,6 +1,46 @@
 #include "meshfemm.h"
+
 #include <stdio.h>
+#include <iostream>
+#include <algorithm>
+#include <cassert>
 #include <QDebug>
+
+using namespace std;
+
+template <class ForwardIterator>
+ForwardIterator PF_unique (ForwardIterator first, ForwardIterator last)
+{
+    if (first==last) return last;
+
+    ForwardIterator result = first;
+    while (++first < last)
+    {
+        if(*result == *first){
+            /** 由于在这里已经到达last了，导致下一次加的时候就超过
+             * last了，报错 **/
+            while (++first != last) {
+//                qDebug()<<*first;
+                if(*result != *first){
+                    *result = *first;
+                    break;
+                }
+            }
+        }else{
+            *(++result)=*first;
+//            qDebug()<<*first;
+        }
+        /** 最后一个数是不重复的 **/
+//        if (first==last-1){
+//            break;
+//        }
+        /** 最后几个数是重复的 **/
+        if (first==last){
+            return result;
+        }
+    }
+    return ++result;
+}
 
 int next_int(char **start)
 {
@@ -35,6 +75,7 @@ CMesh::CMesh()
     ,numEle(0)
     ,nodes(nullptr)
     ,eles(nullptr)
+    ,edges(nullptr)
 {
 
 }

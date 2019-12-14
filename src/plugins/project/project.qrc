@@ -47,5 +47,15 @@
         <file>imgs/projects.png</file>
         <file>imgs/filesave.png</file>
         <file>imgs/openfile.png</file>
+        <file>imgs/icons8-polygon-16.png</file>
+        <file>imgs/icons8-line-40.png</file>
+        <file>imgs/icons8-line-48.png</file>
+        <file>imgs/icons8-rectangle-40.png</file>
+        <file>imgs/icons8-triangle-40.png</file>
+        <file>imgs/icons8-geometry-16.png</file>
+        <file>imgs/icons8-commit-git-24.png</file>
+        <file>imgs/icons8-line-chart-30.png</file>
+        <file>imgs/icons8-polygon-24.png</file>
+        <file>imgs/icons8-polyline-16.png</file>
     </qresource>
 </RCC>

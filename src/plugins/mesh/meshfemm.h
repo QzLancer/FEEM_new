@@ -35,6 +35,16 @@ public:
 private:
 
 };
+class FEEM_MESH_EXPORT CEdge
+{
+public:
+
+    int n[2];
+    int bc;
+
+private:
+
+};
 class FEEM_MESH_EXPORT CMesh{
 public:
     CMesh();
@@ -42,8 +52,10 @@ public:
 
     int numNode;
     int numEle;
+    int numEdge;
     CNode* nodes;
     CElement* eles;
+    CEdge* edges;
 
     void loadGsh22(const char fn[]);
 private:
