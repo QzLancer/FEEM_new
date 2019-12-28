@@ -223,8 +223,10 @@ NewDialog::NewDialog(QWidget *parent) :
 */
 static bool wizardFactoryLessThan(const IWizardFactory *f1, const IWizardFactory *f2)
 {
+    /** 先按照目录排序 **/
     if (const int cc = f1->category().compare(f2->category()))
         return cc < 0;
+    /** 相同目录i按照id排序 **/
     return f1->id().toString().compare(f2->id().toString()) < 0;
 }
 

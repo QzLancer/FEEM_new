@@ -49,6 +49,7 @@ PostoperationPlugin *PostoperationPlugin::instance()
 
 bool PostoperationPlugin::initialize(const QStringList &arguments, QString *errorMessage)
 {
+    qDebug()<<Q_FUNC_INFO;
     registerDefaultContainers();
     registerDefaultActions();
     return true;

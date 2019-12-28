@@ -3,21 +3,21 @@ include(../../feemlibrary.pri)
 
 #ADS_OUT_ROOT = $${OUT_PWD}/..
 CONFIG += c++14
-CONFIG += debug_and_release
+#CONFIG += debug_and_release
 #TARGET = $$qtLibraryTarget(qtadvanceddocking)
 DEFINES += QT_DEPRECATED_WARNINGS
 #TEMPLATE = lib
 #DESTDIR = $${ADS_OUT_ROOT}/lib
 QT += core gui widgets
 
-!adsBuildStatic {
-	CONFIG += shared
-    DEFINES += ADS_SHARED_EXPORT
-}
-adsBuildStatic {
-	CONFIG += staticlib
-    DEFINES += ADS_STATIC
-}
+#!adsBuildStatic {
+#	CONFIG += shared
+#    DEFINES += ADS_SHARED_EXPORT
+#}
+#adsBuildStatic {
+#	CONFIG += staticlib
+#    DEFINES += ADS_STATIC
+#}
 
 windows {
 	# MinGW

@@ -30,6 +30,7 @@ MagFEMProjectManagerPluginPlugin::~MagFEMProjectManagerPluginPlugin()
 
 bool MagFEMProjectManagerPluginPlugin::initialize(const QStringList &arguments, QString *errorString)
 {
+    qDebug()<<Q_FUNC_INFO;
     /** 添加wizards **/
     IWizardFactory::registerFactoryCreator([] {
         return QList<IWizardFactory *> {

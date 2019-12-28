@@ -283,6 +283,7 @@ PF_ProjectExplorerPlugin* PF_ProjectExplorerPlugin::instance()
 
 bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString *errorMessage)
 {
+    qDebug()<<Q_FUNC_INFO;
     /** 初始化ProjectExplorer所需要的变量 **/
     dd = new PF_ProjectExplorerPluginPrivate;
 
@@ -431,7 +432,6 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
     ads::CDockWidget* DockWidget = new ads::CDockWidget(tr("Model tree"));
     DockWidget->setWidget(widgetProjectTree);
     Core::WorkPage::DockManager()->addDockWidget(ads::LeftDockWidgetArea, DockWidget);
-    qDebug()<<Q_FUNC_INFO;
     return true;
 }
 

@@ -88,6 +88,7 @@ CoreArguments parseArguments(const QStringList &arguments)
  */
 bool CorePlugin::initialize(const QStringList &arguments, QString *errorMessage)
 {
+    qDebug()<<Q_FUNC_INFO;
     // register all mime types from all plugins
     for (ExtensionSystem::PluginSpec *plugin : ExtensionSystem::PluginManager::plugins()) {
         if (!plugin->isEffectivelyEnabled())

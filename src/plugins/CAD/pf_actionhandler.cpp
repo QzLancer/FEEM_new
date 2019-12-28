@@ -310,6 +310,17 @@ void PF_ActionHandler::slotExportGeoFile()
     document->exportGeofile();
 }
 
+/*!
+ \brief 导入支持格式的几何文件
+
+ \param fileName
+*/
+void PF_ActionHandler::slotImportGeoFile(const QString &fileName)
+{
+    if(fileName.isEmpty()) return;
+
+}
+
 void PF_ActionHandler::slotZoomIn() {
     setCurrentAction(PF::ActionViewZoomIn);
 }

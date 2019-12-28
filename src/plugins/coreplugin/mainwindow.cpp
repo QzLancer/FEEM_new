@@ -71,8 +71,6 @@ void MainWindow::removeContextObject(IContext *context)
 
 void MainWindow::init()
 {
-    m_ribbonStyle->setAccentColor(OfficeStyle::AccentColorBlue);
-
     setDockNestingEnabled(true);
 
     setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
@@ -83,6 +81,7 @@ void MainWindow::init()
     registerDefaultContainers();
     registerDefaultActions();    
 
+    m_ribbonStyle->setAccentColor(OfficeStyle::AccentColorBlue);
     /** 几何管理器 **/
     m_geometryManager = new GeometryManager(this);
 

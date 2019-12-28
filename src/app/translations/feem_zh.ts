@@ -40,74 +40,6 @@
         <translation>取消</translation>
     </message>
     <message>
-        <source>Error: Some properties are empty!</source>
-        <translation type="vanished">错误：一些属性不能为空！</translation>
-    </message>
-    <message>
-        <source>Error: Properties must be number!</source>
-        <translation type="vanished">错误：输入必须为数字！</translation>
-    </message>
-    <message>
-        <source>Open distance: </source>
-        <translation type="vanished">开距：</translation>
-    </message>
-    <message>
-        <source>Stroke: </source>
-        <translation type="vanished">行程：</translation>
-    </message>
-    <message>
-        <source>Moving contact mass: </source>
-        <translation type="vanished">动触头质量：</translation>
-    </message>
-    <message>
-        <source>Armature mass: </source>
-        <translation type="vanished">衔铁质量：</translation>
-    </message>
-    <message>
-        <source>Stiffness of overtravel spring: </source>
-        <translation type="vanished">超程弹簧刚度：</translation>
-    </message>
-    <message>
-        <source>Stiffness of return spring: </source>
-        <translation type="vanished">返回弹簧刚度</translation>
-    </message>
-    <message>
-        <source>Pre-pressure of overtravel spring: </source>
-        <translation type="vanished">超程弹簧预压力：</translation>
-    </message>
-    <message>
-        <source>Pre-pressure of return spring: </source>
-        <translation type="vanished">返回弹簧预压力：</translation>
-    </message>
-    <message>
-        <source>Stiffness: </source>
-        <translation type="vanished">碰撞刚度：</translation>
-    </message>
-    <message>
-        <source>Depth: </source>
-        <translation type="vanished">碰撞深度：</translation>
-    </message>
-    <message>
-        <source>Damping: </source>
-        <translation type="vanished">碰撞阻尼系数：</translation>
-    </message>
-    <message>
-        <source>Index: </source>
-        <translation type="vanished">碰撞指数：</translation>
-    </message>
-    <message>
-        <source>Initial time: </source>
-        <translation type="vanished">仿真开始时间：</translation>
-    </message>
-    <message>
-        <source>End time: </source>
-        <translation type="vanished">仿真结束时间：</translation>
-    </message>
-    <message>
-        <source>Step size: </source>
-        <translation type="vanished">仿真步长：</translation>
-    </message>
-    <message>
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="21"/>
         <source>Bounce Calculate</source>
         <translation type="unfinished">弹跳计算</translation>
@@ -143,26 +75,6 @@
         <location filename="../../plugins/bounce/bouncedialog.cpp" line="103"/>
         <source>time</source>
         <translation>时间</translation>
-    </message>
-    <message>
-        <source>Bounce calculate</source>
-        <translation type="vanished">弹跳计算</translation>
-    </message>
-    <message>
-        <source>Material properties</source>
-        <translation type="vanished">材料属性</translation>
-    </message>
-    <message>
-        <source>Spring reaction force</source>
-        <translation type="vanished">弹簧反力</translation>
-    </message>
-    <message>
-        <source>Collision contact</source>
-        <translation type="vanished">碰撞接触</translation>
-    </message>
-    <message>
-        <source>Solve properties</source>
-        <translation type="vanished">求解属性</translation>
     </message>
 </context>
 <context>
@@ -363,37 +275,37 @@
 <context>
     <name>Core::MainWindow</name>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="125"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="124"/>
         <source>&amp;Home</source>
         <translation>主页</translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="129"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="128"/>
         <source>&amp;Solve</source>
         <translation>求解</translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="133"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="132"/>
         <source>&amp;Definitions</source>
         <translation>变量</translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="137"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="136"/>
         <source>&amp;Materials</source>
         <translation>材料</translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="141"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="140"/>
         <source>&amp;Mesh</source>
         <translation>分网</translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="145"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="144"/>
         <source>&amp;Geometry</source>
         <translation>几何</translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="149"/>
+        <location filename="../../plugins/coreplugin/mainwindow.cpp" line="148"/>
         <source>&amp;Results</source>
         <translation>结果</translation>
     </message>
@@ -421,12 +333,12 @@
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="250"/>
+        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="252"/>
         <source>Projects</source>
         <translation type="unfinished">项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="253"/>
+        <location filename="../../plugins/coreplugin/dialogs/newdialog.cpp" line="255"/>
         <source>Files</source>
         <translation type="unfinished">文件</translation>
     </message>
@@ -515,12 +427,12 @@ Reason: %3</source>
         <location filename="../../plugins/heatplugin/heat2dstaticwizard.cpp" line="8"/>
         <location filename="../../plugins/heatplugin/heat2dstaticwizard.cpp" line="9"/>
         <source>Heat field</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">热场</translation>
     </message>
     <message>
         <location filename="../../plugins/heatplugin/heat2dstaticwizard.cpp" line="10"/>
         <source>2D Axis Heat Static field simulation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">二维轴对称稳态热场</translation>
     </message>
 </context>
 <context>
@@ -608,7 +520,6 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagField2DTransientWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="21"/>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfield2dtransientwizard.cpp" line="22"/>
         <source>Magnetic field</source>
         <translation type="unfinished">磁场</translation>
@@ -632,7 +543,6 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagField3DStaticWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="21"/>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dstaticwizard.cpp" line="22"/>
         <source>Magnetic field</source>
         <translation type="unfinished">磁场</translation>
@@ -656,7 +566,6 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagField3DTransintWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="22"/>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfield3dtransintwizard.cpp" line="23"/>
         <source>Magnetic field</source>
         <translation type="unfinished">磁场</translation>
@@ -680,7 +589,6 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::MagfieldWizard</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="32"/>
         <location filename="../../plugins/magfemprojectmanagerplugin/magfieldwizard.cpp" line="33"/>
         <source>Magnetic field</source>
         <translation type="unfinished">磁场</translation>
@@ -708,21 +616,6 @@ Reason: %3</source>
         <location filename="../../plugins/magfemprojectmanagerplugin/pf_facesettingdialog.cpp" line="54"/>
         <source>Cancle</source>
         <translation type="unfinished">取消</translation>
-    </message>
-</context>
-<context>
-    <name>MagFEMProjectManagerPlugin::PF_Mag2DSProject</name>
-    <message>
-        <source>Material </source>
-        <translation type="vanished">材料</translation>
-    </message>
-    <message>
-        <source> exists</source>
-        <translation type="vanished">已存在</translation>
-    </message>
-    <message>
-        <source> Added.</source>
-        <translation type="vanished">已添加</translation>
     </message>
 </context>
 <context>
@@ -758,7 +651,7 @@ Reason: %3</source>
         <translation type="unfinished">帮助</translation>
     </message>
     <message>
-        <location filename="../../plugins/material/materialplugin.cpp" line="96"/>
+        <location filename="../../plugins/material/materialplugin.cpp" line="97"/>
         <location filename="../../plugins/material/materialplugin.cpp" line="139"/>
         <source>Material library</source>
         <translation>材料库</translation>
@@ -767,58 +660,58 @@ Reason: %3</source>
 <context>
     <name>Mesh::MeshPlugin</name>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="94"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="95"/>
         <source>BuildMesh</source>
         <translation>构建分网</translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="98"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="99"/>
         <source>Build mesh</source>
         <translation type="unfinished">构建分网</translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="103"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="104"/>
         <source>Im/ExportMesh</source>
         <translation>导入/导出分网</translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="107"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="108"/>
         <source>Import mesh</source>
         <translation type="unfinished">导入分网</translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="111"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="112"/>
         <source>Export mesh</source>
         <translation type="unfinished">导出分网</translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="116"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="117"/>
         <source>Mesh Generator</source>
         <translation>分网器</translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="120"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="121"/>
         <source>Mesh generator</source>
         <translation type="unfinished">分网器</translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="125"/>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="129"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="126"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="130"/>
         <source>Statics</source>
         <translation>统计</translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="134"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="135"/>
         <source>ClearMesh</source>
         <translation>清除分网</translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="138"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="139"/>
         <source>Clear mesh</source>
         <translation type="unfinished">清除分网</translation>
     </message>
     <message>
-        <location filename="../../plugins/mesh/meshplugin.cpp" line="145"/>
+        <location filename="../../plugins/mesh/meshplugin.cpp" line="146"/>
         <source>Auto mesh</source>
         <translation type="unfinished">自动分网</translation>
     </message>
@@ -847,14 +740,6 @@ Reason: %3</source>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="64"/>
         <source>To optimize</source>
         <translation>开始优化</translation>
-    </message>
-    <message>
-        <source>Input</source>
-        <translation type="vanished">输入参数</translation>
-    </message>
-    <message>
-        <source>Optimization</source>
-        <translation type="vanished">优化目标</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/multiobjectdialog.cpp" line="180"/>
@@ -1122,7 +1007,7 @@ Reason: %3</source>
 <context>
     <name>OutputPlugin::OutputPluginPlugin</name>
     <message>
-        <location filename="../../plugins/output/outputpluginplugin.cpp" line="44"/>
+        <location filename="../../plugins/output/outputpluginplugin.cpp" line="45"/>
         <source>Message outputpane</source>
         <translation type="unfinished">信息输出</translation>
     </message>
@@ -1296,10 +1181,6 @@ Reason: %3</source>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="54"/>
         <source>Cancle</source>
         <translation type="unfinished">取消</translation>
-    </message>
-    <message>
-        <source>Add Blank Material</source>
-        <translation type="obsolete">添加空白材料</translation>
     </message>
     <message>
         <location filename="../../plugins/material/pf_magmaterialdialog.cpp" line="93"/>
@@ -1632,7 +1513,7 @@ Reason: %3</source>
 <context>
     <name>Postoperation::PostoperationPlugin</name>
     <message>
-        <location filename="../../plugins/postoperation/postoperationplugin.cpp" line="84"/>
+        <location filename="../../plugins/postoperation/postoperationplugin.cpp" line="85"/>
         <source>Postoperation Setting</source>
         <translation type="unfinished">后处理设置</translation>
     </message>
@@ -1716,80 +1597,72 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::PF_ProjectExplorerPlugin</name>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="326"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="327"/>
         <source>Project</source>
         <translation type="unfinished">项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="330"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="331"/>
         <source>New Project</source>
         <translation type="unfinished">新建项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="335"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="336"/>
         <source>Open Project</source>
         <translation type="unfinished">打开项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="340"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="341"/>
         <source>Save Project</source>
         <translation type="unfinished">保存项目</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="374"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="375"/>
         <source>Add Model</source>
         <translation type="unfinished">添加模型</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="381"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="382"/>
         <source>Add Study</source>
         <translation type="unfinished">添加研究</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="387"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="388"/>
         <source>3D</source>
         <translation type="unfinished">三维</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="392"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="393"/>
         <source>2D Axisymmetric</source>
         <translation type="unfinished">二维轴对称</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="397"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="398"/>
         <source>2D</source>
         <translation type="unfinished">二维</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="405"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="406"/>
         <source>Static Magnetic Field</source>
         <translation type="unfinished">静磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="410"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="411"/>
         <source>Transient Magnetic Field</source>
         <translation type="unfinished">瞬态磁场</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="415"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="416"/>
         <source>Heat Field</source>
         <translation type="unfinished">热场</translation>
     </message>
     <message>
-        <source>add Material</source>
-        <translation type="obsolete">添加材料</translation>
-    </message>
-    <message>
-        <source>add Blank Material</source>
-        <translation type="obsolete">添加空白材料</translation>
-    </message>
-    <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="423"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="424"/>
         <source>Help</source>
         <translation type="unfinished">帮助</translation>
     </message>
     <message>
-        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="431"/>
+        <location filename="../../plugins/project/pf_projectexplorer.cpp" line="432"/>
         <source>Model tree</source>
         <translation type="unfinished">模型树</translation>
     </message>
@@ -2104,14 +1977,6 @@ Reason: %3</source>
         <translation type="unfinished">组件</translation>
     </message>
     <message>
-        <source>Maximize</source>
-        <translation type="vanished">最大化</translation>
-    </message>
-    <message>
-        <source>Minimize</source>
-        <translation type="vanished">最小化</translation>
-    </message>
-    <message>
         <location filename="../../libs/QtAdvancedDock/DockAreaTitleBar.cpp" line="147"/>
         <source>List all tabs</source>
         <translation type="unfinished">显示所有标签</translation>
@@ -2140,10 +2005,6 @@ Reason: %3</source>
         <location filename="../../plugins/material/pf_material.cpp" line="631"/>
         <source>New Material</source>
         <translation type="unfinished">新材料</translation>
-    </message>
-    <message>
-        <source>Material</source>
-        <translation type="obsolete">材料</translation>
     </message>
     <message>
         <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1380"/>
@@ -2581,14 +2442,6 @@ Reason: %3</source>
         <translation>开始优化</translation>
     </message>
     <message>
-        <source>Value: </source>
-        <translation type="vanished">目标值：</translation>
-    </message>
-    <message>
-        <source>Target to be optimized &amp;&amp; input parameters</source>
-        <translation type="vanished">优化目标及输入参数</translation>
-    </message>
-    <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="199"/>
         <source>Object to be optimized &amp;&amp; input parameters</source>
         <translation type="unfinished"></translation>
@@ -2662,10 +2515,6 @@ Reason: %3</source>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="288"/>
         <source>Error: Number of particles must be a integer!</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error: Number of particles must be a number!</source>
-        <translation type="vanished">错误：种群大小必须为整数！</translation>
     </message>
     <message>
         <location filename="../../plugins/optimize/singleobjectdialog.cpp" line="292"/>
@@ -2788,20 +2637,20 @@ Reason: %3</source>
 <context>
     <name>Solver::SolverPlugin</name>
     <message>
-        <location filename="../../plugins/solver/solverplugin.cpp" line="81"/>
-        <location filename="../../plugins/solver/solverplugin.cpp" line="85"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="82"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="86"/>
         <source>Solver Setting</source>
         <translation type="unfinished">求解器设置</translation>
     </message>
     <message>
-        <location filename="../../plugins/solver/solverplugin.cpp" line="90"/>
-        <location filename="../../plugins/solver/solverplugin.cpp" line="94"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="91"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="95"/>
         <source>Solve</source>
         <translation type="unfinished">求解</translation>
     </message>
     <message>
-        <location filename="../../plugins/solver/solverplugin.cpp" line="99"/>
-        <location filename="../../plugins/solver/solverplugin.cpp" line="103"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="100"/>
+        <location filename="../../plugins/solver/solverplugin.cpp" line="104"/>
         <source>Clear Solution</source>
         <translation type="unfinished">删除结果</translation>
     </message>
@@ -2852,45 +2701,6 @@ Reason: %3</source>
         <location filename="../../plugins/bounce/subwidget/solverwidget.cpp" line="85"/>
         <source>Solver Options</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TargetWidget</name>
-    <message>
-        <source>Delete</source>
-        <translation type="vanished">删除</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="vanished">添加</translation>
-    </message>
-    <message>
-        <source>Target to be optimized</source>
-        <translation type="vanished">优化目标</translation>
-    </message>
-    <message>
-        <source>Target to be optimized: </source>
-        <translation type="vanished">优化目标：</translation>
-    </message>
-    <message>
-        <source>Optimize mode: </source>
-        <translation type="vanished">优化形式：</translation>
-    </message>
-    <message>
-        <source>Optimize mode</source>
-        <translation type="vanished">优化形式</translation>
-    </message>
-    <message>
-        <source>Maximize</source>
-        <translation type="vanished">最大化</translation>
-    </message>
-    <message>
-        <source>Minimize</source>
-        <translation type="vanished">最小化</translation>
-    </message>
-    <message>
-        <source>Error: Current Target Exist!</source>
-        <translation type="vanished">错误：当前优化目标已存在！</translation>
     </message>
 </context>
 <context>

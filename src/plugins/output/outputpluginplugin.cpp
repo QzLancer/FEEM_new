@@ -39,6 +39,7 @@ OutputPluginPlugin::~OutputPluginPlugin()
 
 bool OutputPluginPlugin::initialize(const QStringList &arguments, QString *errorString)
 {
+    qDebug()<<Q_FUNC_INFO;
     m_messagePane = new MessageOutputPane();
 
     ads::CDockWidget* DockWidget1 = new ads::CDockWidget(tr("Message outputpane"));
@@ -50,7 +51,6 @@ bool OutputPluginPlugin::initialize(const QStringList &arguments, QString *error
     PoofeeSay<<"Welcome to FEEM! Copyright 2018-2020 HIT. All rights reserved.";
 //    m_messagePane->appendMessage(current_date+QLatin1Char('\n'));
 //    m_messagePane->appendMessage(tr("Welcome to FEEM!")+QLatin1Char('\n'));
-    qDebug()<<Q_FUNC_INFO;
     return true;
 }
 

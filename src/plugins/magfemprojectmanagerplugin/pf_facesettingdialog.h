@@ -14,6 +14,7 @@ namespace MagFEMProjectManagerPlugin {
 */
 class PF_FaceSettingDialog : public QDialog
 {
+    Q_OBJECT
 public:
     PF_FaceSettingDialog(QWidget *parent = nullptr,PF_CommonFEMProject* pro=nullptr,int index=-1);
     ~PF_FaceSettingDialog();

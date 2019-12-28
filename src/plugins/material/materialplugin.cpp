@@ -89,6 +89,7 @@ void MaterialPlugin::addBlankMaterial()
 
 bool MaterialPlugin::initialize(const QStringList &arguments, QString *errorMessage)
 {
+    qDebug()<<Q_FUNC_INFO;
     registerDefaultContainers();
     registerDefaultActions();
 
@@ -97,7 +98,6 @@ bool MaterialPlugin::initialize(const QStringList &arguments, QString *errorMess
     DockWidget3->setWidget(materialLibraryTree);
     // Add the dock widget to the top dock widget area
     Core::WorkPage::DockManager()->addDockWidget(ads::RightDockWidgetArea, DockWidget3);
-    qDebug()<<Q_FUNC_INFO;
     return true;
 }
 

@@ -26,10 +26,10 @@ namespace MagFEMProjectManagerPlugin {
 */
 MagfieldWizard::MagfieldWizard()
 {
-    setId("FEM.MAG");
+    setId("FEM.MAG2D");
     setIcon(QIcon(":/imgs/model_2d_axi_32.png"));
     setCategoryIcon(QIcon(":/imgs/magnetic_fields_32.png"));
-    setCategory(tr("Magnetic field"));
+    setCategory("0Magnetic field");
     setDisplayCategory(tr("Magnetic field"));
     setDisplayName(tr("2D Axis Magnetic Static field simulation"));
 //    setDescription(tr("Create a project to simulate the distribution of magnetic field."));
