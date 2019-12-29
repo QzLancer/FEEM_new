@@ -25,4 +25,7 @@ DISTFILES += icon.rc
 RESOURCES += \
     app.qrc
 
+HEADERS += \
+    app_version.h
+
 

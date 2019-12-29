@@ -3,6 +3,8 @@
 
 #include "project_export.h"
 
+#include <utils/fileutils.h>
+
 #include <QObject>
 #include <functional>
 #include <memory>
@@ -23,10 +25,9 @@ class PF_ProjectPrivate;
 class ProjectDocument : public Core::IDocument
 {
 public:
-    using ProjectCallback = std::function<void()>;
+//    using ProjectCallback = std::function<void()>;
 
-    ProjectDocument(const QString &mimeType, const FileName &fileName,
-                    const ProjectCallback &callback = {});
+    ProjectDocument(const Utils::FileName &fileName);
 
     IDocument::ReloadBehavior reloadBehavior(Core::IDocument::ChangeTrigger state,
                                                    Core::IDocument::ChangeType type) const final;
@@ -34,7 +35,7 @@ public:
                 Core::IDocument::ChangeType type) final;
 
 private:
-    ProjectCallback m_callback;
+//    ProjectCallback m_callback;
 };
 
 
@@ -44,11 +45,17 @@ class FEEM_PROJECT_EXPORT PF_Project : public QObject
     friend class PF_ProjectExplorerPlugin; // for projectLoaded
     Q_OBJECT
 public:
-    explicit PF_Project(QObject *parent = nullptr);
+    explicit PF_Project(QObject *parent = nullptr,
+                        const Utils::FileName& fileName=Utils::FileName());
     ~PF_Project();
 
     QString displayName() const;
     void setDisplayName(const QString& displayName);
+
+    Core::IDocument *document() const;
+
+    Utils::FileName projectFilePath() const;
+    Utils::FileName projectDirectory() const;
 
     void creatTree();
     void setRootProjectNode(std::unique_ptr<ProjectNode> &&root); // takes ownership!

@@ -129,7 +129,7 @@ PF_ProjectAccessor::RestoreData PF_ProjectAccessor::readFile(const FileName& pat
     const QVariantMap data = reader.restoreValues();
     if (!m_readOnly && path == m_baseFilePath) {
         if (!m_writer)
-            m_writer = std::make_unique<PersistentSettingsWriter>(m_baseFilePath, docType);
+            m_writer = std::make_unique<PersistentSettingsWriter>(m_baseFilePath.fileName(), docType);
         m_writer->setContents(data);
     }
 

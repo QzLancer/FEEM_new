@@ -10,17 +10,18 @@
 #include <memory>
 #include <QDebug>
 
+#include <QDir>
+
+using namespace Utils;
 namespace ProjectExplorer {
 // --------------------------------------------------------------------
 // ProjectDocument:
 // --------------------------------------------------------------------
 
-ProjectDocument::ProjectDocument(const QString &mimeType, const FileName &fileName,
-                                 const ProjectDocument::ProjectCallback &callback) :
-    m_callback(callback)
+ProjectDocument::ProjectDocument(const FileName &fileName)
 {
     setFilePath(fileName);
-    setMimeType(mimeType);
+//    setMimeType(mimeType);
 //    if (m_callback)
 //        DocumentManager::addDocument(this);
 }
@@ -41,8 +42,8 @@ bool ProjectDocument::reload(QString *errorString, IDocument::ReloadFlag flag,
     Q_UNUSED(flag);
     Q_UNUSED(type);
 
-    if (m_callback)
-        m_callback();
+//    if (m_callback)
+//        m_callback();
     return true;
 }
 /*!
@@ -51,12 +52,10 @@ bool ProjectDocument::reload(QString *errorString, IDocument::ReloadFlag flag,
 */
 class PF_ProjectPrivate{
 public:
-//    PF_ProjectPrivate(const QString &mimeType, const FileName &fileName,
-//                   const ProjectDocument::ProjectCallback &callback)
-//    {
-//        m_document = std::make_unique<ProjectDocument>(mimeType, fileName, callback);
-//    }
-    PF_ProjectPrivate();
+    PF_ProjectPrivate(const FileName &fileName)
+    {
+        m_document = std::make_unique<ProjectDocument>(fileName);
+    }
     ~PF_ProjectPrivate();
 
     /** 保存真实的文件 **/
@@ -67,9 +66,9 @@ public:
     QString m_displayName;
 };
 
-PF_Project::PF_Project(QObject *parent)
+PF_Project::PF_Project(QObject *parent,const FileName &fileName)
     : QObject(parent)
-    , d(new PF_ProjectPrivate())
+    , d(new PF_ProjectPrivate(fileName))
 {
     d->m_containerNode = std::make_unique<ProjectNode>(this);
 //    setRootProjectNode(PF_NodeTreeBuilder::buildTree(this));
@@ -92,6 +91,24 @@ QString PF_Project::displayName() const
 void PF_Project::setDisplayName(const QString &displayName)
 {
     d->m_displayName = displayName;
+}
+
+Core::IDocument*PF_Project::document() const
+{
+    return d->m_document.get();
+}
+
+FileName PF_Project::projectFilePath() const
+{
+    return document()->filePath();
+}
+
+FileName PF_Project::projectDirectory() const
+{
+    auto filePath = document()->filePath();
+    if(filePath.isEmpty())
+        return FileName();
+    return Utils::FileName::fromString(filePath.toFileInfo().absoluteDir().path());
 }
 
 /**
@@ -239,10 +256,7 @@ void PF_Project::setFaceMaterial(Node *node)
 
 }
 
-PF_ProjectPrivate::PF_ProjectPrivate()
-{
 
-}
 
 PF_ProjectPrivate::~PF_ProjectPrivate()
 {
