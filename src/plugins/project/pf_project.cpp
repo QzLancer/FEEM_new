@@ -1,16 +1,19 @@
 #include "pf_project.h"
 #include "pf_node.h"
+#include "pf_femprojectaccessor.h"
 
 #include <coreplugin/idocument.h>
 #include "pf_nodetreebuilder.h"
 #include "pf_projecttree.h"
 
 #include <coreplugin/geometrymanager/igeometry.h>
+#include <coreplugin/icore.h>
 
 #include <memory>
 #include <QDebug>
 
 #include <QDir>
+#include <QFileDialog>
 
 using namespace Utils;
 namespace ProjectExplorer {
@@ -62,6 +65,7 @@ public:
     std::unique_ptr<Core::IDocument> m_document;
     std::unique_ptr<ProjectNode> m_rootProjectNode;
     std::unique_ptr<ProjectNode> m_containerNode;
+    std::unique_ptr<PF_FEMProjectAccessor> m_accessor;
 
     QString m_displayName;
 };
@@ -221,9 +225,39 @@ PF_Project::RestoreResult PF_Project::fromMap(const QVariantMap &map, QString *e
     return RestoreResult::Ok;
 }
 
-void PF_Project::saveProject(const QString& fileName)
+/**
+ * @brief 保存project，一般来说，保存的数据都在toMap里存储，这样，子类不需要重写该函数。
+ *
+ * @param fileName
+ */
+void PF_Project::saveProject()
 {
-
+//    emit aboutToSaveProject();
+    /** 判断当前项目文件存在不存在，否则打开保存对话框 **/
+    QString f;
+    if(document()->filePath().isEmpty()){
+        f = QFileDialog::getSaveFileName(
+            Core::ICore::dialogParent(), tr("Save project file to..."),
+                    QString("."), QString("FEEM project file(*.feem)"));
+        if(f.isEmpty()) return;
+        auto fileinfo = QFileInfo(f);
+        QString fileSuffix = fileinfo.suffix();
+        if(fileSuffix.compare("feem",Qt::CaseInsensitive) != 0)
+            f += ".feem";
+        document()->setFilePath(FileName::fromString(f));
+//        if (QFile::exists(fileName)) {
+//            if (QMessageBox::warning(Core::ICore::dialogParent(), tr("Overwrite?"),
+//                tr("An item named \"%1\" already exists at this location. "
+//                   "Do you want to overwrite it?").arg(QDir::toNativeSeparators(fileName)),
+//                QMessageBox::Yes | QMessageBox::No) == QMessageBox::No) {
+//                repeat = true;
+//            }
+//        }
+    }
+    if (!d->m_accessor)
+        d->m_accessor = std::make_unique<PF_FEMProjectAccessor>(this);
+    /** 保存数据 **/
+    d->m_accessor->saveProject(toMap(), Core::ICore::mainWindow());
 }
 
 void PF_Project::openProject(const QString& fileName)

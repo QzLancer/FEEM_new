@@ -1358,7 +1358,9 @@ void PF_Mag2DSProject::CleanUp()
  */
 QVariantMap PF_Mag2DSProject::toMap() const
 {
+    qDebug()<<Q_FUNC_INFO;
     QVariantMap map;
+    map.insert(QString("Project"),"MAG2D");
     return map;
 }
 

@@ -73,6 +73,8 @@ public:
     static OpenProjectResult openProject(const QString &fileName);
     static OpenProjectResult openProjects(const QStringList &fileNames);
 
+    static void saveProject();
+
     static void showContextMenu(QWidget *view, const QPoint &globalPos, Node *node);
 
     static QList<QPair<QString, QString> > recentProjects();

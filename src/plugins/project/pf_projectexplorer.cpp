@@ -340,6 +340,7 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
 
     action = new QAction(tr("Save Project"));
     action->setIcon(QIcon(":/imgs/filesave.png"));
+    connect(action, &QAction::triggered, this,&PF_ProjectExplorerPlugin::saveProject);
     group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
 
     Context projecTreeContext(Constants::C_PROJECT_TREE);
@@ -523,6 +524,15 @@ PF_ProjectExplorerPlugin::OpenProjectResult PF_ProjectExplorerPlugin::openProjec
 //    }
 
     return OpenProjectResult(openedPro, alreadyOpen, errorString);
+}
+
+/**
+ * @brief 保存当前项目。
+ *
+ */
+void PF_ProjectExplorerPlugin::saveProject()
+{
+    PF_SessionManager::startupProject()->saveProject();
 }
 
 void PF_ProjectExplorerPlugin::updateContextMenuActions()

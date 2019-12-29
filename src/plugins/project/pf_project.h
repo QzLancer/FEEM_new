@@ -69,7 +69,7 @@ public:
     enum class RestoreResult { Ok, Error, UserAbort };
     virtual RestoreResult fromMap(const QVariantMap &map, QString *errorMessage);
 
-    virtual void saveProject(const QString & fileName);
+    virtual void saveProject();
     virtual void openProject(const QString & fileName);
 
     virtual Core::IGeometry* CAD() const;
