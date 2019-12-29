@@ -27,6 +27,12 @@ public:
     void GetFillFactor(int lbl);
     double ElmArea(int i);
     void CleanUp();
+
+    virtual QVariantMap toMap() const;
+    virtual RestoreResult fromMap(const QVariantMap &map, QString *errorMessage);
+
+    virtual void saveProject(const QString & fileName);
+    virtual void openProject(const QString & fileName);
 public:
     // General problem attributes
 //    double  Frequency;

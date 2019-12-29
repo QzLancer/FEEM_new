@@ -180,6 +180,40 @@ ProjectNode *PF_Project::containerNode() const
     return d->m_containerNode.get();
 }
 
+/*!
+ \brief 将Project当中的数据保存到map当中。子类如果要重写该函数，那么
+ 可能需要先调用父类的该函数。
+
+ \return QVariantMap
+*/
+QVariantMap PF_Project::toMap() const
+{
+    QVariantMap map;
+    return map;
+}
+
+/*!
+ \brief 将数据从map中恢复出来。
+
+ \param map
+ \param errorMessage
+ \return PF_Project::RestoreResult
+*/
+PF_Project::RestoreResult PF_Project::fromMap(const QVariantMap &map, QString *errorMessage)
+{
+    return RestoreResult::Ok;
+}
+
+void PF_Project::saveProject(const QString& fileName)
+{
+
+}
+
+void PF_Project::openProject(const QString& fileName)
+{
+
+}
+
 Core::IGeometry *PF_Project::CAD() const
 {
     return nullptr;

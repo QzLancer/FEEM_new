@@ -1350,6 +1350,49 @@ void PF_Mag2DSProject::CleanUp()
     //    }
     //    if (pbclist!=nullptr)		 free(pbclist);
 }
+
+/**
+ * @brief 导出数据，每个project会有自己的数据要导出。
+ *
+ * @return QVariantMap
+ */
+QVariantMap PF_Mag2DSProject::toMap() const
+{
+    QVariantMap map;
+    return map;
+}
+
+/**
+ * @brief
+ *
+ * @param map
+ * @param errorMessage
+ * @return PF_Project::RestoreResult
+ */
+PF_Project::RestoreResult PF_Mag2DSProject::fromMap(const QVariantMap& map, QString* errorMessage)
+{
+    return RestoreResult::Ok;
+}
+
+/**
+ * @brief 保存项目文件
+ *
+ * @param fileName
+ */
+void PF_Mag2DSProject::saveProject(const QString& fileName)
+{
+
+}
+
+/**
+ * @brief 打开项目文件
+ *
+ * @param fileName
+ */
+void PF_Mag2DSProject::openProject(const QString& fileName)
+{
+
+}
 /**
  * @brief
  *
