@@ -59,6 +59,10 @@ public:
 
     QString toString() const;
     QString toGeoString() override;
+    /** 数据导入导出 **/
+    bool fromMap(QVariantMap map) override;
+    QVariantMap toMap() override;
+
     int index() const override;
 public:
     static int point_index;

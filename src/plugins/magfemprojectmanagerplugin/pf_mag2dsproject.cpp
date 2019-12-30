@@ -15,6 +15,9 @@
 #include <CAD/geometry2d.h>
 #include <CAD/entity/pf_document.h>
 #include <CAD/pf.h>
+#include <CAD/entity/pf_point.h>
+#include <CAD/entity/pf_line.h>
+#include <CAD/entity/pf_face.h>
 
 #include <coreplugin/geometrymanager/geometrymanager.h>
 #include <coreplugin/geometrymanager/igeometry.h>
@@ -32,6 +35,7 @@
 #include <QHash>
 #include <QDebug>
 #include <QDialog>
+#include <QVector>
 
 using namespace ProjectExplorer;
 
@@ -1358,9 +1362,61 @@ void PF_Mag2DSProject::CleanUp()
  */
 QVariantMap PF_Mag2DSProject::toMap() const
 {
-    qDebug()<<Q_FUNC_INFO;
-    QVariantMap map;
-    map.insert(QString("Project"),"MAG2D");
+//    qDebug()<<Q_FUNC_INFO;
+    QVariantMap map = PF_Project::toMap();/** 保存父类的数据 **/
+    QVariantList map1;
+    /** 保存关于projet的信息 **/
+    QVariantMap pro;
+    pro.insert("Project type","MAG2D");
+    pro.insert("Project path",projectFilePath().fileName());
+    map1<<pro;
+//    map.insert("Project",pro);
+
+    /** 保存关于geometry的信息 **/
+    QVariantMap geo;
+    geo.insert("Dimension","2D Axis");
+    QVariantMap points,lines,faces;
+
+    for(auto e : m_document->getEntityList()){
+        switch (e->rtti()) {
+        case PF::EntityPoint:
+        {
+            points.insert(QString("POINT%1").arg(e->index()),e->toMap());
+            break;
+        }
+        case PF::EntityLine:
+        {
+            lines.insert(QString("LINE%1").arg(e->index()),e->toMap());
+            break;
+        }
+        case PF::EntityFace:
+        {
+            faces.insert(QString("FACE%1").arg(e->index()),e->toMap());
+            break;
+        }
+        default:
+        {
+            qDebug()<<"No such entity.";
+            break;
+        }
+        }
+    }
+    geo.insert("Points",points);
+    geo.insert("Lines",lines);
+    geo.insert("Faces",faces);
+    map1<<geo;
+//    map.insert("Geometry",geo);
+
+    /** 保存关于mesh的信息 **/
+    QVariantMap mesh;
+    map1<<mesh;
+//    map.insert("Mesh",mesh);
+
+    /** 保存关于physic的信息 **/
+    QVariantMap phy;
+    map1<<phy;
+//    map.insert("Physic",phy);
+    map.insert("Model",map1);
     return map;
 }
 
@@ -1409,7 +1465,7 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
     /** 设置root节点的显示 **/
 
     /** 根据pro中的数据生成node **/
-    node->setDisplayName(pro->displayName()+QString(".f2d"));
+    node->setDisplayName(pro->displayName());
 
     /** 添加变量 **/
     auto def_node = std::make_unique<FolderNode>(QString(QObject::tr("Definitions")),NodeType::Variable,QIcon(":/imgs/definitions.png"));
@@ -1515,7 +1571,7 @@ std::unique_ptr<PF_MagFEMNode> PF_Mag2DSNodeTreeBuilder::buildTree(PF_Mag2DSProj
         而subtree又是要找特定的node来改变，每一次都重新生成projectnode
         就不对了**/
 
-    auto   root = std::make_unique<PF_MagFEMNode>(pro);
+    auto  root = std::make_unique<PF_MagFEMNode>(pro);
 
     /** 生成root的子节点 **/
     createTree(pro,root.get());

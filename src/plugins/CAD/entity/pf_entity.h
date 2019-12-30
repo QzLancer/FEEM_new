@@ -9,6 +9,7 @@
 #include "../pf_flag.h"
 
 #include <QObject>
+#include <QVariantMap>
 //2018-02-11
 //by Poofee
 /**实体类，基类**/
@@ -335,6 +336,10 @@ public:
 
     virtual QString toGeoString() = 0;
     virtual int index() const = 0;
+
+    /** 为了将数据保存和读取。应不应该设为纯虚函数，但是只用到了部分而已**/
+    virtual bool fromMap(QVariantMap map);
+    virtual QVariantMap toMap();
 protected:
     PF_EntityContainer* parent = nullptr;
     QPen pen;

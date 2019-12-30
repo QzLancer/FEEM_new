@@ -2,6 +2,7 @@
 #include "pf_face.h"
 #include "pf_graphicview.h"
 #include <QPainter>
+#include <QVariantList>
 
 int PF_Face::face_index = 1;
 int PF_LineLoop::lineloop_index = 1;
@@ -261,6 +262,32 @@ int PF_Face::index() const
 {
     return m_index;
 }
+
+bool PF_Face::fromMap(QVariantMap map)
+{
+    return true;
+}
+
+/**
+ * @brief 保存信息这类函数，gan感觉要是放在外面的话，需要开放太多内部信息了，
+ * 太繁琐了。有的类可能就是内部辅助一下，也要开放。
+ *
+ * @return QVariantMap
+ */
+QVariantMap PF_Face::toMap()
+{
+    QVariantMap f;
+    /** 保存面的loop信息。感觉这些没必要写在这里，直接在实体里写toMap即可，还不用开放。 **/
+    for(auto loop : data.faceData){
+        QVariantList lps;
+        for(auto lines : loop->lines){
+            lps<<lines->index();
+        }
+        f.insert(QString("LINELOOP%1").arg(loop->index()),lps);
+    }
+    return f;
+}
+
 
 /*!
  \brief 拷贝构造函数

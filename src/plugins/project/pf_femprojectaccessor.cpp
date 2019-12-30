@@ -29,7 +29,7 @@ PF_Project*PF_FEMProjectAccessor::project() const
  */
 QString PF_FEMProjectAccessor::projectFile() const
 {
-    return m_project->document()->filePath().fileName();
+    return m_project->document()->filePath().toString();
 }
 
 }// ProjectExplorer

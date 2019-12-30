@@ -120,8 +120,8 @@ PF_ProjectAccessor::RestoreData PF_ProjectAccessor::readFile(const FileName& pat
 {
     PersistentSettingsReader reader;
     /** 文件错误 **/
-    if (!reader.load(path.fileName())) {
-        qDebug()<<"Error open "<<path.fileName();
+    if (!reader.load(path.toString())) {
+        qDebug()<<"Error open "<<path.toString();
         return RestoreData();
     }
 
@@ -129,7 +129,7 @@ PF_ProjectAccessor::RestoreData PF_ProjectAccessor::readFile(const FileName& pat
     const QVariantMap data = reader.restoreValues();
     if (!m_readOnly && path == m_baseFilePath) {
         if (!m_writer)
-            m_writer = std::make_unique<PersistentSettingsWriter>(m_baseFilePath.fileName(), docType);
+            m_writer = std::make_unique<PersistentSettingsWriter>(m_baseFilePath.toString(), docType);
         m_writer->setContents(data);
     }
 
@@ -151,8 +151,8 @@ bool PF_ProjectAccessor::writeFile(const FileName& path, const QVariantMap& data
     }
 
     QString errorMessage;
-    if (!m_readOnly && (!m_writer || m_writer->fileName() != path.fileName()))
-        m_writer = std::make_unique<PersistentSettingsWriter>(path.fileName(), docType);
+    if (!m_readOnly && (!m_writer || m_writer->fileName() != path.toString()))
+        m_writer = std::make_unique<PersistentSettingsWriter>(path.toString(), docType);
 
     if (!m_writer->save(data, &errorMessage)) {
         return false;

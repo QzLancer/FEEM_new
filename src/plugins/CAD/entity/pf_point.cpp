@@ -185,6 +185,20 @@ QString PF_Point::toGeoString()
     return QString("Point (%1) = {%2, %3, 0, 1e-1} ;").arg(m_index).arg(data.pos.x).arg(data.pos.y);
 }
 
+bool PF_Point::fromMap(QVariantMap map)
+{
+    return true;
+}
+
+QVariantMap PF_Point::toMap()
+{
+    QVariantMap p;
+    /** 保存点坐标 **/
+    p.insert("X",getCenter().x);
+    p.insert("Y",getCenter().y);
+    return p;
+}
+
 int PF_Point::index() const
 {
     return m_index;

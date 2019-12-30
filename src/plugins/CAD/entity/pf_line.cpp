@@ -18,7 +18,21 @@ PF_Line::PF_Line(PF_EntityContainer* parent, PF_GraphicView *view, PF_Point *pSt
     data.startpoint = pStart;
     data.endpoint = pEnd;
     m_index = line_index;
-//    line_index++;
+    //    line_index++;
+}
+
+int PF_Line::startIndex() const
+{
+    if(data.startpoint)
+        return data.startpoint->index();
+    return -1;
+}
+
+int PF_Line::endIndex() const
+{
+    if(data.endpoint)
+        return data.endpoint->index();
+    return -1;
 }
 
 PF_VectorSolutions PF_Line::getRefPoints() const
@@ -309,6 +323,20 @@ QString PF_Line::toGeoString()
 {
     //Line (1) = {1, 2} ;
     return QString("Line (%1) = {%2, %3} ;").arg(m_index).arg(data.startpoint->index()).arg(data.endpoint->index());
+}
+
+bool PF_Line::fromMap(QVariantMap map)
+{
+    return true;
+}
+
+QVariantMap PF_Line::toMap()
+{
+    QVariantMap l;
+    /** 保存线的两个端点 **/
+    l.insert("START",startIndex());
+    l.insert("END",endIndex());
+    return l;
 }
 
 int PF_Line::index() const

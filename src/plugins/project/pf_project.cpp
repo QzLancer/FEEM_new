@@ -163,6 +163,8 @@ void PF_Project::setRootProjectNode(std::unique_ptr<ProjectNode> &&root)
     if (root) {
 //        ProjectTree::applyTreeManager(root.get());
         root->setParentFolderNode(d->m_containerNode.get());
+        /** 感觉要更新一下container的显示 **/
+        d->m_containerNode.get()->setDisplayName(root.get()->displayName());
     }
 
     std::unique_ptr<ProjectNode> oldNode = std::move(d->m_rootProjectNode);
@@ -245,6 +247,10 @@ void PF_Project::saveProject()
         if(fileSuffix.compare("feem",Qt::CaseInsensitive) != 0)
             f += ".feem";
         document()->setFilePath(FileName::fromString(f));
+        /** 修改项目的显示名称 **/
+        setDisplayName(fileinfo.baseName());
+        emit displayNameChanged();
+        emit dataChanged();
 //        if (QFile::exists(fileName)) {
 //            if (QMessageBox::warning(Core::ICore::dialogParent(), tr("Overwrite?"),
 //                tr("An item named \"%1\" already exists at this location. "
