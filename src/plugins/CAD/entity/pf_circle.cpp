@@ -307,6 +307,11 @@ int PF_Circle::index() const
     return 0;
 }
 
+void PF_Circle::setIndex(int index)
+{
+
+}
+
 PF_CircleData::PF_CircleData(PF_Vector *center, double radius)
     :center(center)
     ,radius(radius)

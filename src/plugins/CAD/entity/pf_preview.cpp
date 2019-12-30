@@ -42,3 +42,8 @@ int PF_Preview::index() const
 {
     return 0;
 }
+
+void PF_Preview::setIndex(int index)
+{
+
+}

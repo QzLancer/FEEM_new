@@ -30,24 +30,24 @@ const QLatin1String FaceKey("Faces");
 #define GEOTRI     3
 #define GEOQUAD    4
 
-FILE *infile, *outfile;
-char inname[80], /*outname[80],*/ curobj[80], linbuf[BUFSIZE];
-long primitives = 0L, degenerates = 0L;
-int groupcode, curcolor, ints[10], nump = 1, numc = 1;
-int cpt_vert_node = 1, num_vert_node[1024];
-double curthick, xcoords[10], ycoords[10], zcoords[10], floats[10], angles[10];
-double max_x, max_y, max_z, min_x, min_y, min_z;
-double THETOL=1e-20, THEROT = 0., THETRANSX = 0., THETRANSY = 0.;
+static FILE *infile, *outfile;
+static char inname[80], /*outname[80],*/ curobj[80], linbuf[BUFSIZE];
+static long primitives = 0L, degenerates = 0L;
+static int groupcode, curcolor, ints[10], nump = 1, numc = 1;
+static int cpt_vert_node = 1, num_vert_node[1024];
+static double curthick, xcoords[10], ycoords[10], zcoords[10], floats[10], angles[10];
+static double max_x, max_y, max_z, min_x, min_y, min_z;
+static double THETOL=1e-20, THEROT = 0., THETRANSX = 0., THETRANSY = 0.;
 
 class Point
 {
 public:
     int num;
-    float x, y, z;
+    double x, y, z;
     void write() const
     {
-        float xx = x;
-        float yy = y;
+        double xx = x;
+        double yy = y;
         xx = cos(-THEROT * DEG2RAD) * x + sin(-THEROT * DEG2RAD) * y;
         yy = -sin(-THEROT * DEG2RAD) * x + cos(-THEROT * DEG2RAD) * y;
         xx += THETRANSX;
@@ -97,8 +97,8 @@ public:
     }
 };
 
-std::set<Point, PointLessThanLexicographic> Point_T;
-std::set<Curve, CurveLessThan> Curve_T;
+static std::set<Point, PointLessThanLexicographic> Point_T;
+static std::set<Curve, CurveLessThan> Curve_T;
 
 int addpoint(Point &p)
 {
@@ -230,19 +230,15 @@ void addobj(void)
         }
         else {
             if(angles[1] - angles[0] > 0) {
-                p.x =
-                        xcoords[0] +
+                p.x =   xcoords[0] +
                         floats[0] * cos((angles[1] - angles[0]) * 0.5 * DEG2RAD);
-                p.y =
-                        ycoords[0] +
+                p.y =   ycoords[0] +
                         floats[0] * sin((angles[1] - angles[0]) * 0.5 * DEG2RAD);
             }
             else {
-                p.x =
-                        xcoords[0] +
+                p.x =   xcoords[0] +
                         floats[0] * cos((angles[0] - angles[1]) * 0.5 * DEG2RAD);
-                p.y =
-                        ycoords[0] +
+                p.y =   ycoords[0] +
                         floats[0] * sin((angles[0] - angles[1]) * 0.5 * DEG2RAD);
             }
             p.z = zcoords[0];
@@ -419,12 +415,12 @@ void addobj(void)
 int getline(void)
 {       /* read a group code and the next line from infile */
     fgets(linbuf, BUFSIZE, infile);       /* get a line from .DXF */
-    printf("%s",linbuf);
+    qDebug()<<linbuf;
     if(feof(infile))
         return (1);
     sscanf(linbuf, "%3d", &groupcode);    /* scan out group code */
     fgets(linbuf, BUFSIZE, infile);       /* get a line from .DXF */
-    printf("%s",linbuf);
+    qDebug()<<linbuf;
     if(feof(infile))
         return (1);
     return (0);
@@ -533,7 +529,7 @@ void PF_EntityContainer::addEntity(PF_Entity *entity)
 void PF_EntityContainer::appendEntity(PF_Entity *entity)
 {
     if (!entity)
-            return;
+        return;
     entities.append(entity);
 }
 
@@ -576,7 +572,7 @@ void PF_EntityContainer::moveEntity(int index, QList<PF_Entity *> &entList)
     }
 
     for(auto e: entList){
-            entities.insert(ci++, e);
+        entities.insert(ci++, e);
     }
 }
 
@@ -626,7 +622,7 @@ void PF_EntityContainer::draw(QCPPainter *painter)
         再画线，最后画点**/
     for(int i=0;i < entities.size();++i){
 
-            mParentPlot->drawEntity(painter,entities.at(i));
+        mParentPlot->drawEntity(painter,entities.at(i));
     }
     for(int i=0;i < entities.size();++i){
         if(entities.at(i)->rtti() != PF::EntityFace)
@@ -735,26 +731,26 @@ PF_Vector PF_EntityContainer::getNearestEndpoint(const PF_Vector& coord,
     unsigned i0=0;
     for(auto en: entities){
         //if (!en->getParent()->ignoredOnModification() ){//no end point for Insert, text, Dim
-//            std::cout<<"find nearest for entity "<<i0<<std::endl;
-            point = en->getNearestEndpoint(coord, &curDist);
-            if (point.valid && curDist<minDist) {
-                closestPoint = point;
-                minDist = curDist;
-                if (dist) {
-                    *dist = minDist;
-                }
-                if(pEntity){
-                    *pEntity=en;
-                }
+        //            std::cout<<"find nearest for entity "<<i0<<std::endl;
+        point = en->getNearestEndpoint(coord, &curDist);
+        if (point.valid && curDist<minDist) {
+            closestPoint = point;
+            minDist = curDist;
+            if (dist) {
+                *dist = minDist;
             }
+            if(pEntity){
+                *pEntity=en;
+            }
+        }
         //}
         i0++;
     }
 
-//    std::cout<<__FILE__<<" : "<<__func__<<" : line "<<__LINE__<<std::endl;
-//    std::cout<<"count()="<<const_cast<PF_EntityContainer*>(this)->count()<<"\tminDist= "<<minDist<<"\tclosestPoint="<<closestPoint;
-//    if(pEntity ) std::cout<<"\t*pEntity="<<*pEntity;
-//    std::cout<<std::endl;
+    //    std::cout<<__FILE__<<" : "<<__func__<<" : line "<<__LINE__<<std::endl;
+    //    std::cout<<"count()="<<const_cast<PF_EntityContainer*>(this)->count()<<"\tminDist= "<<minDist<<"\tclosestPoint="<<closestPoint;
+    //    if(pEntity ) std::cout<<"\t*pEntity="<<*pEntity;
+    //    std::cout<<std::endl;
     return closestPoint;
 }
 
@@ -1011,13 +1007,13 @@ void PF_EntityContainer::move(const PF_Vector& offset) {
     for(auto e: entities){
 
         e->move(offset);
-//        if (autoUpdateBorders) {
-//            e->moveBorders(offset);
-//        }
+        //        if (autoUpdateBorders) {
+        //            e->moveBorders(offset);
+        //        }
     }
-//    if (autoUpdateBorders) {
-//        moveBorders(offset);
-//    }
+    //    if (autoUpdateBorders) {
+    //        moveBorders(offset);
+    //    }
 }
 
 
@@ -1028,9 +1024,9 @@ void PF_EntityContainer::rotate(const PF_Vector& center, const double& angle) {
     for(auto e: entities){
         e->rotate(center, angleVector);
     }
-//    if (autoUpdateBorders) {
-//        calculateBorders();
-//    }
+    //    if (autoUpdateBorders) {
+    //        calculateBorders();
+    //    }
 }
 
 
@@ -1039,9 +1035,9 @@ void PF_EntityContainer::rotate(const PF_Vector& center, const PF_Vector& angleV
     for(auto e: entities){
         e->rotate(center, angleVector);
     }
-//    if (autoUpdateBorders) {
-//        calculateBorders();
-//    }
+    //    if (autoUpdateBorders) {
+    //        calculateBorders();
+    //    }
 }
 
 
@@ -1052,9 +1048,9 @@ void PF_EntityContainer::scale(const PF_Vector& center, const PF_Vector& factor)
             e->scale(center, factor);
         }
     }
-//    if (autoUpdateBorders) {
-//        calculateBorders();
-//    }
+    //    if (autoUpdateBorders) {
+    //        calculateBorders();
+    //    }
 }
 
 
@@ -1084,7 +1080,7 @@ void PF_EntityContainer::mirror(const PF_Vector& axisPoint1, const PF_Vector& ax
 //        }
 //    }
 
-    // some entitiycontainers might need an update (e.g. RS_Leader):
+// some entitiycontainers might need an update (e.g. RS_Leader):
 //    update();
 //}
 
@@ -1097,9 +1093,9 @@ void PF_EntityContainer::moveRef(const PF_Vector& ref,
     for(auto e: entities){
         e->moveRef(ref, offset);
     }
-//    if (autoUpdateBorders) {
-//        calculateBorders();
-//    }
+    //    if (autoUpdateBorders) {
+    //        calculateBorders();
+    //    }
 }
 
 
@@ -1110,9 +1106,9 @@ void PF_EntityContainer::moveSelectedRef(const PF_Vector& ref,
     for(auto e: entities){
         e->moveSelectedRef(ref, offset);
     }
-//    if (autoUpdateBorders) {
-//        calculateBorders();
-//    }
+    //    if (autoUpdateBorders) {
+    //        calculateBorders();
+    //    }
 }
 
 void PF_EntityContainer::revertDirection() {
@@ -1183,7 +1179,7 @@ bool PF_EntityContainer::exportGeofile()
     /** 导出所有的面 **/
     for(auto e:entities){
         if(e->rtti() == PF::EntityFace && e->isVisible()){
-//            qDebug()<<"export face";
+            //            qDebug()<<"export face";
             out<<e->toGeoString()<<"\n";
         }
     }
@@ -1204,27 +1200,27 @@ void PF_EntityContainer::doMesh()
     gmsh::open("D:/model.geo");
     gmsh::model::mesh::generate(2);
     gmsh::write("D:/model.msh");
-//    CMesh* mesh = loadGmsh22("D:/model.msh");
-//    PF_Point** points = (PF_Point**)malloc(mesh->numNode * sizeof (PF_Point*));
-//    for(int i = 0;i < mesh->numNode;++i){
-//        double x = mesh->nodes[i].x;
-//        double y = mesh->nodes[i].y;
-//        points[i] = new PF_Point(this,this->mParentPlot,PF_PointData(PF_Vector(x,y)));
-//        this->addEntity(points[i]);
-//    }
-//    for(int i = 0;i < mesh->numEle;++i){
-//        if(mesh->eles[i].ele_type == TRIANGLE_NODE3){
-//            int n0 = mesh->eles[i].n[0];
-//            int n1 = mesh->eles[i].n[1];
-//            int n2 = mesh->eles[i].n[2];
-//            this->addEntity(new PF_Line(this,this->mParentPlot,points[n0],points[n1]));
-//            this->addEntity(new PF_Line(this,this->mParentPlot,points[n1],points[n2]));
-//            this->addEntity(new PF_Line(this,this->mParentPlot,points[n2],points[n0]));
+    //    CMesh* mesh = loadGmsh22("D:/model.msh");
+    //    PF_Point** points = (PF_Point**)malloc(mesh->numNode * sizeof (PF_Point*));
+    //    for(int i = 0;i < mesh->numNode;++i){
+    //        double x = mesh->nodes[i].x;
+    //        double y = mesh->nodes[i].y;
+    //        points[i] = new PF_Point(this,this->mParentPlot,PF_PointData(PF_Vector(x,y)));
+    //        this->addEntity(points[i]);
+    //    }
+    //    for(int i = 0;i < mesh->numEle;++i){
+    //        if(mesh->eles[i].ele_type == TRIANGLE_NODE3){
+    //            int n0 = mesh->eles[i].n[0];
+    //            int n1 = mesh->eles[i].n[1];
+    //            int n2 = mesh->eles[i].n[2];
+    //            this->addEntity(new PF_Line(this,this->mParentPlot,points[n0],points[n1]));
+    //            this->addEntity(new PF_Line(this,this->mParentPlot,points[n1],points[n2]));
+    //            this->addEntity(new PF_Line(this,this->mParentPlot,points[n2],points[n0]));
 
-//        }
-//    }
-//    this->mParentPlot->replot();
-    gmsh::finalize();    
+    //        }
+    //    }
+    //    this->mParentPlot->replot();
+    gmsh::finalize();
     PoofeeSay<<"Mesh over...";
 }
 
@@ -1282,10 +1278,12 @@ QVariantMap PF_EntityContainer::toMap()
 */
 bool PF_EntityContainer::importDXF(const QString &fileName)
 {
+    Point_T.clear();
+
     PoofeeSay<<QString(tr("Start importing DXF file ")+fileName);
     /** 将QString转换为char，假定路径长度不超过80 **/
     QByteArray ba = fileName.toLatin1();
-//    inname = (char *)malloc(ba.length() + 1);
+    //    inname = (char *)malloc(ba.length() + 1);
     memset(inname, 0, ba.length());
     memcpy(inname, ba.data(), ba.length());
     inname[ba.length()] = '\0';
@@ -1359,21 +1357,21 @@ find:
             }
         }
         else if(groupcode >= 10 && groupcode < 19) {        /* Some X coord */
-            sscanf(linbuf, "%f", &(xcoords[groupcode - 10]));
+            sscanf(linbuf, "%lf", &(xcoords[groupcode - 10]));
             if(xcoords[groupcode - 10] > max_x)
                 max_x = xcoords[groupcode - 10];
             if(xcoords[groupcode - 10] < min_x)
                 min_x = xcoords[groupcode - 10];
         }
         else if(groupcode >= 20 && groupcode < 29) {        /* Some Y coord */
-            sscanf(linbuf, "%f", &(ycoords[groupcode - 20]));
+            sscanf(linbuf, "%lf", &(ycoords[groupcode - 20]));
             if(ycoords[groupcode - 20] > max_y)
                 max_y = ycoords[groupcode - 20];
             if(ycoords[groupcode - 20] < min_y)
                 min_y = ycoords[groupcode - 20];
         }
         else if(groupcode >= 30 && groupcode < 38) {        /* Some Z coord */
-            sscanf(linbuf, "%f", &(zcoords[groupcode - 30]));
+            sscanf(linbuf, "%lf", &(zcoords[groupcode - 30]));
             if(zcoords[groupcode - 30] > max_z)
                 max_z = zcoords[groupcode - 30];
             if(zcoords[groupcode - 30] < min_z)
@@ -1384,12 +1382,12 @@ find:
         else if(groupcode == 39) {  /* entity thickness if nonzero */
         }
         else if(groupcode >= 40 && groupcode < 49) {        /* misc floats */
-            sscanf(linbuf, "%f", &(floats[groupcode - 40]));
+            sscanf(linbuf, "%lf", &(floats[groupcode - 40]));
         }
         else if(groupcode == 49) {  /* repeated value groups */
         }
         else if(groupcode >= 50 && groupcode < 59) {        /* misc angles */
-            sscanf(linbuf, "%f", &(angles[groupcode - 50]));
+            sscanf(linbuf, "%lf", &(angles[groupcode - 50]));
         }
         else if(groupcode == 62) {  /* Color number */
             sscanf(linbuf, "%6d", &curcolor);
@@ -1407,6 +1405,31 @@ find:
 stopit:
     fclose(infile);
 
+    QMap<int,PF_Point*> ps;
+    /** 生成所有的点 **/
+    for(std::set<Point>::iterator it = Point_T.begin(); it != Point_T.end(); ++it){
+        qDebug()<<it->num<<" "<<it->x<<" "<<it->y;
+        auto p = new PF_Point(this,mParentPlot,PF_Vector(it->x,it->y));
+        p->setIndex(it->num);
+        ps.insert(it->num,p);
+    }
+    /** 按照index排序的顺序 **/
+    QMapIterator<int,PF_Point*> i(ps);
+    while (i.hasNext()) {
+        i.next();
+        this->addEntity(i.value());
+    }
+    /** 生成所有的线 **/
+    for(std::set<Curve>::iterator it = Curve_T.begin(); it != Curve_T.end(); ++it){
+        qDebug()<<it->num<<" "<<it->a<<" "<<it->b;
+        auto l = new PF_Line(this,mParentPlot,ps.value(it->a,nullptr),ps.value(it->b,nullptr));
+        l->setIndex(it->num);
+        this->addEntity(l);
+    }
+    PoofeeSay<<QString("%1 points, %2 curves imported and %3 degenerate entities removed");//.arg(
+    //                              Point_T.size(), Curve_T.size(), degenerates);
+    PoofeeSay<<QString(tr("End importing DXF file ")+fileName);
+    this->parentPlot()->zoomAuto();
     return true;
 }
 
@@ -1419,6 +1442,9 @@ stopit:
 */
 bool PF_EntityContainer::importGeo(const QString &fileName)
 {
+    PoofeeSay<<QString(tr("Start importing GEO file ")+fileName);
+
+    PoofeeSay<<QString(tr("End importing GEO file ")+fileName);
     return true;
 }
 
@@ -1432,10 +1458,10 @@ bool PF_EntityContainer::importCADFile(const QString &fileName)
 {
     /** 检查文件类型 **/
     QFileInfo fileInfo(fileName);
-    if(fileInfo.suffix().compare("dxf",Qt::CaseInsensitive)){
-        PoofeeSay<<QString("Start importing DXF file %1").arg(fileName);
-    }else if(fileInfo.suffix().compare("geo",Qt::CaseInsensitive)){
-        PoofeeSay<<QString("Start importing GEO file %1").arg(fileName);
+    if(fileInfo.suffix().compare("dxf",Qt::CaseInsensitive) == 0){
+        importDXF(fileName);
+    }else if(fileInfo.suffix().compare("geo",Qt::CaseInsensitive) == 0){
+        importGeo(fileName);
     }else{
         PoofeeSay<<"Unsupported CAD file!";
     }
@@ -1445,4 +1471,9 @@ bool PF_EntityContainer::importCADFile(const QString &fileName)
 int PF_EntityContainer::index() const
 {
     return 0;
+}
+
+void PF_EntityContainer::setIndex(int index)
+{
+
 }

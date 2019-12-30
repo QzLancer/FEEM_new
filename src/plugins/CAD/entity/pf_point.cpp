@@ -14,6 +14,13 @@ PF_Point::PF_Point(PF_EntityContainer *parent, PF_GraphicView *view, const PF_Po
     m_index = point_index;
 }
 
+PF_Point::PF_Point(PF_EntityContainer *parent, PF_GraphicView *view, PF_Vector pos)
+    :PF_AtomicEntity(parent,view)
+    ,data(PF_PointData(pos))
+{
+
+}
+
 PF::EntityType PF_Point::rtti() const
 {
     return PF::EntityPoint;
@@ -210,4 +217,9 @@ QVariantMap PF_Point::toMap()
 int PF_Point::index() const
 {
     return m_index;
+}
+
+void PF_Point::setIndex(int index)
+{
+    m_index = index;
 }

@@ -95,6 +95,7 @@ public:
 
     QString toGeoString() override;
     int index() const override;
+    void setIndex(int index) override;
 
     /** 数据导入导出 **/
     bool fromMap(QVariantMap map) override;

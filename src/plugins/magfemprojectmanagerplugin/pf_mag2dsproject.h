@@ -31,8 +31,6 @@ public:
     virtual QVariantMap toMap() const;
     virtual RestoreResult fromMap(const QVariantMap &map, QString *errorMessage);
 
-    virtual void saveProject(const QString & fileName);
-    virtual void openProject(const QString & fileName);
 public:
     // General problem attributes
 //    double  Frequency;

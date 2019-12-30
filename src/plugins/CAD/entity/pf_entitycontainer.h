@@ -132,6 +132,7 @@ public:
     bool importCADFile(const QString & fileName);
 
     int index() const override;
+    void setIndex(int index) override;
 signals:
     void EntityChanged();
 protected:

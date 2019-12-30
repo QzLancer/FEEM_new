@@ -265,6 +265,11 @@ int PF_Face::index() const
     return m_index;
 }
 
+void PF_Face::setIndex(int index)
+{
+    m_index = index;
+}
+
 bool PF_Face::fromMap(QVariantMap map)
 {
     return true;

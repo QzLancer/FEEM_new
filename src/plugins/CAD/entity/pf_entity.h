@@ -336,6 +336,7 @@ public:
 
     virtual QString toGeoString() = 0;
     virtual int index() const = 0;
+    virtual void setIndex(int index) = 0;
 
     /** 为了将数据保存和读取。应不应该设为纯虚函数，但是只用到了部分而已**/
     virtual bool fromMap(QVariantMap map);

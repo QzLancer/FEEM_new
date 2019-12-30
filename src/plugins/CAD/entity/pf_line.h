@@ -102,6 +102,7 @@ public:
     QVariantMap toMap() override;
 
     int index() const override;
+    void setIndex(int index) override;
 public:
     static int line_index;
 public:

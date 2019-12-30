@@ -18,6 +18,7 @@
 
 #include <QFileDialog>
 #include <QFileInfo>
+#include <QString>
 
 PF_ActionHandler::PF_ActionHandler(QObject *parent) : QObject(parent)
 {
@@ -320,9 +321,19 @@ void PF_ActionHandler::slotExportGeoFile()
 */
 void PF_ActionHandler::slotImportGeoFile()
 {
-    QString fileName = QFileDialog::getOpenFileName(Core::ICore::dialogParent(), tr("Select CAD File"),
+    /** 必须赋值 **/
+    Core::IGeometry* ig = Core::GeometryManager::instance()->currentCAD();
+    if(Geometry2D* ig2 = qobject_cast<Geometry2D*>(ig)){
+        set_document(ig2->document());
+        set_view(ig2->view());
+    }else{
+        return;
+    }
+    QString fileName = QFileDialog::getOpenFileName(Core::ICore::dialogParent(),
+                                                    tr("Select CAD File"),
                                                     ".",
                                                     tr("CAD Files(*.dxf *.geo)"));
+//    QString fileName("D:/winmac/FEEMdev/FEEM/bin/modelrec.DXF");
     if(fileName.isEmpty()) return;
     document->importCADFile(fileName);
 }

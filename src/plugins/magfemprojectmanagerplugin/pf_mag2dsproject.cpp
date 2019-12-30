@@ -42,6 +42,7 @@ using namespace ProjectExplorer;
 namespace MagFEMProjectManagerPlugin {
 
 PF_Mag2DSProject::PF_Mag2DSProject()
+    :PF_CommonFEMProject()
 {
     //    m_materialList.push_back(CMaterialProp());
     //    m_materialList.push_back(CMaterialProp());
@@ -1404,25 +1405,6 @@ PF_Project::RestoreResult PF_Mag2DSProject::fromMap(const QVariantMap& map, QStr
     return RestoreResult::Ok;
 }
 
-/**
- * @brief 保存项目文件
- *
- * @param fileName
- */
-void PF_Mag2DSProject::saveProject(const QString& fileName)
-{
-
-}
-
-/**
- * @brief 打开项目文件
- *
- * @param fileName
- */
-void PF_Mag2DSProject::openProject(const QString& fileName)
-{
-
-}
 /**
  * @brief
  *

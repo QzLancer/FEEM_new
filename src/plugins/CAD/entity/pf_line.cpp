@@ -352,6 +352,11 @@ int PF_Line::index() const
     return m_index;
 }
 
+void PF_Line::setIndex(int index)
+{
+    m_index = index;
+}
+
 PF_LineData::PF_LineData(PF_Point* startpoint, PF_Point* endpoint)
     :startpoint(startpoint)
     ,endpoint(endpoint)
