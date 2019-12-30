@@ -1375,35 +1375,7 @@ QVariantMap PF_Mag2DSProject::toMap() const
     /** 保存关于geometry的信息 **/
     QVariantMap geo;
     geo.insert("Dimension","2D Axis");
-    QVariantMap points,lines,faces;
-
-    for(auto e : m_document->getEntityList()){
-        switch (e->rtti()) {
-        case PF::EntityPoint:
-        {
-            points.insert(QString("POINT%1").arg(e->index()),e->toMap());
-            break;
-        }
-        case PF::EntityLine:
-        {
-            lines.insert(QString("LINE%1").arg(e->index()),e->toMap());
-            break;
-        }
-        case PF::EntityFace:
-        {
-            faces.insert(QString("FACE%1").arg(e->index()),e->toMap());
-            break;
-        }
-        default:
-        {
-            qDebug()<<"No such entity.";
-            break;
-        }
-        }
-    }
-    geo.insert("Points",points);
-    geo.insert("Lines",lines);
-    geo.insert("Faces",faces);
+    geo.insert("Geometry",m_document->toMap());
     map1<<geo;
 //    map.insert("Geometry",geo);
 

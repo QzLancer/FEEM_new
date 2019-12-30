@@ -59,7 +59,7 @@ public slots:
 
     //Geometry
     void slotExportGeoFile();
-    void slotImportGeoFile(const QString & fileName);
+    void slotImportGeoFile();
 
     //View
     void slotZoomIn();

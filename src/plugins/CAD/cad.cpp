@@ -138,15 +138,21 @@ void CADPlugin::registerDefaultActions()
 {
     /** 导入导出 **/
     auto group = ActionManager::actionContainer(Constants::G_GEOMETRY_IMEXPORT);
-    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/import.png"), tr("Import Geometry"), Qt::ToolButtonTextUnderIcon);
-    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/export.png"), tr("Export Geometry"), Qt::ToolButtonTextUnderIcon);
+    auto action = new QAction(tr("Import Geometry"));
+    action->setIcon(QIcon(":/cad/imgs/import.png"));
+    connect(action, SIGNAL(triggered()), action_handler, SLOT(slotImportGeoFile()));
+    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
+    action = new QAction(tr("Export Geometry"));
+    action->setIcon(QIcon(":/cad/imgs/export.png"));
+    connect(action, SIGNAL(triggered()), action_handler, SLOT(slotImportGeoFile()));
+    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
     /** 构建 **/
     group = ActionManager::actionContainer(Constants::G_GEOMETRY_BUILD);
     group->ribbonGroup()->addAction(QIcon(":/cad/imgs/buildgeometry.png"), tr("Build Geometry"), Qt::ToolButtonTextUnderIcon);
     /** 绘图 **/
     /**画点**/
     group = ActionManager::actionContainer(Constants::G_GEOMETRY_DRAW);
-    auto action = new QAction(tr("DrawPoint"));
+    action = new QAction(tr("DrawPoint"));
     action->setIcon(QIcon(":/cad/imgs/dot.png"));
     connect(action, SIGNAL(triggered()), action_handler, SLOT(slotDrawPoint()));
     action->setObjectName("DrawPoint");

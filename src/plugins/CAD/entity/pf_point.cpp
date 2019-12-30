@@ -2,6 +2,10 @@
 #include "pf_graphicview.h"
 #include <QPainter>
 
+const QLatin1String XKey("X");
+const QLatin1String YKey("Y");
+const QLatin1String IndexKey("INDEX");
+
 int PF_Point::point_index = 1;
 PF_Point::PF_Point(PF_EntityContainer *parent, PF_GraphicView *view, const PF_PointData &d)
     :PF_AtomicEntity(parent,view)
@@ -187,6 +191,9 @@ QString PF_Point::toGeoString()
 
 bool PF_Point::fromMap(QVariantMap map)
 {
+    data.pos.x = map.value(XKey,data.pos.x).toDouble();
+    data.pos.y = map.value(YKey,data.pos.y).toDouble();
+    m_index = map.value(IndexKey,m_index).toInt();
     return true;
 }
 
@@ -194,8 +201,9 @@ QVariantMap PF_Point::toMap()
 {
     QVariantMap p;
     /** 保存点坐标 **/
-    p.insert("X",getCenter().x);
-    p.insert("Y",getCenter().y);
+    p.insert(XKey,getCenter().x);
+    p.insert(YKey,getCenter().y);
+    p.insert(IndexKey,m_index);
     return p;
 }
 

@@ -14,7 +14,10 @@
 
 #include <coreplugin/geometrymanager/geometrymanager.h>
 #include <coreplugin/geometrymanager/igeometry.h>
+#include <coreplugin/icore.h>
 
+#include <QFileDialog>
+#include <QFileInfo>
 
 PF_ActionHandler::PF_ActionHandler(QObject *parent) : QObject(parent)
 {
@@ -315,10 +318,13 @@ void PF_ActionHandler::slotExportGeoFile()
 
  \param fileName
 */
-void PF_ActionHandler::slotImportGeoFile(const QString &fileName)
+void PF_ActionHandler::slotImportGeoFile()
 {
+    QString fileName = QFileDialog::getOpenFileName(Core::ICore::dialogParent(), tr("Select CAD File"),
+                                                    ".",
+                                                    tr("CAD Files(*.dxf *.geo)"));
     if(fileName.isEmpty()) return;
-
+    document->importCADFile(fileName);
 }
 
 void PF_ActionHandler::slotZoomIn() {

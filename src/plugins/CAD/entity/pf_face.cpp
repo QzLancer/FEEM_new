@@ -4,6 +4,8 @@
 #include <QPainter>
 #include <QVariantList>
 
+const QLatin1String IndexKey("INDEX");
+
 int PF_Face::face_index = 1;
 int PF_LineLoop::lineloop_index = 1;
 
@@ -277,9 +279,12 @@ bool PF_Face::fromMap(QVariantMap map)
 QVariantMap PF_Face::toMap()
 {
     QVariantMap f;
+    f.insert(IndexKey,m_index);
     /** 保存面的loop信息。感觉这些没必要写在这里，直接在实体里写toMap即可，还不用开放。 **/
     for(auto loop : data.faceData){
         QVariantList lps;
+        /** 导出的时候要不要考虑方向呢？一般来说，闭合曲面的话，线都是连接的，可以不考虑吧？
+            千万注意这里要用list，因为不能用map，会被排序的。**/
         for(auto lines : loop->lines){
             lps<<lines->index();
         }

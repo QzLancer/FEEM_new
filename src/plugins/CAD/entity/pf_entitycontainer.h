@@ -102,7 +102,7 @@ public:
     void moveSelectedRef(const PF_Vector& ref, const PF_Vector& offset) override;
     void revertDirection() override;
 
-    void draw(QCPPainter *painter);
+    void draw(QCPPainter *painter) override;
 
     virtual void adjustBorders(PF_Entity* entity);
     void calculateBorders() override;
@@ -122,6 +122,15 @@ public:
     bool exportGeofile();
     void doMesh();
 //    CMesh *loadGmsh22(const char fn[]);
+
+    /** 数据导入导出 **/
+    bool fromMap(QVariantMap map) override;
+    QVariantMap toMap() override;
+    /** 与其他CAD文件的接口 **/
+    bool importDXF(const QString & fileName);
+    bool importGeo(const QString & fileName);
+    bool importCADFile(const QString & fileName);
+
     int index() const override;
 signals:
     void EntityChanged();
