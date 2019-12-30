@@ -2,6 +2,7 @@
 #define PF_PROJECTMODEL_H
 
 #include "project_export.h"
+#include "expanddata.h"
 
 #include <utils/treemodel.h>
 
@@ -59,7 +60,7 @@ public:
 
 signals:
 //    void renamed(const Utils::FileName &oldName, const Utils::FileName &newName);
-//    void requestExpansion(const QModelIndex &index);
+    void requestExpansion(const QModelIndex &index);
 
 private:
 //    bool m_filterProjects = false;
@@ -73,7 +74,7 @@ private:
     void addFolderNode(WrapperNode *parent, FolderNode *folderNode, QSet<Node *> *seen);
 //    bool trimEmptyDirectories(WrapperNode *parent);
 
-//    ExpandData expandDataForNode(const Node *node) const;
+    ExpandData expandDataForNode(const Node *node) const;
 //    void loadExpandData();
 //    void saveExpandData();
     void handleProjectAdded(PF_Project *project);
@@ -84,7 +85,7 @@ private:
 //    void parsingStateChanged(Project *project);
 
     QTimer m_timer;
-//    QSet<ExpandData> m_toExpand;
+    QSet<ExpandData> m_toExpand;/** 保存需要展开的节点数据 **/
     QColor m_enabledTextColor;
     QColor m_disabledTextColor;
 };

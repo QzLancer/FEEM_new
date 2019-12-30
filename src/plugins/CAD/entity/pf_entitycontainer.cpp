@@ -415,12 +415,10 @@ void addobj(void)
 int getline(void)
 {       /* read a group code and the next line from infile */
     fgets(linbuf, BUFSIZE, infile);       /* get a line from .DXF */
-    qDebug()<<linbuf;
     if(feof(infile))
         return (1);
     sscanf(linbuf, "%3d", &groupcode);    /* scan out group code */
     fgets(linbuf, BUFSIZE, infile);       /* get a line from .DXF */
-    qDebug()<<linbuf;
     if(feof(infile))
         return (1);
     return (0);
@@ -517,7 +515,22 @@ void PF_EntityContainer::addEntity(PF_Entity *entity)
 
     entities.append(entity);
     //qDebug()<<"PF_EntityContainer::addEntity:size:"<<entities.size();
+    /** 导入的时候批量添加，导致tree不断地更新，删除。。。不输出还不知道这个。。。 **/
     emit EntityChanged();
+}
+
+/**
+ * @brief 添加entity，但是不发出信号。
+ *
+ * @param entity
+ */
+void PF_EntityContainer::addEntitySilence(PF_Entity* entity)
+{
+    if(!entity){
+        return;
+    }
+
+    entities.append(entity);
 }
 
 
@@ -1278,7 +1291,12 @@ QVariantMap PF_EntityContainer::toMap()
 */
 bool PF_EntityContainer::importDXF(const QString &fileName)
 {
+    /** 目前假定导入前要删除之前的数据，包括用户建模的数据，也就是不能多次导入。
+        主要是因为编号的问题似乎不好解决，无法确定编号是不是存在？？可以这样，导入的时候
+        设置一个新的基数作为编号的起始。**/
     Point_T.clear();
+    Curve_T.clear();
+    entities.clear();
 
     PoofeeSay<<QString(tr("Start importing DXF file ")+fileName);
     /** 将QString转换为char，假定路径长度不超过80 **/
@@ -1408,7 +1426,7 @@ stopit:
     QMap<int,PF_Point*> ps;
     /** 生成所有的点 **/
     for(std::set<Point>::iterator it = Point_T.begin(); it != Point_T.end(); ++it){
-        qDebug()<<it->num<<" "<<it->x<<" "<<it->y;
+//        qDebug()<<it->num<<" "<<it->x<<" "<<it->y;
         auto p = new PF_Point(this,mParentPlot,PF_Vector(it->x,it->y));
         p->setIndex(it->num);
         ps.insert(it->num,p);
@@ -1417,17 +1435,18 @@ stopit:
     QMapIterator<int,PF_Point*> i(ps);
     while (i.hasNext()) {
         i.next();
-        this->addEntity(i.value());
+        this->addEntitySilence(i.value());
     }
     /** 生成所有的线 **/
     for(std::set<Curve>::iterator it = Curve_T.begin(); it != Curve_T.end(); ++it){
-        qDebug()<<it->num<<" "<<it->a<<" "<<it->b;
+//        qDebug()<<it->num<<" "<<it->a<<" "<<it->b;
         auto l = new PF_Line(this,mParentPlot,ps.value(it->a,nullptr),ps.value(it->b,nullptr));
         l->setIndex(it->num);
-        this->addEntity(l);
+        this->addEntitySilence(l);
     }
-    PoofeeSay<<QString("%1 points, %2 curves imported and %3 degenerate entities removed");//.arg(
-    //                              Point_T.size(), Curve_T.size(), degenerates);
+    emit EntityChanged();
+    PoofeeSay<<QString("%1 points, %2 curves imported and %3 degenerate entities removed").arg(
+                                  Point_T.size()).arg(Curve_T.size()).arg(degenerates);
     PoofeeSay<<QString(tr("End importing DXF file ")+fileName);
     this->parentPlot()->zoomAuto();
     return true;

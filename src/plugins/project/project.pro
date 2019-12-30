@@ -21,7 +21,8 @@ HEADERS += \
     projectwelcomepage.h \
     projectexplorerconstants.h \
     baseprojectwizarddialog.h \
-    pf_femprojectaccessor.h
+    pf_femprojectaccessor.h \
+    expanddata.h
 
 SOURCES += \
     pf_projectexplorer.cpp \
@@ -37,7 +38,8 @@ SOURCES += \
     pf_sessionmanager.cpp \
     projectwelcomepage.cpp \
     baseprojectwizarddialog.cpp \
-    pf_femprojectaccessor.cpp
+    pf_femprojectaccessor.cpp \
+    expanddata.cpp
 
 RESOURCES += \
     project.qrc

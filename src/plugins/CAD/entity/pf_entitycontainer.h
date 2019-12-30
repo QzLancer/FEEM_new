@@ -42,6 +42,7 @@ public:
     PF_Entity* last() const;
 
     virtual void addEntity(PF_Entity* entity);
+    virtual void addEntitySilence(PF_Entity* entity);
     virtual void appendEntity(PF_Entity* entity);
     virtual void prependEntity(PF_Entity* entity);
     virtual void moveEntity(int index, QList<PF_Entity *>& entList);

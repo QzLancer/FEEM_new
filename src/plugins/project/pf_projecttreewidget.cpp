@@ -183,25 +183,6 @@ private:
 PF_ProjectTreeWidget::PF_ProjectTreeWidget(QWidget *parent) : QWidget(parent)
 {
     m_model = new PF_ProjectModel(this);
-//    auto noderoot = new Node(QString("root:untitled.mph"),NodeType::Leaf,QIcon(":/imgs/model_3d.png"));
-//    auto nodedef = new Node(QString("Global Definitions"),NodeType::Leaf,QIcon(":/imgs/global_branch.png"));
-
-//    auto nodemat = new Node(QString("Materials:Materials"),NodeType::Leaf,QIcon(":/imgs/material.png"));
-//    auto nodecomp = new Node(QString("Component:Component1"),NodeType::Folder,QIcon(":/imgs/model_2d_axi.png"));
-//    auto nodedefin = new Node(QString("Definitions"),NodeType::Leaf,QIcon(":/imgs/definitions.png"));
-//    auto nodegeo = new Node(QString("Geometry1"),NodeType::Leaf,QIcon(":/imgs/geometry.png"));
-//    auto nodemesh = new Node(QString("Mesh1"),NodeType::Leaf,QIcon(":/imgs/mesh.png"));
-
-//    auto comp = new WrapperNode(nodecomp);
-//    comp->appendChild(new WrapperNode(nodedefin));
-//    comp->appendChild((new WrapperNode(nodegeo)));
-//    comp->appendChild((new WrapperNode(nodemesh)));
-//    auto def = new WrapperNode(nodedef);
-//    def->appendChild(new WrapperNode(nodemat));
-//    WrapperNode* root = new WrapperNode(noderoot);
-//    root->appendChild(def);
-//    root->appendChild(comp);
-//    m_model->rootItem()->insertChild(0,root);
 
     m_view = new PF_ProjectTreeView;
     m_view->setModel(m_model);
@@ -225,8 +206,8 @@ PF_ProjectTreeWidget::PF_ProjectTreeWidget(QWidget *parent) : QWidget(parent)
             this, &PF_ProjectTreeWidget::openItem);
     connect(m_view, &QAbstractItemView::doubleClicked,
             this, &PF_ProjectTreeWidget::doubleopenItem);
-//    connect(m_view, &QAbstractItemView::activated,
-//            this, &PF_ProjectTreeWidget::openItem);
+    connect(m_view, &QAbstractItemView::activated,
+            this, &PF_ProjectTreeWidget::openItem);
     connect(m_view->selectionModel(), &QItemSelectionModel::currentChanged,
             this, &PF_ProjectTreeWidget::handleCurrentItemChange);
     /** 处理右键操作 **/
@@ -289,7 +270,7 @@ void PF_ProjectTreeWidget::handleCurrentItemChange(const QModelIndex &current)
 */
 void PF_ProjectTreeWidget::showContextMenu(const QPoint &pos)
 {
-    qDebug()<<Q_FUNC_INFO;
+//    qDebug()<<Q_FUNC_INFO;
     QModelIndex index = m_view->indexAt(pos);
     Node *node = m_model->nodeForIndex(index);
     PF_ProjectTree::showContextMenu(this, m_view->mapToGlobal(pos), node);
@@ -412,18 +393,6 @@ Core::NavigationView ProjectTreeWidgetFactory::createWidget()
     auto ptw = new PF_ProjectTreeWidget;
     n.widget = ptw;
 
-//    auto filter = new QToolButton;
-//    filter->setIcon(Icons::FILTER.icon());
-//    filter->setToolTip(tr("Filter Tree"));
-//    filter->setPopupMode(QToolButton::InstantPopup);
-//    filter->setProperty("noArrow", true);
-//    auto filterMenu = new QMenu(filter);
-//    filterMenu->addAction(ptw->m_filterProjectsAction);
-//    filterMenu->addAction(ptw->m_filterGeneratedFilesAction);
-//    filterMenu->addAction(ptw->m_trimEmptyDirectoriesAction);
-//    filter->setMenu(filterMenu);
-
-//    n.dockToolBarWidgets << filter << ptw->toggleSync();
     return n;
 }
 }//namespace ProjectExplorer

@@ -149,7 +149,7 @@ void PF_Project::creatTree()
 */
 void PF_Project::setRootProjectNode(std::unique_ptr<ProjectNode> &&root)
 {
-    qDebug()<<Q_FUNC_INFO;
+//    qDebug()<<Q_FUNC_INFO;
     if(d->m_rootProjectNode.get() == root.get() && root)
         return;
 
@@ -182,7 +182,7 @@ void PF_Project::setRootProjectNode(std::unique_ptr<ProjectNode> &&root)
 */
 void PF_Project::handleSubTreeChanged(FolderNode* node)
 {
-    qDebug()<<Q_FUNC_INFO;
+//    qDebug()<<Q_FUNC_INFO;
 
     PF_ProjectTree::emitSubtreeChanged(node);
 //    emit fileListChanged();

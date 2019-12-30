@@ -27,9 +27,6 @@ PF_ProjectModel::PF_ProjectModel(QObject *parent)
     /** 应该是加载现有的projects **/
     for (PF_Project *project : PF_SessionManager::projects())
         handleProjectAdded(project);
-
-//    m_disabledTextColor = Utils::creatorTheme()->color(Utils::Theme::TextColorDisabled);
-//    m_enabledTextColor = Utils::creatorTheme()->color(Utils::Theme::TextColorNormal);
 }
 
 /*!
@@ -147,16 +144,28 @@ QModelIndex PF_ProjectModel::indexForNode(const Node *node) const
     return wrapper ? indexForItem(wrapper) : QModelIndex();
 }
 
+/**
+ * @brief 处理expanddata
+ *
+ * @param idx
+ */
 void PF_ProjectModel::onExpanded(const QModelIndex &idx)
 {
 //    qDebug()<<Q_FUNC_INFO;
 //    qDebug()<<"onExpanded:"<<idx.column()<<idx.row();
+    m_toExpand.insert(expandDataForNode(nodeForIndex(idx)));
 }
 
+/**
+ * @brief 处理expanddata
+ *
+ * @param idx
+ */
 void PF_ProjectModel::onCollapsed(const QModelIndex &idx)
 {
 //    qDebug()<<Q_FUNC_INFO;
 //    qDebug()<<"onCollapsed:"<<idx.column()<<idx.row();
+    m_toExpand.remove(expandDataForNode(nodeForIndex(idx)));
 }
 
 /*!
@@ -166,7 +175,7 @@ void PF_ProjectModel::onCollapsed(const QModelIndex &idx)
 */
 void PF_ProjectModel::updateSubtree(FolderNode *node)
 {
-    qDebug()<<Q_FUNC_INFO;
+//    qDebug()<<Q_FUNC_INFO;
     // FIXME: This is still excessive, should be limited to the affected subtree.
     while (FolderNode *parent = node->parentFolderNode())
         node = parent;
@@ -217,25 +226,29 @@ void PF_ProjectModel::addFolderNode(WrapperNode *parent, FolderNode *folderNode,
 }
 
 /**
+ * @brief 根据节点生成ExpandData
+ *
+ * @param node
+ * @return ExpandData
+ */
+ExpandData PF_ProjectModel::expandDataForNode(const Node* node) const
+{
+    if(!node) return ExpandData();
+    const QString displayName = node->displayName();
+    return ExpandData(displayName);
+}
+
+/**
  * @brief 通常是要处理从session传过来的project
  *
  * @param project
  */
 void PF_ProjectModel::handleProjectAdded(PF_Project *project)
 {
-    qDebug()<<Q_FUNC_INFO;
+//    qDebug()<<Q_FUNC_INFO;
     if(!project)
         return;
-//    connect(project, &Project::parsingStarted,
-//            this, [this, project]() {
-//        if (nodeForProject(project))
-//            parsingStateChanged(project);
-//    });
-//    connect(project, &Project::parsingFinished,
-//            this, [this, project]() {
-//        if (nodeForProject(project))
-//            parsingStateChanged(project);
-//    });
+
     addOrRebuildProjectModel(project);
 }
 
@@ -252,7 +265,7 @@ void PF_ProjectModel::handleProjectRemoved(PF_Project *project)
  */
 WrapperNode *PF_ProjectModel::nodeForProject(const PF_Project *project) const
 {
-    qDebug()<<Q_FUNC_INFO;
+//    qDebug()<<Q_FUNC_INFO;
     if(!project)
         return nullptr;
     /** 计算project的rootnode **/
@@ -274,7 +287,7 @@ WrapperNode *PF_ProjectModel::nodeForProject(const PF_Project *project) const
  */
 void PF_ProjectModel::addOrRebuildProjectModel(PF_Project *project)
 {
-    qDebug()<<Q_FUNC_INFO;
+//    qDebug()<<Q_FUNC_INFO;
     /** 查找模型当中有没有project，注意，如果存在的话，会先清空 **/
     WrapperNode *container = nodeForProject(project);
     if (container) {
@@ -295,62 +308,28 @@ void PF_ProjectModel::addOrRebuildProjectModel(PF_Project *project)
         addFolderNode(container, projectNode, &seen);
     }
 
-//    container->sortChildren(&sortWrapperNodes);
+    /** 展开root节点 **/
+    m_toExpand.insert(expandDataForNode(container->m_node));
 
     container->forAllChildren([this](Utils::TreeItem *node) {
         /** 不知道为什么这里不能使用WrapperNode作为参数，可能是编译器的问题，
             所以就写成了TreeItem  **/
         if (dynamic_cast<WrapperNode*>(node)->m_node) {
-//            const QString path = node->m_node->filePath().toString();
-//            const QString displayName = node->m_node->displayName();
-//            ExpandData ed(path, displayName);
-//            if (m_toExpand.contains(ed))
+            const QString displayName = dynamic_cast<WrapperNode*>(node)->m_node->displayName();
+            ExpandData ed(displayName);
+            if (m_toExpand.contains(ed))
                 emit requestExpansion(node->index());
         } else {
             emit requestExpansion(node->index());
         }
     });
 
-//    const QString path = container->m_node->filePath().toString();
-//    const QString displayName = container->m_node->displayName();
-//    ExpandData ed(path, displayName);
-//    if (m_toExpand.contains(ed))
-//        emit requestExpansion(container->index());
+    const QString displayName = container->m_node->displayName();
+    ExpandData ed(displayName);
+    if (m_toExpand.contains(ed))
+        emit requestExpansion(container->index());
 }
 
-//void PF_ProjectModel::setProjectFilterEnabled(bool filter)
-//{
-//    if (filter == m_filterProjects)
-//        return;
-//    m_filterProjects = filter;
-//    rebuildModel();
-//}
-
-//void PF_ProjectModel::setGeneratedFilesFilterEnabled(bool filter)
-//{
-//    if (filter == m_filterGeneratedFiles)
-//        return;
-//    m_filterGeneratedFiles = filter;
-//    rebuildModel();
-//}
-
-//void PF_ProjectModel::setTrimEmptyDirectories(bool filter)
-//{
-//    if (filter == m_trimEmptyDirectories)
-//        return;
-//    m_trimEmptyDirectories = filter;
-//    rebuildModel();
-//}
-
-//bool PF_ProjectModel::projectFilterEnabled()
-//{
-//    return m_filterProjects;
-//}
-
-//bool PF_ProjectModel::generatedFilesFilterEnabled()
-//{
-//    return m_filterGeneratedFiles;
-//}
 
 /*!
  \brief 返回索引Index处数据的Node值。
@@ -364,9 +343,4 @@ Node *PF_ProjectModel::nodeForIndex(const QModelIndex &index) const
     return flatNode ? flatNode->m_node : nullptr;
 }
 
-//const QLoggingCategory &PF_ProjectModel::logger()
-//{
-//    static QLoggingCategory logger("qtc.projectexplorer.PF_ProjectModel", QtWarningMsg);
-//    return logger;
-//}
 }//namespace ProjectExplorer
