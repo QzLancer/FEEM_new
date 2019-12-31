@@ -24,6 +24,7 @@
 #include <coreplugin/workpage.h>
 #include <coreplugin/icore.h>
 #include <coreplugin/iwizardfactory.h>
+#include <coreplugin/pagemanager.h>
 
 #include <extensionsystem/pluginerroroverview.h>
 #include <extensionsystem/pluginmanager.h>
@@ -42,6 +43,7 @@
 #include <QMenu>
 #include <QUuid>
 #include <QFileDialog>
+#include <QXmlStreamReader>
 
 #include <cstdlib>
 
@@ -489,9 +491,24 @@ PF_ProjectExplorerPlugin::OpenProjectResult PF_ProjectExplorerPlugin::openProjec
         }
 
         /** 没有打开，判断project类型 ，如何读取MimeType？??这个还得自己
-            定义，比较复杂，还不如自己直接从文件里去读取。**/
-        Utils::MimeType mt = Utils::mimeTypeForFile(fileName,Utils::MimeMatchMode::MatchExtension);
-        qDebug()<<mt.name();
+            定义，比较复杂，还不如自己直接从文件里去读取。打算简单的读取一下
+            文件当中的doctype，就在第二行。**/
+        QFile file(fileName);
+        QString mimeType;
+        if(file.open(QIODevice::ReadOnly | QIODevice::Text)){
+            QXmlStreamReader m_xmlReader(&file);
+            while (!m_xmlReader.isDTD()) {
+                m_xmlReader.readNext();
+            }
+            mimeType = m_xmlReader.text().toString();
+            mimeType = mimeType.simplified();
+            mimeType.remove(0,mimeType.indexOf("DOCTYPE")+7);
+            mimeType.truncate(mimeType.indexOf(">"));
+            mimeType = mimeType.trimmed();
+        }
+        file.close();
+
+        Utils::MimeType mt(mimeType);
         if (PF_ProjectManager::canOpenProjectForMimeType(mt)) {
             if (!filePath.toFileInfo().isFile()) {
                 PoofeeSay<<tr("Failed opening project \"%1\": Project is not a file.").arg(fileName);
@@ -526,13 +543,10 @@ PF_ProjectExplorerPlugin::OpenProjectResult PF_ProjectExplorerPlugin::openProjec
 
 //    bool switchToProjectsMode = Utils::anyOf(openedPro, &Project::needsConfiguration);
 
-//    if (!openedPro.isEmpty()) {
-//        if (switchToProjectsMode)
-//            ModeManager::activateMode(Constants::MODE_SESSION);
-//        else
-//            ModeManager::activateMode(Core::Constants::MODE_EDIT);
-//        ModeManager::setFocusToCurrentMode();
-//    }
+    /** 如果打开项目成功，应该切换到项目页面 **/
+    if (!openedPro.isEmpty()) {
+        Core::PageManager::activatePage(Core::Constants::PAGE_WORK);
+    }
 
     return OpenProjectResult(openedPro, alreadyOpen, errorString);
 }

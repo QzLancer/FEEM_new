@@ -9,6 +9,8 @@
 #include <coreplugin/geometrymanager/igeometry.h>
 #include <coreplugin/icore.h>
 
+#include <output/outputpluginplugin.h>
+
 #include <memory>
 #include <QDebug>
 
@@ -269,6 +271,7 @@ void PF_Project::saveProject()
         d->m_accessor = std::make_unique<PF_FEMProjectAccessor>(this);
     /** 保存数据 **/
     d->m_accessor->saveProject(toMap(), Core::ICore::mainWindow());
+    PoofeeSay<<f+" saved.";
 }
 
 /**

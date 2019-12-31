@@ -135,6 +135,12 @@ MimeType::MimeType() :
 {
 }
 
+MimeType::MimeType(const QString &mimeType)
+    :d(new MimeTypePrivate())
+{
+    d->name = mimeType;
+}
+
 /*!
     \fn MimeType::MimeType(const MimeType &other);
     Constructs this MimeType object as a copy of \a other.
