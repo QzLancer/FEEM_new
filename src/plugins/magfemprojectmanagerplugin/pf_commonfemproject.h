@@ -27,6 +27,7 @@ namespace MagFEMProjectManagerPlugin {
 
 class MAGPLUGINSHARED_EXPORT PF_CommonFEMProject : public ProjectExplorer::PF_Project
 {
+    Q_OBJECT
 public:
     PF_CommonFEMProject(const QString &mimeType, const Utils::FileName &feemFile);
     ~PF_CommonFEMProject();

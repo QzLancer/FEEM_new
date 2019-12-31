@@ -308,12 +308,12 @@ void PF_ProjectTreeWidget::openItem(const QModelIndex &mainIndex)
         case LeafType::Point:
         case LeafType::Line:
         case LeafType::Face:{
-            PoofeeSay<<"You select "+node->displayName();
+            PoofeeSay<<tr("You select %1").arg(node->displayName());
             pro->entitySelected(true,node);
             break;
         }
         case LeafType::CMaterialProp:{
-            PoofeeSay<<"You select "+node->displayName();
+            PoofeeSay<<tr("You select %1").arg(node->displayName());
             break;
         }
         default:{

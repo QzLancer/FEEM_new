@@ -1204,7 +1204,7 @@ bool PF_EntityContainer::exportGeofile()
 
 void PF_EntityContainer::doMesh()
 {
-    PoofeeSay<<"start mesh...";
+    PoofeeSay<<tr("Start mesh...");
     exportGeofile();
     int myargn = 3;
     char *myargv[] = {(char*)"gmsh",(char*)"-format",(char*)"msh2"};
@@ -1234,7 +1234,7 @@ void PF_EntityContainer::doMesh()
     //    }
     //    this->mParentPlot->replot();
     gmsh::finalize();
-    PoofeeSay<<"Mesh over...";
+    PoofeeSay<<tr("Mesh over...");
 }
 
 /**
@@ -1300,7 +1300,7 @@ bool PF_EntityContainer::importDXF(const QString &fileName)
     numc = 1;
     entities.clear();
 
-    PoofeeSay<<QString(tr("Start importing DXF file ")+fileName);
+    PoofeeSay<<tr("Start importing DXF file \"%1\"").arg(fileName);
     /** 将QString转换为char，假定路径长度不超过80 **/
     QByteArray ba = fileName.toLatin1();
     //    inname = (char *)malloc(ba.length() + 1);
@@ -1311,7 +1311,7 @@ bool PF_EntityContainer::importDXF(const QString &fileName)
     if(!strchr(inname, '.'))      /* no dot present in filename? */
         strcat(inname, ".dxf");
     if(!(infile = fopen(inname, "r"))) {
-        PoofeeSay<<QString("Cannot open input file %1\n").arg(QString(QLatin1String(inname)));
+        PoofeeSay<<tr("Cannot open input file \"%1\"\n").arg(QString(QLatin1String(inname)));
         return false;
     }
 
@@ -1447,9 +1447,8 @@ stopit:
         this->addEntitySilence(l);
     }
     emit EntityChanged();
-    PoofeeSay<<QString("%1 points, %2 curves imported and %3 degenerate entities removed").arg(
-                                  Point_T.size()).arg(Curve_T.size()).arg(degenerates);
-    PoofeeSay<<QString(tr("End importing DXF file ")+fileName);
+    PoofeeSay<<tr("%1 points, %2 curves imported").arg(Point_T.size()).arg(Curve_T.size());
+    PoofeeSay<<tr("End importing DXF file \"%1\"").arg(fileName);
     this->parentPlot()->zoomAuto();
     return true;
 }
@@ -1463,9 +1462,9 @@ stopit:
 */
 bool PF_EntityContainer::importGeo(const QString &fileName)
 {
-    PoofeeSay<<QString(tr("Start importing GEO file ")+fileName);
+    PoofeeSay<<tr("Start importing GEO file \"%1\"").arg(fileName);
 
-    PoofeeSay<<QString(tr("End importing GEO file ")+fileName);
+    PoofeeSay<<tr("End importing GEO file \"%1\"").arg(fileName);
     return true;
 }
 
@@ -1484,7 +1483,7 @@ bool PF_EntityContainer::importCADFile(const QString &fileName)
     }else if(fileInfo.suffix().compare("geo",Qt::CaseInsensitive) == 0){
         importGeo(fileName);
     }else{
-        PoofeeSay<<"Unsupported CAD file!";
+        PoofeeSay<<tr("Unsupported CAD file!");
     }
     return true;
 }

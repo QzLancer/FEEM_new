@@ -57,7 +57,7 @@ PF_CommonFEMProject::PF_CommonFEMProject(const QString &mimeType, const FileName
         m_materialList.insert(material->BlockName,material);
         /** 更新项目树 **/
         emit dataChanged();
-        PoofeeSay<<"Material "+material->BlockName+" Added.";
+        PoofeeSay<<tr("Material \"%1\" Added.").arg(material->BlockName);
         /** 更新tree **/
         /** 这里有问题，如果不是从tree操作进来的，那么node就不对了 **/
         //        Node *node = PF_ProjectTree::findCurrentNode();

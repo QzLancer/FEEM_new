@@ -54,7 +54,7 @@ void OutputPluginPlugin::extensionsInitialized()
 //    QDateTime current_date_time =QDateTime::currentDateTime();
 //    QString current_date =current_date_time.toString("yyyy.MM.dd hh:mm:ss");
 //    PoofeeSay<<current_date;
-    PoofeeSay<<"Welcome to FEEM! Copyright 2018-2020 HIT. All rights reserved.";
+    PoofeeSay<<tr("Welcome to FEEM! Copyright 2018-2020 HIT. All rights reserved.");
 //    m_messagePane->appendMessage(current_date+QLatin1Char('\n'));
 //    m_messagePane->appendMessage(tr("Welcome to FEEM!")+QLatin1Char('\n'));
 }

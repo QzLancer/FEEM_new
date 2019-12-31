@@ -502,7 +502,7 @@ bool PF_Mag2DSProject::Static2D()
                 for (j = 0; j < NumNodes; j++)
                     L->V[j] = Relax*L->V[j] + (1.0 - Relax)*V_old[j];
             }
-            PoofeeSay<<QString("Newton Iteration(%i) Relax=%.4g").arg(Iter).arg(Relax);
+            PoofeeSay<<tr("Newton Iteration(%i) Relax=%.4g").arg(Iter).arg(Relax);
         }
         if ((res < 100.*Precision) && (Iter>0)) LinearFlag = true;
         Iter++;
@@ -1394,6 +1394,7 @@ QVariantMap PF_Mag2DSProject::toMap() const
  */
 PF_Project::RestoreResult PF_Mag2DSProject::fromMap(const QVariantMap& map, QString* errorMessage)
 {
+    PoofeeSay<<tr("Start to loading project \"%1\"").arg(this->projectFilePath().fileName());
     return RestoreResult::Ok;
 }
 

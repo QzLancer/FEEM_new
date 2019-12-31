@@ -13,6 +13,7 @@ namespace MagFEMProjectManagerPlugin {
 class PF_MagFEMNode;
 class PF_Mag2DSProject : public PF_CommonFEMProject
 {
+    Q_OBJECT
 public:
     PF_Mag2DSProject(const FileName& feemFile);
     ~PF_Mag2DSProject();
