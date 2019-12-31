@@ -53,6 +53,7 @@ public:
     void setDisplayName(const QString& displayName);
 
     Core::IDocument *document() const;
+    QString mimeType();
 
     Utils::FileName projectFilePath() const;
     Utils::FileName projectDirectory() const;

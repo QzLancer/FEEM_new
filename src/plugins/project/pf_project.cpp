@@ -14,6 +14,7 @@
 
 #include <QDir>
 #include <QFileDialog>
+#include <QString>
 
 using namespace Utils;
 namespace ProjectExplorer {
@@ -99,6 +100,11 @@ void PF_Project::setDisplayName(const QString &displayName)
 Core::IDocument*PF_Project::document() const
 {
     return d->m_document.get();
+}
+
+QString PF_Project::mimeType()
+{
+    return document()->mimeType();
 }
 
 FileName PF_Project::projectFilePath() const

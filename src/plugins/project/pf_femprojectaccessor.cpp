@@ -10,7 +10,7 @@ using namespace ProjectExplorer;
 namespace ProjectExplorer {
 
 PF_FEMProjectAccessor::PF_FEMProjectAccessor(PF_Project* project)
-    :PF_ProjectAccessor("MAG2DPROJECT",project->displayName(),Core::Constants::IDE_DISPLAY_NAME),
+    :PF_ProjectAccessor(project->mimeType(),project->displayName(),Core::Constants::IDE_DISPLAY_NAME),
      m_project(project)
 {
     const QString femProject = projectFile();

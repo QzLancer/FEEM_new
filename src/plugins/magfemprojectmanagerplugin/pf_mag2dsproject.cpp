@@ -1,6 +1,7 @@
 #include "pf_mag2dsproject.h"
 #include "pf_magfemnode.h"
 #include "pf_facesettingdialog.h"
+#include "magfemprojectmanagerpluginconstants.h"
 
 #include "sparsefemm.h"
 
@@ -42,17 +43,8 @@ using namespace ProjectExplorer;
 namespace MagFEMProjectManagerPlugin {
 
 PF_Mag2DSProject::PF_Mag2DSProject(const FileName& feemFile)
-    :PF_CommonFEMProject(feemFile)
+    :PF_CommonFEMProject(Constants::FEEMMAG2DSTATIC_MIMETYPE, feemFile)
 {
-    //    m_materialList.push_back(CMaterialProp());
-    //    m_materialList.push_back(CMaterialProp());
-    //    m_materialList.push_back(CMaterialProp());
-    //    m_materialList.push_back(CMaterialProp());
-
-    //    m_variables.add("length",1);
-    //    m_variables.add("length1",1);
-    //    m_variables.add("length2",1);
-    //    m_variables.add("length3",1);
     setRootProjectNode(PF_Mag2DSNodeTreeBuilder::buildTree(this));
 
     connect(this,&PF_Mag2DSProject::dataChanged,this,&PF_Mag2DSProject::updateData);

@@ -488,8 +488,10 @@ PF_ProjectExplorerPlugin::OpenProjectResult PF_ProjectExplorerPlugin::openProjec
             continue;
         }
 
-        /** 没有打开，判断project类型 ，如何读取MimeType？?? **/
-        Utils::MimeType mt = Utils::mimeTypeForFile(fileName);
+        /** 没有打开，判断project类型 ，如何读取MimeType？??这个还得自己
+            定义，比较复杂，还不如自己直接从文件里去读取。**/
+        Utils::MimeType mt = Utils::mimeTypeForFile(fileName,Utils::MimeMatchMode::MatchExtension);
+        qDebug()<<mt.name();
         if (PF_ProjectManager::canOpenProjectForMimeType(mt)) {
             if (!filePath.toFileInfo().isFile()) {
                 PoofeeSay<<tr("Failed opening project \"%1\": Project is not a file.").arg(fileName);
@@ -569,9 +571,12 @@ void PF_ProjectExplorerPlugin::openOpenProjectDialog()
     /** 寻找上次记录的文件夹位置 **/
     /** 打开文件对话框 **/
     const QStringList files = QFileDialog::getOpenFileNames(ICore::dialogParent(),
-                                                      tr("Open File"));
-    if (!files.isEmpty())
-        ICore::openFiles(files, ICore::SwitchMode);
+                                                      tr("Open File"),
+                                                      ".","FEEM project file (*.feem)");
+    if (!files.isEmpty()){
+        openProjects(files);
+    }
+//        ICore::openFiles(files, ICore::SwitchMode);
 }
 
 void PF_ProjectExplorerPluginPrivate::updateContextMenuActions()

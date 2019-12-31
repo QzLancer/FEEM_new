@@ -35,7 +35,7 @@ bool MagFEMProjectManagerPluginPlugin::initialize(const QStringList &arguments, 
 {
     qDebug()<<Q_FUNC_INFO;
     //create and register objects
-    ProjectExplorer::PF_ProjectManager::registerProjectType<PF_Mag2DSProject>(MagFEMProjectManagerPlugin::Constants::FEEMFILE_MIMETYPE);
+    ProjectExplorer::PF_ProjectManager::registerProjectType<PF_Mag2DSProject>(MagFEMProjectManagerPlugin::Constants::FEEMMAG2DSTATIC_MIMETYPE);
     /** 添加wizards **/
     IWizardFactory::registerFactoryCreator([] {
         return QList<IWizardFactory *> {

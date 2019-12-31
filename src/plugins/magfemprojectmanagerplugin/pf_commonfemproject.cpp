@@ -35,8 +35,8 @@
 #include <QDialog>
 
 namespace MagFEMProjectManagerPlugin{
-PF_CommonFEMProject::PF_CommonFEMProject(const FileName& feemFile)
-    :ProjectExplorer::PF_Project(MagFEMProjectManagerPlugin::Constants::FEEMFILE_MIMETYPE,feemFile)
+PF_CommonFEMProject::PF_CommonFEMProject(const QString &mimeType, const FileName& feemFile)
+    :ProjectExplorer::PF_Project(mimeType, feemFile)
     ,m_document(new PF_Document())
     ,m_mesh(new CMesh())
     ,Precision(1e-8)
