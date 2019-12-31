@@ -70,7 +70,7 @@ public:
     virtual RestoreResult fromMap(const QVariantMap &map, QString *errorMessage);
 
     virtual void saveProject();
-    virtual void openProject(const QString & fileName);
+    virtual PF_Project::RestoreResult restoreProject(QString *errorMessage);
 
     virtual Core::IGeometry* CAD() const;
     virtual void editMaterial(Node* node);

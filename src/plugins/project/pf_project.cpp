@@ -265,9 +265,21 @@ void PF_Project::saveProject()
     d->m_accessor->saveProject(toMap(), Core::ICore::mainWindow());
 }
 
-void PF_Project::openProject(const QString& fileName)
+/**
+ * @brief 从项目文件中恢复文件。
+ *
+ * @param errorMessage
+ * @return PF_Project::RestoreResult
+ */
+PF_Project::RestoreResult PF_Project::restoreProject(QString* errorMessage)
 {
-
+    if (!d->m_accessor)
+        d->m_accessor = std::make_unique<PF_FEMProjectAccessor>(this);
+    QVariantMap map(d->m_accessor->restoreProject(Core::ICore::mainWindow()));
+    RestoreResult result = fromMap(map, errorMessage);
+//    if (result == RestoreResult::Ok)
+//        emit settingsLoaded();
+    return result;
 }
 
 Core::IGeometry *PF_Project::CAD() const

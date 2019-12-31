@@ -32,6 +32,8 @@
 #include <utils/mimetypes/mimedatabase.h>
 #include <utils/stringutils.h>
 
+#include <output/outputpluginplugin.h>
+
 #include <QtPlugin>
 
 #include <QDateTime>
@@ -470,49 +472,54 @@ PF_ProjectExplorerPlugin::OpenProjectResult PF_ProjectExplorerPlugin::openProjec
     QList<PF_Project*> openedPro;
     QList<PF_Project *> alreadyOpen;
     QString errorString;
-//    foreach (const QString &fileName, fileNames) {
-//        if(fileName.isEmpty()) continue;
+    /** 对每一个文件进行判断 **/
+    foreach (const QString &fileName, fileNames) {
+        if(fileName.isEmpty()) continue;
 
-//        const QFileInfo fi(fileName);
-////        const auto filePath = Utils::FileName::fromString(fi.absoluteFilePath());
-////        PF_Project *found = Utils::findOrDefault(SessionManager::projects(),
-////                                              Utils::equal(&Project::projectFilePath, filePath));
-//        if (found) {
-//            alreadyOpen.append(found);
-//            SessionManager::reportProjectLoadingProgress();
-//            continue;
-//        }
+        const QFileInfo fi(fileName);
+        const auto filePath = Utils::FileName::fromString(fi.absoluteFilePath());
+        /** 是否已打开 **/
+        PF_Project *found = Utils::findOrDefault(PF_SessionManager::projects(),
+                                              Utils::equal(&PF_Project::projectFilePath, filePath));
+        /** 已打开 **/
+        if (found) {
+            alreadyOpen.append(found);
+            PF_SessionManager::reportProjectLoadingProgress();
+            continue;
+        }
 
-//        Utils::MimeType mt = Utils::mimeTypeForFile(fileName);
-//        if (ProjectManager::canOpenProjectForMimeType(mt)) {
-//            if (!filePath.toFileInfo().isFile()) {
-//                appendError(errorString,
-//                            tr("Failed opening project \"%1\": Project is not a file.").arg(fileName));
-//            } else if (Project *pro = ProjectManager::openProject(mt, filePath)) {
-//                QObject::connect(pro, &Project::parsingFinished, [pro]() {
-//                    emit SessionManager::instance()->projectFinishedParsing(pro);
+        /** 没有打开，判断project类型 ，如何读取MimeType？?? **/
+        Utils::MimeType mt = Utils::mimeTypeForFile(fileName);
+        if (PF_ProjectManager::canOpenProjectForMimeType(mt)) {
+            if (!filePath.toFileInfo().isFile()) {
+                PoofeeSay<<tr("Failed opening project \"%1\": Project is not a file.").arg(fileName);
+            } else if (PF_Project *pro = PF_ProjectManager::openProject(mt, filePath)) {
+
+//                QObject::connect(pro, &PF_Project::parsingFinished, [pro]() {
+//                    emit PF_SessionManager::instance()->projectFinishedParsing(pro);
 //                });
-//                QString restoreError;
-//                Project::RestoreResult restoreResult = pro->restoreSettings(&restoreError);
-//                if (restoreResult == Project::RestoreResult::Ok) {
-//                    connect(pro, &Project::fileListChanged,
-//                            m_instance, &ProjectExplorerPlugin::fileListChanged);
-//                    SessionManager::addProject(pro);
-//                    openedPro += pro;
-//                } else {
-//                    if (restoreResult == Project::RestoreResult::Error)
-//                        appendError(errorString, restoreError);
-//                    delete pro;
-//                }
-//            }
-//        } else {
-//            appendError(errorString, tr("Failed opening project \"%1\": No plugin can open project type \"%2\".")
-//                        .arg(QDir::toNativeSeparators(fileName))
-//                        .arg(mt.name()));
-//        }
-//        if (fileNames.size() > 1)
-//            SessionManager::reportProjectLoadingProgress();
-//    }
+                /** 开始读取数据 **/
+                QString restoreError;
+                PF_Project::RestoreResult restoreResult = pro->restoreProject(&restoreError);
+                if (restoreResult == PF_Project::RestoreResult::Ok) {
+//                    connect(pro, &PF_Project::fileListChanged,
+//                            m_instance, &PF_ProjectExplorerPlugin::fileListChanged);
+                    PF_SessionManager::addProject(pro);
+                    openedPro += pro;
+                } else {
+                    if (restoreResult == PF_Project::RestoreResult::Error)
+                        PoofeeSay<<restoreError;
+                    delete pro;
+                }
+            }
+        } else {
+            PoofeeSay<<tr("Failed opening project \"%1\": No plugin can open project type \"%2\".")
+                        .arg(QDir::toNativeSeparators(fileName))
+                        .arg(mt.name());
+        }
+        if (fileNames.size() > 1)
+            PF_SessionManager::reportProjectLoadingProgress();
+    }
 //    dd->updateActions();
 
 //    bool switchToProjectsMode = Utils::anyOf(openedPro, &Project::needsConfiguration);
