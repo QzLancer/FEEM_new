@@ -14,7 +14,7 @@ class PF_MagFEMNode;
 class PF_Mag2DSProject : public PF_CommonFEMProject
 {
 public:
-    PF_Mag2DSProject();
+    PF_Mag2DSProject(const FileName& feemFile);
     ~PF_Mag2DSProject();
 
     void updateData();

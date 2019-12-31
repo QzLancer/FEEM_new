@@ -27,7 +27,7 @@ class ProjectDocument : public Core::IDocument
 public:
 //    using ProjectCallback = std::function<void()>;
 
-    ProjectDocument(const Utils::FileName &fileName);
+    ProjectDocument(const QString &mimeType, const Utils::FileName &fileName);
 
     IDocument::ReloadBehavior reloadBehavior(Core::IDocument::ChangeTrigger state,
                                                    Core::IDocument::ChangeType type) const final;
@@ -45,7 +45,7 @@ class FEEM_PROJECT_EXPORT PF_Project : public QObject
     friend class PF_ProjectExplorerPlugin; // for projectLoaded
     Q_OBJECT
 public:
-    explicit PF_Project(QObject *parent = nullptr,
+    explicit PF_Project(const QString &mimeType,
                         const Utils::FileName& fileName=Utils::FileName());
     ~PF_Project();
 

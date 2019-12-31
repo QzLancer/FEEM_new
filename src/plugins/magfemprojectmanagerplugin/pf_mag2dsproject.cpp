@@ -41,8 +41,8 @@ using namespace ProjectExplorer;
 
 namespace MagFEMProjectManagerPlugin {
 
-PF_Mag2DSProject::PF_Mag2DSProject()
-    :PF_CommonFEMProject()
+PF_Mag2DSProject::PF_Mag2DSProject(const FileName& feemFile)
+    :PF_CommonFEMProject(feemFile)
 {
     //    m_materialList.push_back(CMaterialProp());
     //    m_materialList.push_back(CMaterialProp());

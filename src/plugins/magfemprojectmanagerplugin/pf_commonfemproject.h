@@ -28,7 +28,7 @@ namespace MagFEMProjectManagerPlugin {
 class MAGPLUGINSHARED_EXPORT PF_CommonFEMProject : public ProjectExplorer::PF_Project
 {
 public:
-    PF_CommonFEMProject();
+    PF_CommonFEMProject(const Utils::FileName &feemFile);
     ~PF_CommonFEMProject();
 
     Core::IGeometry* CAD() const override;

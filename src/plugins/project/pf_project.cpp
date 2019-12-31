@@ -21,10 +21,10 @@ namespace ProjectExplorer {
 // ProjectDocument:
 // --------------------------------------------------------------------
 
-ProjectDocument::ProjectDocument(const FileName &fileName)
+ProjectDocument::ProjectDocument(const QString& mimeType, const FileName &fileName)
 {
     setFilePath(fileName);
-//    setMimeType(mimeType);
+    setMimeType(mimeType);
 //    if (m_callback)
 //        DocumentManager::addDocument(this);
 }
@@ -55,9 +55,9 @@ bool ProjectDocument::reload(QString *errorString, IDocument::ReloadFlag flag,
 */
 class PF_ProjectPrivate{
 public:
-    PF_ProjectPrivate(const FileName &fileName)
+    PF_ProjectPrivate(const QString &mimeType, const FileName &fileName)
     {
-        m_document = std::make_unique<ProjectDocument>(fileName);
+        m_document = std::make_unique<ProjectDocument>(mimeType, fileName);
     }
     ~PF_ProjectPrivate();
 
@@ -70,9 +70,8 @@ public:
     QString m_displayName;
 };
 
-PF_Project::PF_Project(QObject *parent,const FileName &fileName)
-    : QObject(parent)
-    , d(new PF_ProjectPrivate(fileName))
+PF_Project::PF_Project(const QString& mimeType, const FileName &fileName)
+    : d(new PF_ProjectPrivate(mimeType, fileName))
 {
     d->m_containerNode = std::make_unique<ProjectNode>(this);
 //    setRootProjectNode(PF_NodeTreeBuilder::buildTree(this));

@@ -4,6 +4,7 @@
 #include "magfield2dtransientwizard.h"
 #include "magfield3dstaticwizard.h"
 #include "magfield3dtransintwizard.h"
+#include "pf_mag2dsproject.h"
 
 #include <coreplugin/icore.h>
 #include <coreplugin/context.h>
@@ -11,6 +12,8 @@
 #include <coreplugin/actionmanager/command.h>
 #include <coreplugin/actionmanager/actioncontainer.h>
 #include <coreplugin/constants.h>
+
+#include <project/pf_projectmanager.h>
 
 using namespace Core;
 
@@ -31,6 +34,8 @@ MagFEMProjectManagerPluginPlugin::~MagFEMProjectManagerPluginPlugin()
 bool MagFEMProjectManagerPluginPlugin::initialize(const QStringList &arguments, QString *errorString)
 {
     qDebug()<<Q_FUNC_INFO;
+    //create and register objects
+    ProjectExplorer::PF_ProjectManager::registerProjectType<PF_Mag2DSProject>(MagFEMProjectManagerPlugin::Constants::FEEMFILE_MIMETYPE);
     /** 添加wizards **/
     IWizardFactory::registerFactoryCreator([] {
         return QList<IWizardFactory *> {

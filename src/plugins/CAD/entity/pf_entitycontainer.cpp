@@ -1296,6 +1296,8 @@ bool PF_EntityContainer::importDXF(const QString &fileName)
         设置一个新的基数作为编号的起始。**/
     Point_T.clear();
     Curve_T.clear();
+    nump = 1;
+    numc = 1;
     entities.clear();
 
     PoofeeSay<<QString(tr("Start importing DXF file ")+fileName);

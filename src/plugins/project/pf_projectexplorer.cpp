@@ -2,6 +2,7 @@
 #include "pf_projecttree.h"
 #include "pf_project.h"
 #include "pf_sessionmanager.h"
+#include "pf_projectmanager.h"
 
 #include "projectwelcomepage.h"
 
@@ -186,7 +187,8 @@ public:
 //    int m_activeRunControlCount = 0;
 //    int m_shutdownWatchDogId = -1;
 
-//    QHash<QString, std::function<Project *(const Utils::FileName &)>> m_projectCreators;
+    /** 根据子类自动创建对象 **/
+    QHash<QString, std::function<PF_Project *(const Utils::FileName &)>> m_projectCreators;
     QList<QPair<QString, QString> > m_recentProjects; // pair of filename, displayname
     static const int m_maxRecentProjects = 25;
 
@@ -743,4 +745,49 @@ QList<QPair<QString, QString> > PF_ProjectExplorerPluginPrivate::recentProjects(
     return m_recentProjects;
 }
 
+/**
+ * @brief 注册一个creator。
+ *
+ * @param mimeType
+ * @param creator
+ */
+void PF_ProjectManager::registerProjectCreator(const QString &mimeType,
+    const std::function<PF_Project *(const Utils::FileName &)> &creator)
+{
+    dd->m_projectCreators[mimeType] = creator;
+}
+/**
+ * @brief 根据MimeType来选择适合的项目来打开。
+ *
+ * @param mt
+ * @param fileName
+ * @return PF_Project
+ */
+PF_Project *PF_ProjectManager::openProject(const Utils::MimeType &mt, const Utils::FileName &fileName)
+{
+    if (mt.isValid()) {
+        for (const QString &mimeType : dd->m_projectCreators.keys()) {
+            if (mt.matchesName(mimeType))
+                return dd->m_projectCreators[mimeType](fileName);
+        }
+    }
+    return nullptr;
+}
+
+/**
+ * @brief 检查MimeType是否已存在。
+ *
+ * @param mt
+ * @return bool
+ */
+bool PF_ProjectManager::canOpenProjectForMimeType(const Utils::MimeType &mt)
+{
+    if (mt.isValid()) {
+        for (const QString &mimeType : dd->m_projectCreators.keys()) {
+            if (mt.matchesName(mimeType))
+                return true;
+        }
+    }
+    return false;
+}
 }//namespace ProjectExplorer

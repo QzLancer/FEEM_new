@@ -2,6 +2,8 @@
 #include "pf_magfemnode.h"
 #include "pf_facesettingdialog.h"
 
+#include "magfemprojectmanagerpluginconstants.h"
+
 #include "sparsefemm.h"
 
 #include <math.h>
@@ -33,8 +35,8 @@
 #include <QDialog>
 
 namespace MagFEMProjectManagerPlugin{
-PF_CommonFEMProject::PF_CommonFEMProject()
-    :ProjectExplorer::PF_Project()
+PF_CommonFEMProject::PF_CommonFEMProject(const FileName& feemFile)
+    :ProjectExplorer::PF_Project(MagFEMProjectManagerPlugin::Constants::FEEMFILE_MIMETYPE,feemFile)
     ,m_document(new PF_Document())
     ,m_mesh(new CMesh())
     ,Precision(1e-8)
