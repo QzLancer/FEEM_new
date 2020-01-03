@@ -9,6 +9,7 @@ include(../../feemplugin.pri)
 
 include(./entity/entity.pri)
 include(./action/action.pri)
+include(./PolygonDetection/PolygonDetection.pri)
 
 INCLUDEPATH += $$PWD/gmsh
 
