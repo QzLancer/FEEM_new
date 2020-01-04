@@ -144,16 +144,6 @@ void IncidenceMatrix::CreateMatrix()
 	_p_incidence_matrix = new MatrixModuloTwo(_edge_pool.size(), _edge_count);
 }
 
-#ifdef GRAPH_DEBUG	
-void IncidenceMatrix::Log()
-{
-	printf("Incidence Matrix\n----------------\n");
-	
-	if (_p_incidence_matrix)
-		_p_incidence_matrix->Log();
-	
-}
-#endif
 
 /***
 * @return number of first column with non-zero value in row r

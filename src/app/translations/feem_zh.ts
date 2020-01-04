@@ -1787,7 +1787,7 @@ Reason: %3</source>
         <location filename="../../plugins/project/pf_projecttreewidget.cpp" line="311"/>
         <location filename="../../plugins/project/pf_projecttreewidget.cpp" line="316"/>
         <source>You select %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你选中了%1</translation>
     </message>
 </context>
 <context>

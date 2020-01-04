@@ -16,6 +16,8 @@
 #include "../PDConsts.h"
 #include "../PolygonDetector.h"
 
+#include <output/outputpluginplugin.h>
+
 using namespace PolygonDetection;
 
 //////////////////////////////////////////////////////////////////////
@@ -108,7 +110,7 @@ int Graph::MatrixOffset(int v1, int v2)
 */
 void Graph::FloydWarshall()
 {
-    printf("Floyd-Warshall algorithm\n");
+    PoofeeSay<<("Floyd-Warshall algorithm");
 
     int k, i, j, offset;
     int n = GetVertexCount();
@@ -203,7 +205,7 @@ void Graph::InitializeFloydWarshall()
 */
 CycleSet * Graph::Horton()
 {
-    printf("Horton algorithm\n");
+    PoofeeSay<<("Horton algorithm");
 
     // creates a new cycles set
     CycleSet * p_cycle_set = new CycleSet();

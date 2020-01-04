@@ -42,6 +42,12 @@ using namespace ProjectExplorer;
 
 namespace MagFEMProjectManagerPlugin {
 
+/**
+ * @brief 不同的项目应该有不同的标志来进行区别，因此，需要为你的项目定义一个MIMETYPE的字符串。
+ * 注意不能与别的相重复。
+ *
+ * @param feemFile
+ */
 PF_Mag2DSProject::PF_Mag2DSProject(const FileName& feemFile)
     :PF_CommonFEMProject(Constants::FEEMMAG2DSTATIC_MIMETYPE, feemFile)
 {

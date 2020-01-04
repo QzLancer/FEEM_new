@@ -148,7 +148,10 @@ void CADPlugin::registerDefaultActions()
     group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
     /** 构建 **/
     group = ActionManager::actionContainer(Constants::G_GEOMETRY_BUILD);
-    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/buildgeometry.png"), tr("Build Geometry"), Qt::ToolButtonTextUnderIcon);
+    action = new QAction(tr("Build Geometry"));
+    action->setIcon(QIcon(":/cad/imgs/buildgeometry.png"));
+    connect(action, SIGNAL(triggered()), action_handler, SLOT(slotBuildGeometry()));
+    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
     /** 绘图 **/
     /**画点**/
     group = ActionManager::actionContainer(Constants::G_GEOMETRY_DRAW);
@@ -207,7 +210,13 @@ void CADPlugin::registerDefaultActions()
     group->ribbonGroup()->addAction(QIcon(":/cad/imgs/cut32x32.png"), tr("Cut"), Qt::ToolButtonTextUnderIcon);
     group->ribbonGroup()->addAction(QIcon(":/cad/imgs/copy32x32.png"), tr("Copy"), Qt::ToolButtonTextUnderIcon);
     group->ribbonGroup()->addAction(QIcon(":/cad/imgs/paste32x32.png"), tr("Paste"), Qt::ToolButtonTextUnderIcon);
-    group->ribbonGroup()->addAction(QIcon(":/cad/imgs/delete32x32.png"), tr("Delete"), Qt::ToolButtonTextUnderIcon);
+
+    /** 删除 **/
+    action = new QAction(tr("Delete"));
+    action->setIcon(QIcon(":/cad/imgs/delete32x32.png"));
+    connect(action, SIGNAL(triggered()), action_handler, SLOT(slotDelete()));
+    action->setObjectName("Delete");
+    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
     /** 视图 **/
     group = ActionManager::actionContainer(Constants::G_GEOMETRY_VIEW);
     action = new QAction(tr("Zoom In"));

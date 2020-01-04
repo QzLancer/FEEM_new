@@ -4,7 +4,7 @@
 
 #include "tinyxml/tinyxml.h"
 
-//#include <wx/log.h>
+#include <output/outputpluginplugin.h>
 
 using namespace PolygonDetection;
 
@@ -102,35 +102,29 @@ void PolygonDetection::PolygonDetector::Reset(void)
 */
 bool PolygonDetection::PolygonDetector::DetectPolygons(void)
 {
-    printf("Polygon detection\n");
+    PoofeeSay<<("Polygon detection");
 
     _interrupted = _time_exceeded = false;
 
-    if (!PolygonDetector::Silent())
-        printf("Line set contains %d lines.\n", GetLineCount());
+    PoofeeSay<<QString("Line set contains %1 lines.").arg(GetLineCount());
 
-    _line_set.Normalize();
+//    _line_set.Normalize();
 
     if (!_line_set.RemoveIntersections()) {
-        printf("Error: Could not successfully remove line intersections.\n");
+        PoofeeSay<<("Error: Could not successfully remove line intersections.");
         return false;
     }
 
-    if (!PolygonDetector::Silent())
-        printf("After removal, line set contains %d lines.\n", GetLineCount());
+    PoofeeSay<<QString("After removal, line set contains %1 lines.").arg(GetLineCount());
 
     _line_set.Sort();
 
-
     if (!_polygon_set.Construct(&_line_set)) {
-        printf("Error constructing the polygon set.\n");
+        PoofeeSay<<("Error constructing the polygon set.");
         return false;
     }
 
-    if (!PolygonDetector::Silent())
-        printf("Polygon set contains %d polygons.\n", _polygon_set.size());
-
-    //	//ENDING_PROCESS_MESSAGE();
+    PoofeeSay<<QString("Polygon set contains %1 polygons.").arg(_polygon_set.size());
     return true;
 }
 

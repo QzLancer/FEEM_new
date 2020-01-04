@@ -27,7 +27,7 @@ private:
     void RemoveZeroLengthLines(void);
     void RemoveOverlappings(void);
     void CalculateLinesFirstAndLastPoint(void);
-    unsigned int DetectIntersections(void);
+    int DetectIntersections(void);
 
     LinesArray _lines_array;
 

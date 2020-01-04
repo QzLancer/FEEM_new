@@ -1,35 +1,3 @@
-	// 
-/*
-+--------------------------------------------------------------------+
-| Macros.h: header file for macros                                   |
-+--------------------------------------------------------------------+
-|                                                                    |
-| Author : Alfredo Ferreira (Jr.)                                    |
-| E-mail : alfredo.ferreira@inesc-id.pt                              |
-| Website: http://immi.inesc-id.pt/~afj                              |
-|                                                                    |
-| Version: 1.00                                                      |
-| Created: May 2004                                                  |
-|                                                                    |
-+--------------------------------------------------------------------+
-| Visualization and Intelligent Multimodal Interfaces Group          |
-| Department of Information Systems and Computer Science             |
-| INESC-ID/IST/Technical University of Lisbon                        |
-| Taguspark, Edificio IST, Nucleo 9, Piso 2                          |
-| 2780-990 Porto Salvo                                               |
-| Portugal                                                           |
-+--------------------------------------------------------------------+
-|                                                                    |
-| Copyright (c) 2004-2008 INESC-ID                                   |
-|                                                                    |
-|   The copyright to the computer program(s) herein is the property  |
-| of INESC-ID, Portugal. The program(s) may be used and/or copied    |
-| only with the written permission of INESC-ID or in accordance with |
-| the terms and conditions stipulated in the agreement/contract      |
-| under which the program(s) have been supplied.                     |
-|                                                                    |
-+--------------------------------------------------------------------+
-*/
 
 #ifndef MACROS_H_INCLUDED
 #define MACROS_H_INCLUDED

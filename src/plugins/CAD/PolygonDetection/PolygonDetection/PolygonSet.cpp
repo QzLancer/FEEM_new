@@ -9,6 +9,8 @@
 
 #include "../GraphicalPrimitives2D/Color.h"
 
+#include <output/outputpluginplugin.h>
+
 #include <QtAlgorithms>
 #include <QDebug>
 #include <algorithm>
@@ -37,7 +39,7 @@ void PolygonSet::Clear(void)
 */
 void PolygonSet::Simplify(double smaller_polygon_length)
 {
-    printf("Polygon set simplification\n");
+    PoofeeSay<<("Polygon set simplification");
 
     Polygon * p1, * p2;
     int i,j;
@@ -56,7 +58,7 @@ void PolygonSet::Simplify(double smaller_polygon_length)
     }
 
     if(!PolygonDetector::Silent())
-        printf("Removed %d small polygons\n", j);
+        PoofeeSay<<QString("Removed %1 small polygons").arg(j);
 
     // check adjacencies
     for (i=0; i<_polygons_array.size();i++) {
@@ -87,7 +89,7 @@ void PolygonSet::Simplify(double smaller_polygon_length)
 // Constructs a polygon set from given line set
 bool PolygonDetection::PolygonSet::Construct(LineSet * line_set)
 {
-    printf("Polygon set construction\n");
+    PoofeeSay<<("Polygon set construction");
 
     if (!line_set) return false;
 
@@ -97,13 +99,10 @@ bool PolygonDetection::PolygonSet::Construct(LineSet * line_set)
     // then we create the graph
     Graph * G = LinesToGraph(line_set);
 
-    if (!PolygonDetection::PolygonDetector::Silent())
-        printf("Created graph with %d vertices and %d edges.\n",
-               G->GetVertexCount(),
-               G->GetEdgeCount());
+    PoofeeSay<<QString("Created graph with %1 vertices and %2 edges.").arg(G->GetVertexCount()).arg(G->GetEdgeCount());
 
     if (G->GetVertexCount()>MAX_GRAPH_VERTEX_COUNT) {
-        printf("Number of vertices exceeds the maximum allowed. Polygon detection interrupted.\n");
+        PoofeeSay<<("Number of vertices exceeds the maximum allowed. Polygon detection interrupted.");
     } else {
         // run the Floyd-Warshall Algorithm
         G->FloydWarshall();
@@ -111,19 +110,17 @@ bool PolygonDetection::PolygonSet::Construct(LineSet * line_set)
         CycleSet * cycle_set = G->Horton();
 
         if (!cycle_set) {
-            printf("Could not find the cycle set produced by Horton algorithm.\n");
+            PoofeeSay<<("Could not find the cycle set produced by Horton algorithm.");
         } else {
-            printf("Detected %d cycles.\n", cycle_set->size());
+            PoofeeSay<<QString("Detected %1 cycles.").arg(cycle_set->size());
             // Convert cycles to polygons
             CyclesToPolygons(cycle_set);
 
             DELETE_OBJECT(cycle_set);
         }
-
     }
 
     wxDELETE(G);
-
     return true;
 }
 
@@ -172,10 +169,10 @@ void PolygonDetection::PolygonSet::CreatePointsArray(LineSet * line_set)
 */
 Graph * PolygonSet::LinesToGraph(LineSet * line_set)
 {
-    printf("Graph construction\n");
+    PoofeeSay<<("Graph construction");
 
     if (!line_set) {
-        printf("Unable to compute graph from line set.\n");
+        PoofeeSay<<("Unable to compute graph from line set.");
         return nullptr;
     }
     // first, create the points array from the current line set
@@ -228,7 +225,7 @@ int PolygonSet::GetPointCount()
 */
 void PolygonSet::CyclesToPolygons(CycleSet *cycle_set)
 {
-    printf("Cycle to polygon conversion\n");
+    PoofeeSay<<("Cycle to polygon conversion");
 
     if (cycle_set) {
         // then create polygons

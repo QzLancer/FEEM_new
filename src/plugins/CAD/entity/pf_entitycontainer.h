@@ -17,6 +17,7 @@ public:
     ~PF_EntityContainer() override;
 
     virtual void clear();
+    void clearSelected();
 
     bool isAtomic() const override{
         return false;
@@ -131,6 +132,9 @@ public:
     bool importDXF(const QString & fileName);
     bool importGeo(const QString & fileName);
     bool importCADFile(const QString & fileName);
+
+    /** 生成面 **/
+    void buildFace();
 
     int index() const override;
     void setIndex(int index) override;

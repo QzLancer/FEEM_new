@@ -5,10 +5,14 @@
 #include "pf_face.h"
 #include "gmsh.h"
 
+#include "PolygonDetector.h"
+
 #include <output/outputpluginplugin.h>
 
 #include <QDebug>
 #include <QFileInfo>
+
+using namespace PolygonDetection;
 
 const QLatin1String PointKey("Points");
 const QLatin1String LineKey("Lines");
@@ -454,6 +458,24 @@ void PF_EntityContainer::clear()
         entities.clear();
     }
     //qDebug()<<"PF_EntityContainer::clear: OK.";
+}
+
+/**
+ * @brief 删除被选的实体。这里还有问题，如果是复合实体的话，得把附属
+ * 实体删掉吧？
+ *
+ */
+void PF_EntityContainer::clearSelected()
+{
+    for(int i = entities.size()-1; i >= 0 ;i--){
+        auto e = entities.at(i);
+        if(e && e->isSelected()){
+            delete e;
+            entities.removeAt(i);
+        }
+    }
+    emit EntityChanged();
+    this->parentPlot()->replot();
 }
 
 bool PF_EntityContainer::setSelected(bool select)
@@ -1298,7 +1320,7 @@ bool PF_EntityContainer::importDXF(const QString &fileName)
     Curve_T.clear();
     nump = 1;
     numc = 1;
-    entities.clear();
+    this->clear();
 
     PoofeeSay<<tr("Start importing DXF file \"%1\"").arg(fileName);
     /** 将QString转换为char，假定路径长度不超过80 **/
@@ -1486,6 +1508,87 @@ bool PF_EntityContainer::importCADFile(const QString &fileName)
         PoofeeSay<<tr("Unsupported CAD file!");
     }
     return true;
+}
+
+/**
+ * @brief 根据点和线的信息生成面
+ *
+ */
+void PF_EntityContainer::buildFace()
+{
+    /** 为保险起见，先删除所有的面信息 **/
+
+    PolygonDetector polygon_detector;
+    /** 先搜集所有的线 **/
+    for(int i = entities.size()-1; i >= 0; i--){
+        auto e = entities.at(i);
+        if(e->rtti() == PF::EntityLine){
+            polygon_detector.AddLine(e->getStartpoint().x,e->getStartpoint().y,
+                                     e->getEndpoint().x,e->getEndpoint().y);
+        }else if(e->rtti() == PF::EntityFace){
+            delete e;
+            entities.removeAt(i);
+        }
+    }
+    // the lines were loaded, lets detect the polygons
+    if (!polygon_detector.DetectPolygons() || !polygon_detector.GetPolygonSet()) {
+        PoofeeSay<<tr("Error: Failed to detect the polygons.\n");
+    }
+
+    /** 绘制生成的线和面 **/
+    Point_T.clear();
+    Curve_T.clear();
+    nump = 1;
+    numc = 1;
+    this->clear();
+    Point p;
+    Curve c;
+    int num[10];
+    for(int i = 0; i < polygon_detector.GetLineCount();i++){
+        auto line = polygon_detector.GetLineSet()->Item(i);
+        p.x = line->GetStartPoint()->GetX();
+        p.y = line->GetStartPoint()->GetY();
+        p.z = 0;
+        num[0] = addpoint(p);
+        p.x = line->GetEndPoint()->GetX();
+        p.y = line->GetEndPoint()->GetX();
+        p.z = 0;
+        num[1] = addpoint(p);
+        c.type = GEOLINE;
+        c.a = num[0];
+        c.b = num[1];
+        addcurve(c);
+    }
+    QMap<int,PF_Point*> ps;
+    /** 生成所有的点 **/
+    for(std::set<Point>::iterator it = Point_T.begin(); it != Point_T.end(); ++it){
+//        qDebug()<<it->num<<" "<<it->x<<" "<<it->y;
+        auto p = new PF_Point(this,mParentPlot,PF_Vector(it->x,it->y));
+        p->setIndex(it->num);
+        ps.insert(it->num,p);
+    }
+    /** 按照index排序的顺序 **/
+    QMapIterator<int,PF_Point*> i(ps);
+    while (i.hasNext()) {
+        i.next();
+        this->addEntitySilence(i.value());
+    }
+    /** 生成所有的线 **/
+    for(std::set<Curve>::iterator it = Curve_T.begin(); it != Curve_T.end(); ++it){
+//        qDebug()<<it->num<<" "<<it->a<<" "<<it->b;
+        auto l = new PF_Line(this,mParentPlot,ps.value(it->a,nullptr),ps.value(it->b,nullptr));
+        l->setIndex(it->num);
+        this->addEntitySilence(l);
+    }
+    emit EntityChanged();
+    this->parentPlot()->replot();
+    //simplify the polygon set
+    polygon_detector.SimplifyPolygons(0.0);
+    /** 生成面数据 **/
+    // the polygons were detected, lets save them
+    if (!polygon_detector.CreateSVGwithPolygons("line2.svg")) {
+        PoofeeSay<<tr("Error: Failed to crate the SVG with the polygons.\n");
+    }
 }
 
 int PF_EntityContainer::index() const

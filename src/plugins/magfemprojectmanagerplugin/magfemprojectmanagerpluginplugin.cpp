@@ -35,6 +35,8 @@ bool MagFEMProjectManagerPluginPlugin::initialize(const QStringList &arguments, 
 {
     qDebug()<<Q_FUNC_INFO;
     //create and register objects
+    /** 为了能够打开自己定义的project文件，需要将自定义的project注册一下。
+        也就是你的mimetype字符串以及你的项目类名。**/
     ProjectExplorer::PF_ProjectManager::registerProjectType<PF_Mag2DSProject>(MagFEMProjectManagerPlugin::Constants::FEEMMAG2DSTATIC_MIMETYPE);
     /** 添加wizards **/
     IWizardFactory::registerFactoryCreator([] {

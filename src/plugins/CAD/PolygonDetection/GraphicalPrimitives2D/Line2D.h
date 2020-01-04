@@ -14,6 +14,10 @@ class Polygon2D; // forward declaration because of 'Minkowsky Sum'
 class Line2D : public Entity2D
 {
 public:
+    Line2D();
+    Line2D(Line2D * line);
+    Line2D(Point2D * start_point, Point2D * end_point);
+    virtual ~Line2D();
     //		bool WriteImage(wxImage *dest, const wxColour &colour=*wxBLACK, double factor=1.0, double dx=0.0, double dy=0.);
     Line2D(double x1, double y1, double x2, double y2);
 
@@ -59,10 +63,6 @@ public:
     //		void SetEndX(double x);
     //		void SetEndY(double y);
 
-    Line2D();
-    Line2D(Line2D * line);
-    Line2D(Point2D * start_point, Point2D * end_point);
-    virtual ~Line2D();
 
     double GetMaxX(void);
     double GetMaxY(void);

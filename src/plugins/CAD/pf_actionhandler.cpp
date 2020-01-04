@@ -76,7 +76,7 @@ PF_ActionInterface *PF_ActionHandler::setCurrentAction(PF::ActionType typeId)
 
         break;
     case PF::ActionEditDelete:
-
+        document->clearSelected();
         break;
     case PF::ActionEditKillAllActions:
 
@@ -336,6 +336,15 @@ void PF_ActionHandler::slotImportGeoFile()
 //    QString fileName("D:/winmac/FEEMdev/FEEM/bin/modelrec.DXF");
     if(fileName.isEmpty()) return;
     document->importCADFile(fileName);
+}
+
+/**
+ * @brief 这里的作用是，如果只是定义了点和线，可以自动生成面。
+ *
+ */
+void PF_ActionHandler::slotBuildGeometry()
+{
+    document->buildFace();
 }
 
 void PF_ActionHandler::slotZoomIn() {

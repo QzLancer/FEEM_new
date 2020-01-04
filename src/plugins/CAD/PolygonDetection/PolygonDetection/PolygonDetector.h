@@ -10,6 +10,7 @@ public:
     ~PolygonDetector(void);
 
     inline int GetLineCount() {return _line_set.size();}
+    inline LineSet * GetLineSet() {return &_line_set;}
     inline PolygonSet * GetPolygonSet() {return &_polygon_set;}
 
     static inline bool Silent() {return _silent; }

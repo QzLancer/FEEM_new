@@ -12,6 +12,9 @@
 
 #include "./PolygonDetector.h"
 
+#include <output/outputpluginplugin.h>
+#include <QString>
+
 #include <QtAlgorithms>
 #include <QDebug>
 
@@ -65,7 +68,7 @@ void PolygonDetection::LineSet::Add(Line * line)
 */
 bool PolygonDetection::LineSet::RemoveIntersections(void)
 {
-    printf("Line intersection removal\n");
+    PoofeeSay<<("Line intersection removal");
 
     // prior to removing overlapping, one must
     // remove all zero length line, otherwise the results
@@ -74,12 +77,11 @@ bool PolygonDetection::LineSet::RemoveIntersections(void)
 
     // then we must remove line overlapping in order to run
     // the Bentley-Ottmann Algorithm
-    RemoveOverlappings();
+//    RemoveOverlappings();
 
     // finally we detect intersections between lines
     int intersection_count = DetectIntersections();
-    if (!PolygonDetection::PolygonDetector::Silent())
-        printf("Detected %d intersections\n", intersection_count);
+    PoofeeSay<<QString("Detected %1 intersections").arg(intersection_count);
 
     int i, j, count = _lines_array.size();
     Line *line;
@@ -95,7 +97,7 @@ bool PolygonDetection::LineSet::RemoveIntersections(void)
         line = _lines_array.at(i);
 
         if (!line) {
-            printf("Major failure (nullptr line) occurred during intersection removal.\n");
+            PoofeeSay<<("Major failure (nullptr line) occurred during intersection removal.");
             break;
         }
 
@@ -116,7 +118,6 @@ bool PolygonDetection::LineSet::RemoveIntersections(void)
 
             ADD_NEW_SEGMENT(created_lines_list, point, line->GetLastPoint());
             line->SetFlag(FLAG_REMOVE);
-
         }
     }
 
@@ -207,7 +208,7 @@ void PolygonDetection::LineSet::RemoveOverlappings(void)
 }
 
 // Detect intersection between lines
-unsigned int PolygonDetection::LineSet::DetectIntersections(void)
+int PolygonDetection::LineSet::DetectIntersections(void)
 {
     // first we sort the line array
     Sort();
@@ -266,7 +267,6 @@ unsigned int PolygonDetection::LineSet::DetectIntersections(void)
 
         // now we add the current line to the Active Line Segments Array
         active_line_segments_array->append(current_line);
-
     }
 
     // at the end we remove the remaining lines in ALST
@@ -350,7 +350,7 @@ bool PolygonDetection::LineSet::Normalize(void)
     }
 
     if (first) {
-        printf("Unable to perform line set normalization.\n");
+        PoofeeSay<<("Unable to perform line set normalization.");
         return false;
     }
 
@@ -360,7 +360,7 @@ bool PolygonDetection::LineSet::Normalize(void)
 
 
     if (bb_width==0.0 && bb_height==0.0 ) {
-        printf("Empty bounding box. Could not normalize the line set.\n");
+        PoofeeSay<<("Empty bounding box. Could not normalize the line set.");
         return false;
     }
 
