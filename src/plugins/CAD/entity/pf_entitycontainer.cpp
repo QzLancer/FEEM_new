@@ -96,7 +96,14 @@ class CurveLessThan{
 public:
     bool operator()(const Curve &c1, const Curve &c2) const
     {
-        if(c1.num < c2.num) return true;
+        if(c1.a < c2.a)
+            return true;
+        else if(c1.a == c2.a){
+            if(c1.b < c2.b)
+                return true;
+            else
+                return false;
+        }
         return false;
     }
 };
@@ -114,10 +121,14 @@ int addpoint(Point &p)
     return p.num;
 }
 
-void addcurve(Curve &c)
+int addcurve(Curve &c)
 {
+    std::set<Curve>::iterator it = Curve_T.find(c);
+    if(it != Curve_T.end())
+        return it->num;
     c.num = numc++;
     Curve_T.insert(c);
+    return c.num;
 }
 
 int checkdegen(int a, int b, int c)
@@ -1533,8 +1544,10 @@ void PF_EntityContainer::buildFace()
     // the lines were loaded, lets detect the polygons
     if (!polygon_detector.DetectPolygons() || !polygon_detector.GetPolygonSet()) {
         PoofeeSay<<tr("Error: Failed to detect the polygons.\n");
+        return;
     }
-
+    //simplify the polygon set
+    polygon_detector.SimplifyPolygons(0.0);
     /** 绘制生成的线和面 **/
     Point_T.clear();
     Curve_T.clear();
@@ -1542,24 +1555,53 @@ void PF_EntityContainer::buildFace()
     numc = 1;
     this->clear();
     Point p;
+    p.z = 0;
     Curve c;
     int num[10];
-    for(int i = 0; i < polygon_detector.GetLineCount();i++){
-        auto line = polygon_detector.GetLineSet()->Item(i);
-        p.x = line->GetStartPoint()->GetX();
-        p.y = line->GetStartPoint()->GetY();
-        p.z = 0;
-        num[0] = addpoint(p);
-        p.x = line->GetEndPoint()->GetX();
-        p.y = line->GetEndPoint()->GetY();
-        p.z = 0;
-        num[1] = addpoint(p);
-        c.type = GEOLINE;
-        c.a = num[0];
-        c.b = num[1];
-        addcurve(c);
+    PF_Face::face_index = 1;/** 既然删除了所有的面，那么应该把索引重置 **/
+    /** 遍历所有的多边形，暂时不支持曲面 **/
+    auto polyset = polygon_detector.GetPolygonSet();
+    for(int i = 0; i < polyset->size();i++){
+        auto poly = polyset->Item(i);
+        QList<PF_LineLoop* > loops;
+        auto lineloop = new PF_LineLoop();
+        for(int j = 0; j < poly->GetVertexCount()-1;j++){
+            auto point = poly->GetVertexAt(j);
+            p.x = point->GetX();
+            p.y = point->GetY();
+            num[0] = addpoint(p);
+            point = poly->GetVertexAt(j+1);
+            p.x = point->GetX();
+            p.y = point->GetY();
+            num[1] = addpoint(p);
+            /** 如果两个有公共线的话，就重复添加了 **/
+            c.type = GEOLINE;
+            c.a = num[0];
+            c.b = num[1];
+            num[2]=addcurve(c);
+            lineloop->line_index.append(num[2]);
+        }
+        loops.append(lineloop);
+        auto f = new PF_Face(this,mParentPlot,loops);
+        this->addEntitySilence(f);
     }
+//    for(int i = 0; i < polygon_detector.GetLineCount();i++){
+//        auto line = polygon_detector.GetLineSet()->Item(i);
+//        p.x = line->GetStartPoint()->GetX();
+//        p.y = line->GetStartPoint()->GetY();
+//        p.z = 0;
+//        num[0] = addpoint(p);
+//        p.x = line->GetEndPoint()->GetX();
+//        p.y = line->GetEndPoint()->GetY();
+//        p.z = 0;
+//        num[1] = addpoint(p);
+//        c.type = GEOLINE;
+//        c.a = num[0];
+//        c.b = num[1];
+//        addcurve(c);
+//    }
     QMap<int,PF_Point*> ps;
+    QMap<int,PF_Line*> ls;
     /** 生成所有的点 **/
     for(std::set<Point>::iterator it = Point_T.begin(); it != Point_T.end(); ++it){
 //        qDebug()<<it->num<<" "<<it->x<<" "<<it->y;
@@ -1578,17 +1620,23 @@ void PF_EntityContainer::buildFace()
 //        qDebug()<<it->num<<" "<<it->a<<" "<<it->b;
         auto l = new PF_Line(this,mParentPlot,ps.value(it->a,nullptr),ps.value(it->b,nullptr));
         l->setIndex(it->num);
+        ls.insert(it->num,l);
         this->addEntitySilence(l);
     }
+    /** 生成面数据。主要的困难在于数据编号不一致。 **/
+    for(int i = entities.size()-1; i >= 0; i--){
+        auto e = entities.at(i);
+        if(e->rtti() == PF::EntityFace){
+            dynamic_cast<PF_Face*>(e)->updateLineLoopByIndex(ls);
+        }
+    }
+    // the polygons were detected, lets save them
+//    if (!polygon_detector.CreateSVGwithPolygons("line2.svg")) {
+//        PoofeeSay<<tr("Error: Failed to crate the SVG with the polygons.\n");
+//    }
+    /** UI更新 **/
     emit EntityChanged();
     this->parentPlot()->replot();
-    //simplify the polygon set
-    polygon_detector.SimplifyPolygons(0.0);
-    /** 生成面数据 **/
-    // the polygons were detected, lets save them
-    if (!polygon_detector.CreateSVGwithPolygons("line2.svg")) {
-        PoofeeSay<<tr("Error: Failed to crate the SVG with the polygons.\n");
-    }
 }
 
 int PF_EntityContainer::index() const

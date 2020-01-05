@@ -130,7 +130,6 @@ bool PolygonDetection::PolygonSet::Construct(LineSet * line_set)
 */
 void PolygonDetection::PolygonSet::CreatePointsArray(LineSet * line_set)
 {
-
     if (line_set) {
         WX_CLEAR_ARRAY(_all_points_array);
         for (int i=0; i< line_set->size(); i++) {
@@ -185,14 +184,11 @@ Graph * PolygonSet::LinesToGraph(LineSet * line_set)
     // already have an ID, so we can add lines to the graph
 
     Line * line;
-
     for (int i=0; i<line_set->size(); i++ ) {
         line = line_set->Item(i);
         if (line)
             G->SetAdjacency(line->GetStartPoint()->GetID(), line->GetEndPoint()->GetID());
     }
-
-    //ENDING_PROCESS_MESSAGE();
     return G;
 }
 

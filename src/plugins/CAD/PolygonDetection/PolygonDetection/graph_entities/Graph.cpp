@@ -220,6 +220,8 @@ CycleSet * Graph::Horton()
     for(v=0; v<GetVertexCount();v++) {
         for(x=v+1; x<GetVertexCount();x++) {
             path_vx = GetShortestPath(v,x);
+            if(path_vx)
+                qDebug()<<v+1<<">>"<<x+1<<*path_vx;
             for (y=x+1; y<GetVertexCount(); y++){
                 path_vy = GetShortestPath(v,y);
                 // if paths exists and points x and y are adjacent
@@ -265,8 +267,7 @@ wxArrayInt * Graph::GetShortestPath(int i, int j)
     if (i==j) {
         path = new wxArrayInt();
         path->append(i);
-    }
-    else {
+    }else {
         int offset_ij = MatrixOffset(i,j);
         if (_predecessor_matrix[offset_ij]==MAX_VERTICES)
             return nullptr;

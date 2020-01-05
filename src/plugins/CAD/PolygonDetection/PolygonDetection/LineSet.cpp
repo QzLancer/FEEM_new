@@ -213,7 +213,7 @@ int PolygonDetection::LineSet::DetectIntersections(void)
     LinesArray * active_line_segments_array = new LinesArray();
 
     int j, counter = _lines_array.size();
-    double current_y = 0, next_y;
+    double current_y = -1000000, next_y;
     Line * current_line, * other_line;
     bool move_sweep_line = false;
 
@@ -224,36 +224,36 @@ int PolygonDetection::LineSet::DetectIntersections(void)
     // now we sweep over the Lines Array, in this case is '_entity_array'
     for(int n=0; n<counter;n++) {
         current_line = _lines_array[n];
-        qDebug()<<"n="<<n<<",("<<current_line->GetFirstPoint()->GetX()<<","<<current_line->GetFirstPoint()->GetY()
-               <<")"<<",("<<current_line->GetLastPoint()->GetX()<<","<<current_line->GetLastPoint()->GetY()<<")";
+//        qDebug()<<"n="<<n<<",("<<current_line->GetFirstPoint()->GetX()<<","<<current_line->GetFirstPoint()->GetY()
+//               <<")"<<",("<<current_line->GetLastPoint()->GetX()<<","<<current_line->GetLastPoint()->GetY()<<")";
         next_y = current_line->GetFirstPoint()->GetY();
-        qDebug()<<"nexty:"<<next_y<<"current_y:"<<current_y;
+//        qDebug()<<"nexty:"<<next_y<<"current_y:"<<current_y;
         // see if current line belongs to next sweep line
         move_sweep_line = (next_y > current_y);
 
         // for each line in ALST
         for (j=active_line_segments_array->size(); j>0;) {
-            qDebug()<<"j="<<j;
+//            qDebug()<<"j="<<j;
             other_line = active_line_segments_array->at(--j);
-            qDebug()<<"other_line:"<<",("<<other_line->GetFirstPoint()->GetX()<<","<<other_line->GetFirstPoint()->GetY()
-                   <<")"<<",("<<other_line->GetLastPoint()->GetX()<<","<<other_line->GetLastPoint()->GetY()<<")";
+//            qDebug()<<"other_line:"<<",("<<other_line->GetFirstPoint()->GetX()<<","<<other_line->GetFirstPoint()->GetY()
+//                   <<")"<<",("<<other_line->GetLastPoint()->GetX()<<","<<other_line->GetLastPoint()->GetY()<<")";
             // in case the current segment move the sweep line forward
             if (move_sweep_line) {
                 // we must see if other line ends before next 'y', and in that case
                 // it should be removed from Active Line Segments Array
                 if (other_line->GetLastPoint()->GetY() < next_y) {
                     active_line_segments_array->removeAt(j);
-                    qDebug()<<"remove";
+//                    qDebug()<<"remove";
                     continue;
                 }
             }
 
             // if the current line intersects with other line
             if (current_line->Intersects(other_line)) {
-                qDebug()<<"Intersects";
+//                qDebug()<<"Intersects";
                 intersection = current_line->IntersectionPoint(other_line);
                 if (intersection) {
-                    qDebug()<<"Intersects"<<"("<<intersection->GetX()<<","<<intersection->GetY()<<")";
+//                    qDebug()<<"Intersects"<<"("<<intersection->GetX()<<","<<intersection->GetY()<<")";
                     current_line->AddIntersectionPoint(intersection);
                     other_line->AddIntersectionPoint(new GraphicalPrimitives2D::Point2D(intersection));
                     result++;
@@ -264,7 +264,7 @@ int PolygonDetection::LineSet::DetectIntersections(void)
         // in case the current segment move the sweep line forward
         if (move_sweep_line) {
             // we must move the sweep line
-            qDebug()<<"move_sweep_line";
+//            qDebug()<<"move_sweep_line";
             current_y = next_y;
         }
 
@@ -285,17 +285,17 @@ int PolygonDetection::LineSet::DetectIntersections(void)
 void PolygonDetection::LineSet::Sort(void)
 {
     CalculateLinesFirstAndLastPoint();
-    qDebug()<<"before sort:";
-    for(auto e : _lines_array){
-        qDebug()<<"("<<e->GetFirstPoint()->GetX()<<","<<e->GetFirstPoint()->GetY()<<")"
-               <<"("<<e->GetLastPoint()->GetX()<<","<<e->GetLastPoint()->GetY()<<")";
-    }
+//    qDebug()<<"before sort:";
+//    for(auto e : _lines_array){
+//        qDebug()<<"("<<e->GetFirstPoint()->GetX()<<","<<e->GetFirstPoint()->GetY()<<")"
+//               <<"("<<e->GetLastPoint()->GetX()<<","<<e->GetLastPoint()->GetY()<<")";
+//    }
     qSort(_lines_array.begin(),_lines_array.end(),Line::CompareOrder);
-    qDebug()<<"after sort:";
-    for(auto e : _lines_array){
-        qDebug()<<"("<<e->GetFirstPoint()->GetX()<<","<<e->GetFirstPoint()->GetY()<<")"
-               <<"("<<e->GetLastPoint()->GetX()<<","<<e->GetLastPoint()->GetY()<<")";
-    }
+//    qDebug()<<"after sort:";
+//    for(auto e : _lines_array){
+//        qDebug()<<"("<<e->GetFirstPoint()->GetX()<<","<<e->GetFirstPoint()->GetY()<<")"
+//               <<"("<<e->GetLastPoint()->GetX()<<","<<e->GetLastPoint()->GetY()<<")";
+//    }
 }
 
 /***
