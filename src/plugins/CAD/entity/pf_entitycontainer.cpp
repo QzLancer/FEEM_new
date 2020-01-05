@@ -1551,7 +1551,7 @@ void PF_EntityContainer::buildFace()
         p.z = 0;
         num[0] = addpoint(p);
         p.x = line->GetEndPoint()->GetX();
-        p.y = line->GetEndPoint()->GetX();
+        p.y = line->GetEndPoint()->GetY();
         p.z = 0;
         num[1] = addpoint(p);
         c.type = GEOLINE;

@@ -40,7 +40,6 @@ void Line::AddIntersectionPoint(GraphicalPrimitives2D::Point2D *p)
 */
 void Line::SortIntersectionsList()
 {
-//	_intersections.Sort(GraphicalPrimitives2D::Point2D::CompareOrder);
     qSort(_intersections.begin(),_intersections.end(),GraphicalPrimitives2D::Point2D::CompareOrder);
 }
 

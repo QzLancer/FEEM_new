@@ -310,12 +310,12 @@ QString PolygonDetection::PolygonSet::AsSVG(bool colorized)
     }
 
     // draw polylines
-    for (int i=0;i<_polygons_array.size();i++) {
-        Polygon * p = Item(i);
-        if (p)
-            result += p->AsString(true,"#000000") +"\n";
-        factor-=delta;
-    }
+//    for (int i=0;i<_polygons_array.size();i++) {
+//        Polygon * p = Item(i);
+//        if (p)
+//            result += p->AsString(true,"#000000") +"\n";
+//        factor-=delta;
+//    }
 
     result += "</svg>";
     return result;
