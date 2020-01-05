@@ -36,6 +36,7 @@ PF_Face::PF_Face(PF_EntityContainer* parent, PF_GraphicView* view, const QList<P
     :PF_AtomicEntity(parent,view)
 {
     data.faceData = faceData;
+    m_index = face_index;
 }
 
 PF_VectorSolutions PF_Face::getRefPoints() const

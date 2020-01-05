@@ -1528,7 +1528,6 @@ bool PF_EntityContainer::importCADFile(const QString &fileName)
 void PF_EntityContainer::buildFace()
 {
     /** 为保险起见，先删除所有的面信息 **/
-
     PolygonDetector polygon_detector;
     /** 先搜集所有的线 **/
     for(int i = entities.size()-1; i >= 0; i--){
@@ -1553,7 +1552,7 @@ void PF_EntityContainer::buildFace()
     Curve_T.clear();
     nump = 1;
     numc = 1;
-    this->clear();
+    this->clear();/** 应该把所有的实体清空 **/
     Point p;
     p.z = 0;
     Curve c;
@@ -1576,13 +1575,21 @@ void PF_EntityContainer::buildFace()
             num[1] = addpoint(p);
             /** 如果两个有公共线的话，就重复添加了 **/
             c.type = GEOLINE;
-            c.a = num[0];
-            c.b = num[1];
+
+            /** 对编号进行大小排序，否则curve无法查找重复 **/
+            if(num[0] < num[1]){
+                c.a = num[0];
+                c.b = num[1];
+            }else{
+                c.a = num[1];
+                c.b = num[0];
+            }
             num[2]=addcurve(c);
             lineloop->line_index.append(num[2]);
         }
         loops.append(lineloop);
         auto f = new PF_Face(this,mParentPlot,loops);
+        PF_Face::face_index++;/** 需要同时更新索引 **/
         this->addEntitySilence(f);
     }
 //    for(int i = 0; i < polygon_detector.GetLineCount();i++){
@@ -1610,10 +1617,10 @@ void PF_EntityContainer::buildFace()
         ps.insert(it->num,p);
     }
     /** 按照index排序的顺序 **/
-    QMapIterator<int,PF_Point*> i(ps);
-    while (i.hasNext()) {
-        i.next();
-        this->addEntitySilence(i.value());
+    QMapIterator<int,PF_Point*> pmap(ps);
+    while (pmap.hasNext()) {
+        pmap.next();
+        this->addEntitySilence(pmap.value());
     }
     /** 生成所有的线 **/
     for(std::set<Curve>::iterator it = Curve_T.begin(); it != Curve_T.end(); ++it){
@@ -1621,7 +1628,12 @@ void PF_EntityContainer::buildFace()
         auto l = new PF_Line(this,mParentPlot,ps.value(it->a,nullptr),ps.value(it->b,nullptr));
         l->setIndex(it->num);
         ls.insert(it->num,l);
-        this->addEntitySilence(l);
+    }
+    /** 按照index排序的顺序 **/
+    QMapIterator<int,PF_Line*> lmap(ls);
+    while (lmap.hasNext()) {
+        lmap.next();
+        this->addEntitySilence(lmap.value());
     }
     /** 生成面数据。主要的困难在于数据编号不一致。 **/
     for(int i = entities.size()-1; i >= 0; i--){
