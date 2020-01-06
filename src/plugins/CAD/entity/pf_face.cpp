@@ -152,6 +152,9 @@ void PF_Face::draw(QCPPainter *painter)
         }
 
         for(auto p : e->lines){
+            if(isSelected()){
+                p->setSelected(true);
+            }
             /** 要注意线的方向 **/
             if(indexLast == p->data.startpoint->index()){
                 pos = p->data.startpoint->getCenter();

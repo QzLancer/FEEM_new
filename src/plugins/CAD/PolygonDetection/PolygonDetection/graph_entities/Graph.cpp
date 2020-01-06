@@ -220,8 +220,6 @@ CycleSet * Graph::Horton()
     for(v=0; v<GetVertexCount();v++) {
         for(x=v+1; x<GetVertexCount();x++) {
             path_vx = GetShortestPath(v,x);
-            if(path_vx)
-                qDebug()<<v+1<<">>"<<x+1<<*path_vx;
             for (y=x+1; y<GetVertexCount(); y++){
                 path_vy = GetShortestPath(v,y);
                 // if paths exists and points x and y are adjacent
@@ -230,6 +228,7 @@ CycleSet * Graph::Horton()
                             IsTiermanCompliant(v, path_vx, path_vy)){
 
                         cycle = new Cycle(path_vx, path_vy);
+//                        qDebug()<<*path_vx<<*path_vy;
                         if (cycle->GetLength()>0)
                             p_cycle_set->AddCycle(cycle);
                         else

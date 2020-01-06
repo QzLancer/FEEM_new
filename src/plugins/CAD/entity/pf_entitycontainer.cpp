@@ -1546,7 +1546,7 @@ void PF_EntityContainer::buildFace()
         return;
     }
     //simplify the polygon set
-    polygon_detector.SimplifyPolygons(0.0);
+//    polygon_detector.SimplifyPolygons(0.0);
     /** 绘制生成的线和面 **/
     Point_T.clear();
     Curve_T.clear();
@@ -1564,11 +1564,15 @@ void PF_EntityContainer::buildFace()
         auto poly = polyset->Item(i);
         QList<PF_LineLoop* > loops;
         auto lineloop = new PF_LineLoop();
+        PF_LineLoop::lineloop_index++;
+//        qDebug()<<"poly"<<i;
+        /** 多边形当中的线段是有方向的，不能随便排序 **/
         for(int j = 0; j < poly->GetVertexCount()-1;j++){
             auto point = poly->GetVertexAt(j);
             p.x = point->GetX();
             p.y = point->GetY();
             num[0] = addpoint(p);
+//            qDebug()<<j<<":("<<p.x<<","<<p.y<<")";
             point = poly->GetVertexAt(j+1);
             p.x = point->GetX();
             p.y = point->GetY();
@@ -1576,6 +1580,7 @@ void PF_EntityContainer::buildFace()
             /** 如果两个有公共线的话，就重复添加了 **/
             c.type = GEOLINE;
 
+//            qDebug()<<num[0]<<","<<num[1]<<"("<<p.x<<","<<p.y<<")";
             /** 对编号进行大小排序，否则curve无法查找重复 **/
             if(num[0] < num[1]){
                 c.a = num[0];
@@ -1585,6 +1590,7 @@ void PF_EntityContainer::buildFace()
                 c.b = num[0];
             }
             num[2]=addcurve(c);
+
             lineloop->line_index.append(num[2]);
         }
         loops.append(lineloop);
@@ -1592,21 +1598,6 @@ void PF_EntityContainer::buildFace()
         PF_Face::face_index++;/** 需要同时更新索引 **/
         this->addEntitySilence(f);
     }
-//    for(int i = 0; i < polygon_detector.GetLineCount();i++){
-//        auto line = polygon_detector.GetLineSet()->Item(i);
-//        p.x = line->GetStartPoint()->GetX();
-//        p.y = line->GetStartPoint()->GetY();
-//        p.z = 0;
-//        num[0] = addpoint(p);
-//        p.x = line->GetEndPoint()->GetX();
-//        p.y = line->GetEndPoint()->GetY();
-//        p.z = 0;
-//        num[1] = addpoint(p);
-//        c.type = GEOLINE;
-//        c.a = num[0];
-//        c.b = num[1];
-//        addcurve(c);
-//    }
     QMap<int,PF_Point*> ps;
     QMap<int,PF_Line*> ls;
     /** 生成所有的点 **/
