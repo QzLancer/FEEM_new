@@ -122,10 +122,6 @@ void CycleSet::SelectCycles()
             c++;
     }
 
-#ifdef GRAPH_DEBUG	
-    incidence_matrix->Log();
-#endif	
-
     DELETE_OBJECT(incidence_matrix);
 }
 

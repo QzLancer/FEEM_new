@@ -1520,7 +1520,41 @@ bool PF_EntityContainer::importCADFile(const QString &fileName)
     }
     return true;
 }
+PF_LineLoop* addLineLoop(GraphicalPrimitives2D::Polygon2D* poly){
+    auto lineloop = new PF_LineLoop();
+    PF_LineLoop::lineloop_index++;
+    Point p;
+    p.z = 0;
+    Curve c;
+    int num[10];
 
+    for(int j = 0; j < poly->GetVertexCount()-1;j++){
+        auto point = poly->GetVertexAt(j);
+        p.x = point->GetX();
+        p.y = point->GetY();
+        num[0] = addpoint(p);
+//            qDebug()<<j<<":("<<p.x<<","<<p.y<<")";
+        point = poly->GetVertexAt(j+1);
+        p.x = point->GetX();
+        p.y = point->GetY();
+        num[1] = addpoint(p);
+        /** 如果两个有公共线的话，就重复添加了 **/
+        c.type = GEOLINE;
+//            qDebug()<<num[0]<<","<<num[1]<<"("<<p.x<<","<<p.y<<")";
+        /** 对编号进行大小排序，否则curve无法查找重复 **/
+        if(num[0] < num[1]){
+            c.a = num[0];
+            c.b = num[1];
+        }else{
+            c.a = num[1];
+            c.b = num[0];
+        }
+        num[2]=addcurve(c);
+
+        lineloop->line_index.append(num[2]);
+    }
+    return lineloop;
+}
 /**
  * @brief 根据点和线的信息生成面
  *
@@ -1560,44 +1594,110 @@ void PF_EntityContainer::buildFace()
     PF_Face::face_index = 1;/** 既然删除了所有的面，那么应该把索引重置 **/
     /** 遍历所有的多边形，暂时不支持曲面 **/
     auto polyset = polygon_detector.GetPolygonSet();
+    /** 检查各个多边形之间的关系 **/
+    QMap<GraphicalPrimitives2D::Polygon2D*,int> polymap;
     for(int i = 0; i < polyset->size();i++){
-        auto poly = polyset->Item(i);
-        QList<PF_LineLoop* > loops;
-        auto lineloop = new PF_LineLoop();
-        PF_LineLoop::lineloop_index++;
-//        qDebug()<<"poly"<<i;
-        /** 多边形当中的线段是有方向的，不能随便排序 **/
-        for(int j = 0; j < poly->GetVertexCount()-1;j++){
-            auto point = poly->GetVertexAt(j);
-            p.x = point->GetX();
-            p.y = point->GetY();
-            num[0] = addpoint(p);
-//            qDebug()<<j<<":("<<p.x<<","<<p.y<<")";
-            point = poly->GetVertexAt(j+1);
-            p.x = point->GetX();
-            p.y = point->GetY();
-            num[1] = addpoint(p);
-            /** 如果两个有公共线的话，就重复添加了 **/
-            c.type = GEOLINE;
-
-//            qDebug()<<num[0]<<","<<num[1]<<"("<<p.x<<","<<p.y<<")";
-            /** 对编号进行大小排序，否则curve无法查找重复 **/
-            if(num[0] < num[1]){
-                c.a = num[0];
-                c.b = num[1];
-            }else{
-                c.a = num[1];
-                c.b = num[0];
+        auto polyi = polyset->Item(i);
+        polymap.insert(polyi,i+1);
+        for(int j = 0; j < polyset->size();j++){
+            if(i != j){
+                auto polyj = polyset->Item(j);
+                if(polyi->Contains(polyj)){
+//                    qDebug()<<"poly "<<i+1<<" contains "<<"poly "<<j+1;
+                    if(polyj->GetParent()){
+                        /** 包含它的椭圆包含了。。。说明不是最小 **/
+                        if(polyj->GetParent()->Contains(polyi)){
+                            polyj->GetParent()->RemoveSon(polyj);
+                            polyj->SetParent(polyi);
+                            polyi->AddSon(polyj);
+                        }
+                    }else{
+                        polyj->SetParent(polyi);
+                        polyi->AddSon(polyj);
+                    }
+                }
+//                if(polyi->Disjoint(polyj)){
+//                    qDebug()<<"poly "<<i+1<<" Disjoint "<<"poly "<<j+1;
+//                }
+//                if(polyi->IsAdjacent(polyj)){
+//                    qDebug()<<"poly "<<i+1<<" IsAdjacent "<<"poly "<<j+1;
+//                }
             }
-            num[2]=addcurve(c);
-
-            lineloop->line_index.append(num[2]);
         }
-        loops.append(lineloop);
+    }
+    /** 打印包含关系 **/
+    for(int i = 0; i < polyset->size();i++){
+        auto polyi = polyset->Item(i);
+        double polyiArea = polyi->Area();
+        qDebug()<<"poly "<<i+1<<" area is "<<polyiArea;
+        /** root **/
+        if(polyi->GetParent()){
+            qDebug()<<"poly "<<i+1<<" parent is "<<polymap.value(polyi->GetParent(),-1);
+        }else{
+            qDebug()<<"poly "<<i+1<<" parent is nullptr";
+        }
+        double childArea = 0;
+        for(auto p : polyi->_son_polygons){
+            qDebug()<<"child "<<polymap.value(p,-1);
+            childArea += p->Area();
+        }
+        QList<PF_LineLoop* > loops;
+        if(polyi->_son_polygons.isEmpty()){
+            loops.insert(0,addLineLoop(polyi));/** 将本身加进来 **/
+        }else if(abs(polyiArea - childArea)>1e-10){
+            qDebug()<<"empty region exsits."<<"polyiArea:"<<polyiArea<<"childArea:"<<childArea;
+            loops.append(addLineLoop(polyi));/** 将本身加进来 **/
+            /** 生成多边形的作差后的多边形 **/
+            for(auto poly : polyi->_son_polygons){
+                loops.append(addLineLoop(poly));
+            }
+        }else{
+            /** 完全可以用子多边形表示的多边形 **/
+            continue;
+        }
+
         auto f = new PF_Face(this,mParentPlot,loops);
         PF_Face::face_index++;/** 需要同时更新索引 **/
         this->addEntitySilence(f);
     }
+//    for(int i = 0; i < polyset->size();i++){
+//        auto poly = polyset->Item(i);
+//        QList<PF_LineLoop* > loops;
+//        auto lineloop = new PF_LineLoop();
+//        PF_LineLoop::lineloop_index++;
+////        qDebug()<<"poly"<<i;
+//        /** 多边形当中的线段是有方向的，不能随便排序 **/
+//        for(int j = 0; j < poly->GetVertexCount()-1;j++){
+//            auto point = poly->GetVertexAt(j);
+//            p.x = point->GetX();
+//            p.y = point->GetY();
+//            num[0] = addpoint(p);
+////            qDebug()<<j<<":("<<p.x<<","<<p.y<<")";
+//            point = poly->GetVertexAt(j+1);
+//            p.x = point->GetX();
+//            p.y = point->GetY();
+//            num[1] = addpoint(p);
+//            /** 如果两个有公共线的话，就重复添加了 **/
+//            c.type = GEOLINE;
+
+////            qDebug()<<num[0]<<","<<num[1]<<"("<<p.x<<","<<p.y<<")";
+//            /** 对编号进行大小排序，否则curve无法查找重复 **/
+//            if(num[0] < num[1]){
+//                c.a = num[0];
+//                c.b = num[1];
+//            }else{
+//                c.a = num[1];
+//                c.b = num[0];
+//            }
+//            num[2]=addcurve(c);
+
+//            lineloop->line_index.append(num[2]);
+//        }
+//        loops.append(lineloop);
+//        auto f = new PF_Face(this,mParentPlot,loops);
+//        PF_Face::face_index++;/** 需要同时更新索引 **/
+//        this->addEntitySilence(f);
+//    }
     QMap<int,PF_Point*> ps;
     QMap<int,PF_Line*> ls;
     /** 生成所有的点 **/

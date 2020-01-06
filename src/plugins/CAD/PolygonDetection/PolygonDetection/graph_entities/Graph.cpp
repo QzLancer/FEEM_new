@@ -246,7 +246,7 @@ CycleSet * Graph::Horton()
 
     // lets apply the gaussian elimination
     if (p_cycle_set) {
-        p_cycle_set->SelectCycles();
+//        p_cycle_set->SelectCycles();
     }
 
     return p_cycle_set;

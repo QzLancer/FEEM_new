@@ -211,7 +211,7 @@ int PolygonSet::GetPointCount()
             previous = current;
         }
         current->SetID(id-1);
-        qDebug()<<id-1<<":"<<current->GetX()<<","<<current->GetY();
+//        qDebug()<<id-1<<":"<<current->GetX()<<","<<current->GetY();
     }
 
     return id;
