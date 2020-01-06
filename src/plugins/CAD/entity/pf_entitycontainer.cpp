@@ -1684,49 +1684,6 @@ void PF_EntityContainer::buildFace()
             polyQueue.push(p);
         }
     }
-//    /** 打印包含关系，这种遍历方法的问题是，不是从顶到下，进行多边形的减法的时候，
-//        会把一些多边形给提前处理掉。**/
-//    for(int i = 0; i < polyset->size();i++){
-//        auto polyi = polyset->Item(i);
-//        double polyiArea = polyi->Area();
-//        qDebug()<<"poly "<<i+1<<" area is "<<polyiArea;
-//        /** root **/
-//        if(polyi->GetParent()){
-//            qDebug()<<"poly "<<i+1<<" parent is "<<polymap.value(polyi->GetParent(),-1);
-//        }else{
-//            qDebug()<<"poly "<<i+1<<" parent is nullptr";
-//        }
-//        double childArea = 0;
-//        for(auto p : polyi->_son_polygons){
-//            qDebug()<<"child "<<polymap.value(p,-1);
-//            childArea += p->Area();
-//        }
-//        QList<PF_LineLoop* > loops;
-//        if(polyi->_son_polygons.isEmpty()){
-//            loops.insert(0,addLineLoop(polyi));/** 将本身加进来 **/
-//        }else if(abs(polyiArea - childArea)>1e-10){
-//            qDebug()<<"empty region exsits."<<"polyiArea:"<<polyiArea<<"childArea:"<<childArea;
-//            /** 生成多边形的作差后的多边形，如果只是简单的添加边界，也是可以识别的，
-//                就是显示的时候，会把所有线显示出来。**/
-//            for(auto poly : polyi->_son_polygons){
-//                /** 对一些含有公共边的多边形进行合并简化 **/
-//                if(polyi->IsAdjacent(poly)){
-//                    qDebug()<<"simplyfy "<<polymap.value(polyi,-1)<<" and "<<polymap.value(poly,-1);
-//                    polyi->Minus(poly);
-//                    continue;
-//                }
-//                loops.append(addLineLoop(poly));
-//            }
-//            loops.insert(0,addLineLoop(polyi));/** 将本身加进来 **/
-//        }else{
-//            /** 完全可以用子多边形表示的多边形 **/
-//            continue;
-//        }
-
-//        auto f = new PF_Face(this,mParentPlot,loops);
-//        PF_Face::face_index++;/** 需要同时更新索引 **/
-//        this->addEntitySilence(f);
-//    }
 
     QMap<int,PF_Point*> ps;
     QMap<int,PF_Line*> ls;
