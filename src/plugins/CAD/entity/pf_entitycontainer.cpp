@@ -11,6 +11,7 @@
 
 #include <QDebug>
 #include <QFileInfo>
+#include <queue>
 
 using namespace PolygonDetection;
 
@@ -1625,79 +1626,108 @@ void PF_EntityContainer::buildFace()
             }
         }
     }
-    /** 打印包含关系 **/
+    /** 查找root节点 **/
+    GraphicalPrimitives2D::Polygon2D* root = nullptr;
     for(int i = 0; i < polyset->size();i++){
         auto polyi = polyset->Item(i);
-        double polyiArea = polyi->Area();
-        qDebug()<<"poly "<<i+1<<" area is "<<polyiArea;
         /** root **/
-        if(polyi->GetParent()){
-            qDebug()<<"poly "<<i+1<<" parent is "<<polymap.value(polyi->GetParent(),-1);
-        }else{
-            qDebug()<<"poly "<<i+1<<" parent is nullptr";
+        if(!polyi->GetParent()){
+            root = polyi;
         }
+    }
+    /** 使用队列的形式进行遍历 **/
+    std::queue<GraphicalPrimitives2D::Polygon2D*> polyQueue;
+    if(root)
+        polyQueue.push(root);
+    while(!polyQueue.empty()){
+        /** 处理节点下面的一层，只是寻找有没有多余的多边形 **/
+        auto tmpPoly = polyQueue.front();
+        qDebug()<<"parent poly "<<polymap.value(tmpPoly,-1);
+        double polyArea = tmpPoly->Area();
         double childArea = 0;
-        for(auto p : polyi->_son_polygons){
+        for(auto p : tmpPoly->_son_polygons){
             qDebug()<<"child "<<polymap.value(p,-1);
             childArea += p->Area();
         }
         QList<PF_LineLoop* > loops;
-        if(polyi->_son_polygons.isEmpty()){
-            loops.insert(0,addLineLoop(polyi));/** 将本身加进来 **/
-        }else if(abs(polyiArea - childArea)>1e-10){
-            qDebug()<<"empty region exsits."<<"polyiArea:"<<polyiArea<<"childArea:"<<childArea;
-            loops.append(addLineLoop(polyi));/** 将本身加进来 **/
-            /** 生成多边形的作差后的多边形 **/
-            for(auto poly : polyi->_son_polygons){
+        /** 没有子节点了 **/
+        if(tmpPoly->_son_polygons.isEmpty()){
+            loops.insert(0,addLineLoop(tmpPoly));/** 将本身加进来 **/
+        }else if(abs(polyArea - childArea)>1e-10){
+            qDebug()<<"empty region exsits."<<"polyiArea:"<<polyArea<<"childArea:"<<childArea;
+            /** 生成多边形的作差后的多边形，如果只是简单的添加边界，也是可以识别的，
+                就是显示的时候，会把所有线显示出来。**/
+            for(auto poly : tmpPoly->_son_polygons){
+                /** 对一些含有公共边的多边形进行合并简化 **/
+                if(tmpPoly->IsAdjacent(poly)){
+                    qDebug()<<"simplyfy "<<polymap.value(tmpPoly,-1)<<" and "<<polymap.value(poly,-1);
+                    tmpPoly->Minus(poly);
+                    continue;
+                }
                 loops.append(addLineLoop(poly));
             }
-        }else{
+            loops.insert(0,addLineLoop(tmpPoly));/** 将本身加进来 **/
+        }//else{
             /** 完全可以用子多边形表示的多边形 **/
-            continue;
+//            continue;
+        //}
+        /** 生成面的数据 **/
+        if(!loops.isEmpty()){
+            auto f = new PF_Face(this,mParentPlot,loops);
+            PF_Face::face_index++;/** 需要同时更新索引 **/
+            this->addEntitySilence(f);
         }
-
-        auto f = new PF_Face(this,mParentPlot,loops);
-        PF_Face::face_index++;/** 需要同时更新索引 **/
-        this->addEntitySilence(f);
+        /** 处理完毕，将该节点的数据释放 **/
+        polyQueue.pop();
+        /** 将子节点添加到队列当中 **/
+        for(auto p : tmpPoly->_son_polygons){
+            polyQueue.push(p);
+        }
     }
+//    /** 打印包含关系，这种遍历方法的问题是，不是从顶到下，进行多边形的减法的时候，
+//        会把一些多边形给提前处理掉。**/
 //    for(int i = 0; i < polyset->size();i++){
-//        auto poly = polyset->Item(i);
-//        QList<PF_LineLoop* > loops;
-//        auto lineloop = new PF_LineLoop();
-//        PF_LineLoop::lineloop_index++;
-////        qDebug()<<"poly"<<i;
-//        /** 多边形当中的线段是有方向的，不能随便排序 **/
-//        for(int j = 0; j < poly->GetVertexCount()-1;j++){
-//            auto point = poly->GetVertexAt(j);
-//            p.x = point->GetX();
-//            p.y = point->GetY();
-//            num[0] = addpoint(p);
-////            qDebug()<<j<<":("<<p.x<<","<<p.y<<")";
-//            point = poly->GetVertexAt(j+1);
-//            p.x = point->GetX();
-//            p.y = point->GetY();
-//            num[1] = addpoint(p);
-//            /** 如果两个有公共线的话，就重复添加了 **/
-//            c.type = GEOLINE;
-
-////            qDebug()<<num[0]<<","<<num[1]<<"("<<p.x<<","<<p.y<<")";
-//            /** 对编号进行大小排序，否则curve无法查找重复 **/
-//            if(num[0] < num[1]){
-//                c.a = num[0];
-//                c.b = num[1];
-//            }else{
-//                c.a = num[1];
-//                c.b = num[0];
-//            }
-//            num[2]=addcurve(c);
-
-//            lineloop->line_index.append(num[2]);
+//        auto polyi = polyset->Item(i);
+//        double polyiArea = polyi->Area();
+//        qDebug()<<"poly "<<i+1<<" area is "<<polyiArea;
+//        /** root **/
+//        if(polyi->GetParent()){
+//            qDebug()<<"poly "<<i+1<<" parent is "<<polymap.value(polyi->GetParent(),-1);
+//        }else{
+//            qDebug()<<"poly "<<i+1<<" parent is nullptr";
 //        }
-//        loops.append(lineloop);
+//        double childArea = 0;
+//        for(auto p : polyi->_son_polygons){
+//            qDebug()<<"child "<<polymap.value(p,-1);
+//            childArea += p->Area();
+//        }
+//        QList<PF_LineLoop* > loops;
+//        if(polyi->_son_polygons.isEmpty()){
+//            loops.insert(0,addLineLoop(polyi));/** 将本身加进来 **/
+//        }else if(abs(polyiArea - childArea)>1e-10){
+//            qDebug()<<"empty region exsits."<<"polyiArea:"<<polyiArea<<"childArea:"<<childArea;
+//            /** 生成多边形的作差后的多边形，如果只是简单的添加边界，也是可以识别的，
+//                就是显示的时候，会把所有线显示出来。**/
+//            for(auto poly : polyi->_son_polygons){
+//                /** 对一些含有公共边的多边形进行合并简化 **/
+//                if(polyi->IsAdjacent(poly)){
+//                    qDebug()<<"simplyfy "<<polymap.value(polyi,-1)<<" and "<<polymap.value(poly,-1);
+//                    polyi->Minus(poly);
+//                    continue;
+//                }
+//                loops.append(addLineLoop(poly));
+//            }
+//            loops.insert(0,addLineLoop(polyi));/** 将本身加进来 **/
+//        }else{
+//            /** 完全可以用子多边形表示的多边形 **/
+//            continue;
+//        }
+
 //        auto f = new PF_Face(this,mParentPlot,loops);
 //        PF_Face::face_index++;/** 需要同时更新索引 **/
 //        this->addEntitySilence(f);
 //    }
+
     QMap<int,PF_Point*> ps;
     QMap<int,PF_Line*> ls;
     /** 生成所有的点 **/

@@ -498,8 +498,7 @@ bool Polygon2D::Minus(Polygon2D *p)
     m = i;    
     for (n=0;n< VERTEX_COUNT_IN_POLYLINE(p)-abs(l);n++) {
         STEP_ITERATOR(j, (l>0?-1:1), VERTEX_COUNT_IN_POLYLINE(p));
-		v = p->GetVertexAt(j);
-        
+        v = p->GetVertexAt(j);
         
         STEP_ITERATOR(m, 1, GetVertexCount());
         _vertex_array.insert(m,new Point2D(v));
