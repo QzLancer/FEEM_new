@@ -2,6 +2,7 @@
 #include "pf_projecttree.h"
 #include "pf_project.h"
 #include "pf_sessionmanager.h"
+#include "pf_projectmanager.h"
 
 #include "projectwelcomepage.h"
 
@@ -23,6 +24,7 @@
 #include <coreplugin/workpage.h>
 #include <coreplugin/icore.h>
 #include <coreplugin/iwizardfactory.h>
+#include <coreplugin/pagemanager.h>
 
 #include <extensionsystem/pluginerroroverview.h>
 #include <extensionsystem/pluginmanager.h>
@@ -30,6 +32,8 @@
 #include <utils/algorithm.h>
 #include <utils/mimetypes/mimedatabase.h>
 #include <utils/stringutils.h>
+
+#include <output/outputpluginplugin.h>
 
 #include <QtPlugin>
 
@@ -39,6 +43,7 @@
 #include <QMenu>
 #include <QUuid>
 #include <QFileDialog>
+#include <QXmlStreamReader>
 
 #include <cstdlib>
 
@@ -186,7 +191,8 @@ public:
 //    int m_activeRunControlCount = 0;
 //    int m_shutdownWatchDogId = -1;
 
-//    QHash<QString, std::function<Project *(const Utils::FileName &)>> m_projectCreators;
+    /** 根据子类自动创建对象 **/
+    QHash<QString, std::function<PF_Project *(const Utils::FileName &)>> m_projectCreators;
     QList<QPair<QString, QString> > m_recentProjects; // pair of filename, displayname
     static const int m_maxRecentProjects = 25;
 
@@ -283,6 +289,7 @@ PF_ProjectExplorerPlugin* PF_ProjectExplorerPlugin::instance()
 
 bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString *errorMessage)
 {
+    qDebug()<<Q_FUNC_INFO;
     /** 初始化ProjectExplorer所需要的变量 **/
     dd = new PF_ProjectExplorerPluginPrivate;
 
@@ -339,6 +346,7 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
 
     action = new QAction(tr("Save Project"));
     action->setIcon(QIcon(":/imgs/filesave.png"));
+    connect(action, &QAction::triggered, this,&PF_ProjectExplorerPlugin::saveProject);
     group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
 
     Context projecTreeContext(Constants::C_PROJECT_TREE);
@@ -431,7 +439,6 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
     ads::CDockWidget* DockWidget = new ads::CDockWidget(tr("Model tree"));
     DockWidget->setWidget(widgetProjectTree);
     Core::WorkPage::DockManager()->addDockWidget(ads::LeftDockWidgetArea, DockWidget);
-    qDebug()<<Q_FUNC_INFO;
     return true;
 }
 
@@ -467,62 +474,90 @@ PF_ProjectExplorerPlugin::OpenProjectResult PF_ProjectExplorerPlugin::openProjec
     QList<PF_Project*> openedPro;
     QList<PF_Project *> alreadyOpen;
     QString errorString;
-//    foreach (const QString &fileName, fileNames) {
-//        if(fileName.isEmpty()) continue;
+    /** 对每一个文件进行判断 **/
+    foreach (const QString &fileName, fileNames) {
+        if(fileName.isEmpty()) continue;
 
-//        const QFileInfo fi(fileName);
-////        const auto filePath = Utils::FileName::fromString(fi.absoluteFilePath());
-////        PF_Project *found = Utils::findOrDefault(SessionManager::projects(),
-////                                              Utils::equal(&Project::projectFilePath, filePath));
-//        if (found) {
-//            alreadyOpen.append(found);
-//            SessionManager::reportProjectLoadingProgress();
-//            continue;
-//        }
+        const QFileInfo fi(fileName);
+        const auto filePath = Utils::FileName::fromString(fi.absoluteFilePath());
+        /** 是否已打开 **/
+        PF_Project *found = Utils::findOrDefault(PF_SessionManager::projects(),
+                                              Utils::equal(&PF_Project::projectFilePath, filePath));
+        /** 已打开 **/
+        if (found) {
+            alreadyOpen.append(found);
+            PF_SessionManager::reportProjectLoadingProgress();
+            continue;
+        }
 
-//        Utils::MimeType mt = Utils::mimeTypeForFile(fileName);
-//        if (ProjectManager::canOpenProjectForMimeType(mt)) {
-//            if (!filePath.toFileInfo().isFile()) {
-//                appendError(errorString,
-//                            tr("Failed opening project \"%1\": Project is not a file.").arg(fileName));
-//            } else if (Project *pro = ProjectManager::openProject(mt, filePath)) {
-//                QObject::connect(pro, &Project::parsingFinished, [pro]() {
-//                    emit SessionManager::instance()->projectFinishedParsing(pro);
+        /** 没有打开，判断project类型 ，如何读取MimeType？??这个还得自己
+            定义，比较复杂，还不如自己直接从文件里去读取。打算简单的读取一下
+            文件当中的doctype，就在第二行。**/
+        QFile file(fileName);
+        QString mimeType;
+        if(file.open(QIODevice::ReadOnly | QIODevice::Text)){
+            QXmlStreamReader m_xmlReader(&file);
+            while (!m_xmlReader.isDTD()) {
+                m_xmlReader.readNext();
+            }
+            mimeType = m_xmlReader.text().toString();
+            mimeType = mimeType.simplified();
+            mimeType.remove(0,mimeType.indexOf("DOCTYPE")+7);
+            mimeType.truncate(mimeType.indexOf(">"));
+            mimeType = mimeType.trimmed();
+        }
+        file.close();
+
+        Utils::MimeType mt(mimeType);
+        if (PF_ProjectManager::canOpenProjectForMimeType(mt)) {
+            if (!filePath.toFileInfo().isFile()) {
+                PoofeeSay<<tr("Failed opening project \"%1\": Project is not a file.").arg(fileName);
+            } else if (PF_Project *pro = PF_ProjectManager::openProject(mt, filePath)) {
+
+//                QObject::connect(pro, &PF_Project::parsingFinished, [pro]() {
+//                    emit PF_SessionManager::instance()->projectFinishedParsing(pro);
 //                });
-//                QString restoreError;
-//                Project::RestoreResult restoreResult = pro->restoreSettings(&restoreError);
-//                if (restoreResult == Project::RestoreResult::Ok) {
-//                    connect(pro, &Project::fileListChanged,
-//                            m_instance, &ProjectExplorerPlugin::fileListChanged);
-//                    SessionManager::addProject(pro);
-//                    openedPro += pro;
-//                } else {
-//                    if (restoreResult == Project::RestoreResult::Error)
-//                        appendError(errorString, restoreError);
-//                    delete pro;
-//                }
-//            }
-//        } else {
-//            appendError(errorString, tr("Failed opening project \"%1\": No plugin can open project type \"%2\".")
-//                        .arg(QDir::toNativeSeparators(fileName))
-//                        .arg(mt.name()));
-//        }
-//        if (fileNames.size() > 1)
-//            SessionManager::reportProjectLoadingProgress();
-//    }
+                /** 开始读取数据 **/
+                QString restoreError;
+                PF_Project::RestoreResult restoreResult = pro->restoreProject(&restoreError);
+                if (restoreResult == PF_Project::RestoreResult::Ok) {
+//                    connect(pro, &PF_Project::fileListChanged,
+//                            m_instance, &PF_ProjectExplorerPlugin::fileListChanged);
+                    PF_SessionManager::addProject(pro);
+                    openedPro += pro;
+                } else {
+                    if (restoreResult == PF_Project::RestoreResult::Error)
+                        PoofeeSay<<restoreError;
+                    delete pro;
+                }
+            }
+        } else {
+            PoofeeSay<<tr("Failed opening project \"%1\": No plugin can open project type \"%2\".")
+                        .arg(QDir::toNativeSeparators(fileName))
+                        .arg(mt.name());
+        }
+        if (fileNames.size() > 1)
+            PF_SessionManager::reportProjectLoadingProgress();
+    }
 //    dd->updateActions();
 
 //    bool switchToProjectsMode = Utils::anyOf(openedPro, &Project::needsConfiguration);
 
-//    if (!openedPro.isEmpty()) {
-//        if (switchToProjectsMode)
-//            ModeManager::activateMode(Constants::MODE_SESSION);
-//        else
-//            ModeManager::activateMode(Core::Constants::MODE_EDIT);
-//        ModeManager::setFocusToCurrentMode();
-//    }
+    /** 如果打开项目成功，应该切换到项目页面 **/
+    if (!openedPro.isEmpty()) {
+        Core::PageManager::activatePage(Core::Constants::PAGE_WORK);
+    }
 
     return OpenProjectResult(openedPro, alreadyOpen, errorString);
+}
+
+/**
+ * @brief 保存当前项目。
+ *
+ */
+void PF_ProjectExplorerPlugin::saveProject()
+{
+    PF_SessionManager::startupProject()->saveProject();
 }
 
 void PF_ProjectExplorerPlugin::updateContextMenuActions()
@@ -550,9 +585,12 @@ void PF_ProjectExplorerPlugin::openOpenProjectDialog()
     /** 寻找上次记录的文件夹位置 **/
     /** 打开文件对话框 **/
     const QStringList files = QFileDialog::getOpenFileNames(ICore::dialogParent(),
-                                                      tr("Open File"));
-    if (!files.isEmpty())
-        ICore::openFiles(files, ICore::SwitchMode);
+                                                      tr("Open File"),
+                                                      ".","FEEM project file (*.feem)");
+    if (!files.isEmpty()){
+        openProjects(files);
+    }
+//        ICore::openFiles(files, ICore::SwitchMode);
 }
 
 void PF_ProjectExplorerPluginPrivate::updateContextMenuActions()
@@ -733,4 +771,49 @@ QList<QPair<QString, QString> > PF_ProjectExplorerPluginPrivate::recentProjects(
     return m_recentProjects;
 }
 
+/**
+ * @brief 注册一个creator。
+ *
+ * @param mimeType
+ * @param creator
+ */
+void PF_ProjectManager::registerProjectCreator(const QString &mimeType,
+    const std::function<PF_Project *(const Utils::FileName &)> &creator)
+{
+    dd->m_projectCreators[mimeType] = creator;
+}
+/**
+ * @brief 根据MimeType来选择适合的项目来打开。
+ *
+ * @param mt
+ * @param fileName
+ * @return PF_Project
+ */
+PF_Project *PF_ProjectManager::openProject(const Utils::MimeType &mt, const Utils::FileName &fileName)
+{
+    if (mt.isValid()) {
+        for (const QString &mimeType : dd->m_projectCreators.keys()) {
+            if (mt.matchesName(mimeType))
+                return dd->m_projectCreators[mimeType](fileName);
+        }
+    }
+    return nullptr;
+}
+
+/**
+ * @brief 检查MimeType是否已存在。
+ *
+ * @param mt
+ * @return bool
+ */
+bool PF_ProjectManager::canOpenProjectForMimeType(const Utils::MimeType &mt)
+{
+    if (mt.isValid()) {
+        for (const QString &mimeType : dd->m_projectCreators.keys()) {
+            if (mt.matchesName(mimeType))
+                return true;
+        }
+    }
+    return false;
+}
 }//namespace ProjectExplorer

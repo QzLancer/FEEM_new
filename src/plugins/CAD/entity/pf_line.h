@@ -33,6 +33,8 @@ public:
     PF_Vector getEndpoint() const override{
         return data.endpoint->getCenter();
     }
+    int startIndex() const;
+    int endIndex() const;
     /**
      * @return Direction 1. The angle at which the line starts at
      * the startpoint.
@@ -95,8 +97,12 @@ public:
     void calculateBorders() override;
 
     QString toGeoString() override;
+    /** 数据导入导出 **/
+    bool fromMap(QVariantMap map) override;
+    QVariantMap toMap() override;
 
     int index() const override;
+    void setIndex(int index) override;
 public:
     static int line_index;
 public:

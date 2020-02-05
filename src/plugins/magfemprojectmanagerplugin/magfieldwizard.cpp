@@ -26,10 +26,10 @@ namespace MagFEMProjectManagerPlugin {
 */
 MagfieldWizard::MagfieldWizard()
 {
-    setId("FEM.MAG");
+    setId("FEM.MAG2D");
     setIcon(QIcon(":/imgs/model_2d_axi_32.png"));
     setCategoryIcon(QIcon(":/imgs/magnetic_fields_32.png"));
-    setCategory(tr("Magnetic field"));
+    setCategory("0Magnetic field");
     setDisplayCategory(tr("Magnetic field"));
     setDisplayName(tr("2D Axis Magnetic Static field simulation"));
 //    setDescription(tr("Create a project to simulate the distribution of magnetic field."));
@@ -39,9 +39,9 @@ MagfieldWizard::MagfieldWizard()
 Core::BaseFileWizard *MagfieldWizard::create(QWidget *parent, const Core::WizardDialogParameters &parameters) const
 {
     /** 新建一个项目 **/
-    auto pro = new PF_Mag2DSProject();
+    auto pro = new PF_Mag2DSProject(Utils::FileName());
     ProjectExplorer::PF_SessionManager::instance()->addProject(pro);
-    ProjectExplorer::PF_ProjectTree::instance()->expandAll();
+//    ProjectExplorer::PF_ProjectTree::instance()->expandAll();
     /** 切换到工作页面 **/
     Core::PageManager::activatePage(Core::Constants::PAGE_WORK);
     return nullptr;

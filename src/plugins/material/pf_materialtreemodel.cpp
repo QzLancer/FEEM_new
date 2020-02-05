@@ -245,6 +245,7 @@ int ParseLine(char *s, FILE *fp, CMaterialProp* MProp,std::vector<std::unique_pt
     if( _strnicmp(q,"<BHPoints>",10)==0){
         v=StripKey(s);
         sscanf_s(v,"%i",&MProp->BHpoints);
+        if(MProp->BHpoints > 0) MProp->m_linear = false;
         if (MProp->BHpoints>0)
         {
             MProp->BHdata=(CComplex *)calloc(MProp->BHpoints,sizeof(CComplex));

@@ -74,6 +74,7 @@ public:
 
     QString toGeoString() override;
     int index() const override;
+    void setIndex(int index) override;
 protected:
     PF_CircleData data;
 };

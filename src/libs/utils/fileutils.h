@@ -8,6 +8,7 @@
 #include <QXmlStreamWriter> // Mac.
 #include <QMetaType>
 #include <QStringList>
+#include <QFileInfo>
 
 #include <functional>
 #include <memory>

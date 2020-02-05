@@ -19,7 +19,7 @@ MagField3DTransintWizard::MagField3DTransintWizard()
     setId("FEM.MAG3DTransient");
     setIcon(QIcon(":/imgs/model3d32.png"));
     setCategoryIcon(QIcon(":/imgs/magnetic_fields_32.png"));
-    setCategory(tr("Magnetic field"));
+    setCategory("0Magnetic field");
     setDisplayCategory(tr("Magnetic field"));
     setDisplayName(tr("3D Magnetic Transient field simulation"));
 //    setDescription(tr("Create a project to simulate the distribution of magnetic field."));

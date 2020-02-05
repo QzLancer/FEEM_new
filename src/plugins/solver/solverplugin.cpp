@@ -47,6 +47,7 @@ SolverPlugin *SolverPlugin::instance()
 
 bool SolverPlugin::initialize(const QStringList &arguments, QString *errorMessage)
 {
+    qDebug()<<Q_FUNC_INFO;
     registerDefaultContainers();
     registerDefaultActions();
     return true;

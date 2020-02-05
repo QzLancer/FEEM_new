@@ -18,7 +18,7 @@ public:
     int n[3];// ni, nj, nk;//
     int ele_type;
     int physic_tag;
-    int geometry_tag;
+    int geometry_tag;/** 与face的编号对应 **/
 
     CComplex mu1,mu2;
     int blk;
@@ -35,6 +35,16 @@ public:
 private:
 
 };
+class FEEM_MESH_EXPORT CEdge
+{
+public:
+
+    int n[2];
+    int bc;
+
+private:
+
+};
 class FEEM_MESH_EXPORT CMesh{
 public:
     CMesh();
@@ -42,8 +52,10 @@ public:
 
     int numNode;
     int numEle;
+    int numEdge;
     CNode* nodes;
     CElement* eles;
+    CEdge* edges;
 
     void loadGsh22(const char fn[]);
 private:

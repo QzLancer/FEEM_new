@@ -4,8 +4,8 @@
 #include "core_global.h"
 
 #include <QObject>
-
-class FileName;
+#include <utils/fileutils.h>
+using namespace Utils;
 
 namespace Core {
 class Id;

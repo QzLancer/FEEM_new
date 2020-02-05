@@ -16,6 +16,7 @@ class PF_Point : public PF_AtomicEntity
     Q_OBJECT
 public:
     PF_Point(PF_EntityContainer* parent, PF_GraphicView* view, const PF_PointData & d);
+    PF_Point(PF_EntityContainer* parent, PF_GraphicView* view,PF_Vector pos);
 
     /**	@return PF_ENTITY_POINT */
     PF::EntityType rtti() const override;
@@ -59,7 +60,12 @@ public:
 
     QString toString() const;
     QString toGeoString() override;
+    /** 数据导入导出 **/
+    bool fromMap(QVariantMap map) override;
+    QVariantMap toMap() override;
+
     int index() const override;
+    void setIndex(int index) override;
 public:
     static int point_index;
 protected:

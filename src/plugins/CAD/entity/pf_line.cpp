@@ -2,6 +2,10 @@
 #include "pf_graphicview.h"
 #include <QPainter>
 
+const QLatin1String StartKey("START");
+const QLatin1String EndKey("END");
+const QLatin1String IndexKey("INDEX");
+
 int PF_Line::line_index = 1;
 PF_Line::PF_Line(PF_EntityContainer *parent, PF_GraphicView *view, const PF_LineData &d)
     :PF_AtomicEntity(parent,view)
@@ -18,7 +22,21 @@ PF_Line::PF_Line(PF_EntityContainer* parent, PF_GraphicView *view, PF_Point *pSt
     data.startpoint = pStart;
     data.endpoint = pEnd;
     m_index = line_index;
-//    line_index++;
+    //    line_index++;
+}
+
+int PF_Line::startIndex() const
+{
+    if(data.startpoint)
+        return data.startpoint->index();
+    return -1;
+}
+
+int PF_Line::endIndex() const
+{
+    if(data.endpoint)
+        return data.endpoint->index();
+    return -1;
 }
 
 PF_VectorSolutions PF_Line::getRefPoints() const
@@ -311,9 +329,32 @@ QString PF_Line::toGeoString()
     return QString("Line (%1) = {%2, %3} ;").arg(m_index).arg(data.startpoint->index()).arg(data.endpoint->index());
 }
 
+bool PF_Line::fromMap(QVariantMap map)
+{
+    /** 这里比较棘手，保存的是index，但是data里存的是指针。 如果新建一个空白的类的话，那么也会有index
+        ，而只有container才能查到所有的point。如果导入的index与其他的一样呢？额，我保存的这些几何信息都是
+        container里的吗？为什么要在单个里的去恢复？为什么不实现container的toMap和fromMap？**/
+    return true;
+}
+
+QVariantMap PF_Line::toMap()
+{
+    QVariantMap l;
+    /** 保存线的两个端点 **/
+    l.insert(StartKey,startIndex());
+    l.insert(EndKey,endIndex());
+    l.insert(IndexKey,m_index);
+    return l;
+}
+
 int PF_Line::index() const
 {
     return m_index;
+}
+
+void PF_Line::setIndex(int index)
+{
+    m_index = index;
 }
 
 PF_LineData::PF_LineData(PF_Point* startpoint, PF_Point* endpoint)

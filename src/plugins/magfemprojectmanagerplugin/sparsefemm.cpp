@@ -12,8 +12,8 @@ CEntry::CEntry()
 }
 
 CBigLinProb::CBigLinProb()
+    :n(0)
 {
-    n=0;
 }
 
 CBigLinProb::~CBigLinProb()
@@ -39,20 +39,27 @@ CBigLinProb::~CBigLinProb()
     free(M);
 }
 
+/*!
+ \brief 初始化变量，分配空间
+
+ \param d
+ \param bw
+ \return int
+*/
 int CBigLinProb::Create(int d, int bw)
 {
     int i;
 
-    bdw=bw;
-    b=static_cast<double *>(calloc(d,sizeof(double)));
-    V=static_cast<double *>(calloc(d,sizeof(double)));
-    P=static_cast<double *>(calloc(d,sizeof(double)));
-    R=static_cast<double *>(calloc(d,sizeof(double)));
-    U=static_cast<double *>(calloc(d,sizeof(double)));
-    Z=static_cast<double *>(calloc(d,sizeof(double)));
+    bdw = bw;
+    b = static_cast<double *>(calloc(d,sizeof(double)));
+    V = static_cast<double *>(calloc(d,sizeof(double)));
+    P = static_cast<double *>(calloc(d,sizeof(double)));
+    R = static_cast<double *>(calloc(d,sizeof(double)));
+    U = static_cast<double *>(calloc(d,sizeof(double)));
+    Z = static_cast<double *>(calloc(d,sizeof(double)));
 
-    M=static_cast<CEntry **>(calloc(d,sizeof(CEntry *)));
-    n=d;
+    M = static_cast<CEntry **>(calloc(d,sizeof(CEntry *)));
+    n = d;
 
     for(i=0;i<d;i++){
         M[i] = new CEntry;
@@ -62,28 +69,29 @@ int CBigLinProb::Create(int d, int bw)
     return 1;
 }
 
+/*!
+ \brief 将(0,q)处的值设置为v
+
+ \param v
+ \param p
+ \param q
+*/
 void CBigLinProb::Put(double v, int p, int q)
 {
     CEntry *e,*l = nullptr;
     int i;
-
     if(q<p){ i=p; p=q; q=i; }//exchange
-
     e=M[p];
-
     while((e->c < q) && (e->next != nullptr))
     {
         l=e;
         e=e->next;
     }
-
     if(e->c == q){//exist the q, fresh it
         e->x=v;
         return;
     }
-
     CEntry *m = new CEntry;//it is new...
-
     if((e->next == nullptr) && (q > e->c)){//q it out the index of the end
         e->next = m;
         m->c = q;
@@ -101,15 +109,10 @@ void CBigLinProb::Put(double v, int p, int q)
 double CBigLinProb::Get(int p, int q)
 {
     CEntry *e;
-
     if(q<p){ int i; i=p; p=q; q=i; }//it is symmetric, fint the smaller index to save time.
-
     e=M[p];//the pointer
-
     while((e->c < q) && (e->next != nullptr)) e=e->next;//iterative, because it is sparse, so it's fast.
-
     if(e->c == q) return e->x;
-
     return 0;
 }
 
@@ -117,9 +120,7 @@ void CBigLinProb::MultA(double *X, double *Y)
 {
     int i;
     CEntry *e;
-
     for(i=0;i<n;i++) Y[i]=0;
-
     for(i=0;i<n;i++){
         Y[i]+=M[i]->x*X[i];
         e=M[i]->next;
@@ -136,9 +137,7 @@ double CBigLinProb::Dot(double *X, double *Y)
 {
     int i;
     double z;
-
     for(i=0,z=0;i<n;i++) z+=X[i]*Y[i];
-
     return z;
 }
 
@@ -166,9 +165,7 @@ void CBigLinProb::MultPC(double *X, double *Y)
             e=e->next;
         }
     }
-
     for(i=0;i<n;i++) Y[i]*=M[i]->x;
-
     // invert Upper Triangle
     for(i=n-1;i>=0;i--){
         e=M[i]->next;
@@ -245,9 +242,6 @@ int CBigLinProb::PCGSolve(int flag)
             prg1=prg2;
             prg2=(prg1*5);
             if(prg2>100) prg2=100;
-            //            TheView->m_prog1.SetPos(prg2);
-            //            TheView->InvalidateRect(nullptr, FALSE);
-            //            TheView->UpdateWindow();
         }
 
     } while(er>Precision);
@@ -255,6 +249,13 @@ int CBigLinProb::PCGSolve(int flag)
     return 1;
 }
 
+/*!
+ \brief 如果未知量的某个元素是已知的，将矩阵中对应的列置零，
+ 并且更新右侧向量。
+
+ \param i
+ \param x
+*/
 void CBigLinProb::SetValue(int i, double x)
 {
     int k,fst,lst;
@@ -263,8 +264,7 @@ void CBigLinProb::SetValue(int i, double x)
     if(bdw==0){
         fst=0;
         lst=n;
-    }
-    else{
+    }else{
         fst=i-bdw; if (fst<0) fst=0;
         lst=i+bdw; if (lst>n) lst=n;
     }
@@ -272,12 +272,12 @@ void CBigLinProb::SetValue(int i, double x)
     for(k=fst;k<lst;k++)
     {
         z=Get(k,i);
-        if(z!=0){
-            b[k]=b[k]-(z*x);
+        if(z != 0){
+            b[k] -= (z*x);
             if(i!=k) Put(0.,k,i);
         }
     }
-    b[i]=Get(i,i)*x;
+    b[i] = Get(i,i)*x;
 }
 
 void CBigLinProb::Wipe()

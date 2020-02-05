@@ -1,8 +1,6 @@
 #ifndef SPARSEFEMM_H
 #define SPARSEFEMM_H
 
-#include "solver_global.h"
-
 class CEntry
 {
 public:
@@ -17,7 +15,7 @@ private:
 
 #define LAMBDA 1.5
 
-class FEEM_SOLVER_EXPORT CBigLinProb
+class  CBigLinProb
 {
 public:
     // member functions
@@ -37,21 +35,18 @@ public:
     double Dot(double *X, double *Y);
     void ComputeBandwidth();
 
-//    CFknDlg *TheView;
-
 public:
     // data members
-    double *V;				// solution
-    double *P;				// search direction;
-    double *R;				// residual;
-    double *U;				// A * P;
+    double *V;				/** 解 **/
+    double *P;				/** 搜索方向 **/
+    double *R;				/** 余量 **/
+    double *U;				/** A * P **/
     double *Z;
-    double *b;				// RHS of linear equation
-    CEntry **M;				// pointer to list of matrix entries;
-    int n;					// dimensions of the matrix;
-    int bdw;				// Optional matrix bandwidth parameter;
-    double Precision;		// error tolerance for solution
-
+    double *b;				/** RHS，右侧向量 **/
+    CEntry **M;				/** 矩阵的数据 **/
+    int n;					/** 矩阵维度 **/
+    int bdw;				/** Optional matrix bandwidth parameter; **/
+    double Precision;		/** error tolerance for solution **/
 };
 
 

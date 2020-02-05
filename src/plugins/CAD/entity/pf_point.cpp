@@ -2,12 +2,23 @@
 #include "pf_graphicview.h"
 #include <QPainter>
 
+const QLatin1String XKey("X");
+const QLatin1String YKey("Y");
+const QLatin1String IndexKey("INDEX");
+
 int PF_Point::point_index = 1;
 PF_Point::PF_Point(PF_EntityContainer *parent, PF_GraphicView *view, const PF_PointData &d)
     :PF_AtomicEntity(parent,view)
     ,data(d)
 {
     m_index = point_index;
+}
+
+PF_Point::PF_Point(PF_EntityContainer *parent, PF_GraphicView *view, PF_Vector pos)
+    :PF_AtomicEntity(parent,view)
+    ,data(PF_PointData(pos))
+{
+
 }
 
 PF::EntityType PF_Point::rtti() const
@@ -147,6 +158,7 @@ void PF_Point::draw(QCPPainter *painter)
 //        qDebug()<<"line "<<i<<QPoint(x-width,y-width + i)<<QPoint(x+width,y-width+i);
     }
 //    painter->drawText(QPoint(x,y),toString());
+    painter->drawText(QPoint(x,y),QString("%1").arg(index()));
     /** 绘制控制点 **/
     if (isSelected()) {
 //		if (!e->isParentSelected()) {
@@ -185,7 +197,30 @@ QString PF_Point::toGeoString()
     return QString("Point (%1) = {%2, %3, 0, 1e-1} ;").arg(m_index).arg(data.pos.x).arg(data.pos.y);
 }
 
+bool PF_Point::fromMap(QVariantMap map)
+{
+    data.pos.x = map.value(XKey,data.pos.x).toDouble();
+    data.pos.y = map.value(YKey,data.pos.y).toDouble();
+    m_index = map.value(IndexKey,m_index).toInt();
+    return true;
+}
+
+QVariantMap PF_Point::toMap()
+{
+    QVariantMap p;
+    /** 保存点坐标 **/
+    p.insert(XKey,getCenter().x);
+    p.insert(YKey,getCenter().y);
+    p.insert(IndexKey,m_index);
+    return p;
+}
+
 int PF_Point::index() const
 {
     return m_index;
+}
+
+void PF_Point::setIndex(int index)
+{
+    m_index = index;
 }

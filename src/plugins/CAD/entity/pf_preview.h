@@ -17,6 +17,7 @@ public:
     }
     QString toGeoString() override;
     int index() const override;
+    void setIndex(int index) override;
 };
 
 #endif // PF_PREVIEW_H

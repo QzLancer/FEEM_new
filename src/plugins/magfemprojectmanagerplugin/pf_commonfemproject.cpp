@@ -2,6 +2,8 @@
 #include "pf_magfemnode.h"
 #include "pf_facesettingdialog.h"
 
+#include "magfemprojectmanagerpluginconstants.h"
+
 #include "sparsefemm.h"
 
 #include <math.h>
@@ -33,29 +35,29 @@
 #include <QDialog>
 
 namespace MagFEMProjectManagerPlugin{
-PF_CommonFEMProject::PF_CommonFEMProject()
-    :ProjectExplorer::PF_Project()
+PF_CommonFEMProject::PF_CommonFEMProject(const QString &mimeType, const FileName& feemFile)
+    :ProjectExplorer::PF_Project(mimeType, feemFile)
     ,m_document(new PF_Document())
     ,m_mesh(new CMesh())
+    ,Precision(1e-8)
 {
     connect(Material::MaterialPlugin::instance(),&Material::MaterialPlugin::materialAdded
             ,[this](CMaterialProp* material)
     {
         /** 因为connect连接的是创建的具体对象，所以不会出现，同样的Project都会打开 **/
-        /** 判断材料名是否存在 **/
-        for(auto m : m_materialList)
-        {
-            if(m.BlockName == material->BlockName){
-                QString s("Material "+material->BlockName+" exists.");
-                PoofeeSay<<s;
-                return;
-            }
+        /** 判断材料名是否存在 The reason is that operator[]() silently
+         * inserts an item into the map if no item exists with the
+         * same key (unless the map is const).  **/
+        if(m_materialList.contains(material->BlockName)){
+            QString s("Material "+material->BlockName+" exists.");
+            PoofeeSay<<s;
+            return;
         }
         /** 这个地方为什么会调用两次拷贝构造函数？ **/
-        m_materialList.push_back(*material);
+        m_materialList.insert(material->BlockName,material);
         /** 更新项目树 **/
         emit dataChanged();
-        PoofeeSay<<"Material "+material->BlockName+" Added.";
+        PoofeeSay<<tr("Material \"%1\" Added.").arg(material->BlockName);
         /** 更新tree **/
         /** 这里有问题，如果不是从tree操作进来的，那么node就不对了 **/
         //        Node *node = PF_ProjectTree::findCurrentNode();
@@ -74,7 +76,7 @@ PF_CommonFEMProject::PF_CommonFEMProject()
 
 PF_CommonFEMProject::~PF_CommonFEMProject()
 {
-
+    /** 释放材料数据 **/
 }
 
 Core::IGeometry *PF_CommonFEMProject::CAD() const
@@ -92,18 +94,12 @@ void PF_CommonFEMProject::editMaterial(ProjectExplorer::Node *node)
     if(!node) return;
     qDebug()<<Q_FUNC_INFO;
     /** 根据节点名称查询材料 **/
-    for(int i = 0; i < m_materialList.size();i++)
-    {
-        if(m_materialList[i].BlockName == node->displayName()){
-            qDebug()<<"found!"<<m_materialList[i].BlockName;
-            PF_MagMaterialDialog* dialog = new PF_MagMaterialDialog(Core::ICore::dialogParent());
-            dialog->setMaterial(m_materialList[i]);
-            dialog->setWindowTitle(m_materialList[i].BlockName);
-            dialog->exec();
-            break;
-        }
+    if(auto m = m_materialList.value(node->displayName())){
+        qDebug()<<"found!"<<m->BlockName;
+        PF_MagMaterialDialog* dialog = new PF_MagMaterialDialog(m,Core::ICore::dialogParent());
+        dialog->setWindowTitle(m->BlockName);
+        dialog->exec();
     }
-
 }
 /*!
  \brief 项目树右键菜单进行分网

@@ -237,3 +237,25 @@ bool PF_Entity::isPointOnEntity(const PF_Vector &coord, double tolerance) const
     double dist = getDistanceToPoint(coord, nullptr, PF::ResolveNone);
     return (dist<=fabs(tolerance));
 }
+
+/**
+ * @brief 从map当中恢复数据。
+ *
+ * @param map
+ * @return bool
+ */
+bool PF_Entity::fromMap(QVariantMap map)
+{
+    return true;
+}
+
+/**
+ * @brief 将数据保存到map
+ *
+ * @return QVariantMap
+ */
+QVariantMap PF_Entity::toMap()
+{
+    QVariantMap map;
+    return map;
+}

@@ -73,7 +73,7 @@ void PF_ActionDrawPoint::trigger()
 
         //view->redraw((PF::RedrawMethod) (PF::RedrawDrawing | PF::RedrawOverlay));
         view->replot();
-        qDebug()<<point->toGeoString();
+//        qDebug()<<point->toGeoString();
     }
 }
 

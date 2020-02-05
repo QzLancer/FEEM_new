@@ -59,6 +59,9 @@ public slots:
 
     //Geometry
     void slotExportGeoFile();
+    void slotImportGeoFile();
+
+    void slotBuildGeometry();
 
     //View
     void slotZoomIn();

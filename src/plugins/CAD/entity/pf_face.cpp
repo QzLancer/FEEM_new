@@ -2,6 +2,9 @@
 #include "pf_face.h"
 #include "pf_graphicview.h"
 #include <QPainter>
+#include <QVariantList>
+
+const QLatin1String IndexKey("INDEX");
 
 int PF_Face::face_index = 1;
 int PF_LineLoop::lineloop_index = 1;
@@ -19,6 +22,20 @@ PF_Face::PF_Face(PF_EntityContainer *parent, PF_GraphicView *view, const PF_Face
 {
     if(!data.faceData.isEmpty())
         data.faceData.last()->lines.append(mouse);/**有问题**/
+    m_index = face_index;
+}
+
+/**
+ * @brief
+ *
+ * @param parent
+ * @param view
+ * @param faceData
+ */
+PF_Face::PF_Face(PF_EntityContainer* parent, PF_GraphicView* view, const QList<PF_LineLoop*>& faceData)
+    :PF_AtomicEntity(parent,view)
+{
+    data.faceData = faceData;
     m_index = face_index;
 }
 
@@ -135,6 +152,9 @@ void PF_Face::draw(QCPPainter *painter)
         }
 
         for(auto p : e->lines){
+            if(isSelected()){
+                p->setSelected(true);
+            }
             /** 要注意线的方向 **/
             if(indexLast == p->data.startpoint->index()){
                 pos = p->data.startpoint->getCenter();
@@ -262,6 +282,45 @@ int PF_Face::index() const
     return m_index;
 }
 
+void PF_Face::setIndex(int index)
+{
+    m_index = index;
+}
+
+bool PF_Face::fromMap(QVariantMap map)
+{
+    return true;
+}
+
+/**
+ * @brief 保存信息这类函数，gan感觉要是放在外面的话，需要开放太多内部信息了，
+ * 太繁琐了。有的类可能就是内部辅助一下，也要开放。
+ *
+ * @return QVariantMap
+ */
+QVariantMap PF_Face::toMap()
+{
+    QVariantMap f;
+    f.insert(IndexKey,m_index);
+    /** 保存面的loop信息。感觉这些没必要写在这里，直接在实体里写toMap即可，还不用开放。 **/
+    for(auto loop : data.faceData){
+        QVariantList lps;
+        /** 导出的时候要不要考虑方向呢？一般来说，闭合曲面的话，线都是连接的，可以不考虑吧？
+            千万注意这里要用list，因为不能用map，会被排序的。**/
+        for(auto lines : loop->lines){
+            lps<<lines->index();
+        }
+        f.insert(QString("LINELOOP%1").arg(loop->index()),lps);
+    }
+    return f;
+}
+
+void PF_Face::updateLineLoopByIndex(const QMap<int, PF_Line*>& ls)
+{
+    data.updateLineLoopByIndex(ls);
+}
+
+
 /*!
  \brief 拷贝构造函数
 
@@ -276,6 +335,19 @@ PF_FaceData::PF_FaceData(const PF_FaceData &data)
         l->loop = d->loop;
         l->m_index = d->m_index;
         faceData.push_back(l);
+    }
+}
+
+PF_FaceData::PF_FaceData(const QList<PF_LineLoop*>& m_faceData)
+    :faceData(m_faceData)
+{
+
+}
+
+void PF_FaceData::updateLineLoopByIndex(const QMap<int, PF_Line*>& ls)
+{
+    for(auto e : faceData){
+        e->updateLineByIndex(ls);
     }
 }
 
@@ -306,4 +378,17 @@ PF_LineLoop::PF_LineLoop()
 int PF_LineLoop::index() const
 {
     return m_index;
+}
+
+void PF_LineLoop::addLine(PF_Line* line)
+{
+    if(line)
+        lines.append(line);
+}
+
+void PF_LineLoop::updateLineByIndex(const QMap<int, PF_Line*>& ls)
+{
+    for(auto e : line_index){
+        lines.append(ls.value(e,nullptr));
+    }
 }

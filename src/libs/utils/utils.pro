@@ -7,7 +7,9 @@ HEADERS += \
     viewitem.h \
     wizard.h \
     wizardpage.h \
-    pf_variabledict.h
+    pf_variabledict.h \
+    persistentsettings.h \
+    pf_projectaccessor.h
 
 SOURCES += \
     navigationtreeview.cpp \
@@ -15,5 +17,7 @@ SOURCES += \
     viewitem.cpp \
     wizard.cpp \
     wizardpage.cpp \
-    pf_variabledict.cpp
+    pf_variabledict.cpp \
+    persistentsettings.cpp \
+    pf_projectaccessor.cpp
 

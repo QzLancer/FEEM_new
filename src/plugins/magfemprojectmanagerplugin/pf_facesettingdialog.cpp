@@ -25,12 +25,17 @@ PF_FaceSettingDialog::PF_FaceSettingDialog(QWidget *parent, PF_CommonFEMProject 
     form->addRow(tr("Material"),m_combobox);
 
     int i=0,in=-1;
-    for(auto m : pro->m_materialList){
-        m_combobox->addItem(m.BlockName);
-        if(m_project->m_domains[m_faceIndex] == m.BlockName){
-            in = i;
-            qDebug()<<"have material";
-            m_combobox->setCurrentIndex(i);
+    QMapIterator<QString,CMaterialProp*> it(pro->m_materialList);
+    while(it.hasNext())
+    {
+        it.next();
+        m_combobox->addItem(it.value()->BlockName);
+        if(m_project->m_domains.contains(m_faceIndex)){
+            if(m_project->m_domains.value(m_faceIndex)->BlockName == it.value()->BlockName){
+                in = i;
+                qDebug()<<"have material";
+                m_combobox->setCurrentIndex(i);
+            }
         }
         i++;
     }
@@ -53,7 +58,7 @@ PF_FaceSettingDialog::PF_FaceSettingDialog(QWidget *parent, PF_CommonFEMProject 
     vbox->addLayout(hbox);
 
     connect(pb_OK,&QPushButton::clicked,[this](){
-        m_project->m_domains[m_faceIndex]=m_combobox->currentText();
+        m_project->m_domains.insert(m_faceIndex,m_project->m_materialList.value(m_combobox->currentText()));
         qDebug()<<m_combobox->currentText();
         qDebug()<<m_project->m_domains[m_faceIndex];
         this->accept();

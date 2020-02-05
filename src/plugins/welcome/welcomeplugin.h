@@ -78,6 +78,7 @@ public:
 
     bool initialize(const QStringList &, QString *) final
     {
+        qDebug()<<Q_FUNC_INFO;
         m_welcomePage = new WelcomePage;
         return true;
     }

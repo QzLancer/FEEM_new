@@ -6,6 +6,7 @@
 
 class Heat2DStaticWizard : public Core::BaseFileWizardFactory
 {
+    Q_OBJECT
 public:
     Heat2DStaticWizard();
 

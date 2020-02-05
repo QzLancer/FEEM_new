@@ -14,7 +14,11 @@
 
 #include <coreplugin/geometrymanager/geometrymanager.h>
 #include <coreplugin/geometrymanager/igeometry.h>
+#include <coreplugin/icore.h>
 
+#include <QFileDialog>
+#include <QFileInfo>
+#include <QString>
 
 PF_ActionHandler::PF_ActionHandler(QObject *parent) : QObject(parent)
 {
@@ -72,7 +76,7 @@ PF_ActionInterface *PF_ActionHandler::setCurrentAction(PF::ActionType typeId)
 
         break;
     case PF::ActionEditDelete:
-
+        document->clearSelected();
         break;
     case PF::ActionEditKillAllActions:
 
@@ -308,6 +312,39 @@ void PF_ActionHandler::slotSnapIntersectionManual()
 void PF_ActionHandler::slotExportGeoFile()
 {
     document->exportGeofile();
+}
+
+/*!
+ \brief 导入支持格式的几何文件
+
+ \param fileName
+*/
+void PF_ActionHandler::slotImportGeoFile()
+{
+    /** 必须赋值 **/
+    Core::IGeometry* ig = Core::GeometryManager::instance()->currentCAD();
+    if(Geometry2D* ig2 = qobject_cast<Geometry2D*>(ig)){
+        set_document(ig2->document());
+        set_view(ig2->view());
+    }else{
+        return;
+    }
+    QString fileName = QFileDialog::getOpenFileName(Core::ICore::dialogParent(),
+                                                    tr("Select CAD File"),
+                                                    ".",
+                                                    tr("CAD Files(*.dxf *.geo)"));
+//    QString fileName("D:/winmac/FEEMdev/FEEM/bin/modelrec.DXF");
+    if(fileName.isEmpty()) return;
+    document->importCADFile(fileName);
+}
+
+/**
+ * @brief 这里的作用是，如果只是定义了点和线，可以自动生成面。
+ *
+ */
+void PF_ActionHandler::slotBuildGeometry()
+{
+    document->buildFace();
 }
 
 void PF_ActionHandler::slotZoomIn() {

@@ -64,19 +64,20 @@ class FEEM_UTILS_EXPORT MimeType
 {
 public:
     MimeType();
+    MimeType(const QString & mimeType);
     MimeType(const MimeType &other);
     MimeType &operator=(const MimeType &other);
-//#ifdef Q_COMPILER_RVALUE_REFS
-//    MimeType &operator=(MimeType &&other)
-//    {
-//        qSwap(d, other.d);
-//        return *this;
-//    }
-//#endif
-//    void swap(MimeType &other)
-//    {
-//        qSwap(d, other.d);
-//    }
+#ifdef Q_COMPILER_RVALUE_REFS
+    MimeType &operator=(MimeType &&other)
+    {
+        qSwap(d, other.d);
+        return *this;
+    }
+#endif
+    void swap(MimeType &other)
+    {
+        qSwap(d, other.d);
+    }
     explicit MimeType(const Internal::MimeTypePrivate &dd);
     ~MimeType();
 
