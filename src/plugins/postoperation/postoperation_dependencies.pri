@@ -6,4 +6,5 @@ FEEM_LIB_DEPENDS += \
     qwt \
 
 FEEM_PLUGIN_DEPENDS += \
-    coreplugin
+    coreplugin \
+    output \

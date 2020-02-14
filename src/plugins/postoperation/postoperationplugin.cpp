@@ -85,9 +85,37 @@ void PostoperationPlugin::registerDefaultContainers()
     group->ribbonGroup()->setTitle(tr("Postoperation Setting"));
     page->appendGroup(Constants::G_RESULT_PLOT);
     page->addRibbonGroup(group,Constants::G_RESULT_PLOT);
+
+    /** 添加绘图组的右键菜单 **/
+    //2d curve
+    ActionContainer *curve2dContextMenu =
+        ActionManager::createMenu(Constants::M_2DCURVE_PLOT);
+    auto m_new2dPlot = new QAction(tr("New 2D Curve Plot"), this);
+    Command* cmd = ActionManager::registerAction(m_new2dPlot, Constants::G_2DCURVE_PLOT);
+    //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
+    curve2dContextMenu->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
+    connect(m_new2dPlot,&QAction::triggered,this,&PostoperationPlugin::new2DCurvePlot);
+    //2d surface
+    ActionContainer *surface2dContextMenu =
+        ActionManager::createMenu(Constants::M_2DSURFACE_PLOT);
+    auto m_new2dsurfacePlot = new QAction(tr("New 2D Surface Plot"), this);
+    cmd = ActionManager::registerAction(m_new2dsurfacePlot, Constants::G_2DSURFACE_PLOT);
+    //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
+    surface2dContextMenu->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
+    connect(m_new2dPlot,&QAction::triggered,this,&PostoperationPlugin::new2DSurfacePlot);
 }
 
 void PostoperationPlugin::registerDefaultActions()
+{
+
+}
+
+void PostoperationPlugin::new2DCurvePlot()
+{
+
+}
+
+void PostoperationPlugin::new2DSurfacePlot()
 {
 
 }

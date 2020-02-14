@@ -147,7 +147,9 @@ Node *PF_ProjectTree::findCurrentNode()
 }
 
 /*!
- \brief 每一个node的右键菜单
+ \brief 每一个node的右键菜单。这里有很大的问题，不能实现解耦效果。第三方添加了一个自定义的节点的话，
+ 还得修改这里的代码才能起作用。每添加一个节点类型，就要添加一个case，很是麻烦。能不能给node提供一个
+ 属性，保存一个字符串就可以了。这样就可以直接查找。
 
  \param focus
  \param globalPos
@@ -172,27 +174,27 @@ void PF_ProjectTree::showContextMenu(PF_ProjectTreeWidget *focus, const QPoint &
             break;
         }
 //        case NodeType::VirtualFolder:
-        case NodeType::Material:{
+        case NodeType::Material:{/** 材料节点右键菜单 **/
             contextMenu = ActionManager::actionContainer(Constants::M_MATERIALCONTEXT)->menu();
             break;
         }
-        case NodeType::Mesh:{
+        case NodeType::Mesh:{/** 分网节点右键菜单 **/
             contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
             break;
         }
-        case NodeType::Domain:{
+        case NodeType::Domain:{/** 区域节点右键菜单 **/
             contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
             break;
         }
-        case NodeType::Plot2D:{
+        case NodeType::Plot2D:{/** 2D区域绘图组节点右键菜单 **/
             contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
             break;
         }
-        case NodeType::Surface2D:{
+        case NodeType::Surface2D:{/** 2D云图绘图组节点右键菜单 **/
             contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
             break;
         }
-        case NodeType::Solve:{
+        case NodeType::Solve:{/** 求解节点右键菜单 **/
             contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
             break;
         }

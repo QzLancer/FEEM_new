@@ -25,6 +25,9 @@ public:
 
     void registerDefaultContainers();
     void registerDefaultActions();
+
+    void new2DCurvePlot();
+    void new2DSurfacePlot();
 public slots:
 
 private:

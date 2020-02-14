@@ -3,6 +3,7 @@
 
 #include "./GPMacros.h"
 //#include <wx/log.h>
+#include <QDebug>
 
 using namespace GraphicalPrimitives2D;
 
@@ -302,27 +303,34 @@ bool Polygon2D::IsAdjacent(Polygon2D *p1, Polygon2D *p2, bool strict)
 
     int i, j;
 	Point2D *v1, *v2;
-	Point2D *previous_v1 = p1->GetLastVertex();
-	Point2D *previous_v2 = p2->GetLastVertex();
+    Point2D *previous_v1 = nullptr;
+    Point2D *previous_v2 = nullptr;
 	Line2D *line1, *line2;
-
-	for (i=0; i<VERTEX_COUNT_IN_POLYLINE(p1);i++) {
-		v1 = p1->GetVertexAt(i);
+//    qDebug()<<"VERTEX_COUNT_IN_POLYLINE(p1):"<<VERTEX_COUNT_IN_POLYLINE(p1);
+//    qDebug()<<"VERTEX_COUNT_IN_POLYLINE(p2):"<<VERTEX_COUNT_IN_POLYLINE(p2);
+    for (i=0; i<VERTEX_COUNT_IN_POLYLINE(p1)+1;i++) {
+        previous_v1 = p1->GetVertexAt(i%VERTEX_COUNT_IN_POLYLINE(p1));
+        v1 = p1->GetVertexAt((i+1)%VERTEX_COUNT_IN_POLYLINE(p1));
 
 		line1 = new Line2D(previous_v1, v1);
 		
-		for (j=0; j<VERTEX_COUNT_IN_POLYLINE(p2);j++) {
-			v2 = p2->GetVertexAt(j);
+        for (j=0; j<VERTEX_COUNT_IN_POLYLINE(p2)+1;j++) {
+            previous_v2 = p2->GetVertexAt(j%VERTEX_COUNT_IN_POLYLINE(p2));
+            v2 = p2->GetVertexAt((j+1)%VERTEX_COUNT_IN_POLYLINE(p2));
 			line2 = new Line2D(previous_v2, v2);
 
+//            qDebug()<<"v1:"<<v1->GetX()<<","<<v1->GetY()<<";"<<"previous_v1:"<<previous_v1->GetX()<<","<<previous_v1->GetY()<<";";
+//            qDebug()<<"v2:"<<v2->GetX()<<","<<v2->GetY()<<";"<<"previous_v2:"<<previous_v2->GetX()<<","<<previous_v2->GetY()<<";";
 			if ((strict?Line2D::StrictOverlapping(line1, line2):Line2D::Overlapping(line1, line2))) {
 				DELETE_OBJECT(line1);
 				DELETE_OBJECT(line2);
+//                qDebug()<<"common edge detected!";
 				return true;
             }
             DELETE_OBJECT(line2);
 			previous_v2 = v2;
 		}
+//        qDebug()<<"---------------------";
 		DELETE_OBJECT(line1);
 		previous_v1 = v1;
 	}
