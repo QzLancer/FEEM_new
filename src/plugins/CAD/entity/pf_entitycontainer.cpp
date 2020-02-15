@@ -1581,7 +1581,7 @@ void PF_EntityContainer::buildFace()
         return;
     }
     //simplify the polygon set
-//    polygon_detector.SimplifyPolygons(0.0);
+    polygon_detector.SimplifyPolygons(0.0);
     /** 绘制生成的线和面 **/
     Point_T.clear();
     Curve_T.clear();
@@ -1599,7 +1599,7 @@ void PF_EntityContainer::buildFace()
         auto polyi = polyset->Item(i);
         polymap.insert(polyi,i+1);
 
-
+        /** 这段代码是用来绘制原始的多边形的，用来调试用 **/
         QList<PF_LineLoop* > loops;
         loops.insert(0,addLineLoop(polyi));/** 将本身加进来 **/
         /** 生成面的数据 **/
@@ -1660,10 +1660,9 @@ void PF_EntityContainer::buildFace()
 //            childArea += p->Area();
 //        }
 //        QList<PF_LineLoop* > loops;
-//        loops.insert(0,addLineLoop(tmpPoly));/** 将本身加进来 **/
 //        /** 没有子节点了 **/
 //        if(tmpPoly->_son_polygons.isEmpty()){
-
+//            loops.insert(0,addLineLoop(tmpPoly));
 //        }else if(abs(polyArea - childArea)>1e-10){
 //            qDebug()<<"empty region exsits."<<"polyiArea:"<<polyArea<<"childArea:"<<childArea;
 //            /** 生成多边形的作差后的多边形，如果只是简单的添加边界，也是可以识别的，
@@ -1672,12 +1671,15 @@ void PF_EntityContainer::buildFace()
 //                /** 对一些含有公共边的多边形进行合并简化 **/
 //                if(tmpPoly->IsAdjacent(poly,true)){
 //                    qDebug()<<"simplyfy "<<polymap.value(tmpPoly,-1)<<" and "<<polymap.value(poly,-1);
-//                    //tmpPoly->Minus(poly);
+//                    qDebug()<<tmpPoly->Minus(poly);
 //                    continue;
 //                }
 //                loops.append(addLineLoop(poly));
 //            }
+//            /** 将本身加进来，需要放在后面，因为前面可能要对其进行一些简化 **/
+//            loops.insert(0,addLineLoop(tmpPoly));
 //        }
+
 //        /** 生成面的数据 **/
 //        if(!loops.isEmpty()){
 //            auto f = new PF_Face(this,mParentPlot,loops);
