@@ -528,6 +528,13 @@ QObjectList children;
 
 另外一个问题就是，插件如何获取主插件的数据？我弹出了一个右键菜单，但是执行的时候，需要考虑其他插件的数据，这个时候应该怎么办？
 \subsection{如何用插件在tree上创建一个子节点？}
+可以在插件当中继承出自己的node，那么如何将node显示在tree当中？思路是怎么样的？感觉是这个东西应该是要加入到什么或者注册到什么当中。目前还不清楚。感觉是registerTreeManager函数。
+
+创建子节点还是应该用现在的createtree的方法，手动地去调用，不同的是，现在每一个node都是父类的Node类型，通过制定nodetype来进行区分，而实际应该是用具体的继承后的子node类型来进行创建，这样后续就可以调用不同的接口了。
+
+那新的问题，就是如何创建nodechange的信号？
+
+之前自己似乎没有真的理解清楚各个插件之间的依赖关系。其实具体的project的级别才是最低的，它依赖于几何、分网、后处理插件，需要借助这么些工具来实现各种的操作。
 \subsection{如何用qtcreator打开cmake项目？}
 跟一般的IDE不同，cmake是一种不需要操作界面的管理项目的方法，非常的流行。在网上看到很多qt项目是用cmake管理的，但是自己想要尝试在编辑器中打开这个项目，毕竟不知道怎么跳转函数。于是就研究了一下如何用qtcreator打开cmake管理的项目。
 
@@ -540,3 +547,14 @@ qmake -project
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x86_amd64    
 \end{listlsting}
 因为路径当中含有空格，所以需要加引号。这样生成的项目，也就是能正常的看而已，编译还是不能的。
+
+\subsection{更新右键菜单}
+一种可以用来更新右键菜单的流程。界面操作，node发生改变，发出信号currentNodeChanged()，然后执行绑定的动作事件updateContextActions()来实现对应的右键菜单的改变。在具体地实现里，通过project插件，获取到当前的node，然后动态判断node的类型，根据类型设置相关的动作的可用或者可见。原来是这样。
+
+按照这样的逻辑编写的话，那么现在就需要重新地修改一些node的定义。之前都是不断地通过添加nodetype的方式来实现的，那种方式实在太傻了。必须采用继承的方式去做，这样才能完成动态类型的判断。
+
+那么时候时候会发出currentNodeChanged的信号？由setCurrent衷发出，而setCurrent被两个函数调用，updateFromNode和updateFromProjectTreeWidget，而这些又是在哪里被调用的呢？
+
+右键菜单是全局的，每个插件都可以更新它。
+
+

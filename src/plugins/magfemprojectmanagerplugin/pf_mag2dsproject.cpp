@@ -25,6 +25,7 @@
 #include <coreplugin/icore.h>
 
 #include <mesh/meshfemm.h>
+#include <mesh/pf_meshnode.h>
 
 #include <material/materialplugin.h>
 #include <material/pf_magmaterialdialog.h>
@@ -1469,7 +1470,7 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
         }
     }
     /** 添加分网 **/
-    auto mesh_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh")),NodeType::Mesh,QIcon(":/imgs/mesh.png"));
+    auto mesh_node = std::make_unique<Mesh::PF_MeshNode>(QString(QObject::tr("Mesh")),QIcon(":/imgs/mesh.png"));
     auto mesh_point_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh Point")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
     auto mesh_line_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh Line")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
     auto mesh_face_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh Face")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));

@@ -48,6 +48,7 @@ public:
     static void emitSubtreeChanged(FolderNode *node);
 signals:
     void currentProjectChanged(PF_Project *project);
+    /** 每次node改变都要执行一些操作，例如，更新右键菜单 **/
     void currentNodeChanged();
 
     // Emitted whenever the model needs to send a update signal.

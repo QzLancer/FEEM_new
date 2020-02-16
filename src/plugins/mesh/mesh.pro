@@ -8,11 +8,13 @@ HEADERS += \
     meshconstants.h \
     mesh_global.h \
     meshplugin.h \
-    meshfemm.h
+    meshfemm.h \
+    pf_meshnode.h
 
 SOURCES += \
     meshplugin.cpp \
-    meshfemm.cpp
+    meshfemm.cpp \
+    pf_meshnode.cpp
 
 RESOURCES += \
     res.qrc
