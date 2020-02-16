@@ -733,7 +733,7 @@ void PF_ProjectExplorerPluginPrivate::invalidateProject(PF_Project *project)
 
 void PF_ProjectExplorerPluginPrivate::projectAdded(PF_Project *pro)
 {
-    qDebug()<<Q_FUNC_INFO;
+//    qDebug()<<Q_FUNC_INFO;
 }
 
 void PF_ProjectExplorerPluginPrivate::projectRemoved(PF_Project *pro)

@@ -192,7 +192,7 @@ void PF_SessionManager::closeAllProjects()
 
 void PF_SessionManager::addProject(PF_Project* pro)
 {
-    qDebug()<<Q_FUNC_INFO;
+//    qDebug()<<Q_FUNC_INFO;
     if(pro == nullptr)
         return;
 //    QTC_CHECK(!pro->displayName().isEmpty());
@@ -292,7 +292,7 @@ void PF_SessionManager::removeProjects(const QList<PF_Project*>& remove)
 */
 void PF_SessionManager::setStartupProject(PF_Project* startupProject)
 {
-    qDebug()<<Q_FUNC_INFO;
+//    qDebug()<<Q_FUNC_INFO;
     if((!startupProject && d->m_projects.isEmpty())
             || (startupProject && d->m_projects.contains(startupProject))){
 

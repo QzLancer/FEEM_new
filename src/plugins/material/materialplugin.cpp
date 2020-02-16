@@ -173,7 +173,7 @@ void MaterialPlugin::registerDefaultActions()
  */
 void MaterialPlugin::updateContextActions()
 {
-    qDebug()<<Q_FUNC_INFO;
+//    qDebug()<<Q_FUNC_INFO;
     /** 判断是不是分网节点 **/
     const Node *node = PF_ProjectTree::findCurrentNode();
     const bool isMaterialNode = dynamic_cast<const PF_MaterialNode *>(node);

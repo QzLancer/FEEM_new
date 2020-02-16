@@ -34,6 +34,8 @@
 
 #include <output/outputpluginplugin.h>
 
+#include <solver/pf_solvernode.h>
+
 #include <QString>
 #include <QHash>
 #include <QDebug>
@@ -1481,7 +1483,7 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
     auto comp_node = std::make_unique<FolderNode>(QString(QObject::tr("Physics")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
     auto domain_node = std::make_unique<FolderNode>(QString(QObject::tr("Domains")),NodeType::Domain,QIcon(":/imgs/model_2d_axi.png"));
 
-    auto solver_node = std::make_unique<FolderNode>(QString(QObject::tr("Solver")),NodeType::Solve,QIcon(":/imgs/model_2d_axi.png"));
+    auto solver_node = std::make_unique<Solver::PF_SolverNode>(QString(QObject::tr("Solver")),QIcon(":/imgs/model_2d_axi.png"));
     auto solversetting_node = std::make_unique<FolderNode>(QString(QObject::tr("Settings")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
 
     auto result_node = std::make_unique<FolderNode>(QString(QObject::tr("Result")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));

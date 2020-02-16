@@ -303,7 +303,7 @@ void PF_ProjectTree::updateFromNode(Node* node)
 */
 void PF_ProjectTree::setCurrent(Node* node, PF_Project* project)
 {
-    qDebug()<<Q_FUNC_INFO;
+//    qDebug()<<Q_FUNC_INFO;
     const bool changedProject = project != m_currentProject;
     if (changedProject) {
         if (m_currentProject) {
