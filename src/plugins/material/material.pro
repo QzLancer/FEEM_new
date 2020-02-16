@@ -13,7 +13,8 @@ HEADERS += \
     pf_materiallibrary.h \
     pf_materialmanager.h \
     pf_materialtreemodel.h \
-    pf_bhcurvedialog.h
+    pf_bhcurvedialog.h \
+    pf_materialnode.h
 
 SOURCES += \
     materialplugin.cpp \
@@ -22,7 +23,8 @@ SOURCES += \
     pf_materiallibrary.cpp \
     pf_materialmanager.cpp \
     pf_materialtreemodel.cpp \
-    pf_bhcurvedialog.cpp
+    pf_bhcurvedialog.cpp \
+    pf_materialnode.cpp
 
 RESOURCES += \
     material.qrc

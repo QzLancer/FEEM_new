@@ -30,6 +30,7 @@
 #include <material/materialplugin.h>
 #include <material/pf_magmaterialdialog.h>
 #include <material/pf_material.h>
+#include <material/pf_materialnode.h>
 
 #include <output/outputpluginplugin.h>
 
@@ -1432,7 +1433,7 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
         //        qDebug() << iter.key() << ": " << iter.value();
     }
     /** 添加材料 **/
-    auto material_node = std::make_unique<FolderNode>(QString(QObject::tr("Materials")),NodeType::Material,QIcon(":/imgs/material.png"));
+    auto material_node = std::make_unique<PF_MaterialNode>(QString(QObject::tr("Materials")),QIcon(":/imgs/material.png"));
     QMapIterator<QString,CMaterialProp*> it(pro->m_materialList);
     while(it.hasNext())
     {

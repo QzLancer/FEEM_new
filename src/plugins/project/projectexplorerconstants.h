@@ -33,6 +33,8 @@ const char G_BUILD_CANCEL[]       = "ProjectExplorer.Group.BuildCancel";
 const char G_HOME_PROJECT[]             = "FEEM.Group.Home.Project";
 /** 不同的上下文菜单以及子菜单 **/
 const char M_PROJECTCONTEXT[]     = "Project.Menu.Project";/** 项目节点 **/
+const char M_FOLDERCONTEXT[] = "Project.Menu.Folder";/** folder节点菜单 **/
+const char M_LEAFCONTEXT[] = "Project.Menu.Leaf";/** leaf节点菜单 **/
 const char M_ADDMODELCONTEXT[] = "Project.Menu.Project.AddModel";
 const char M_ADDSTUDYCONTEXT[] = "Project.Menu.Project.AddStudy";
 

@@ -173,36 +173,11 @@ void PF_ProjectTree::showContextMenu(PF_ProjectTreeWidget *focus, const QPoint &
 //                contextMenu = ActionManager::actionContainer(Constants::M_SUBPROJECTCONTEXT)->menu();
             break;
         }
-//        case NodeType::VirtualFolder:
-        case NodeType::Material:{/** 材料节点右键菜单 **/
-            contextMenu = ActionManager::actionContainer(Constants::M_MATERIALCONTEXT)->menu();
-            break;
-        }
-        case NodeType::Mesh:{/** 分网节点右键菜单 **/
-            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
-            break;
-        }
-        case NodeType::Domain:{/** 区域节点右键菜单 **/
-            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
-            break;
-        }
-        case NodeType::Plot2D:{/** 2D区域绘图组节点右键菜单 **/
-            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
-            break;
-        }
-        case NodeType::Surface2D:{/** 2D云图绘图组节点右键菜单 **/
-            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
-            break;
-        }
-        case NodeType::Solve:{/** 求解节点右键菜单 **/
-            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
-            break;
-        }
         case NodeType::Folder:
-//            contextMenu = ActionManager::actionContainer(Constants::M_FOLDERCONTEXT)->menu();
+            contextMenu = ActionManager::actionContainer(Constants::M_FOLDERCONTEXT)->menu();
             break;
         case NodeType::Leaf:
-//            contextMenu = ActionManager::actionContainer(Constants::M_FILECONTEXT)->menu();
+            contextMenu = ActionManager::actionContainer(Constants::M_LEAFCONTEXT)->menu();
             break;
         default:
             qWarning("ProjectExplorerPlugin::showContextMenu - Missing handler for node type");

@@ -12,6 +12,7 @@
 #include <project/pf_sessionmanager.h>
 #include <project/pf_project.h>
 #include <project/pf_projecttree.h>
+#include <project/projectexplorerconstants.h>
 
 #include <extensionsystem/pluginerroroverview.h>
 #include <extensionsystem/pluginmanager.h>
@@ -145,7 +146,7 @@ void MeshPlugin::registerDefaultContainers()
 
     /** projecttree当中的右键菜单 **/
     ActionContainer *meshContextMenu =
-        ActionManager::createMenu(Constants::M_MESHCONTEXT);
+        ActionManager::actionContainer(ProjectExplorer::Constants::M_FOLDERCONTEXT);
     m_autoMesh = new QAction(tr("Auto mesh"), this);
     Command* cmd = ActionManager::registerAction(m_autoMesh, Constants::G_MESH_AUTO);
     //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));

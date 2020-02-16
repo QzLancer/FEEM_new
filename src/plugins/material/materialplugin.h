@@ -33,6 +33,8 @@ public:
 
     void registerDefaultContainers();
     void registerDefaultActions();
+
+    void updateContextActions();
 public slots:
 
 signals:
