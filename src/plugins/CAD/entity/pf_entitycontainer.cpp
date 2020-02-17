@@ -1600,14 +1600,14 @@ void PF_EntityContainer::buildFace()
         polymap.insert(polyi,i+1);
 
         /** 这段代码是用来绘制原始的多边形的，用来调试用 **/
-        QList<PF_LineLoop* > loops;
-        loops.insert(0,addLineLoop(polyi));/** 将本身加进来 **/
-        /** 生成面的数据 **/
-        if(!loops.isEmpty()){
-            auto f = new PF_Face(this,mParentPlot,loops);
-            PF_Face::face_index++;/** 需要同时更新索引 **/
-            this->addEntitySilence(f);
-        }
+//        QList<PF_LineLoop* > loops;
+//        loops.insert(0,addLineLoop(polyi));/** 将本身加进来 **/
+//        /** 生成面的数据 **/
+//        if(!loops.isEmpty()){
+//            auto f = new PF_Face(this,mParentPlot,loops);
+//            PF_Face::face_index++;/** 需要同时更新索引 **/
+//            this->addEntitySilence(f);
+//        }
 
         for(int j = 0; j < polyset->size();j++){
             if(i != j){
@@ -1637,62 +1637,62 @@ void PF_EntityContainer::buildFace()
     }
     /** 查找root节点 **/
     /** 使用队列的形式进行遍历，生成的椭圆有可能不是在一个root下。 **/
-//    std::queue<GraphicalPrimitives2D::Polygon2D*> polyQueue;
+    std::queue<GraphicalPrimitives2D::Polygon2D*> polyQueue;
 
-//    GraphicalPrimitives2D::Polygon2D* root = nullptr;
-//    for(int i = 0; i < polyset->size();i++){
-//        auto polyi = polyset->Item(i);
-//        /** root **/
-//        if(!polyi->GetParent()){
-//            root = polyi;
-//            polyQueue.push(root);
-//        }
-//    }
+    GraphicalPrimitives2D::Polygon2D* root = nullptr;
+    for(int i = 0; i < polyset->size();i++){
+        auto polyi = polyset->Item(i);
+        /** root **/
+        if(!polyi->GetParent()){
+            root = polyi;
+            polyQueue.push(root);
+        }
+    }
 
-//    while(!polyQueue.empty()){
-//        /** 处理节点下面的一层，只是寻找有没有多余的多边形 **/
-//        auto tmpPoly = polyQueue.front();
-//        qDebug()<<"parent poly "<<polymap.value(tmpPoly,-1);
-//        double polyArea = tmpPoly->Area();
-//        double childArea = 0;
-//        for(auto p : tmpPoly->_son_polygons){
-//            qDebug()<<"child "<<polymap.value(p,-1);
-//            childArea += p->Area();
-//        }
-//        QList<PF_LineLoop* > loops;
-//        /** 没有子节点了 **/
-//        if(tmpPoly->_son_polygons.isEmpty()){
-//            loops.insert(0,addLineLoop(tmpPoly));
-//        }else if(abs(polyArea - childArea)>1e-10){
-//            qDebug()<<"empty region exsits."<<"polyiArea:"<<polyArea<<"childArea:"<<childArea;
-//            /** 生成多边形的作差后的多边形，如果只是简单的添加边界，也是可以识别的，
-//                就是显示的时候，会把所有线显示出来。**/
-//            for(auto poly : tmpPoly->_son_polygons){
-//                /** 对一些含有公共边的多边形进行合并简化 **/
-//                if(tmpPoly->IsAdjacent(poly,true)){
-//                    qDebug()<<"simplyfy "<<polymap.value(tmpPoly,-1)<<" and "<<polymap.value(poly,-1);
-//                    qDebug()<<tmpPoly->Minus(poly);
-//                    continue;
-//                }
-//                loops.append(addLineLoop(poly));
-//            }
-//            /** 将本身加进来，需要放在后面，因为前面可能要对其进行一些简化 **/
-//            loops.insert(0,addLineLoop(tmpPoly));
-//        }
+    while(!polyQueue.empty()){
+        /** 处理节点下面的一层，只是寻找有没有多余的多边形 **/
+        auto tmpPoly = polyQueue.front();
+        qDebug()<<"parent poly "<<polymap.value(tmpPoly,-1);
+        double polyArea = tmpPoly->Area();
+        double childArea = 0;
+        for(auto p : tmpPoly->_son_polygons){
+            qDebug()<<"child "<<polymap.value(p,-1);
+            childArea += p->Area();
+        }
+        QList<PF_LineLoop* > loops;
+        /** 没有子节点了 **/
+        if(tmpPoly->_son_polygons.isEmpty()){
+            loops.insert(0,addLineLoop(tmpPoly));
+        }else if(abs(polyArea - childArea)>1e-10){
+            qDebug()<<"empty region exsits."<<"polyiArea:"<<polyArea<<"childArea:"<<childArea;
+            /** 生成多边形的作差后的多边形，如果只是简单的添加边界，也是可以识别的，
+                就是显示的时候，会把所有线显示出来。**/
+            for(auto poly : tmpPoly->_son_polygons){
+                /** 对一些含有公共边的多边形进行合并简化 **/
+                if(tmpPoly->IsAdjacent(poly,true)){
+                    qDebug()<<"simplyfy "<<polymap.value(tmpPoly,-1)<<" and "<<polymap.value(poly,-1);
+                    qDebug()<<tmpPoly->Minus(poly);
+                    continue;
+                }
+                loops.append(addLineLoop(poly));
+            }
+            /** 将本身加进来，需要放在后面，因为前面可能要对其进行一些简化 **/
+            loops.insert(0,addLineLoop(tmpPoly));
+        }
 
-//        /** 生成面的数据 **/
-//        if(!loops.isEmpty()){
-//            auto f = new PF_Face(this,mParentPlot,loops);
-//            PF_Face::face_index++;/** 需要同时更新索引 **/
-//            this->addEntitySilence(f);
-//        }
-//        /** 处理完毕，将该节点的数据释放 **/
-//        polyQueue.pop();
-//        /** 将子节点添加到队列当中 **/
-//        for(auto p : tmpPoly->_son_polygons){
-//            polyQueue.push(p);
-//        }
-//    }
+        /** 生成面的数据 **/
+        if(!loops.isEmpty()){
+            auto f = new PF_Face(this,mParentPlot,loops);
+            PF_Face::face_index++;/** 需要同时更新索引 **/
+            this->addEntitySilence(f);
+        }
+        /** 处理完毕，将该节点的数据释放 **/
+        polyQueue.pop();
+        /** 将子节点添加到队列当中 **/
+        for(auto p : tmpPoly->_son_polygons){
+            polyQueue.push(p);
+        }
+    }
 
     QMap<int,PF_Point*> ps;
     QMap<int,PF_Line*> ls;

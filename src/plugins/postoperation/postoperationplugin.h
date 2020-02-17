@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QAction>
+
 #include <extensionsystem/iplugin.h>
 
 namespace Postoperation {
@@ -26,11 +28,15 @@ public:
     void registerDefaultContainers();
     void registerDefaultActions();
 
+    void updateContextActions();
+
     void new2DCurvePlot();
     void new2DSurfacePlot();
 public slots:
 
 private:
+    QAction* m_new2dsurfacePlot = nullptr;
+    QAction* m_new2dPlot = nullptr;
 };
 
 }//namespace Postoperation
