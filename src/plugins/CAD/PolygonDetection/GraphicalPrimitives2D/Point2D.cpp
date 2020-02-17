@@ -240,21 +240,19 @@ void Point2D::operator =(const Point2D &p)
 *         passed to it is less than, equal to or 
 *         greater than the second one. 
 */
-bool Point2D::CompareOrder(Point2D *p2, Point2D *p1)
+bool Point2D::CompareOrder(Point2D *p1, Point2D *p2)
 {
-
     if (p1->GetY() < p2->GetY())
-        return false;
+        return true;
     else if (p1->GetY() == p2->GetY()) {
         if (p1->GetX() < p2->GetX())
-            return false;
+            return true;
         else if (p1->GetX() == p2->GetX())
             return false;
     }
 
     // p1 is greater than p2
-    return true;
-
+    return false;
 }
 
 
@@ -293,10 +291,7 @@ int Point2D::CompareOrderUsingDistanceToOwner(Point2D ***p1, Point2D ***p2)
 */
 bool Point2D::Ordered(Point2D *p1, Point2D *p2)
 {
-    if (CompareOrder(p1, p2))
-        return false;
-    else
-        return true;
+    return CompareOrder(p1, p2);
 }
 
 /***

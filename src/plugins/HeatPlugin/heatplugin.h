@@ -1,8 +1,20 @@
 #pragma once
 
 #include "heatplugin_global.h"
+#include "heatboundarydialog.h"
+#include "boundaryprop.h"
 
 #include <extensionsystem/iplugin.h>
+#include <QAction>
+#include <QMessageBox>
+#include <QMainWindow>
+#include <QMenu>
+
+
+namespace HeatFEMProjectManagerPlugin {
+class Heat2DStaticWizard;
+
+namespace Internal {
 
 class HeatPlugin : public ExtensionSystem::IPlugin
 {
@@ -16,8 +28,18 @@ public:
     bool initialize(const QStringList &arguments, QString *errorString);
     void extensionsInitialized();
     ShutdownFlag aboutToShutdown();
+    void registerDefaultContainers();
+    void registerDefaultActions();
+
+signals:
+    void boundaryAdded(CHBoundaryProp*);
+
+public slots:
+    void slotaddBoundary();
 
 private:
-
+    QAction* m_addBoundary = nullptr;
 };
+}   //namespace Internal
+}   //namespace HeatFEMProjectManagerPlugin
 

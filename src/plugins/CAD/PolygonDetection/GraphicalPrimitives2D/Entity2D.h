@@ -22,6 +22,8 @@ public:
         et_vector,
         et_box
     };
+    Entity2D(entity_type type);
+    virtual ~Entity2D();
 
     virtual void Translate(double /*dx*/, double /*dy*/) {}
     virtual void Scale(double /*sx*/, double /*sy*/) {}
@@ -53,10 +55,6 @@ public:
     inline bool GetFlag(short mask) { return ((_flag & mask)!=0); }
     inline void SetFlag(short mask) { _flag |= mask; }
     inline void ResetFlag(short mask) { _flag &= (~ mask); }
-
-    Entity2D(entity_type type);
-    virtual ~Entity2D();
-
 private:
     entity_type _type;
 

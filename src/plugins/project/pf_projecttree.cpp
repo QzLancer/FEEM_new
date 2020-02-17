@@ -176,6 +176,10 @@ void PF_ProjectTree::showContextMenu(PF_ProjectTreeWidget *focus, const QPoint &
             contextMenu = ActionManager::actionContainer(Constants::M_MATERIALCONTEXT)->menu();
             break;
         }
+        case NodeType::Boundary:{
+            contextMenu = ActionManager::actionContainer(Constants::M_BOUNDARYCONTEXT)->menu();
+            break;
+        }
         case NodeType::Mesh:{
             contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
             break;

@@ -130,87 +130,87 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="155"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="158"/>
         <source>DrawPoint</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="162"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="165"/>
         <source>DrawLine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="169"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="172"/>
         <source>DrawFace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="176"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="179"/>
         <source>DrawCircle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="184"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="187"/>
         <source>Snap to grid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="185"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="188"/>
         <source>Snap to geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="186"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="189"/>
         <source>Solid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="189"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="192"/>
         <source>SelectSingle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="195"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="198"/>
         <source>SelectAll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="201"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="204"/>
         <source>DeSelectAll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="207"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="210"/>
         <source>Cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="208"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="211"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="209"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="212"/>
         <source>Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="210"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="215"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="213"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="222"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="219"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="228"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/cad.cpp" line="225"/>
+        <location filename="../../plugins/CAD/cad.cpp" line="234"/>
         <source>Zoom Auto</source>
         <translation type="unfinished"></translation>
     </message>
@@ -422,16 +422,105 @@ Reason: %3</source>
     </message>
 </context>
 <context>
-    <name>Heat2DStaticWizard</name>
+    <name>HeatBoundaryDialog</name>
     <message>
-        <location filename="../../plugins/heatplugin/heat2dstaticwizard.cpp" line="8"/>
-        <location filename="../../plugins/heatplugin/heat2dstaticwizard.cpp" line="9"/>
+        <location filename="../../plugins/heatplugin/heatboundarydialog.cpp" line="41"/>
+        <source>Select Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/heatplugin/heatboundarydialog.cpp" line="42"/>
+        <source>Select Boundary Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/heatplugin/heatboundarydialog.cpp" line="43"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/heatplugin/heatboundarydialog.cpp" line="44"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/heatplugin/heatboundarydialog.cpp" line="51"/>
+        <source>First-Type Boundary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/heatplugin/heatboundarydialog.cpp" line="52"/>
+        <source>Second-Type Boundary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/heatplugin/heatboundarydialog.cpp" line="53"/>
+        <source>Third-Type Boundary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/heatplugin/heatboundarydialog.cpp" line="58"/>
+        <source>Temperature(K)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/heatplugin/heatboundarydialog.cpp" line="66"/>
+        <source>Heat Flux(W/m^2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/heatplugin/heatboundarydialog.cpp" line="74"/>
+        <source>Heat Transfer Cofficient(W/(m^2*K))</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/heatplugin/heatboundarydialog.cpp" line="75"/>
+        <source>Medium Temperature(K)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/heatplugin/heatboundarydialog.cpp" line="101"/>
+        <source>Geometry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/heatplugin/heatboundarydialog.cpp" line="107"/>
+        <source>Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>HeatFEMProjectManagerPlugin::Heat2DStaticWizard</name>
+    <message>
+        <location filename="../../plugins/heatplugin/heat2dstaticwizard.cpp" line="26"/>
+        <location filename="../../plugins/heatplugin/heat2dstaticwizard.cpp" line="27"/>
         <source>Heat field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/heatplugin/heat2dstaticwizard.cpp" line="10"/>
+        <location filename="../../plugins/heatplugin/heat2dstaticwizard.cpp" line="28"/>
         <source>2D Axis Heat Static field simulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>HeatFEMProjectManagerPlugin::Internal::HeatPlugin</name>
+    <message>
+        <location filename="../../plugins/heatplugin/heatplugin.cpp" line="75"/>
+        <source>add Boundary Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/heatplugin/heatplugin.cpp" line="89"/>
+        <source>Add Boundary Condition</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>HeatFEMProjectManagerPlugin::PF_Heat2DSProject</name>
+    <message>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1409"/>
+        <source>Start to loading project &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -629,12 +718,12 @@ Reason: %3</source>
 <context>
     <name>MagFEMProjectManagerPlugin::PF_Mag2DSProject</name>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="505"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="511"/>
         <source>Newton Iteration(%i) Relax=%.4g</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1397"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1403"/>
         <source>Start to loading project &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1187,49 +1276,55 @@ Reason: %3</source>
 <context>
     <name>PF_EntityContainer</name>
     <message>
-        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1207"/>
+        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1241"/>
         <source>Start mesh...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1237"/>
+        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1271"/>
         <source>Mesh over...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1303"/>
+        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1337"/>
         <source>Start importing DXF file &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1314"/>
+        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1348"/>
         <source>Cannot open input file &quot;%1&quot;
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1450"/>
+        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1484"/>
         <source>%1 points, %2 curves imported</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1451"/>
+        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1485"/>
         <source>End importing DXF file &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1465"/>
+        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1499"/>
         <source>Start importing GEO file &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1467"/>
+        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1501"/>
         <source>End importing GEO file &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1486"/>
+        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1520"/>
         <source>Unsupported CAD file!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/CAD/entity/pf_entitycontainer.cpp" line="1580"/>
+        <source>Error: Failed to detect the polygons.
+</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1786,6 +1881,7 @@ Reason: %3</source>
     <message>
         <location filename="../../plugins/project/pf_projecttreewidget.cpp" line="311"/>
         <location filename="../../plugins/project/pf_projecttreewidget.cpp" line="316"/>
+        <location filename="../../plugins/project/pf_projecttreewidget.cpp" line="320"/>
         <source>You select %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1801,7 +1897,7 @@ Reason: %3</source>
 <context>
     <name>ProjectExplorer::ProjectTreeWidgetFactory</name>
     <message>
-        <location filename="../../plugins/project/pf_projecttreewidget.cpp" line="387"/>
+        <location filename="../../plugins/project/pf_projecttreewidget.cpp" line="391"/>
         <source>Projects</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2089,7 +2185,8 @@ Reason: %3</source>
     </message>
     <message>
         <location filename="../../plugins/project/pf_nodetreebuilder.cpp" line="20"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1418"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1424"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1430"/>
         <source>Definitions</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2130,87 +2227,106 @@ Reason: %3</source>
     </message>
     <message>
         <location filename="../../plugins/magfemprojectmanagerplugin/pf_commonfemproject.cpp" line="161"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1437"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1445"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1443"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1451"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1449"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1457"/>
         <source>Point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../plugins/magfemprojectmanagerplugin/pf_commonfemproject.cpp" line="166"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1438"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1450"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1444"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1456"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1450"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1462"/>
         <source>Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../plugins/magfemprojectmanagerplugin/pf_commonfemproject.cpp" line="171"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1439"/>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1455"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1445"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1461"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1451"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1467"/>
         <source>Face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1428"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1434"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1440"/>
         <source>Materials</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1436"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1442"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1448"/>
         <source>Geometry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1466"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1472"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1478"/>
         <source>Mesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1467"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1473"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1479"/>
         <source>Mesh Point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1468"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1474"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1480"/>
         <source>Mesh Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1469"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1475"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1481"/>
         <source>Mesh Face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1473"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1479"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1485"/>
         <source>Physics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1474"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1480"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1486"/>
         <source>Domains</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1476"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1482"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1489"/>
         <source>Solver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1477"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1483"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1490"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1479"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1485"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1492"/>
         <source>Result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1480"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1486"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1493"/>
         <source>2D curve</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1481"/>
+        <location filename="../../plugins/magfemprojectmanagerplugin/pf_mag2dsproject.cpp" line="1487"/>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1494"/>
         <source>2D surface</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2222,6 +2338,11 @@ Reason: %3</source>
     <message>
         <location filename="../../libs/utils/persistentsettings.cpp" line="431"/>
         <source>Cannot create file %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../plugins/heatplugin/pf_heat2dsproject.cpp" line="1487"/>
+        <source>Boundary</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

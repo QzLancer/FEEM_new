@@ -228,6 +228,7 @@ CycleSet * Graph::Horton()
                             IsTiermanCompliant(v, path_vx, path_vy)){
 
                         cycle = new Cycle(path_vx, path_vy);
+//                        qDebug()<<*path_vx<<*path_vy;
                         if (cycle->GetLength()>0)
                             p_cycle_set->AddCycle(cycle);
                         else
@@ -245,7 +246,7 @@ CycleSet * Graph::Horton()
 
     // lets apply the gaussian elimination
     if (p_cycle_set) {
-        p_cycle_set->SelectCycles();
+//        p_cycle_set->SelectCycles();
     }
 
     return p_cycle_set;
@@ -265,8 +266,7 @@ wxArrayInt * Graph::GetShortestPath(int i, int j)
     if (i==j) {
         path = new wxArrayInt();
         path->append(i);
-    }
-    else {
+    }else {
         int offset_ij = MatrixOffset(i,j);
         if (_predecessor_matrix[offset_ij]==MAX_VERTICES)
             return nullptr;

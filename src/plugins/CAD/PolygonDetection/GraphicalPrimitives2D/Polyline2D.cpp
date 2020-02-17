@@ -88,7 +88,6 @@ Polyline2D::~Polyline2D()
 bool Polyline2D::AddVertex(Point2D *vertex, short flag, int pos)
 {
     if (vertex) {
-
         // check if in case of middle insertion the position given is
         // at the begin or at the end of the polyline
         if CHECK_FLAG(flag, AT_MIDDLE)  {

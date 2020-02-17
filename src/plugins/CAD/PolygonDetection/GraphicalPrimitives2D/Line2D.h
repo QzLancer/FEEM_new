@@ -45,8 +45,8 @@ public:
 
     virtual void PerformRounding(double gamma);
 
-    static inline bool CompareOrder(Entity2D *p_e1, Entity2D *p_e2) { return CompareOrder((Line2D*)p_e2, (Line2D*)p_e1); }
-    static bool CompareOrder(Line2D* p_line2, Line2D* p_line1);
+    static inline bool CompareOrder(Entity2D *p_e1, Entity2D *p_e2) { return CompareOrder((Line2D*)p_e1, (Line2D*)p_e2); }
+    static bool CompareOrder(Line2D* p_line1, Line2D* p_line2);
 
     Point2D * IntersectionPoint(Line2D * line);
     bool Intersects( Line2D * line);

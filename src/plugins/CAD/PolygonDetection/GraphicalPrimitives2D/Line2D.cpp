@@ -259,76 +259,76 @@ Point2D * Line2D::IntersectionPoint(Line2D *line)
 *         passed to it is less than, equal to or 
 *         greater than the second one. 
 */
-bool Line2D::CompareOrder(Line2D *p_line2, Line2D *p_line1)
+bool Line2D::CompareOrder(Line2D *p_line1, Line2D *p_line2)
 {
     bool result = Point2D::CompareOrder((p_line1)->GetFirstPoint(), (p_line2)->GetFirstPoint());
 
-    if (result==false) {
-		// in case lines share first point
-		// we must order the lines by its slope
+//    if (!result) {
+//		// in case lines share first point
+//		// we must order the lines by its slope
 
-        double dx1 = (p_line1)->GetLastPoint()->GetX() - (p_line1)->GetFirstPoint()->GetX();
-        double dy1 = (p_line1)->GetLastPoint()->GetY() - (p_line1)->GetFirstPoint()->GetY();
-        double dx2 = (p_line2)->GetLastPoint()->GetX() - (p_line2)->GetFirstPoint()->GetX();
-        double dy2 = (p_line2)->GetLastPoint()->GetY() - (p_line2)->GetFirstPoint()->GetY();
+//        double dx1 = (p_line1)->GetLastPoint()->GetX() - (p_line1)->GetFirstPoint()->GetX();
+//        double dy1 = (p_line1)->GetLastPoint()->GetY() - (p_line1)->GetFirstPoint()->GetY();
+//        double dx2 = (p_line2)->GetLastPoint()->GetX() - (p_line2)->GetFirstPoint()->GetX();
+//        double dy2 = (p_line2)->GetLastPoint()->GetY() - (p_line2)->GetFirstPoint()->GetY();
 
-		// by definition of first and last point we are sure that dy > 0
+//		// by definition of first and last point we are sure that dy > 0
 
-		if (dx1>0 && dx2<0)
-			// line 1 in 1st quadrant, line 2 in 2nd quadrant
-			// this means line 2 cames first
-            return true;
+//		if (dx1>0 && dx2<0)
+//			// line 1 in 1st quadrant, line 2 in 2nd quadrant
+//			// this means line 2 cames first
+//            return true;
 
-		if (dx1<0 && dx2>0)
-			// line 1 in 2nd quadrant, line 2 in 1st quadrant
-			// this means line 1 cames first
-            return false;
+//		if (dx1<0 && dx2>0)
+//			// line 1 in 2nd quadrant, line 2 in 1st quadrant
+//			// this means line 1 cames first
+//            return false;
 
-		if (dx1==0) {
-			// first line is vertical
-			if (dx2>0)
-				// second line in 1st quadrant
-				// first line is previous
-                return false;
+//		if (dx1==0) {
+//			// first line is vertical
+//			if (dx2>0)
+//				// second line in 1st quadrant
+//				// first line is previous
+//                return false;
 
-			if (dx2<0)
-				// second line in 2nd quadrant
-				// second line is previous
-                return true;
-			// this should no happen
-            return false;
-		}
+//			if (dx2<0)
+//				// second line in 2nd quadrant
+//				// second line is previous
+//                return true;
+//			// this should no happen
+//            return false;
+//		}
 
-		if (dx2==0) {
-			// second line is vertical
-			if (dx1>0)
-				// first line in 1st quadrant
-				// second line is previous
-                return true;
+//		if (dx2==0) {
+//			// second line is vertical
+//			if (dx1>0)
+//				// first line in 1st quadrant
+//				// second line is previous
+//                return true;
 
-			if (dx1<0)
-				// first line in 2nd quadrant
-				// first line is previous
-                return false;
+//			if (dx1<0)
+//				// first line in 2nd quadrant
+//				// first line is previous
+//                return false;
 
-			// this should not happen
-            return false;
-		}
+//			// this should not happen
+//            return false;
+//		}
 
 
-		// calculate the slopes
-		double m1 = dy1/dx1;
-		double m2 = dy2/dx2;
-		// line 1 and line 2 in 2nd quadrant
-		if (m1>m2)
-            return false;
-		if (m1<m2)
-            return true;
+//		// calculate the slopes
+//		double m1 = dy1/dx1;
+//		double m2 = dy2/dx2;
+//		// line 1 and line 2 in 2nd quadrant
+//		if (m1>m2)
+//            return false;
+//		if (m1<m2)
+//            return true;
 		
-		// in this case we have the same slope in both lines, 
-		// which means that both lines are coincident.
-        return false;
-	}
+//		// in this case we have the same slope in both lines,
+//		// which means that both lines are coincident.
+//        return false;
+//	}
 
 	return result;
 }	

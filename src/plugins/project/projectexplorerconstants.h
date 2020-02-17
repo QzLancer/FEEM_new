@@ -42,6 +42,8 @@ const char M_COMPONENTCONTEXT[]      = "Project.Menu.Component";/** 模型节点
 
 const char M_MATERIALCONTEXT[] = "Project.Menu.Material";/** 材料节点 **/
 
+const char M_BOUNDARYCONTEXT[] = "Project.Menu.Boundary";/** 边界节点 **/
+
 const char M_GEOMETRYCONTEXT[] = "Project.Menu.Geometry";/** 几何节点 **/
 
 const char M_MESHCONTEXT[] = "Project.Menu.Mesh";/** 分网节点 **/

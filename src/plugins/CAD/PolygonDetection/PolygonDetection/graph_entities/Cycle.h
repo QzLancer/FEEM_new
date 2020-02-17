@@ -5,34 +5,34 @@
 
 namespace PolygonDetection {	
 
-	class Cycle
-	{
-	public:
-        static bool CompareOrder(Cycle * p_c1, Cycle * p_c2);
-//		static int CompareOrder(Cycle ***p_c1, Cycle ***p_c2);
+class Cycle
+{
+public:
+    Cycle(wxArrayInt *path_vx, wxArrayInt *path_vy);
+    virtual ~Cycle();
 
-        void AddEdge(unsigned int edge_id) { if (_p_edge_list) _p_edge_list->append(edge_id); }
+    static bool CompareOrder(Cycle * p_c2, Cycle * p_c1);
+    //		static int CompareOrder(Cycle ***p_c1, Cycle ***p_c2);
 
-        inline int GetVertex(int number) {
-            return (_p_cycle && _p_cycle->size()>number)?_p_cycle->at(number):0;
-        }
-        inline int GetEdge(int number) {
-            return (_p_edge_list && _p_edge_list->size()>number)?_p_edge_list->at(number):0;
-        }
+    void AddEdge(unsigned int edge_id) { if (_p_edge_list) _p_edge_list->append(edge_id); }
 
-        inline int GetVertexCount() { return _p_cycle?_p_cycle->size():0;}
-        inline int GetEdgeCount() { return _p_edge_list?_p_edge_list->size():0;}
+    inline int GetVertex(int number) {
+        return (_p_cycle && _p_cycle->size()>number)?_p_cycle->at(number):-1;
+    }
+    inline int GetEdge(int number) {
+        return (_p_edge_list && _p_edge_list->size()>number)?_p_edge_list->at(number):0;
+    }
 
-        inline int GetLength() { return GetVertexCount(); }
+    inline int GetVertexCount() { return _p_cycle?_p_cycle->size():0;}
+    inline int GetEdgeCount() { return _p_edge_list?_p_edge_list->size():0;}
 
-		Cycle(wxArrayInt *path_vx, wxArrayInt *path_vy);
-		virtual ~Cycle();
+    inline int GetLength() { return GetVertexCount(); }
 
-	private:
-        int _generated_from;
-		wxArrayInt * _p_cycle;	
-		wxArrayInt * _p_edge_list;
-	};
+private:
+    int _generated_from;
+    wxArrayInt * _p_cycle;
+    wxArrayInt * _p_edge_list;
+};
 }
 
 #endif // !defined(AFX_CYCLE_H_INCLUDED)

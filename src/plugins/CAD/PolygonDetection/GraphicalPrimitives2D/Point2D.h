@@ -25,7 +25,7 @@ public:
     bool Collinear(Point2D *a, Point2D *b);
 
     static bool Ordered(Point2D * p1, Point2D * p2);
-    static bool CompareOrder(Point2D * p2, Point2D * p1);
+    static bool CompareOrder(Point2D * p1, Point2D * p2);
 
     // the next two methods are used to sort arrays
 //    static int CompareOrder(Point2D *** p_p1, Point2D *** p_p2);

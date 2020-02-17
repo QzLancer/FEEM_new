@@ -4,6 +4,7 @@
 #include <coreplugin/basefilewizard.h>
 #include <coreplugin/basefilewizardfactory.h>
 
+namespace HeatFEMProjectManagerPlugin{
 class Heat2DStaticWizard : public Core::BaseFileWizardFactory
 {
     Q_OBJECT
@@ -15,5 +16,5 @@ private:
 
     Core::GeneratedFiles generateFiles(const QWizard *w, QString *errorMessage) const override;
 };
-
+}   // namespace HeatFEMProjectManagerPlugin
 #endif // HEAT2DSTATICWIZARD_H

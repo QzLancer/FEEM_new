@@ -54,7 +54,7 @@ Cycle::~Cycle()
 *         passed to it is less than, equal to or 
 *         greater than the second one. 
 */
-bool Cycle::CompareOrder(Cycle *p_c1, Cycle *p_c2)
+bool Cycle::CompareOrder(Cycle *p_c2, Cycle *p_c1)
 {
     if (p_c1->GetLength()==p_c2->GetLength()) {
         return p_c1->_generated_from - p_c2->_generated_from;

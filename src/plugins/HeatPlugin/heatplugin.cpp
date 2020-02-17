@@ -9,12 +9,15 @@
 #include <coreplugin/actionmanager/actioncontainer.h>
 #include <coreplugin/constants.h>
 
-#include <QAction>
-#include <QMessageBox>
-#include <QMainWindow>
-#include <QMenu>
+#include <project/projectexplorerconstants.h>
+#include <project/pf_node.h>
+#include <project/pf_projecttree.h>
 
 using namespace Core;
+using namespace ProjectExplorer;
+
+namespace HeatFEMProjectManagerPlugin {
+namespace Internal {
 
 HeatPlugin::HeatPlugin()
 {
@@ -29,6 +32,10 @@ HeatPlugin::~HeatPlugin()
 
 bool HeatPlugin::initialize(const QStringList &arguments, QString *errorString)
 {
+    qDebug() << Q_FUNC_INFO;
+    registerDefaultActions();
+    registerDefaultContainers();
+
     /** 添加wizards **/
     IWizardFactory::registerFactoryCreator([] {
         return QList<IWizardFactory *> {
@@ -52,3 +59,41 @@ ExtensionSystem::IPlugin::ShutdownFlag HeatPlugin::aboutToShutdown()
     // Hide UI (if you add UI that is not in the main window directly)
     return SynchronousShutdown;
 }
+
+void HeatPlugin::registerDefaultContainers()
+{
+
+}
+
+void HeatPlugin::registerDefaultActions()
+{
+    /** 边界节点右键菜单栏 **/
+    ActionContainer *mboundaryContextMenu = ActionManager::createMenu(ProjectExplorer::Constants::M_BOUNDARYCONTEXT);
+    mboundaryContextMenu->appendGroup(ProjectExplorer::Constants::G_HELP);
+
+    /** boundary **/
+    m_addBoundary = new QAction(QIcon(":/icon/imgs/boundary_32.png"), tr("add Boundary Condition"), this);
+    Command* cmd = ActionManager::registerAction(m_addBoundary, Constants::ADDBOUNDARY);
+    mboundaryContextMenu->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
+    connect(m_addBoundary, &QAction::triggered, this, &HeatPlugin::slotaddBoundary);
+}
+
+void HeatPlugin::slotaddBoundary()
+{
+    Node *node = PF_ProjectTree::findCurrentNode();
+    FolderNode *folderNode = node ? node->asFolderNode() : nullptr;
+    if(!folderNode) return;
+
+    CHBoundaryProp* b = new CHBoundaryProp;
+    HeatBoundaryDialog *dialog = new HeatBoundaryDialog(b, Core::ICore::dialogParent());
+    dialog->setWindowTitle(tr("Add Boundary Condition"));
+    dialog->show();
+//    if(result == QDialog::Accepted){
+//        emit boundaryAdded(dialog->getBoundary());
+//    }else{
+//        qDebug() << "addBlankBoundary Cancle.";
+//    }
+}
+
+}   //namespace Internal
+}   //namespace HeatFEMProjectManagerPlugin

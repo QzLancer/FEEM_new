@@ -149,7 +149,23 @@ bool Polygon2D::Contains(Point2D *point, bool strict)
 		}
 	}
 
-	return inside;
+    return inside;
+}
+
+double Polygon2D::Area()
+{
+    _area = 0;
+    double sum = 0;
+    for(int i = 0; i < GetVertexCount()-1;i++){
+        auto p1 = GetVertexAt(i);
+        auto p2 = GetVertexAt(i+1);
+        sum += p1->GetX() * p2->GetY() - p2->GetX() * p1->GetY();
+    }
+//    auto p1 = GetVertexAt(GetVertexCount()-1);
+//    auto p2 = GetVertexAt(0);
+//    sum += p1->GetX() * p2->GetY() - p2->GetX() * p1->GetY();
+    _area = 0.5 * abs(sum);
+    return _area;
 }
 
 /***
@@ -311,9 +327,7 @@ bool Polygon2D::IsAdjacent(Polygon2D *p1, Polygon2D *p2, bool strict)
 		previous_v1 = v1;
 	}
 
-	return false;
-
-	
+    return false;
 }
 
 /****
@@ -484,8 +498,7 @@ bool Polygon2D::Minus(Polygon2D *p)
     m = i;    
     for (n=0;n< VERTEX_COUNT_IN_POLYLINE(p)-abs(l);n++) {
         STEP_ITERATOR(j, (l>0?-1:1), VERTEX_COUNT_IN_POLYLINE(p));
-		v = p->GetVertexAt(j);
-        
+        v = p->GetVertexAt(j);
         
         STEP_ITERATOR(m, 1, GetVertexCount());
         _vertex_array.insert(m,new Point2D(v));

@@ -40,14 +40,16 @@ enum class NodeType : quint16 {
     Variable,
     Parameter,
     GolobalDefinition,
-    Project
+    Project,
+    Boundary
 };
 enum class LeafType : quint16 {
     Unknown = 0,
     CMaterialProp,
     Point,
     Line,
-    Face
+    Face,
+    Boundary
 };
 enum ProjectAction {
     // Special value to indicate that the actions are handled by the parent

@@ -25,6 +25,20 @@ PF_Face::PF_Face(PF_EntityContainer *parent, PF_GraphicView *view, const PF_Face
     m_index = face_index;
 }
 
+/**
+ * @brief
+ *
+ * @param parent
+ * @param view
+ * @param faceData
+ */
+PF_Face::PF_Face(PF_EntityContainer* parent, PF_GraphicView* view, const QList<PF_LineLoop*>& faceData)
+    :PF_AtomicEntity(parent,view)
+{
+    data.faceData = faceData;
+    m_index = face_index;
+}
+
 PF_VectorSolutions PF_Face::getRefPoints() const
 {
     return {};
@@ -138,6 +152,9 @@ void PF_Face::draw(QCPPainter *painter)
         }
 
         for(auto p : e->lines){
+            if(isSelected()){
+                p->setSelected(true);
+            }
             /** 要注意线的方向 **/
             if(indexLast == p->data.startpoint->index()){
                 pos = p->data.startpoint->getCenter();
@@ -298,6 +315,11 @@ QVariantMap PF_Face::toMap()
     return f;
 }
 
+void PF_Face::updateLineLoopByIndex(const QMap<int, PF_Line*>& ls)
+{
+    data.updateLineLoopByIndex(ls);
+}
+
 
 /*!
  \brief 拷贝构造函数
@@ -313,6 +335,19 @@ PF_FaceData::PF_FaceData(const PF_FaceData &data)
         l->loop = d->loop;
         l->m_index = d->m_index;
         faceData.push_back(l);
+    }
+}
+
+PF_FaceData::PF_FaceData(const QList<PF_LineLoop*>& m_faceData)
+    :faceData(m_faceData)
+{
+
+}
+
+void PF_FaceData::updateLineLoopByIndex(const QMap<int, PF_Line*>& ls)
+{
+    for(auto e : faceData){
+        e->updateLineByIndex(ls);
     }
 }
 
@@ -343,4 +378,17 @@ PF_LineLoop::PF_LineLoop()
 int PF_LineLoop::index() const
 {
     return m_index;
+}
+
+void PF_LineLoop::addLine(PF_Line* line)
+{
+    if(line)
+        lines.append(line);
+}
+
+void PF_LineLoop::updateLineByIndex(const QMap<int, PF_Line*>& ls)
+{
+    for(auto e : line_index){
+        lines.append(ls.value(e,nullptr));
+    }
 }

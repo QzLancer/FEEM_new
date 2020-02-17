@@ -11,6 +11,7 @@
 
 #include <QDebug>
 #include <QFileInfo>
+#include <queue>
 
 using namespace PolygonDetection;
 
@@ -96,7 +97,14 @@ class CurveLessThan{
 public:
     bool operator()(const Curve &c1, const Curve &c2) const
     {
-        if(c1.num < c2.num) return true;
+        if(c1.a < c2.a)
+            return true;
+        else if(c1.a == c2.a){
+            if(c1.b < c2.b)
+                return true;
+            else
+                return false;
+        }
         return false;
     }
 };
@@ -114,10 +122,14 @@ int addpoint(Point &p)
     return p.num;
 }
 
-void addcurve(Curve &c)
+int addcurve(Curve &c)
 {
+    std::set<Curve>::iterator it = Curve_T.find(c);
+    if(it != Curve_T.end())
+        return it->num;
     c.num = numc++;
     Curve_T.insert(c);
+    return c.num;
 }
 
 int checkdegen(int a, int b, int c)
@@ -1509,7 +1521,41 @@ bool PF_EntityContainer::importCADFile(const QString &fileName)
     }
     return true;
 }
+PF_LineLoop* addLineLoop(GraphicalPrimitives2D::Polygon2D* poly){
+    auto lineloop = new PF_LineLoop();
+    PF_LineLoop::lineloop_index++;
+    Point p;
+    p.z = 0;
+    Curve c;
+    int num[10];
 
+    for(int j = 0; j < poly->GetVertexCount()-1;j++){
+        auto point = poly->GetVertexAt(j);
+        p.x = point->GetX();
+        p.y = point->GetY();
+        num[0] = addpoint(p);
+//            qDebug()<<j<<":("<<p.x<<","<<p.y<<")";
+        point = poly->GetVertexAt(j+1);
+        p.x = point->GetX();
+        p.y = point->GetY();
+        num[1] = addpoint(p);
+        /** 如果两个有公共线的话，就重复添加了 **/
+        c.type = GEOLINE;
+//            qDebug()<<num[0]<<","<<num[1]<<"("<<p.x<<","<<p.y<<")";
+        /** 对编号进行大小排序，否则curve无法查找重复 **/
+        if(num[0] < num[1]){
+            c.a = num[0];
+            c.b = num[1];
+        }else{
+            c.a = num[1];
+            c.b = num[0];
+        }
+        num[2]=addcurve(c);
+
+        lineloop->line_index.append(num[2]);
+    }
+    return lineloop;
+}
 /**
  * @brief 根据点和线的信息生成面
  *
@@ -1517,7 +1563,6 @@ bool PF_EntityContainer::importCADFile(const QString &fileName)
 void PF_EntityContainer::buildFace()
 {
     /** 为保险起见，先删除所有的面信息 **/
-
     PolygonDetector polygon_detector;
     /** 先搜集所有的线 **/
     for(int i = entities.size()-1; i >= 0; i--){
@@ -1533,33 +1578,115 @@ void PF_EntityContainer::buildFace()
     // the lines were loaded, lets detect the polygons
     if (!polygon_detector.DetectPolygons() || !polygon_detector.GetPolygonSet()) {
         PoofeeSay<<tr("Error: Failed to detect the polygons.\n");
+        return;
     }
-
+    //simplify the polygon set
+//    polygon_detector.SimplifyPolygons(0.0);
     /** 绘制生成的线和面 **/
     Point_T.clear();
     Curve_T.clear();
     nump = 1;
     numc = 1;
-    this->clear();
+    this->clear();/** 应该把所有的实体清空 **/
     Point p;
+    p.z = 0;
     Curve c;
     int num[10];
-    for(int i = 0; i < polygon_detector.GetLineCount();i++){
-        auto line = polygon_detector.GetLineSet()->Item(i);
-        p.x = line->GetStartPoint()->GetX();
-        p.y = line->GetStartPoint()->GetY();
-        p.z = 0;
-        num[0] = addpoint(p);
-        p.x = line->GetEndPoint()->GetX();
-        p.y = line->GetEndPoint()->GetX();
-        p.z = 0;
-        num[1] = addpoint(p);
-        c.type = GEOLINE;
-        c.a = num[0];
-        c.b = num[1];
-        addcurve(c);
+    PF_Face::face_index = 1;/** 既然删除了所有的面，那么应该把索引重置 **/
+    /** 遍历所有的多边形，暂时不支持曲面 **/
+    auto polyset = polygon_detector.GetPolygonSet();
+    /** 检查各个多边形之间的关系 **/
+    QMap<GraphicalPrimitives2D::Polygon2D*,int> polymap;
+    for(int i = 0; i < polyset->size();i++){
+        auto polyi = polyset->Item(i);
+        polymap.insert(polyi,i+1);
+        for(int j = 0; j < polyset->size();j++){
+            if(i != j){
+                auto polyj = polyset->Item(j);
+                if(polyi->Contains(polyj)){
+//                    qDebug()<<"poly "<<i+1<<" contains "<<"poly "<<j+1;
+                    if(polyj->GetParent()){
+                        /** 包含它的椭圆包含了。。。说明不是最小 **/
+                        if(polyj->GetParent()->Contains(polyi)){
+                            polyj->GetParent()->RemoveSon(polyj);
+                            polyj->SetParent(polyi);
+                            polyi->AddSon(polyj);
+                        }
+                    }else{
+                        polyj->SetParent(polyi);
+                        polyi->AddSon(polyj);
+                    }
+                }
+//                if(polyi->Disjoint(polyj)){
+//                    qDebug()<<"poly "<<i+1<<" Disjoint "<<"poly "<<j+1;
+//                }
+//                if(polyi->IsAdjacent(polyj)){
+//                    qDebug()<<"poly "<<i+1<<" IsAdjacent "<<"poly "<<j+1;
+//                }
+            }
+        }
     }
+    /** 查找root节点 **/
+    GraphicalPrimitives2D::Polygon2D* root = nullptr;
+    for(int i = 0; i < polyset->size();i++){
+        auto polyi = polyset->Item(i);
+        /** root **/
+        if(!polyi->GetParent()){
+            root = polyi;
+        }
+    }
+    /** 使用队列的形式进行遍历 **/
+    std::queue<GraphicalPrimitives2D::Polygon2D*> polyQueue;
+    if(root)
+        polyQueue.push(root);
+    while(!polyQueue.empty()){
+        /** 处理节点下面的一层，只是寻找有没有多余的多边形 **/
+        auto tmpPoly = polyQueue.front();
+        qDebug()<<"parent poly "<<polymap.value(tmpPoly,-1);
+        double polyArea = tmpPoly->Area();
+        double childArea = 0;
+        for(auto p : tmpPoly->_son_polygons){
+            qDebug()<<"child "<<polymap.value(p,-1);
+            childArea += p->Area();
+        }
+        QList<PF_LineLoop* > loops;
+        /** 没有子节点了 **/
+        if(tmpPoly->_son_polygons.isEmpty()){
+            loops.insert(0,addLineLoop(tmpPoly));/** 将本身加进来 **/
+        }else if(abs(polyArea - childArea)>1e-10){
+            qDebug()<<"empty region exsits."<<"polyiArea:"<<polyArea<<"childArea:"<<childArea;
+            /** 生成多边形的作差后的多边形，如果只是简单的添加边界，也是可以识别的，
+                就是显示的时候，会把所有线显示出来。**/
+            for(auto poly : tmpPoly->_son_polygons){
+                /** 对一些含有公共边的多边形进行合并简化 **/
+                if(tmpPoly->IsAdjacent(poly)){
+                    qDebug()<<"simplyfy "<<polymap.value(tmpPoly,-1)<<" and "<<polymap.value(poly,-1);
+                    tmpPoly->Minus(poly);
+                    continue;
+                }
+                loops.append(addLineLoop(poly));
+            }
+            loops.insert(0,addLineLoop(tmpPoly));/** 将本身加进来 **/
+        }//else{
+            /** 完全可以用子多边形表示的多边形 **/
+//            continue;
+        //}
+        /** 生成面的数据 **/
+        if(!loops.isEmpty()){
+            auto f = new PF_Face(this,mParentPlot,loops);
+            PF_Face::face_index++;/** 需要同时更新索引 **/
+            this->addEntitySilence(f);
+        }
+        /** 处理完毕，将该节点的数据释放 **/
+        polyQueue.pop();
+        /** 将子节点添加到队列当中 **/
+        for(auto p : tmpPoly->_son_polygons){
+            polyQueue.push(p);
+        }
+    }
+
     QMap<int,PF_Point*> ps;
+    QMap<int,PF_Line*> ls;
     /** 生成所有的点 **/
     for(std::set<Point>::iterator it = Point_T.begin(); it != Point_T.end(); ++it){
 //        qDebug()<<it->num<<" "<<it->x<<" "<<it->y;
@@ -1568,27 +1695,38 @@ void PF_EntityContainer::buildFace()
         ps.insert(it->num,p);
     }
     /** 按照index排序的顺序 **/
-    QMapIterator<int,PF_Point*> i(ps);
-    while (i.hasNext()) {
-        i.next();
-        this->addEntitySilence(i.value());
+    QMapIterator<int,PF_Point*> pmap(ps);
+    while (pmap.hasNext()) {
+        pmap.next();
+        this->addEntitySilence(pmap.value());
     }
     /** 生成所有的线 **/
     for(std::set<Curve>::iterator it = Curve_T.begin(); it != Curve_T.end(); ++it){
 //        qDebug()<<it->num<<" "<<it->a<<" "<<it->b;
         auto l = new PF_Line(this,mParentPlot,ps.value(it->a,nullptr),ps.value(it->b,nullptr));
         l->setIndex(it->num);
-        this->addEntitySilence(l);
+        ls.insert(it->num,l);
     }
+    /** 按照index排序的顺序 **/
+    QMapIterator<int,PF_Line*> lmap(ls);
+    while (lmap.hasNext()) {
+        lmap.next();
+        this->addEntitySilence(lmap.value());
+    }
+    /** 生成面数据。主要的困难在于数据编号不一致。 **/
+    for(int i = entities.size()-1; i >= 0; i--){
+        auto e = entities.at(i);
+        if(e->rtti() == PF::EntityFace){
+            dynamic_cast<PF_Face*>(e)->updateLineLoopByIndex(ls);
+        }
+    }
+    // the polygons were detected, lets save them
+//    if (!polygon_detector.CreateSVGwithPolygons("line2.svg")) {
+//        PoofeeSay<<tr("Error: Failed to crate the SVG with the polygons.\n");
+//    }
+    /** UI更新 **/
     emit EntityChanged();
     this->parentPlot()->replot();
-    //simplify the polygon set
-    polygon_detector.SimplifyPolygons(0.0);
-    /** 生成面数据 **/
-    // the polygons were detected, lets save them
-    if (!polygon_detector.CreateSVGwithPolygons("line2.svg")) {
-        PoofeeSay<<tr("Error: Failed to crate the SVG with the polygons.\n");
-    }
 }
 
 int PF_EntityContainer::index() const

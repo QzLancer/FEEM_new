@@ -15,6 +15,11 @@ class Polygon2D; // to allow returning polygons inside polyline class
 class Polyline2D : public Entity2D
 {
 public:
+    Polyline2D();
+    Polyline2D(Line2D * line);
+    Polyline2D(Polyline2D * polyline);
+    virtual ~Polyline2D();
+
     bool Intersects(Polyline2D * polyline);
     bool Intersects(Entity2D * entity);
 
@@ -53,11 +58,6 @@ public:
 
     inline virtual Point2D * GetStartPoint() { return (Point2D::Ordered(_vertex_array[0], _vertex_array.last())?_vertex_array[0]:_vertex_array.last()); }
     inline virtual Point2D * GetEndPoint() { return (Point2D::Ordered(_vertex_array[0], _vertex_array.last())?_vertex_array.last():_vertex_array[0]); }
-
-    Polyline2D();
-    Polyline2D(Line2D * line);
-    Polyline2D(Polyline2D * polyline);
-    virtual ~Polyline2D();
 
 protected:
     Polyline2D(entity_type type );

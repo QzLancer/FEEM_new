@@ -316,6 +316,10 @@ void PF_ProjectTreeWidget::openItem(const QModelIndex &mainIndex)
             PoofeeSay<<tr("You select %1").arg(node->displayName());
             break;
         }
+        case LeafType::Boundary:{
+            PoofeeSay<<tr("You select %1").arg(node->displayName());
+            break;
+        }
         default:{
             break;
         }

@@ -158,6 +158,7 @@ void PF_Point::draw(QCPPainter *painter)
 //        qDebug()<<"line "<<i<<QPoint(x-width,y-width + i)<<QPoint(x+width,y-width+i);
     }
 //    painter->drawText(QPoint(x,y),toString());
+    painter->drawText(QPoint(x,y),QString("%1").arg(index()));
     /** 绘制控制点 **/
     if (isSelected()) {
 //		if (!e->isParentSelected()) {

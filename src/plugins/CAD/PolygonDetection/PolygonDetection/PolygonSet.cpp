@@ -130,7 +130,6 @@ bool PolygonDetection::PolygonSet::Construct(LineSet * line_set)
 */
 void PolygonDetection::PolygonSet::CreatePointsArray(LineSet * line_set)
 {
-
     if (line_set) {
         WX_CLEAR_ARRAY(_all_points_array);
         for (int i=0; i< line_set->size(); i++) {
@@ -185,14 +184,12 @@ Graph * PolygonSet::LinesToGraph(LineSet * line_set)
     // already have an ID, so we can add lines to the graph
 
     Line * line;
-
     for (int i=0; i<line_set->size(); i++ ) {
         line = line_set->Item(i);
         if (line)
             G->SetAdjacency(line->GetStartPoint()->GetID(), line->GetEndPoint()->GetID());
+//        qDebug()<<line->GetStartPoint()->GetID()<<","<<line->GetEndPoint()->GetID();
     }
-
-    //ENDING_PROCESS_MESSAGE();
     return G;
 }
 
@@ -214,6 +211,7 @@ int PolygonSet::GetPointCount()
             previous = current;
         }
         current->SetID(id-1);
+//        qDebug()<<id-1<<":"<<current->GetX()<<","<<current->GetY();
     }
 
     return id;
@@ -232,20 +230,28 @@ void PolygonSet::CyclesToPolygons(CycleSet *cycle_set)
         for (int i=0; i<cycle_set->size();i++){
             Cycle * cycle = cycle_set->GetCycle(i);
 
+//            qDebug()<<"cycle:"<<i;
             if (cycle->GetVertexCount()>2) {
                 Polygon * plg = new Polygon();
 
                 for (int j=0; j<cycle->GetVertexCount();j++){
                     GraphicalPrimitives2D::Point2D * p = PointByID(cycle->GetVertex(j));
-                    if (p)
-                        plg->AddVertex(new GraphicalPrimitives2D::Point2D(p));
+//                    qDebug()<<"p:"<<j<<"("<<p->GetX()<<","<<p->GetY()<<")";
+                    if (p){
+                        plg->AddVertex(new GraphicalPrimitives2D::Point2D(p),AT_END,65536);
+//                        qDebug()<<"p1:"<<j<<"("<<p->GetX()<<","<<p->GetY()<<")";
+                    }
                 }
 
+                for(int kk = 0;kk < plg->GetVertexCount();kk++){
+                    auto ppp = plg->GetVertexAt(kk);
+//                    qDebug()<<"ppp:"<<kk<<"("<<ppp->GetX()<<","<<ppp->GetY()<<")";
+                }
                 // adds new polygon to polygons array
                 _polygons_array.append(plg);
 
                 // update polygon first and last point, plus closed status
-                plg->CalculateFirstAndLastPoint();
+//                plg->CalculateFirstAndLastPoint();
                 // simplify the polygon, removing unnecessary vertices
                 // IMPORTANT NOTICE: This should not be called here,
                 // because we need all vertices for remove contained polygons
@@ -310,12 +316,12 @@ QString PolygonDetection::PolygonSet::AsSVG(bool colorized)
     }
 
     // draw polylines
-    for (int i=0;i<_polygons_array.size();i++) {
-        Polygon * p = Item(i);
-        if (p)
-            result += p->AsString(true,"#000000") +"\n";
-        factor-=delta;
-    }
+//    for (int i=0;i<_polygons_array.size();i++) {
+//        Polygon * p = Item(i);
+//        if (p)
+//            result += p->AsString(true,"#000000") +"\n";
+//        factor-=delta;
+//    }
 
     result += "</svg>";
     return result;

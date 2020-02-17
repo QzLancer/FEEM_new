@@ -15,8 +15,11 @@ public:
     PF_LineLoop();
 
     int index() const;
+    void addLine(PF_Line* line);
+    void updateLineByIndex(const QMap<int,PF_Line*>& ls);
     static int lineloop_index;
     QList<PF_Line* > lines;/** 保存对应的点的编号 **/
+    QList<int> line_index;/** 妥协的做法，保存line的index，然后之后更新指针 **/
     QPolygonF loop;/** 保存所有的点，闭合模式 **/
     int m_index;
 };
@@ -33,6 +36,9 @@ public:
     PF_FaceData()=default;
 
     PF_FaceData(const PF_FaceData& data);
+    PF_FaceData(const QList<PF_LineLoop* > & m_faceData);
+
+    void updateLineLoopByIndex(const QMap<int,PF_Line*>& ls);
 
     PF_FaceData& operator=(const PF_FaceData& data);
 
@@ -50,6 +56,7 @@ public:
     PF_Face()=default;
     PF_Face(PF_EntityContainer* parent, PF_GraphicView* view, const PF_FaceData &d);
     PF_Face(PF_EntityContainer* parent, PF_GraphicView* view, const PF_FaceData &d,PF_Line* mouse);
+    PF_Face(PF_EntityContainer* parent, PF_GraphicView* view, const QList<PF_LineLoop* > & faceData);
     ~PF_Face()=default;
 
     /**	@return PF::EntityFace */
@@ -100,6 +107,8 @@ public:
     /** 数据导入导出 **/
     bool fromMap(QVariantMap map) override;
     QVariantMap toMap() override;
+
+    void updateLineLoopByIndex(const QMap<int,PF_Line*>& ls);
 
     static int face_index;
 protected:

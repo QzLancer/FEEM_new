@@ -138,8 +138,8 @@ bool PolygonDetection::PolygonDetector::CreateSVGwithPolygons(const char * filen
         return false;
     }
 
-    if (!PolygonDetector::Silent())
-        printf("Creating SVG file '%s' with detected polygons.\n", filename);
+//    if (!PolygonDetector::Silent())
+//        printf("Creating SVG file '%s' with detected polygons.\n", filename);
 
     if (!fprintf(fp, "%s", _polygon_set.AsSVG(true).toStdString().c_str())) {
         printf("Could not write SVG contents in specified file.\n");
