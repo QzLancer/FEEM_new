@@ -120,8 +120,10 @@ void PF_CommonFEMProject::doMesh()
 */
 void PF_CommonFEMProject::entitySelected(bool selected, ProjectExplorer::Node *node)
 {
+    qDebug() << Q_FUNC_INFO;
     m_document->setSelected(false);
     if(selected){
+        qDebug() << node->displayName();
         auto e = findEntity(node->displayName());
         if(e){
             e->setSelected(true);

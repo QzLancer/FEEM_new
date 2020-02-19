@@ -37,6 +37,7 @@
 #include <QDebug>
 #include <QDialog>
 #include <QVector>
+#include <QString>
 
 using namespace ProjectExplorer;
 
@@ -1356,6 +1357,7 @@ void PF_Heat2DSProject::CleanUp()
 
 void PF_Heat2DSProject::entitySelected(bool selected, Node *node)
 {
+    qDebug() << Q_FUNC_INFO;
     PF_CommonFEMProject::entitySelected(selected, node);
     emit nodeSelected(node);
 }
@@ -1408,6 +1410,23 @@ PF_Project::RestoreResult PF_Heat2DSProject::fromMap(const QVariantMap& map, QSt
 {
     PoofeeSay<<tr("Start to loading project \"%1\"").arg(this->projectFilePath().fileName());
     return RestoreResult::Ok;
+}
+
+void PF_Heat2DSProject::addBoundary(CHBoundaryProp *boundary)
+{
+    if(m_boundaryList.contains(boundary->name)){
+        QString s("Boundary "+boundary->name+" exists.");
+        PoofeeSay << s;
+        return;
+    }
+    m_boundaryList.insert(boundary->name, boundary);
+//    emit boundaryChanged();
+    emit dataChanged();
+
+    PoofeeSay << tr("Boundary \"%1\" Added. "
+                    "Type: %2, Boundary Temperature: %3(K), Heat Flux = %4(W/m^2), "
+                    "Heat-Transfer Coefficient = %5(W/(m^2*K)), "
+                    "Medium Temperature = %6(K)").arg(boundary->name).arg(boundary->type).arg(boundary->Tg).arg(boundary->q).arg(boundary->h).arg(boundary->T0);
 }
 
 /**
@@ -1484,7 +1503,27 @@ static void createTree(PF_Heat2DSProject* pro,PF_HeatFEMNode* node)
 
     auto comp_node = std::make_unique<FolderNode>(QString(QObject::tr("Physics")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
     auto domain_node = std::make_unique<FolderNode>(QString(QObject::tr("Domains")),NodeType::Domain,QIcon(":/imgs/model_2d_axi.png"));
-    auto boundary_node = std::make_unique<FolderNode>(QString(QObject::tr("Boundary")),NodeType::Boundary,QIcon(":/imgs/model_2d_axi.png"));
+
+    /** 添加边界**/
+    auto boundary_node = std::make_unique<FolderNode>(QString(QObject::tr("Boundary")),NodeType::Boundary,QIcon(":/icon/imgs/boundary_32.png"));
+    QMapIterator<QString,CHBoundaryProp*> itb(pro->m_boundaryList);
+    while(itb.hasNext())
+    {
+        itb.next();
+        QString s = itb.value()->name + QObject::tr(", Type: ") + QString::number((int)itb.value()->type);
+        switch(itb.value()->type){
+        case BoundaryType::FIRST:
+            s += (QString(", Tg = ") + QString::number(itb.value()->Tg) + QString("(K)"));
+            break;
+        case BoundaryType::SECOND:
+            s += (QString(", q = ") + QString::number(itb.value()->q) + QString("(W/m^2)"));
+            break;
+        case BoundaryType::THIRD:
+            s += (QString(", h = ") + QString::number(itb.value()->h) + QString("(W/m^2*k)")
+                  + QString(", T0 = ") + QString::number(itb.value()->T0) + QString("(K)"));
+        }
+        boundary_node->addNode(std::make_unique<LeafNode>(s, LeafType::Boundary, NodeType::Leaf,QIcon(":/icon/imgs/boundary_32.png")));
+    }
 
     auto solver_node = std::make_unique<FolderNode>(QString(QObject::tr("Solver")),NodeType::Solve,QIcon(":/imgs/model_2d_axi.png"));
     auto solversetting_node = std::make_unique<FolderNode>(QString(QObject::tr("Settings")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));

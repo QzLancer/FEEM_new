@@ -26,7 +26,7 @@ class HeatBoundaryDialog : public QDialog
 {
     Q_OBJECT
 public:
-    HeatBoundaryDialog(CHBoundaryProp* boundary, QWidget* parent = nullptr);
+    HeatBoundaryDialog(QWidget* parent = nullptr);
     ~HeatBoundaryDialog();
 
     void initialization();
@@ -47,7 +47,8 @@ public slots:
 
 
 private:
-    CHBoundaryProp* m_boundary;
+    QList<ProjectExplorer::LeafNode *> findLineNodes();
+
     ProjectExplorer::PF_ProjectTree *m_projecttree;
     HeatFEMProjectManagerPlugin::PF_Heat2DSProject *m_project;
     BoundaryType mCurrentType = FIRST;
@@ -60,7 +61,7 @@ private:
     QLineEdit *mParamhEdit; //第三类边界条件，对流传热系数
     QLineEdit *mParamT0Edit;    //第三类边界条件，介质温度
     QStackedLayout *mParamLayout;
-    QList <ProjectExplorer::LeafNode*> mLineNodes;
+    QLabel *mErrorLabel;
 };
 
 

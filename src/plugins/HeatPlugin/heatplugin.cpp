@@ -84,8 +84,7 @@ void HeatPlugin::slotaddBoundary()
     FolderNode *folderNode = node ? node->asFolderNode() : nullptr;
     if(!folderNode) return;
 
-    CHBoundaryProp* b = new CHBoundaryProp;
-    HeatBoundaryDialog *dialog = new HeatBoundaryDialog(b, Core::ICore::dialogParent());
+    HeatBoundaryDialog *dialog = new HeatBoundaryDialog(Core::ICore::dialogParent());
     dialog->setWindowTitle(tr("Add Boundary Condition"));
     dialog->show();
 //    if(result == QDialog::Accepted){

@@ -6,6 +6,7 @@ include(../../feemplugin.pri)
 
 SOURCES += \
     boundaryprop.cpp \
+    boundarytreemodel.cpp \
     heatboundarydialog.cpp \
     heatplugin.cpp \
     heat2dstaticwizard.cpp \
@@ -15,6 +16,7 @@ SOURCES += \
 
 HEADERS += \
     boundaryprop.h \
+    boundarytreemodel.h \
     heatboundarydialog.h \
         heatplugin_global.h \
         heatpluginconstants.h \

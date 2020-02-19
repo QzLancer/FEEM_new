@@ -2,6 +2,7 @@
 #define PF_HEAT2DSPROJECT_H
 
 #include "magfemprojectmanagerplugin/pf_commonfemproject.h"
+#include "boundaryprop.h"
 
 #define muo 1.2566370614359173e-6
 #define Golden 0.3819660112501051517954131656
@@ -35,6 +36,10 @@ public:
     virtual RestoreResult fromMap(const QVariantMap &map, QString *errorMessage);
 
     CBigLinProb* L;
+    QMap<QString, CHBoundaryProp*> m_boundaryList;/** 边界名称，边界值**/
+
+public slots:
+    void addBoundary(CHBoundaryProp* boundary);
 
 signals:
     void nodeSelected(ProjectExplorer::Node *);
