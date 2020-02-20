@@ -201,6 +201,80 @@ QWidget *PF_MagMaterialDialog::createHeatPage()
 {
     QWidget* w = new QWidget(this);
 
+    QVBoxLayout* mainlayout = new QVBoxLayout(w);
+    /** 选择线性or非线性 **/
+    QFormLayout* formlayout = new QFormLayout;
+    combo_condtype = new QComboBox(w);
+    combo_condtype->addItem(tr("Linear heat conductivity"));
+    combo_condtype->addItem(tr("Nonlinear heat conductivity"));
+
+    formlayout->addRow(tr("Heat conductivity Type"),combo_condtype);
+    formlayout->setLabelAlignment(Qt::AlignLeft);
+
+    mainlayout->addLayout(formlayout);
+
+    /** 线性热导率设置 **/
+    QGroupBox *gbox_linear = new QGroupBox(tr("Linear Material Properties"), w);
+    QFormLayout *form_linear = new QFormLayout(gbox_linear);
+    edit_lambdax = new QLineEdit(gbox_linear);
+    edit_lambday = new QLineEdit(gbox_linear);
+    form_linear->addRow(tr("Heat conductivity in x(W/(m*k)): "), edit_lambdax);
+    form_linear->addRow(tr("Heat conductivity in y(W/(m*k)): "), edit_lambday);
+    gbox_linear->setLayout(form_linear);
+    mainlayout->addWidget(gbox_linear);
+
+    /** 非线性热导率设置 **/
+    QGroupBox *gbox_nonlinear = new QGroupBox(tr("Nonlinear Material Properties"), w);
+    QHBoxLayout *layout_nonlinear = new QHBoxLayout(gbox_nonlinear);
+    QPushButton *curvebutton = new QPushButton(tr("Heat conductivity-Temperature Curve"), gbox_nonlinear);
+
+    QFormLayout *form_nonlinear = new QFormLayout(gbox_nonlinear);
+    edit_Tmax = new QLineEdit(gbox_nonlinear);
+    form_nonlinear->addRow(tr("Tmax(K): "), edit_Tmax);
+    layout_nonlinear->addWidget(curvebutton, 1);
+    layout_nonlinear->addLayout(form_nonlinear, 1);
+    layout_nonlinear->setSpacing(0);
+    form_nonlinear->setFormAlignment(Qt::AlignCenter);
+    mainlayout->addWidget(gbox_nonlinear);
+
+    /** 选择热源 **/
+    QFormLayout *typelayout = new QFormLayout(w);
+    sourcetype = new QComboBox(w);
+    typelayout->addRow(tr("Heat Source"), sourcetype);
+    sourcetype->addItem(tr("Other fixed internal heat source"));
+    sourcetype->addItem(tr("Joule heat"));
+    mainlayout->addLayout(typelayout);
+
+    /** 内热源设置 **/
+    QGroupBox *gbox_source = new QGroupBox(tr("Heat Source Properties"), w);
+    QFormLayout *form_source = new QFormLayout(gbox_source);
+    edit_heatsource = new QLineEdit(gbox_source);
+    form_source->addRow(tr("Heat Source Intensity: "), edit_heatsource);
+    mainlayout->addWidget(gbox_source);
+
+    mainlayout->addStretch();
+
+    connect(combo_condtype,static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),w,[gbox_linear,gbox_nonlinear](int index){
+        if(index == 0){
+            gbox_linear->setEnabled(true);
+            gbox_nonlinear->setEnabled(false);
+        }
+        if(index == 1){
+            gbox_linear->setEnabled(false);
+            gbox_nonlinear->setEnabled(true);
+        }
+    });
+
+    connect(sourcetype,static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),w,[gbox_source](int index){
+        if(index == 0){
+            gbox_source->setEnabled(true);
+        }
+        if(index == 1){
+            gbox_source->setEnabled(false);
+        }
+    });
+
+    connect(curvebutton, &QPushButton::clicked, this, &PF_MagMaterialDialog::slotAddCondTempCurve);
 
     return w;
 }
@@ -245,6 +319,19 @@ void PF_MagMaterialDialog::updateDialog()
         combo_bhtype->setCurrentIndex(1);
         emit combo_bhtype->currentIndexChanged(1);
     }
+
+    /** 温度场材料值更新 **/
+    edit_lambdax->setText(QString::number(m_material->h_lambdax));
+    edit_lambday->setText(QString::number(m_material->h_lambday));
+    edit_heatsource->setText(QString::number(m_material->h_source));
+    sourcetype->setCurrentIndex(m_material->h_sourcetype);
+    if(m_material->h_condlinear){
+        combo_condtype->setCurrentIndex(0);
+        emit combo_condtype->currentIndexChanged(0);
+    }else{
+        combo_condtype->setCurrentIndex(1);
+        emit combo_condtype->currentIndexChanged(1);
+    }
 }
 
 /*!
@@ -266,6 +353,19 @@ void PF_MagMaterialDialog::updateMaterial()
     }else{
         m_material->m_linear = false;
     }
+
+    /** 更新热场相关参数 **/
+    m_material->h_lambdax = edit_lambdax->text().toDouble();
+    m_material->h_lambday = edit_lambday->text().toDouble();
+    m_material->h_sourcetype = sourcetype->currentIndex();
+    if(sourcetype->currentIndex() == 0){
+        m_material->h_source = edit_heatsource->text().toDouble();
+    }
+    if(combo_condtype->currentIndex() == 0){
+        m_material->h_condlinear = true;
+    }else{
+        m_material->h_condlinear = false;
+    }
 }
 
 /*!
@@ -282,6 +382,7 @@ void PF_MagMaterialDialog::slotAddBHCurve()
 {
     PoofeeSay<<tr("Edit B-H data.");
     PF_BHCurveDialog *bhcurve = new PF_BHCurveDialog(m_material,Core::ICore::dialogParent());
+    bhcurve->setHorizontalHeaderLabels(QStringList() << tr("B(Flux density value(T))") << tr("H(Field value(A.m-1))"));
     if(!bhcurve->exec()){
         m_material->BHpoints = bhcurve->getBHPoints();
         if(m_material->BHdata != nullptr){
@@ -290,6 +391,21 @@ void PF_MagMaterialDialog::slotAddBHCurve()
         m_material->BHdata = bhcurve->getItemData();
         PoofeeSay<<tr("B-H data is modified!");
     };
+}
+
+void PF_MagMaterialDialog::slotAddCondTempCurve()
+{
+    PoofeeSay<<tr("Edit Heat conductivity-Temperature data.");
+    PF_BHCurveDialog *curve = new PF_BHCurveDialog(m_material,Core::ICore::dialogParent());
+    curve->setHorizontalHeaderLabels(QStringList() << tr("lambda(Heat conductivity(W/(m*K)))") << tr("T(Temperature(K))"));
+    if(!curve->exec()){
+        m_material->h_nonlpoints = curve->getBHPoints();
+        if(m_material->h_nonldata != nullptr){
+            free(m_material->h_nonldata);
+        }
+        m_material->h_nonldata = curve->getItemData();
+        PoofeeSay<<tr("Heat conductivity-Temperature data is modified!");
+    }
 }
 
 

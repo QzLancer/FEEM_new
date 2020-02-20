@@ -27,7 +27,7 @@ PF_BHCurveDialog::PF_BHCurveDialog(CMaterialProp* material,QWidget *parent)
     mTableView->setModel(mItemModel);
     mTableView->setColumnWidth(0, 200);
     mTableView->setColumnWidth(1, 200);
-    mItemModel->setHorizontalHeaderLabels(QStringList() << tr("B(Flux density value(T))") << tr("H(Field value(A.m-1))")) ;
+//    setHorizontalHeaderLabels(QStringList() << tr("B(Flux density value(T))") << tr("H(Field value(A.m-1))"));
 //    mItemModel->setRowCount(1);
 //    mItemModel->setColumnCount(2);
     mTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -55,6 +55,11 @@ CComplex *PF_BHCurveDialog::getItemData() const
 int PF_BHCurveDialog::getBHPoints() const
 {
     return mItemModel->rowCount() - 1;
+}
+
+void PF_BHCurveDialog::setHorizontalHeaderLabels(const QStringList strlist)
+{
+    mItemModel->setHorizontalHeaderLabels(strlist);
 }
 
 void PF_BHCurveDialog::slotChangeData(const QModelIndex &topleft, const QModelIndex &bottomRight, const QVector<int> &roles)

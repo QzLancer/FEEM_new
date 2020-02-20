@@ -177,11 +177,21 @@ public:
     double Cduct;		    // conductivity of the material, MS/m
     double Lam_d;			// lamination thickness, mm
     double Theta_hn;		// max hysteresis angle, degrees, for nonlinear problems
-    double Theta_hx;		// hysteresis angle, degrees, x-direction
+    double Theta_hx;		// hysteresis angle, degrees, x-directionS
     double Theta_hy;		// and y-direction, for anisotropic linear problems.
     int    NStrands;		// number of strands per wire
     double WireD;			// strand diameter, mm
     bool m_linear;
+
+    /** 温度场相关参数 **/
+    bool h_condlinear = true;      //线性or非线性
+    bool h_sourcetype = 0;
+    double h_lambdax = 0;   //x方向热导率
+    double h_lambday = 0;   //y方向热导率
+    double h_source = 0;    //内热源强度
+
+    int h_nonlpoints = 0;   //非线性采样点数目
+    CComplex *h_nonldata = nullptr; //非线性采样点
 };
 
 #endif // PF_MATERIAL_H

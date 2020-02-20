@@ -16,6 +16,7 @@ public:
     explicit PF_BHCurveDialog(CMaterialProp* material,QWidget *parent = nullptr);
     CComplex *getItemData() const;
     int getBHPoints() const;
+    void setHorizontalHeaderLabels(const QStringList strlist);
 signals:
 
 public slots:

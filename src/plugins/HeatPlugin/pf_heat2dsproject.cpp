@@ -1417,6 +1417,7 @@ void PF_Heat2DSProject::addBoundary(CHBoundaryProp *boundary)
     if(m_boundaryList.contains(boundary->name)){
         QString s("Boundary "+boundary->name+" exists.");
         PoofeeSay << s;
+        delete boundary;
         return;
     }
     m_boundaryList.insert(boundary->name, boundary);

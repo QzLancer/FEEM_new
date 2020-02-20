@@ -34,6 +34,8 @@ public:
 
 public slots:
     void slotAddBHCurve();
+    void slotAddCondTempCurve();
+
 private:
     QLineEdit* edit_name;
     QLineEdit* edit_comment;
@@ -48,6 +50,14 @@ private:
     QLineEdit* edit_hmax;
     QComboBox* combo_bhtype;
     CMaterialProp* m_material;
+
+    /** 热学材料属性 **/
+    QComboBox *combo_condtype;  //线性or非线性
+    QLineEdit *edit_lambdax;    //x方向热导率
+    QLineEdit *edit_lambday;    //y方向热导率
+    QLineEdit *edit_Tmax;       //最大温度
+    QComboBox *sourcetype;      //热源类型
+    QLineEdit *edit_heatsource; //内热源强度
 };
 
 #endif // PF_MAGMATERIALDIALOG_H
