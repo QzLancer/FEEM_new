@@ -153,7 +153,7 @@ class FEEM_PROJECT_EXPORT FolderNode : public Node
 {
 public:
     explicit FolderNode(const QString &displayName, NodeType nodeType = NodeType::Folder, QIcon icon=QIcon());
-    ~FolderNode();
+    ~FolderNode() override;
 //    QString displayName() const override;
 //    QIcon icon() const override;
 

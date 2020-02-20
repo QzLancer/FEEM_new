@@ -703,3 +703,21 @@ B *bcast = dynamic_cast<B*>( a );
 With the next to casts we’re getting our hands dirty. reinterpret\_cast takes some data and pretends it’s something else. const\_cast removes the const modifier to a variable and is also troublesome. If you are in the need for const\_cast, I’d say you have something wrong with the design of your application.
 
 In my experience, reinterpret\_cast is good for casting from and to void*.
+\subsection{c++怎么检测内存泄露，怎么定位内存泄露？}
+1、内存泄漏简介及后果wikipedia中这样定义内存泄漏：
+
+在计算机科学中，内存泄漏指由于疏忽或错误造成程序未能释放已经不再使用的内存的情况。内存泄漏并非指内存在物理上的消失，而是应用程序分配某段内存后，由于设计错误，导致在释放该段内存之前就失去了对该段内存的控制，从而造成了内存的浪费。最难捉摸也最难检测到的错误之一是内存泄漏，即未能正确释放以前分配的内存的 bug。 只发生一次的小的内存泄漏可能不会被注意，但泄漏大量内存的程序或泄漏日益增多的程序可能会表现出各种征兆：从性能不良（并且逐渐降低）到内存完全用尽。 更糟的是，泄漏的程序可能会用掉太多内存，以致另一个程序失败，而使用户无从查找问题的真正根源。 此外，即使无害的内存泄漏也可能是其他问题的征兆。内存泄漏会因为减少可用内存的数量从而降低计算机的性能。最终，在最糟糕的情况下，过多的可用内存被分配掉导致全部或部分设备停止正常工作，或者应用程序崩溃。内存泄漏可能不严重，甚至能够被常规的手段检测出来。在现代操作系统中，一个应用程序使用的常规内存在程序终止时被释放。这表示一个短暂运行的应用程序中的内存泄漏不会导致严重后果。在以下情況，内存泄漏导致较严重的后果：·程序运行后置之不理，并且随着时间的流失消耗越来越多的内存（比如服务器上的后台任务，尤其是嵌入式系统中的后台任务，这些任务可能被运行后很多年内都置之不理）；·新的内存被频繁地分配，比如当显示电脑游戏或动画视频画面时；·程序能够请求未被释放的内存（比如共享内存），甚至是在程序终止的时候；·泄漏在操作系统内部发生；·泄漏在系统关键驱动中发生；·内存非常有限，比如在嵌入式系统或便携设备中；·当运行于一个终止时内存并不自动释放的操作系统（比如AmigaOS）之上，而且一旦丢失只能通过重启来恢复。
+
+2、Windows平台下的内存泄漏检测
+
+2.1、检测是否存在内存泄漏问题
+
+Windows平台下面Visual Studio 调试器和 C 运行时 (CRT) 库为我们提供了检测和识别内存泄漏的有效方法，原理大致如下：内存分配要通过CRT在运行时实现，只要在分配内存和释放内存时分别做好记录，程序结束时对比分配内存和释放内存的记录就可以确定是不是有内存泄漏。在vs中启用内存检测的方法如下：STEP1，在程序中包括以下语句： （\#include 语句必须采用上文所示顺序。 如果更改了顺序，所使用的函数可能无法正常工作。）
+\begin{lstlisting}
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+\end{lstlisting}
+通过包括 crtdbg.h，将 malloc 和 free 函数映射到它们的调试版本，即 \_malloc\_dbg 和 \_free\_dbg，这两个函数将跟踪内存分配和释放。 此映射只在调试版本（在其中定义了\_DEBUG）中发生。 发布版本使用普通的 malloc 和 free 函数。\#define 语句将 CRT 堆函数的基版本映射到对应的“Debug”版本。 并非绝对需要该语句；但如果没有该语句，内存泄漏转储包含的有用信息将较少。STEP2， 在添加了上述语句之后，可以通过在程序中包括以下语句（通常应恰好放在程序退出位置之前）来转储内存泄漏信息：
+
+

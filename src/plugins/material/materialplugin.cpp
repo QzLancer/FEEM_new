@@ -4,6 +4,7 @@
 #include "pf_materiallibrary.h"
 #include "pf_magmaterialdialog.h"
 #include "pf_material.h"
+#include "pf_materialnode.h"
 
 #include "qtribbon/include/QtnRibbonGroup.h"
 
@@ -140,7 +141,7 @@ void MaterialPlugin::registerDefaultActions()
 
     /** 材料 节点 **/
     ActionContainer *mmaterialContextMenu =
-        ActionManager::createMenu(ProjectExplorer::Constants::M_MATERIALCONTEXT);
+        ActionManager::actionContainer(ProjectExplorer::Constants::M_FOLDERCONTEXT);
     mmaterialContextMenu->appendGroup(ProjectExplorer::Constants::G_HELP);
 
     /************material******************/
@@ -162,5 +163,28 @@ void MaterialPlugin::registerDefaultActions()
 
     connect(m_addBlankMaterial,&QAction::triggered,this,&MaterialPlugin::addBlankMaterial);
 
+    connect(PF_ProjectTree::instance(), &PF_ProjectTree::currentNodeChanged,
+            this, &MaterialPlugin::updateContextActions);
+}
+
+/**
+ * @brief 更新材料的右键菜单
+ *
+ */
+void MaterialPlugin::updateContextActions()
+{
+//    qDebug()<<Q_FUNC_INFO;
+    /** 判断是不是分网节点 **/
+    const Node *node = PF_ProjectTree::findCurrentNode();
+    const bool isMaterialNode = dynamic_cast<const PF_MaterialNode *>(node);
+
+    m_addBlankMaterial->setEnabled(isMaterialNode);
+    m_addBlankMaterial->setVisible(isMaterialNode);
+
+    m_addMaterial->setEnabled(isMaterialNode);
+    m_addMaterial->setVisible(isMaterialNode);
+
+    m_help->setEnabled(isMaterialNode);
+    m_help->setVisible(isMaterialNode);
 }
 }//namespace Material

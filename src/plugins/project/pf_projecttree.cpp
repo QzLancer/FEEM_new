@@ -147,7 +147,9 @@ Node *PF_ProjectTree::findCurrentNode()
 }
 
 /*!
- \brief 每一个node的右键菜单
+ \brief 每一个node的右键菜单。这里有很大的问题，不能实现解耦效果。第三方添加了一个自定义的节点的话，
+ 还得修改这里的代码才能起作用。每添加一个节点类型，就要添加一个case，很是麻烦。能不能给node提供一个
+ 属性，保存一个字符串就可以了。这样就可以直接查找。
 
  \param focus
  \param globalPos
@@ -171,40 +173,11 @@ void PF_ProjectTree::showContextMenu(PF_ProjectTreeWidget *focus, const QPoint &
 //                contextMenu = ActionManager::actionContainer(Constants::M_SUBPROJECTCONTEXT)->menu();
             break;
         }
-//        case NodeType::VirtualFolder:
-        case NodeType::Material:{
-            contextMenu = ActionManager::actionContainer(Constants::M_MATERIALCONTEXT)->menu();
-            break;
-        }
-        case NodeType::Boundary:{
-            contextMenu = ActionManager::actionContainer(Constants::M_BOUNDARYCONTEXT)->menu();
-            break;
-        }
-        case NodeType::Mesh:{
-            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
-            break;
-        }
-        case NodeType::Domain:{
-            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
-            break;
-        }
-        case NodeType::Plot2D:{
-            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
-            break;
-        }
-        case NodeType::Surface2D:{
-            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
-            break;
-        }
-        case NodeType::Solve:{
-            contextMenu = ActionManager::actionContainer(Constants::M_MESHCONTEXT)->menu();
-            break;
-        }
         case NodeType::Folder:
-//            contextMenu = ActionManager::actionContainer(Constants::M_FOLDERCONTEXT)->menu();
+            contextMenu = ActionManager::actionContainer(Constants::M_FOLDERCONTEXT)->menu();
             break;
         case NodeType::Leaf:
-//            contextMenu = ActionManager::actionContainer(Constants::M_FILECONTEXT)->menu();
+            contextMenu = ActionManager::actionContainer(Constants::M_LEAFCONTEXT)->menu();
             break;
         default:
             qWarning("ProjectExplorerPlugin::showContextMenu - Missing handler for node type");
@@ -330,6 +303,7 @@ void PF_ProjectTree::updateFromNode(Node* node)
 */
 void PF_ProjectTree::setCurrent(Node* node, PF_Project* project)
 {
+//    qDebug()<<Q_FUNC_INFO;
     const bool changedProject = project != m_currentProject;
     if (changedProject) {
         if (m_currentProject) {

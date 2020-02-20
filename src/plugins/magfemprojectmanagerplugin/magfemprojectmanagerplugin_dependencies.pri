@@ -10,5 +10,6 @@ FEEM_PLUGIN_DEPENDS += \
     project \
     material \
     mesh \
+    postoperation \
     solver \
 

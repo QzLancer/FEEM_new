@@ -29,6 +29,9 @@ public:
 
     void registerDefaultContainers();
     void registerDefaultActions();
+
+    /** 更新右键菜单 **/
+    void updateContextActions();
 public slots:
 
 private:

@@ -359,6 +359,11 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
     mprojectContextMenu->appendGroup(Constants::G_PROJECT_SOLVE);
     mprojectContextMenu->appendGroup(Constants::G_HELP);
 
+    ActionContainer *mfolderContextMenu =
+        ActionManager::createMenu(Constants::M_FOLDERCONTEXT);
+    ActionContainer *mfileContextMenu =
+        ActionManager::createMenu(Constants::M_LEAFCONTEXT);
+
     /** 全局定义 节点 **/
     ActionContainer *mglobaldefsContextMenu =
         ActionManager::createMenu(Constants::M_GLOBALDEFSCONTEXT);
@@ -728,7 +733,7 @@ void PF_ProjectExplorerPluginPrivate::invalidateProject(PF_Project *project)
 
 void PF_ProjectExplorerPluginPrivate::projectAdded(PF_Project *pro)
 {
-    qDebug()<<Q_FUNC_INFO;
+//    qDebug()<<Q_FUNC_INFO;
 }
 
 void PF_ProjectExplorerPluginPrivate::projectRemoved(PF_Project *pro)

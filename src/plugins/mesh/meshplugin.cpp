@@ -1,5 +1,6 @@
 #include "meshplugin.h"
 #include "meshconstants.h"
+#include "pf_meshnode.h"
 
 #include "qtribbon/include/QtnRibbonGroup.h"
 
@@ -10,6 +11,8 @@
 
 #include <project/pf_sessionmanager.h>
 #include <project/pf_project.h>
+#include <project/pf_projecttree.h>
+#include <project/projectexplorerconstants.h>
 
 #include <extensionsystem/pluginerroroverview.h>
 #include <extensionsystem/pluginmanager.h>
@@ -29,6 +32,7 @@
 #include <cstdlib>
 
 using namespace Core;
+using namespace ProjectExplorer;
 
 namespace Mesh {
 static MeshPlugin * m_instance = nullptr;
@@ -142,17 +146,35 @@ void MeshPlugin::registerDefaultContainers()
 
     /** projecttree当中的右键菜单 **/
     ActionContainer *meshContextMenu =
-        ActionManager::createMenu(Constants::M_MESHCONTEXT);
+        ActionManager::actionContainer(ProjectExplorer::Constants::M_FOLDERCONTEXT);
     m_autoMesh = new QAction(tr("Auto mesh"), this);
     Command* cmd = ActionManager::registerAction(m_autoMesh, Constants::G_MESH_AUTO);
     //    cmd->setDefaultKeySequence(QKeySequence(tr("Ctrl+Shift+N")));
     meshContextMenu->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
     connect(m_autoMesh,&QAction::triggered,this,&MeshPlugin::automesh);
+
+    connect(PF_ProjectTree::instance(), &PF_ProjectTree::currentNodeChanged,
+            this, &MeshPlugin::updateContextActions);
 }
 
 void MeshPlugin::registerDefaultActions()
 {
 
+}
+
+/**
+ * @brief 更新关于mesh操作的右键菜单。
+ *
+ */
+void MeshPlugin::updateContextActions()
+{
+//    qDebug()<<Q_FUNC_INFO;
+    /** 判断是不是分网节点 **/
+    const Node *node = PF_ProjectTree::findCurrentNode();
+    const bool isMeshNode = dynamic_cast<const PF_MeshNode *>(node);
+
+    m_autoMesh->setEnabled(isMeshNode);
+    m_autoMesh->setVisible(isMeshNode);
 }
 
 }//namespace Mesh

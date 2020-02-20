@@ -1582,7 +1582,7 @@ void PF_EntityContainer::buildFace()
         return;
     }
     //simplify the polygon set
-//    polygon_detector.SimplifyPolygons(0.0);
+    polygon_detector.SimplifyPolygons(0.0);
     /** 绘制生成的线和面 **/
     Point_T.clear();
     Curve_T.clear();
@@ -1591,8 +1591,6 @@ void PF_EntityContainer::buildFace()
     this->clear();/** 应该把所有的实体清空 **/
     Point p;
     p.z = 0;
-    Curve c;
-    int num[10];
     PF_Face::face_index = 1;/** 既然删除了所有的面，那么应该把索引重置 **/
     /** 遍历所有的多边形，暂时不支持曲面 **/
     auto polyset = polygon_detector.GetPolygonSet();
@@ -1601,11 +1599,22 @@ void PF_EntityContainer::buildFace()
     for(int i = 0; i < polyset->size();i++){
         auto polyi = polyset->Item(i);
         polymap.insert(polyi,i+1);
+
+        /** 这段代码是用来绘制原始的多边形的，用来调试用 **/
+//        QList<PF_LineLoop* > loops;
+//        loops.insert(0,addLineLoop(polyi));/** 将本身加进来 **/
+//        /** 生成面的数据 **/
+//        if(!loops.isEmpty()){
+//            auto f = new PF_Face(this,mParentPlot,loops);
+//            PF_Face::face_index++;/** 需要同时更新索引 **/
+//            this->addEntitySilence(f);
+//        }
+
         for(int j = 0; j < polyset->size();j++){
             if(i != j){
                 auto polyj = polyset->Item(j);
                 if(polyi->Contains(polyj)){
-//                    qDebug()<<"poly "<<i+1<<" contains "<<"poly "<<j+1;
+                    qDebug()<<"poly "<<i+1<<" contains "<<"poly "<<j+1;
                     if(polyj->GetParent()){
                         /** 包含它的椭圆包含了。。。说明不是最小 **/
                         if(polyj->GetParent()->Contains(polyi)){
@@ -1618,28 +1627,29 @@ void PF_EntityContainer::buildFace()
                         polyi->AddSon(polyj);
                     }
                 }
-//                if(polyi->Disjoint(polyj)){
-//                    qDebug()<<"poly "<<i+1<<" Disjoint "<<"poly "<<j+1;
-//                }
-//                if(polyi->IsAdjacent(polyj)){
-//                    qDebug()<<"poly "<<i+1<<" IsAdjacent "<<"poly "<<j+1;
-//                }
+                if(polyi->Disjoint(polyj)){
+                    qDebug()<<"poly "<<i+1<<" Disjoint "<<"poly "<<j+1;
+                }
+                if(polyi->IsAdjacent(polyj,true)){
+                    qDebug()<<"poly "<<i+1<<" IsAdjacent "<<"poly "<<j+1;
+                }
             }
         }
     }
     /** 查找root节点 **/
+    /** 使用队列的形式进行遍历，生成的椭圆有可能不是在一个root下。 **/
+    std::queue<GraphicalPrimitives2D::Polygon2D*> polyQueue;
+
     GraphicalPrimitives2D::Polygon2D* root = nullptr;
     for(int i = 0; i < polyset->size();i++){
         auto polyi = polyset->Item(i);
         /** root **/
         if(!polyi->GetParent()){
             root = polyi;
+            polyQueue.push(root);
         }
     }
-    /** 使用队列的形式进行遍历 **/
-    std::queue<GraphicalPrimitives2D::Polygon2D*> polyQueue;
-    if(root)
-        polyQueue.push(root);
+
     while(!polyQueue.empty()){
         /** 处理节点下面的一层，只是寻找有没有多余的多边形 **/
         auto tmpPoly = polyQueue.front();
@@ -1653,25 +1663,24 @@ void PF_EntityContainer::buildFace()
         QList<PF_LineLoop* > loops;
         /** 没有子节点了 **/
         if(tmpPoly->_son_polygons.isEmpty()){
-            loops.insert(0,addLineLoop(tmpPoly));/** 将本身加进来 **/
+            loops.insert(0,addLineLoop(tmpPoly));
         }else if(abs(polyArea - childArea)>1e-10){
             qDebug()<<"empty region exsits."<<"polyiArea:"<<polyArea<<"childArea:"<<childArea;
             /** 生成多边形的作差后的多边形，如果只是简单的添加边界，也是可以识别的，
                 就是显示的时候，会把所有线显示出来。**/
             for(auto poly : tmpPoly->_son_polygons){
                 /** 对一些含有公共边的多边形进行合并简化 **/
-                if(tmpPoly->IsAdjacent(poly)){
+                if(tmpPoly->IsAdjacent(poly,true)){
                     qDebug()<<"simplyfy "<<polymap.value(tmpPoly,-1)<<" and "<<polymap.value(poly,-1);
-                    tmpPoly->Minus(poly);
+                    qDebug()<<tmpPoly->Minus(poly);
                     continue;
                 }
                 loops.append(addLineLoop(poly));
             }
-            loops.insert(0,addLineLoop(tmpPoly));/** 将本身加进来 **/
-        }//else{
-            /** 完全可以用子多边形表示的多边形 **/
-//            continue;
-        //}
+            /** 将本身加进来，需要放在后面，因为前面可能要对其进行一些简化 **/
+            loops.insert(0,addLineLoop(tmpPoly));
+        }
+
         /** 生成面的数据 **/
         if(!loops.isEmpty()){
             auto f = new PF_Face(this,mParentPlot,loops);

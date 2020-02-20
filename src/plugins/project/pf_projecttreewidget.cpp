@@ -208,6 +208,7 @@ PF_ProjectTreeWidget::PF_ProjectTreeWidget(QWidget *parent) : QWidget(parent)
             this, &PF_ProjectTreeWidget::doubleopenItem);
     connect(m_view, &QAbstractItemView::activated,
             this, &PF_ProjectTreeWidget::openItem);
+    /** 节点改变 **/
     connect(m_view->selectionModel(), &QItemSelectionModel::currentChanged,
             this, &PF_ProjectTreeWidget::handleCurrentItemChange);
     /** 处理右键操作 **/
@@ -260,7 +261,7 @@ void PF_ProjectTreeWidget::expandAll()
 */
 void PF_ProjectTreeWidget::handleCurrentItemChange(const QModelIndex &current)
 {
-
+    PF_ProjectTree::nodeChanged(this);
 }
 
 /*!

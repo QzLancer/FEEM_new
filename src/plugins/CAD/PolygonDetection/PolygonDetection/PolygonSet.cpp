@@ -50,7 +50,7 @@ void PolygonSet::Simplify(double smaller_polygon_length)
     for (i=_polygons_array.size(); i>0;) {
         p1 = _polygons_array[--i];
 
-        if (p1->GetLength()< smaller_polygon_length )  {
+        if (p1->GetLength() <= smaller_polygon_length )  {
             _polygons_array.removeAt(i);
             wxDELETE(p1);
             j++;
@@ -61,28 +61,100 @@ void PolygonSet::Simplify(double smaller_polygon_length)
         PoofeeSay<<QString("Removed %1 small polygons").arg(j);
 
     // check adjacencies
-    for (i=0; i<_polygons_array.size();i++) {
-        p1 = _polygons_array[i];
-        for (j=i+1; j<_polygons_array.size();j++) {
-            p2 =  _polygons_array[j];
+//    for (i=0; i<_polygons_array.size();i++) {
+//        p1 = _polygons_array[i];
+//        for (j=i+1; j<_polygons_array.size();j++) {
+//            p2 =  _polygons_array[j];
 
-            // see if p1 and p2 are strictly adjacent
-            if (p1->IsAdjacent(p2)) {
-                // check if p1 contains p2
-                if (p1->Contains(p2)) {
-                    changes |= p1->Minus(p2);
-                } else {
-                    // just when p1 does not contains p2
-                    // we need to check if p2 contains p1
-                    if (p2->Contains(p1)) {
-                        changes |= p2->Minus(p1);
+//            // see if p1 and p2 are strictly adjacent
+//            if (p1->IsAdjacent(p2,true)) {
+//                // check if p1 contains p2
+//                if (p1->Contains(p2)) {
+//                    changes |= p1->Minus(p2);
+//                } else {
+//                    // just when p1 does not contains p2
+//                    // we need to check if p2 contains p1
+//                    if (p2->Contains(p1)) {
+//                        changes |= p2->Minus(p1);
+//                    }
+//                }
+//            }else{
+//                /** 不相邻的情况，孔 **/
+//            }
+//        }
+//    }
+
+    /** 去除面积为0的多边形 **/
+    for (i=_polygons_array.size(); i>0;) {
+        p1 = _polygons_array[--i];
+
+        if (p1->Area() <= 0 )  {
+            _polygons_array.removeAt(i);
+            qDebug()<<"remove zero poly";
+//            wxDELETE(p1);
+        }
+    }
+     /** 去除重复的多边形，对比边长和面积 ，可能有bug ，
+           也可以判断是否互相包含，**/
+    for (i=_polygons_array.size()-1; i>0;i--) {
+        p1 = _polygons_array[i];
+        for (j=i-1; j>0;j--) {
+            p2 =  _polygons_array[j];
+            if(abs(p1->Area()-p2->Area())<1e-10){
+//                _polygons_array.removeAt(i);
+                qDebug()<<"same area";
+            }
+            if(p1->GetVertexCount() == p2->GetVertexCount()){
+                /** 检查每个点是否一样，注意多边形保存的时候，起始点都保存了，多一个点 **/
+                QVector<int> vp1(p1->GetVertexCount()-1);
+                QVector<int> vp2(p1->GetVertexCount()-1);
+                int firstIndex = -1;
+                int vcount = p1->GetVertexCount()-1;
+                GraphicalPrimitives2D::Point2D* point = p1->GetVertexAt(0);
+                if(p2->HaveVertex(point,&firstIndex)){
+                    for(int k = 0;k < vcount;k++){
+                        vp1[k] = k;
+                        vp2[k] = (k+firstIndex)%vcount;
                     }
+                    bool samepoly = true;
+                    for(int k = 0;k < vcount;k++){
+                        auto pp1 = p1->GetVertexAt(vp1[k]);
+                        auto pp2 = p2->GetVertexAt(vp2[k]);
+                        qDebug()<<"pp1:"<<pp1->GetX()<<","<<pp1->GetY();
+                        qDebug()<<"pp2:"<<pp2->GetX()<<","<<pp2->GetY();
+                        if(*(pp1) != *(pp2)){
+                            samepoly = false;
+                            break;
+                        }
+                    }
+                    for(int k = vcount-1;k >= 0;k--){
+                        vp2[vcount-1-k] = (k+firstIndex+1)%vcount;
+//                        qDebug()<<vp2[vcount-1-k];
+                    }
+                    bool samepoly1 = true;
+                    for(int k = 0;k < vcount;k++){
+                        auto pp1 = p1->GetVertexAt(vp1[k]);
+                        auto pp2 = p2->GetVertexAt(vp2[k]);
+                        qDebug()<<vp1[k]<<","<<vp2[k];
+                        qDebug()<<"pp1:"<<pp1->GetX()<<","<<pp1->GetY();
+                        qDebug()<<"pp2:"<<pp2->GetX()<<","<<pp2->GetY();
+                        if(*(pp1) != *(pp2)){
+                            samepoly1 = false;
+                            break;
+                        }
+                    }
+                    if(samepoly1 || samepoly) {
+                        _polygons_array.removeAt(i);
+                        qDebug()<<"same poly";
+                    }
+                    qDebug()<<"same vertex count";
+                }else{
+                    break;
                 }
-            }else{
-                /** 不相邻的情况，孔 **/
             }
         }
     }
+
 }
 
 

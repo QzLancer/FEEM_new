@@ -2,7 +2,7 @@
 
 #include <extensionsystem/iplugin.h>
 
-class PF_ActionHandler;
+#include <QAction>
 
 namespace Solver {
 
@@ -27,9 +27,18 @@ public:
 
     void registerDefaultContainers();
     void registerDefaultActions();
+
+    void updateContextActions();
 public slots:
 
 private:
+    QAction* m_solve = nullptr;
+    QAction* m_clearSolution = nullptr;
+    QAction* m_solverSetting = nullptr;
+
+    QAction* m_solvecontext = nullptr;
+    QAction* m_clearSolutioncontext = nullptr;
+    QAction* m_solverSettingcontext = nullptr;
 };
 
 }//namespace Solver

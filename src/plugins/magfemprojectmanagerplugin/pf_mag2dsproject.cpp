@@ -25,12 +25,18 @@
 #include <coreplugin/icore.h>
 
 #include <mesh/meshfemm.h>
+#include <mesh/pf_meshnode.h>
 
 #include <material/materialplugin.h>
 #include <material/pf_magmaterialdialog.h>
 #include <material/pf_material.h>
+#include <material/pf_materialnode.h>
 
 #include <output/outputpluginplugin.h>
+
+#include <solver/pf_solvernode.h>
+
+#include <postoperation/pf_resultnode.h>
 
 #include <QString>
 #include <QHash>
@@ -1431,7 +1437,7 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
         //        qDebug() << iter.key() << ": " << iter.value();
     }
     /** 添加材料 **/
-    auto material_node = std::make_unique<FolderNode>(QString(QObject::tr("Materials")),NodeType::Material,QIcon(":/imgs/material.png"));
+    auto material_node = std::make_unique<PF_MaterialNode>(QString(QObject::tr("Materials")),QIcon(":/imgs/material.png"));
     QMapIterator<QString,CMaterialProp*> it(pro->m_materialList);
     while(it.hasNext())
     {
@@ -1469,7 +1475,7 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
         }
     }
     /** 添加分网 **/
-    auto mesh_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh")),NodeType::Mesh,QIcon(":/imgs/mesh.png"));
+    auto mesh_node = std::make_unique<Mesh::PF_MeshNode>(QString(QObject::tr("Mesh")),QIcon(":/imgs/mesh.png"));
     auto mesh_point_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh Point")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
     auto mesh_line_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh Line")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
     auto mesh_face_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh Face")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
@@ -1479,10 +1485,10 @@ static void createTree(PF_Mag2DSProject* pro,PF_MagFEMNode* node)
     auto comp_node = std::make_unique<FolderNode>(QString(QObject::tr("Physics")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
     auto domain_node = std::make_unique<FolderNode>(QString(QObject::tr("Domains")),NodeType::Domain,QIcon(":/imgs/model_2d_axi.png"));
 
-    auto solver_node = std::make_unique<FolderNode>(QString(QObject::tr("Solver")),NodeType::Solve,QIcon(":/imgs/model_2d_axi.png"));
+    auto solver_node = std::make_unique<Solver::PF_SolverNode>(QString(QObject::tr("Solver")),QIcon(":/imgs/model_2d_axi.png"));
     auto solversetting_node = std::make_unique<FolderNode>(QString(QObject::tr("Settings")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
 
-    auto result_node = std::make_unique<FolderNode>(QString(QObject::tr("Result")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
+    auto result_node = std::make_unique<Postoperation::PF_ResultNode>(QString(QObject::tr("Result")),QIcon(":/imgs/model_2d_axi.png"));
     auto curve2d_node = std::make_unique<FolderNode>(QString(QObject::tr("2D curve")),NodeType::Plot2D,QIcon(":/imgs/model_2d_axi.png"));
     auto surface2d_node = std::make_unique<FolderNode>(QString(QObject::tr("2D surface")),NodeType::Surface2D,QIcon(":/imgs/model_2d_axi.png"));
 

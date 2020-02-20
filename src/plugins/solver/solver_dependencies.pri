@@ -8,3 +8,4 @@ FEEM_PLUGIN_DEPENDS += \
     coreplugin \
     mesh \
     material \
+    project \
