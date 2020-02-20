@@ -1,6 +1,8 @@
 #ifndef SPARSEFEMM_H
 #define SPARSEFEMM_H
 
+#include "magfemprojectmanagerplugin_global.h"
+
 class CEntry
 {
 public:
@@ -15,7 +17,7 @@ private:
 
 #define LAMBDA 1.5
 
-class  CBigLinProb
+class MAGPLUGINSHARED_EXPORT CBigLinProb
 {
 public:
     // member functions

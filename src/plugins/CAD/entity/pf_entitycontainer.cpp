@@ -8,6 +8,7 @@
 #include "PolygonDetector.h"
 
 #include <output/outputpluginplugin.h>
+#include <mesh/meshfemm.h>
 
 #include <QDebug>
 #include <QFileInfo>
@@ -1208,7 +1209,7 @@ bool PF_EntityContainer::exportGeofile()
 {
     QStringList qstrList;
 
-    QFile file("D:/model.geo");
+    QFile file("./model.geo");
     file.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out(&file);
     /** 导出所有的点 **/
@@ -1244,29 +1245,29 @@ void PF_EntityContainer::doMesh()
     char *myargv[] = {(char*)"gmsh",(char*)"-format",(char*)"msh2"};
     gmsh::initialize(myargn,myargv);
     gmsh::option::setNumber("General.Terminal", 1);
-    gmsh::open("D:/model.geo");
+    gmsh::open("./model.geo");
     gmsh::model::mesh::generate(2);
-    gmsh::write("D:/model.msh");
-    //    CMesh* mesh = loadGmsh22("D:/model.msh");
-    //    PF_Point** points = (PF_Point**)malloc(mesh->numNode * sizeof (PF_Point*));
-    //    for(int i = 0;i < mesh->numNode;++i){
-    //        double x = mesh->nodes[i].x;
-    //        double y = mesh->nodes[i].y;
-    //        points[i] = new PF_Point(this,this->mParentPlot,PF_PointData(PF_Vector(x,y)));
-    //        this->addEntity(points[i]);
-    //    }
-    //    for(int i = 0;i < mesh->numEle;++i){
-    //        if(mesh->eles[i].ele_type == TRIANGLE_NODE3){
-    //            int n0 = mesh->eles[i].n[0];
-    //            int n1 = mesh->eles[i].n[1];
-    //            int n2 = mesh->eles[i].n[2];
-    //            this->addEntity(new PF_Line(this,this->mParentPlot,points[n0],points[n1]));
-    //            this->addEntity(new PF_Line(this,this->mParentPlot,points[n1],points[n2]));
-    //            this->addEntity(new PF_Line(this,this->mParentPlot,points[n2],points[n0]));
+    gmsh::write("./model.msh");
+//        CMesh* mesh = loadGmsh22("./model.msh");
+//        PF_Point** points = (PF_Point**)malloc(mesh->numNode * sizeof (PF_Point*));
+//        for(int i = 0;i < mesh->numNode;++i){
+//            double x = mesh->nodes[i].x;
+//            double y = mesh->nodes[i].y;
+//            points[i] = new PF_Point(this,this->mParentPlot,PF_PointData(PF_Vector(x,y)));
+//            this->addEntity(points[i]);
+//        }
+//        for(int i = 0;i < mesh->numEle;++i){
+//            if(mesh->eles[i].ele_type == TRIANGLE_NODE3){
+//                int n0 = mesh->eles[i].n[0];
+//                int n1 = mesh->eles[i].n[1];
+//                int n2 = mesh->eles[i].n[2];
+//                this->addEntity(new PF_Line(this,this->mParentPlot,points[n0],points[n1]));
+//                this->addEntity(new PF_Line(this,this->mParentPlot,points[n1],points[n2]));
+//                this->addEntity(new PF_Line(this,this->mParentPlot,points[n2],points[n0]));
 
-    //        }
-    //    }
-    //    this->mParentPlot->replot();
+//            }
+//        }
+//        this->mParentPlot->replot();
     gmsh::finalize();
     PoofeeSay<<tr("Mesh over...");
 }

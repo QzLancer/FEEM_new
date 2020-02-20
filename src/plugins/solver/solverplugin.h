@@ -2,6 +2,8 @@
 
 #include <extensionsystem/iplugin.h>
 
+class PF_ActionHandler;
+
 namespace Solver {
 
 class SolverPlugin : public ExtensionSystem::IPlugin

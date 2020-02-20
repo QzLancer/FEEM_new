@@ -1,9 +1,7 @@
 #include "pf_heat2dsproject.h"
 #include "pf_heatfemnode.h"
-#include "magfemprojectmanagerplugin/pf_facesettingdialog.h"
+//#include "magfemprojectmanagerplugin/pf_facesettingdialog.h"
 #include "heatpluginconstants.h"
-
-#include "magfemprojectmanagerplugin/sparsefemm.h"
 
 #include <math.h>
 #include <stdio.h>
@@ -346,12 +344,15 @@ bool PF_Heat2DSProject::SortElements()
 */
 bool PF_Heat2DSProject::Static2D()
 {
-//    auto meshele = m_mesh->eles;
-//    auto meshnode = m_mesh->nodes;
-//    auto NumNodes = m_mesh->numNode;
-//    auto NumEls = m_mesh->numEle;
+    auto meshele = m_mesh->eles;
+    auto meshnode = m_mesh->nodes;
+    auto NumNodes = m_mesh->numNode;
+    auto NumEls = m_mesh->numEle;
 
-//    L = new CBigLinProb();
+    qDebug() << "NumNodes: " << NumNodes;
+    qDebug() << "NumEles: " << NumEls;
+
+    L = new CBigLinProb();
 //    L->Create(m_mesh->numNode,m_mesh->numNode);
 
 //    int i, j, k, w;

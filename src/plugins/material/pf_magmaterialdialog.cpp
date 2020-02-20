@@ -228,7 +228,7 @@ QWidget *PF_MagMaterialDialog::createHeatPage()
     QHBoxLayout *layout_nonlinear = new QHBoxLayout(gbox_nonlinear);
     QPushButton *curvebutton = new QPushButton(tr("Heat conductivity-Temperature Curve"), gbox_nonlinear);
 
-    QFormLayout *form_nonlinear = new QFormLayout(gbox_nonlinear);
+    QFormLayout *form_nonlinear = new QFormLayout;
     edit_Tmax = new QLineEdit(gbox_nonlinear);
     form_nonlinear->addRow(tr("Tmax(K): "), edit_Tmax);
     layout_nonlinear->addWidget(curvebutton, 1);
@@ -238,7 +238,7 @@ QWidget *PF_MagMaterialDialog::createHeatPage()
     mainlayout->addWidget(gbox_nonlinear);
 
     /** 选择热源 **/
-    QFormLayout *typelayout = new QFormLayout(w);
+    QFormLayout *typelayout = new QFormLayout;
     sourcetype = new QComboBox(w);
     typelayout->addRow(tr("Heat Source"), sourcetype);
     sourcetype->addItem(tr("Other fixed internal heat source"));

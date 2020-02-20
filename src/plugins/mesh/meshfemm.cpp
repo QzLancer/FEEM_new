@@ -173,7 +173,7 @@ void CMesh::loadGsh22(const char fn[])
 
                     for(int j = 0; j < element_nodes;++j)
                         eles[i].n[j] = next_int(&chtmp)-1;
-//                    qDebug()<<eles[i].geometry_tag<<eles[i].physic_tag
+//                    qDebug()<<ele  s[i].geometry_tag<<eles[i].physic_tag
 //                           <<eles[i].n[0]<<eles[i].n[1]<<eles[i].n[2];
 
                 }

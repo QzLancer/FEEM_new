@@ -1,6 +1,9 @@
 #include "heatplugin.h"
 #include "heatpluginconstants.h"
 #include "heat2dstaticwizard.h"
+#include "pf_heat2dsproject.h"
+
+#include "qtribbon/include/QtnRibbonGroup.h"
 
 #include <coreplugin/icore.h>
 #include <coreplugin/context.h>
@@ -12,6 +15,10 @@
 #include <project/projectexplorerconstants.h>
 #include <project/pf_node.h>
 #include <project/pf_projecttree.h>
+
+#include <solver/solverconstants.h>
+
+#include <typeinfo>
 
 using namespace Core;
 using namespace ProjectExplorer;
@@ -76,6 +83,12 @@ void HeatPlugin::registerDefaultActions()
     Command* cmd = ActionManager::registerAction(m_addBoundary, Constants::ADDBOUNDARY);
     mboundaryContextMenu->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
     connect(m_addBoundary, &QAction::triggered, this, &HeatPlugin::slotaddBoundary);
+
+    ActionContainer *group = ActionManager::actionContainer(Solver::Constants::G_SOLVE_SOLVE);
+    QAction *action = new QAction(tr("Heat Field Solve"));
+    action->setIcon(QIcon(":/imgs/solve.png"));
+    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
+    connect(action, &QAction::triggered, this, &HeatPlugin::slotSolve);
 }
 
 void HeatPlugin::slotaddBoundary()
@@ -91,7 +104,13 @@ void HeatPlugin::slotaddBoundary()
 //        emit boundaryAdded(dialog->getBoundary());
 //    }else{
 //        qDebug() << "addBlankBoundary Cancle.";
-//    }
+    //    }
+}
+
+void HeatPlugin::slotSolve()
+{
+    PF_Heat2DSProject *project = dynamic_cast<PF_Heat2DSProject*>(PF_ProjectTree::currentProject());
+    project->Static2D();
 }
 
 }   //namespace Internal

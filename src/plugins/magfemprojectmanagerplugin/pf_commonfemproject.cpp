@@ -110,7 +110,7 @@ void PF_CommonFEMProject::doMesh()
 {
     qDebug()<<Q_FUNC_INFO;
     m_document->doMesh();
-    m_mesh->loadGsh22("D:/model.msh");
+    m_mesh->loadGsh22("./model.msh");
 }
 /*!
  \brief 单个的选择
