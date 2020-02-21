@@ -2,6 +2,7 @@
 #include "pf_heatfemnode.h"
 //#include "magfemprojectmanagerplugin/pf_facesettingdialog.h"
 #include "heatpluginconstants.h"
+#include "pf_boundarynode.h"
 
 #include <math.h>
 #include <stdio.h>
@@ -23,12 +24,18 @@
 #include <coreplugin/icore.h>
 
 #include <mesh/meshfemm.h>
+#include <mesh/pf_meshnode.h>
 
 #include <material/materialplugin.h>
 #include <material/pf_magmaterialdialog.h>
 #include <material/pf_material.h>
+#include <material/pf_materialnode.h>
 
 #include <output/outputpluginplugin.h>
+
+#include <solver/pf_solvernode.h>
+
+#include <postoperation/pf_resultnode.h>
 
 #include <QString>
 #include <QHash>
@@ -36,6 +43,7 @@
 #include <QDialog>
 #include <QVector>
 #include <QString>
+
 
 using namespace ProjectExplorer;
 
@@ -1458,12 +1466,31 @@ static void createTree(PF_Heat2DSProject* pro,PF_HeatFEMNode* node)
         //        qDebug() << iter.key() << ": " << iter.value();
     }
     /** 添加材料 **/
-    auto material_node = std::make_unique<FolderNode>(QString(QObject::tr("Materials")),NodeType::Material,QIcon(":/imgs/material.png"));
+    auto material_node = std::make_unique<PF_MaterialNode>(QString(QObject::tr("Materials")),QIcon(":/imgs/material.png"));
     QMapIterator<QString,CMaterialProp*> it(pro->m_materialList);
     while(it.hasNext())
     {
         it.next();
         material_node->addNode(std::make_unique<LeafNode>(it.value()->BlockName,LeafType::CMaterialProp,NodeType::Leaf,QIcon(":/imgs/material.png")));
+    }
+    /** 添加边界 **/
+    auto boundary_node = std::make_unique<PF_BoundaryNode>(QString(QObject::tr("Boundary")), QIcon(":/icon/imgs/boundary_32.png"));
+    QMapIterator<QString, CHBoundaryProp*> itb(pro->m_boundaryList);
+    while(itb.hasNext()){
+        itb.next();
+        QString s = itb.value()->name + QObject::tr(", Type: ") + QString::number((int)itb.value()->type);
+        switch(itb.value()->type){
+        case BoundaryType::FIRST:
+            s += (QString(", Tg = ") + QString::number(itb.value()->Tg) + QString("(K)"));
+            break;
+        case BoundaryType::SECOND:
+            s += (QString(", q = ") + QString::number(itb.value()->q) + QString("(W/m^2)"));
+            break;
+        case BoundaryType::THIRD:
+            s += (QString(", h = ") + QString::number(itb.value()->h) + QString("(W/m^2*k)")
+                  + QString(", T0 = ") + QString::number(itb.value()->T0) + QString("(K)"));
+        }
+        boundary_node->addNode(std::make_unique<LeafNode>(s, LeafType::Boundary, NodeType::Leaf,QIcon(":/icon/imgs/boundary_32.png")));
     }
     /** 添加几何 **/
     auto geo_node = std::make_unique<FolderNode>(QString(QObject::tr("Geometry")),NodeType::Geometry,QIcon(":/imgs/icons8-geometry-16.png"));
@@ -1496,7 +1523,7 @@ static void createTree(PF_Heat2DSProject* pro,PF_HeatFEMNode* node)
         }
     }
     /** 添加分网 **/
-    auto mesh_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh")),NodeType::Mesh,QIcon(":/imgs/mesh.png"));
+    auto mesh_node = std::make_unique<Mesh::PF_MeshNode>(QString(QObject::tr("Mesh")),QIcon(":/imgs/mesh.png"));
     auto mesh_point_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh Point")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
     auto mesh_line_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh Line")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
     auto mesh_face_node = std::make_unique<FolderNode>(QString(QObject::tr("Mesh Face")),NodeType::Geometry,QIcon(":/imgs/geometry.png"));
@@ -1506,31 +1533,10 @@ static void createTree(PF_Heat2DSProject* pro,PF_HeatFEMNode* node)
     auto comp_node = std::make_unique<FolderNode>(QString(QObject::tr("Physics")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
     auto domain_node = std::make_unique<FolderNode>(QString(QObject::tr("Domains")),NodeType::Domain,QIcon(":/imgs/model_2d_axi.png"));
 
-    /** 添加边界**/
-    auto boundary_node = std::make_unique<FolderNode>(QString(QObject::tr("Boundary")),NodeType::Boundary,QIcon(":/icon/imgs/boundary_32.png"));
-    QMapIterator<QString,CHBoundaryProp*> itb(pro->m_boundaryList);
-    while(itb.hasNext())
-    {
-        itb.next();
-        QString s = itb.value()->name + QObject::tr(", Type: ") + QString::number((int)itb.value()->type);
-        switch(itb.value()->type){
-        case BoundaryType::FIRST:
-            s += (QString(", Tg = ") + QString::number(itb.value()->Tg) + QString("(K)"));
-            break;
-        case BoundaryType::SECOND:
-            s += (QString(", q = ") + QString::number(itb.value()->q) + QString("(W/m^2)"));
-            break;
-        case BoundaryType::THIRD:
-            s += (QString(", h = ") + QString::number(itb.value()->h) + QString("(W/m^2*k)")
-                  + QString(", T0 = ") + QString::number(itb.value()->T0) + QString("(K)"));
-        }
-        boundary_node->addNode(std::make_unique<LeafNode>(s, LeafType::Boundary, NodeType::Leaf,QIcon(":/icon/imgs/boundary_32.png")));
-    }
-
-    auto solver_node = std::make_unique<FolderNode>(QString(QObject::tr("Solver")),NodeType::Solve,QIcon(":/imgs/model_2d_axi.png"));
+    auto solver_node = std::make_unique<Solver::PF_SolverNode>(QString(QObject::tr("Solver")),QIcon(":/imgs/model_2d_axi.png"));
     auto solversetting_node = std::make_unique<FolderNode>(QString(QObject::tr("Settings")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
 
-    auto result_node = std::make_unique<FolderNode>(QString(QObject::tr("Result")),NodeType::Component,QIcon(":/imgs/model_2d_axi.png"));
+    auto result_node = std::make_unique<Postoperation::PF_ResultNode>(QString(QObject::tr("Result")),QIcon(":/imgs/model_2d_axi.png"));
     auto curve2d_node = std::make_unique<FolderNode>(QString(QObject::tr("2D curve")),NodeType::Plot2D,QIcon(":/imgs/model_2d_axi.png"));
     auto surface2d_node = std::make_unique<FolderNode>(QString(QObject::tr("2D surface")),NodeType::Surface2D,QIcon(":/imgs/model_2d_axi.png"));
 
@@ -1557,6 +1563,7 @@ static void createTree(PF_Heat2DSProject* pro,PF_HeatFEMNode* node)
     node->addNode(std::move(comp_node));
     node->addNode(std::move(solver_node));
     node->addNode(std::move(result_node));
+
 }
 
 /**

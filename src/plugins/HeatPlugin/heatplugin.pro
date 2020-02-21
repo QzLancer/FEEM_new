@@ -11,6 +11,7 @@ SOURCES += \
     heatplugin.cpp \
     heat2dstaticwizard.cpp \
     heat3dstaticwizard.cpp \
+    pf_boundarynode.cpp \
     pf_heat2dsproject.cpp \
     pf_heatfemnode.cpp
 
@@ -23,6 +24,7 @@ HEADERS += \
     heatplugin.h \
     heat2dstaticwizard.h \
     heat3dstaticwizard.h \
+    pf_boundarynode.h \
     pf_heat2dsproject.h \
     pf_heatfemnode.h
 

@@ -30,13 +30,14 @@ public:
     ShutdownFlag aboutToShutdown();
     void registerDefaultContainers();
     void registerDefaultActions();
+    void updateContextActions();
 
 signals:
     void boundaryAdded(CHBoundaryProp*);
 
 public slots:
     void slotaddBoundary();
-    void slotSolve();
+//    void slotSolve();
 private:
     QAction* m_addBoundary = nullptr;
 };

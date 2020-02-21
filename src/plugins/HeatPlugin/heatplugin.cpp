@@ -2,6 +2,7 @@
 #include "heatpluginconstants.h"
 #include "heat2dstaticwizard.h"
 #include "pf_heat2dsproject.h"
+#include "pf_boundarynode.h"
 
 #include "qtribbon/include/QtnRibbonGroup.h"
 
@@ -75,20 +76,30 @@ void HeatPlugin::registerDefaultContainers()
 void HeatPlugin::registerDefaultActions()
 {
     /** 边界节点右键菜单栏 **/
-    ActionContainer *mboundaryContextMenu = ActionManager::createMenu(ProjectExplorer::Constants::M_BOUNDARYCONTEXT);
+    ActionContainer *mboundaryContextMenu = ActionManager::actionContainer(ProjectExplorer::Constants::M_FOLDERCONTEXT);
     mboundaryContextMenu->appendGroup(ProjectExplorer::Constants::G_HELP);
 
     /** boundary **/
     m_addBoundary = new QAction(QIcon(":/icon/imgs/boundary_32.png"), tr("add Boundary Condition"), this);
-    Command* cmd = ActionManager::registerAction(m_addBoundary, Constants::ADDBOUNDARY);
+    Command* cmd = ActionManager::registerAction(m_addBoundary, Constants::M_ADDBOUNDARY);
     mboundaryContextMenu->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
     connect(m_addBoundary, &QAction::triggered, this, &HeatPlugin::slotaddBoundary);
 
-    ActionContainer *group = ActionManager::actionContainer(Solver::Constants::G_SOLVE_SOLVE);
-    QAction *action = new QAction(tr("Heat Field Solve"));
-    action->setIcon(QIcon(":/imgs/solve.png"));
-    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
-    connect(action, &QAction::triggered, this, &HeatPlugin::slotSolve);
+//    ActionContainer *group = ActionManager::actionContainer(Solver::Constants::G_SOLVE_SOLVE);
+//    QAction *action = new QAction(tr("Heat Field Solve"));
+//    action->setIcon(QIcon(":/imgs/solve.png"));
+//    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
+    //    connect(action, &QAction::triggered, this, &HeatPlugin::slotSolve);
+}
+
+void HeatPlugin::updateContextActions()
+{
+    /** 判断是不是边界节点 **/
+    const Node *node = PF_ProjectTree::findCurrentNode();
+    const bool isBoundaryNode = dynamic_cast<const PF_BoundaryNode *>(node);
+
+    m_addBoundary->setEnabled(isBoundaryNode);
+    m_addBoundary->setVisible(isBoundaryNode);
 }
 
 void HeatPlugin::slotaddBoundary()
@@ -107,11 +118,11 @@ void HeatPlugin::slotaddBoundary()
     //    }
 }
 
-void HeatPlugin::slotSolve()
-{
-    PF_Heat2DSProject *project = dynamic_cast<PF_Heat2DSProject*>(PF_ProjectTree::currentProject());
-    project->Static2D();
-}
+//void HeatPlugin::slotSolve()
+//{
+//    PF_Heat2DSProject *project = dynamic_cast<PF_Heat2DSProject*>(PF_ProjectTree::currentProject());
+//    project->Static2D();
+//}
 
 }   //namespace Internal
 }   //namespace HeatFEMProjectManagerPlugin
