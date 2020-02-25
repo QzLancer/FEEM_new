@@ -7,7 +7,7 @@
 
 class QComboBox;
 
-namespace MagFEMProjectManagerPlugin {
+namespace CommonFEM {
 /*!
  \brief 材料设置，但是Project那么多，每个都要新建一个吗？？
 
@@ -24,5 +24,5 @@ private:
     int m_faceIndex;
     QComboBox* m_combobox;
 };
-}//MagFEMProjectManagerPlugin
+}//CommonFEM
 #endif // PF_FACESETTINGDIALOG_H

@@ -1,10 +1,7 @@
 #include "pf_commonfemproject.h"
-#include "pf_magfemnode.h"
 #include "pf_facesettingdialog.h"
 
-#include "magfemprojectmanagerpluginconstants.h"
-
-#include "sparsefemm.h"
+#include "commonfemconstants.h"
 
 #include <math.h>
 #include <stdio.h>
@@ -34,7 +31,7 @@
 #include <QDebug>
 #include <QDialog>
 
-namespace MagFEMProjectManagerPlugin{
+namespace CommonFEM{
 PF_CommonFEMProject::PF_CommonFEMProject(const QString &mimeType, const FileName& feemFile)
     :ProjectExplorer::PF_Project(mimeType, feemFile)
     ,m_document(new PF_Document())
@@ -183,5 +180,5 @@ PF_Entity *PF_CommonFEMProject::findEntity(const QString &displayName)
     }
     return nullptr;
 }
-}//MagFEMProjectManagerPlugin
+}//CommonFEM
 

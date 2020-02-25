@@ -9,7 +9,7 @@
 #include <QVBoxLayout>
 #include <QDebug>
 
-namespace MagFEMProjectManagerPlugin {
+namespace CommonFEM {
 
 PF_FaceSettingDialog::PF_FaceSettingDialog(QWidget *parent, PF_CommonFEMProject *pro, int index)
     :QDialog (parent)
@@ -76,4 +76,4 @@ PF_FaceSettingDialog::~PF_FaceSettingDialog()
 
 }
 
-}//MagFEMProjectManagerPlugin
+}//CommonFEM

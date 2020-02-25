@@ -1,8 +1,7 @@
 #ifndef PF_COMMONFEMPROJECT_H
 #define PF_COMMONFEMPROJECT_H
 
-#include "sparsefemm.h"
-#include "magfemprojectmanagerplugin_global.h"
+#include "commonfem_global.h"
 
 #include <utils/pf_variabledict.h>
 #include <material/pf_material.h>
@@ -23,9 +22,9 @@ namespace ProjectExplorer {
 class Node;
 }
 
-namespace MagFEMProjectManagerPlugin {
+namespace CommonFEM {
 
-class MAGPLUGINSHARED_EXPORT PF_CommonFEMProject : public ProjectExplorer::PF_Project
+class COMMONFEMPLUGINSHARED_EXPORT PF_CommonFEMProject : public ProjectExplorer::PF_Project
 {
     Q_OBJECT
 public:
@@ -50,5 +49,5 @@ private:
     Geometry2D* cad2d;
 };
 
-}//MagFEMProjectManagerPlugin
+}//CommonFEM
 #endif // PF_COMMONFEMPROJECT_H
