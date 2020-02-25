@@ -5,7 +5,7 @@
 #include <coreplugin/basefilewizard.h>
 #include <coreplugin/basefilewizardfactory.h>
 
-namespace MagFEMProjectManagerPlugin {
+namespace MagneticFEM {
 class MagField3DStaticWizard : public Core::BaseFileWizardFactory
 {
     Q_OBJECT
@@ -23,6 +23,6 @@ private:
 //                                    const GuiAppParameters &params,
 //                                    QString *target, QString *errorMessage);
 };
-}// namespace MagFEMProjectManagerPlugin
+}// namespace MagneticFEM
 
 #endif // MAGFIELD3DSTATICWIZARD_H

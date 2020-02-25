@@ -8,7 +8,7 @@
 
 #include <memory>
 
-namespace MagFEMProjectManagerPlugin {
+namespace MagneticFEM {
 
 class PF_Mag2DSProject;
 
@@ -21,5 +21,5 @@ private:
     PF_Mag2DSProject* m_project = nullptr;
 };
 
-}// namespace MagFEMProjectManagerPlugin
+}// namespace MagneticFEM
 #endif // PF_MAGFEMFILE_H

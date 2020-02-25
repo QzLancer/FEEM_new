@@ -18,7 +18,7 @@
 #include <QTextStream>
 #include <QSharedPointer>
 
-namespace MagFEMProjectManagerPlugin {
+namespace MagneticFEM {
 
 /*!
  \brief 电磁场仿真的一个向导，需要将内容添加到Project页面供用户选择。
@@ -53,4 +53,4 @@ Core::GeneratedFiles MagfieldWizard::generateFiles(const QWizard *w, QString *er
     return rc;
 }
 
-}// namespace MagFEMProjectManagerPlugin
+}// namespace MagneticFEM

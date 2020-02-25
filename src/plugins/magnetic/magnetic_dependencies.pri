@@ -1,4 +1,4 @@
-FEEM_PLUGIN_NAME = MagFEMProjectManagerPlugin
+FEEM_PLUGIN_NAME = Magnetic
 FEEM_LIB_DEPENDS += \
     extensionsystem \
     utils \
@@ -8,6 +8,7 @@ FEEM_PLUGIN_DEPENDS += \
     CAD \
     output \
     project \
+    commonfem \
     material \
     mesh \
     postoperation \

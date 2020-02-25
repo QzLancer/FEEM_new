@@ -1,7 +1,9 @@
 #ifndef PF_MAG2DSPROJECT_H
 #define PF_MAG2DSPROJECT_H
 
-#include "pf_commonfemproject.h"
+#include "sparsefemm.h"
+
+#include <commonfem/pf_commonfemproject.h>
 
 #define muo 1.2566370614359173e-6
 #define Golden 0.3819660112501051517954131656
@@ -9,9 +11,9 @@
 #define DEG 0.01745329251994329576923690768
 #define SmallNo 1.e-14
 
-namespace MagFEMProjectManagerPlugin {
+namespace MagneticFEM {
 class PF_MagFEMNode;
-class PF_Mag2DSProject : public PF_CommonFEMProject
+class PF_Mag2DSProject : public CommonFEM::PF_CommonFEMProject
 {
     Q_OBJECT
 public:
@@ -78,7 +80,7 @@ class PF_Mag2DSNodeTreeBuilder
 public:
     static std::unique_ptr<PF_MagFEMNode> buildTree(PF_Mag2DSProject* pro);
 };
-}// namespace MagFEMProjectManagerPlugin
+}// namespace MagneticFEM
 
 
 #endif // PF_MAG2DSPROJECT_H

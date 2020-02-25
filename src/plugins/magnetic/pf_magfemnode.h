@@ -5,7 +5,7 @@
 
 #include <project/pf_node.h>
 
-namespace MagFEMProjectManagerPlugin {
+namespace MagneticFEM {
 
 class PF_MagFEMNode : public ProjectExplorer::ProjectNode
 {
@@ -13,7 +13,7 @@ public:
     PF_MagFEMNode(PF_Mag2DSProject* pro);
 };
 
-}// namespace MagFEMProjectManagerPlugin
+}// namespace MagneticFEM
 
 
 #endif // PF_MAGFEMNODE_H

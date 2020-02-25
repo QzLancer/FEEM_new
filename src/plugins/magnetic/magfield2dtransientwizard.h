@@ -1,17 +1,17 @@
-#ifndef MAGFIELD3DTRANSINTWIZARD_H
-#define MAGFIELD3DTRANSINTWIZARD_H
+#ifndef MAGFIELD2DTRANSIENTWIZARD_H
+#define MAGFIELD2DTRANSIENTWIZARD_H
 
 
 #include <coreplugin/basefilewizard.h>
 #include <coreplugin/basefilewizardfactory.h>
 
-namespace MagFEMProjectManagerPlugin {
-class MagField3DTransintWizard : public Core::BaseFileWizardFactory
+namespace MagneticFEM {
+class MagField2DTransientWizard : public Core::BaseFileWizardFactory
 {
     Q_OBJECT
 
 public:
-    MagField3DTransintWizard();
+    MagField2DTransientWizard();
 
 private:
     Core::BaseFileWizard *create(QWidget *parent, const Core::WizardDialogParameters &parameters) const override;
@@ -23,6 +23,5 @@ private:
 //                                    const GuiAppParameters &params,
 //                                    QString *target, QString *errorMessage);
 };
-}// namespace MagFEMProjectManagerPlugin
-
-#endif // MAGFIELD3DTRANSINTWIZARD_H
+}// namespace MagneticFEM
+#endif // MAGFIELD2DTRANSIENTWIZARD_H

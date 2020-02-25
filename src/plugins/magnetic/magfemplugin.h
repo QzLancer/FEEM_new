@@ -1,20 +1,20 @@
 #pragma once
 
-#include "commonfem_global.h"
+#include "magfemplugin_global.h"
 
 #include <extensionsystem/iplugin.h>
 
-namespace CommonFEM {
+namespace MagneticFEM {
 namespace Internal {
 
-class CommonFEMPlugin : public ExtensionSystem::IPlugin
+class MagFEMPlugin : public ExtensionSystem::IPlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.hit.feem.feemPlugin" FILE "CommonFEM.json")
+    Q_PLUGIN_METADATA(IID "org.hit.feem.feemPlugin" FILE "Magnetic.json")
 
 public:
-    CommonFEMPlugin();
-    ~CommonFEMPlugin();
+    MagFEMPlugin();
+    ~MagFEMPlugin();
 
     bool initialize(const QStringList &arguments, QString *errorString);
     void extensionsInitialized();
@@ -24,4 +24,4 @@ private:
 };
 
 } // namespace Internal
-} // namespace CommonFEM
+} // namespace MagneticFEM

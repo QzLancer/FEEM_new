@@ -1,7 +1,7 @@
 #include "pf_mag2dsproject.h"
 #include "pf_magfemnode.h"
-#include "pf_facesettingdialog.h"
-#include "magfemprojectmanagerpluginconstants.h"
+//#include "pf_facesettingdialog.h"
+#include "magfempluginconstants.h"
 
 #include "sparsefemm.h"
 
@@ -46,7 +46,7 @@
 
 using namespace ProjectExplorer;
 
-namespace MagFEMProjectManagerPlugin {
+namespace MagneticFEM {
 
 /**
  * @brief 不同的项目应该有不同的标志来进行区别，因此，需要为你的项目定义一个MIMETYPE的字符串。
@@ -1538,4 +1538,4 @@ std::unique_ptr<PF_MagFEMNode> PF_Mag2DSNodeTreeBuilder::buildTree(PF_Mag2DSProj
     return root;
 }
 
-}// namespace MagFEMProjectManagerPlugin
+}// namespace MagneticFEM

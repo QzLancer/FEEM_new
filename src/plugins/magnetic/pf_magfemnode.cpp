@@ -1,6 +1,6 @@
 #include "pf_magfemnode.h"
 
-namespace MagFEMProjectManagerPlugin {
+namespace MagneticFEM {
 
 PF_MagFEMNode::PF_MagFEMNode(PF_Mag2DSProject *pro)
     :  ProjectExplorer::ProjectNode(pro)
@@ -8,4 +8,4 @@ PF_MagFEMNode::PF_MagFEMNode(PF_Mag2DSProject *pro)
 
 }
 
-}// namespace MagFEMProjectManagerPlugin
+}// namespace MagneticFEM
