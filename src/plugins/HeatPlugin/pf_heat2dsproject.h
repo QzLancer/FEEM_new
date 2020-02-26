@@ -30,6 +30,8 @@ public:
     double ElmArea(int i);
     void CleanUp();
 
+    bool onSegment(double x1, double y1, double x2, double y2, double x, double y);
+
     virtual void entitySelected(bool selected, ProjectExplorer::Node *node = nullptr) override;
 
     virtual QVariantMap toMap() const;

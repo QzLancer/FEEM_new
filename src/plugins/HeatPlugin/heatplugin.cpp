@@ -85,11 +85,13 @@ void HeatPlugin::registerDefaultActions()
     mboundaryContextMenu->addAction(cmd,Core::Constants::G_DEFAULT_ONE);
     connect(m_addBoundary, &QAction::triggered, this, &HeatPlugin::slotaddBoundary);
 
-//    ActionContainer *group = ActionManager::actionContainer(Solver::Constants::G_SOLVE_SOLVE);
-//    QAction *action = new QAction(tr("Heat Field Solve"));
-//    action->setIcon(QIcon(":/imgs/solve.png"));
-//    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
-    //    connect(action, &QAction::triggered, this, &HeatPlugin::slotSolve);
+    ActionContainer *group = ActionManager::actionContainer(Solver::Constants::G_SOLVE_SOLVE);
+    QAction *action = new QAction(tr("Heat Field Solve"));
+    action->setIcon(QIcon(":/imgs/solve.png"));
+    group->ribbonGroup()->addAction(action, Qt::ToolButtonTextUnderIcon);
+        connect(action, &QAction::triggered, this, &HeatPlugin::slotSolve);
+    connect(PF_ProjectTree::instance(), &PF_ProjectTree::currentNodeChanged,
+            this, &HeatPlugin::updateContextActions);
 }
 
 void HeatPlugin::updateContextActions()
@@ -118,11 +120,11 @@ void HeatPlugin::slotaddBoundary()
     //    }
 }
 
-//void HeatPlugin::slotSolve()
-//{
-//    PF_Heat2DSProject *project = dynamic_cast<PF_Heat2DSProject*>(PF_ProjectTree::currentProject());
-//    project->Static2D();
-//}
+void HeatPlugin::slotSolve()
+{
+    PF_Heat2DSProject *project = dynamic_cast<PF_Heat2DSProject*>(PF_ProjectTree::currentProject());
+    project->Static2D();
+}
 
 }   //namespace Internal
 }   //namespace HeatFEMProjectManagerPlugin

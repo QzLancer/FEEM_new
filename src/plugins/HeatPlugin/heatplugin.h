@@ -37,7 +37,7 @@ signals:
 
 public slots:
     void slotaddBoundary();
-//    void slotSolve();
+    void slotSolve();
 private:
     QAction* m_addBoundary = nullptr;
 };

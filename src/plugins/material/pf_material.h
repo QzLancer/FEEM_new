@@ -159,6 +159,9 @@ public:
     void GetBHProps(double B, double &v, double &dv);
     CComplex LaminatedBH(double omega, int i);
 
+    double getCond(double T);
+    double getdConddT(double T);
+
 public:
     QString BlockName;
     double mu_x,mu_y;		// permeabilities, relative

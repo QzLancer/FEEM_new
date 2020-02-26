@@ -23,6 +23,9 @@ public:
     CComplex mu1,mu2;
     int blk;
     int lbl;
+
+    /** 热场 **/
+    double h_condx, h_condy;
 };
 
 class FEEM_MESH_EXPORT CNode

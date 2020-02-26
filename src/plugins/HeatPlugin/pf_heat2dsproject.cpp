@@ -352,182 +352,377 @@ bool PF_Heat2DSProject::SortElements()
 */
 bool PF_Heat2DSProject::Static2D()
 {
-    auto meshele = m_mesh->eles;
-    auto meshnode = m_mesh->nodes;
-    auto NumNodes = m_mesh->numNode;
-    auto NumEls = m_mesh->numEle;
+    CElement *meshele = m_mesh->eles;
+    CNode *meshnode = m_mesh->nodes;
+    int NumNodes = m_mesh->numNode;
+    int NumEls = m_mesh->numEle;
+    int NumEdg = 0;
+    int NumTri = 0;
+    double l[3], p[3], q[3];    //形函数参数
+    double a;   //单元面积
+    double r;   //单元平均半径
+    double K;   //1/(4*Area)
+    double source;
+    int n[3];   //每个单元的节点编号
+    double res = 0, lastres = 0.0;
 
-    qDebug() << "NumNodes: " << NumNodes;
-    qDebug() << "NumEles: " << NumEls;
+    for(int i = 0; i < NumEls; ++i){
+        if(meshele[i].ele_type == 1) ++NumEdg;
+        if(meshele[i].ele_type == 2) ++NumTri;
+    }
+
+    CElement *edgele = static_cast<CElement *>(calloc(NumEdg, sizeof(CElement)));
+    CElement *triele = static_cast<CElement *>(calloc(NumTri, sizeof(CElement)));
+    int n1 = 0, n2 = 0;
+    for(int i = 0; i < NumEls; ++i){
+        if(meshele[i].ele_type == 1){
+            edgele[n1] = meshele[i];
+            ++n1;
+        }
+        if(meshele[i].ele_type == 2){
+            triele[n2] = meshele[i];
+            ++n2;
+        }
+    }
 
     L = new CBigLinProb();
-//    L->Create(m_mesh->numNode,m_mesh->numNode);
+    L->Create(m_mesh->numNode,m_mesh->numNode);
+    CBigLinProb *L1 = new CBigLinProb();
 
-//    int i, j, k, w;
-//    double Me[3][3], be[3];		// element matrices;
-//    double Mx[3][3], My[3][3], Mn[3][3];
-//    double l[3], p[3], q[3];		// element shape parameters;
-//    int n[3];					// numbers of nodes for a particular element;
-//    double a, K, r, t, x, y, B, B1, B2, mu, v[3], u[3], dv, res, lastres, Cduct;
-//    double *V_old;
-//    double c = PI*4.e-05;
-//    int Iter = 0;
-//    bool LinearFlag = true;
-//    res = 0;
-//    CElement *El;
-//    V_old = static_cast<double *>(calloc(NumNodes, sizeof(double)));
+    int i, j, k, w;
+    double Me[3][3], be[3];  //单元系数矩阵和单元右侧列向量
+    double Mx[3][3], My[3][3], Mn[3][3];    //x方向矩阵,y方向矩阵和牛顿迭代矩阵
 
-//    do{
-//        if (Iter > 0) L->Wipe();
-//        /** 单元计算 **/
-//        for (i = 0; i < NumEls; i++) {
-//            /** 初始化单元矩阵 **/
-//            for (j = 0; j < 3; j++) {
-//                for (k = 0; k < 3; k++) {
-//                    Me[j][k] = 0.;/** 合成矩阵 **/
-//                    Mx[j][k] = 0.;/** x方向矩阵 **/
-//                    My[j][k] = 0.;/** y方向矩阵 **/
-//                    Mn[j][k] = 0.;/** 牛顿迭代矩阵 **/
-//                }
-//                be[j] = 0.;
-//            }
-//            /** 计算形函数 **/
-//            El = &meshele[i];
-//            for (k = 0; k < 3; k++) n[k] = El->n[k];
-//            p[0] = meshnode[n[1]].y - meshnode[n[2]].y;
-//            p[1] = meshnode[n[2]].y - meshnode[n[0]].y;
-//            p[2] = meshnode[n[0]].y - meshnode[n[1]].y;
-//            q[0] = meshnode[n[2]].x - meshnode[n[1]].x;
-//            q[1] = meshnode[n[0]].x - meshnode[n[2]].x;
-//            q[2] = meshnode[n[1]].x - meshnode[n[0]].x;
-//            /** 计算单元棱长 **/
-//            for (j = 0, k = 1; j < 3; k++, j++) {
-//                if (k == 3) k = 0;
-//                l[j] = sqrt(pow(meshnode[n[k]].x - meshnode[n[j]].x, 2.) +
-//                        pow(meshnode[n[k]].y - meshnode[n[j]].y, 2.));
-//            }
-//            a = (p[0] * q[1] - p[1] * q[0]) / 2.;/** 单元面积 **/
-//            r = (meshnode[n[0]].x + meshnode[n[1]].x + meshnode[n[2]].x) / 3.;
+    /** 边界条件提取与存储 **/
+    QVector<CHBoundaryProp*> boundary1, boundary2, boundary3;
+    QVector<PF_Line*> boundline1, boundline2, boundline3;
+    QMap<int, double> bound1nodeTg;
+    QMap<int, double> bound2edgq;
+    QMap<int, CHBoundaryProp*> bound3edgparam;
+    bool bound1flag = false;
 
-//            /** x方向的贡献 **/
-//            K = (-1. / (4.*a));
-//            for (j = 0; j < 3; j++){
-//                for (k = j; k < 3; k++) {
-//                    Mx[j][k] += K*p[j] * p[k];
-//                    /** 下三角 **/
-//                    if (j != k)
-//                        Mx[k][j] += K*p[j] * p[k];
-//                }
-//            }
-//            /** y方向的贡献 **/
-//            K = (-1. / (4.*a));
-//            for (j = 0; j < 3; j++){
-//                for (k = j; k < 3; k++) {
-//                    My[j][k] += K*q[j] * q[k];
-//                    /** 下三角 **/
-//                    if (j != k)
-//                        My[k][j] += K*q[j] * q[k];
-//                }
-//            }
+    /** 对各个实体线对应的边界条件分类 **/
+    QMapIterator<QString, CHBoundaryProp*> iter(m_boundaryList);
+    while(iter.hasNext()){
+        switch(iter.next().value()->type){
+        case BoundaryType::FIRST :
+            bound1flag = true;
+            boundary1.push_back(iter.value());
+            boundline1.push_back(dynamic_cast<PF_Line*>(findEntity(iter.key())));
+            break;
+        case BoundaryType::SECOND :
+            boundary2.push_back(iter.value());
+            boundline2.push_back(dynamic_cast<PF_Line*>(findEntity(iter.key())));
+            break;
+        case BoundaryType::THIRD :
+            boundary3.push_back(iter.value());
+            boundline3.push_back(dynamic_cast<PF_Line*>(findEntity(iter.key())));
+            break;
+        default :
+            PoofeeSay << "Error: invaild boundary type!";
+            return false;
+            break;
+        }
+    }
 
-//            auto material = m_domains.value(El->geometry_tag);
-//            /** 电流密度 **/
-//            for (j = 0; j < 3; j++) {
-//                K = -(material->Jsrc.Re())*a / 3.;
-//                be[j] += K;
-//            }
-//            /** 永磁 **/
-//            t=180;
-//            for (j = 0; j < 3; j++) {
-//                k = j + 1; if (k == 3) k = 0;
-//                K = material->H_c*(cos(t*PI / 180.)*(meshnode[n[k]].x - meshnode[n[j]].x) +
-//                        sin(t*PI / 180.)*(meshnode[n[k]].y - meshnode[n[j]].y)) / 2.;
-//                be[j] += K;
-//                be[k] += K;
-//            }
-//            /** 更新非线性单元 **/
-//            if (Iter == 0) {
-//                k = meshele[i].blk;
-//                LinearFlag = material->m_linear;
-//                meshele[i].mu1 = 1;
-//                meshele[i].mu2 = 1;
-//            } else {
-//                if (!material->m_linear) {
-//                    /** 计算磁感应强度B **/
-//                    for (j = 0, B1 = 0., B2 = 0.; j < 3; j++) {
-//                        B1 += L->V[n[j]] * q[j];
-//                        B2 += L->V[n[j]] * p[j];
-//                    }
-//                    B = c*sqrt(B1*B1 + B2*B2) / (a);
+    /** 找到所有位于第一类边界条件的分网节点 **/
+    for(i = 0; i < boundline1.size(); ++i){
+        double startx = boundline1.at(i)->getStartpoint().x;
+        double starty = boundline1.at(i)->getStartpoint().y;
+        double endx = boundline1.at(i)->getEndpoint().x;
+        double endy = boundline1.at(i)->getEndpoint().y;
+        for(j = 0; j < NumNodes; ++j){
+            double x = meshnode[j].x;
+            double y = meshnode[j].y;
+            if(onSegment(startx, starty, endx, endy, x, y)){
+                bound1nodeTg.insert(j, boundary1[i]->Tg);
+            }
+        }
+    }
 
-//                    // find out new mu from saturation curve;
-//                    material->GetBHProps(B, mu, dv);
-//                    mu = 1. / (muo*mu);
-//                    meshele[i].mu1 = mu;
-//                    meshele[i].mu2 = mu;
-//                    for (j = 0; j < 3; j++) {
-//                        for (w = 0, v[j] = 0; w < 3; w++)
-//                            v[j] += (Mx[j][w] + My[j][w])*L->V[n[w]];
-//                    }
-//                    K = -200.*c*c*c*dv / a;
-//                    for (j = 0; j < 3; j++)
-//                        for (w = 0; w < 3; w++)
-//                            Mn[j][w] = K*v[j] * v[w];
-//                }
-//            }
-//            /** 装配大矩阵 **/
-//            for (j = 0; j < 3; j++)
-//                for (k = 0; k < 3; k++) {
-//                    Me[j][k] += (Mx[j][k] / Re(El->mu2) + My[j][k] / Re(El->mu1) + Mn[j][k]);
-//                    be[j] += Mn[j][k] * L->V[n[k]];
-//                }
-//            for (j = 0; j < 3; j++) {
-//                for (k = j; k < 3; k++)
-//                    L->Put(L->Get(n[j], n[k]) - Me[j][k], n[j], n[k]);
-//                L->b[n[j]] -= be[j];
-//            }
-//        }//end Elments iteration
+    /** 找到所有位于第二类边界条件的线单元 **/
+    for(i = 0; i < boundline2.size(); ++i){
+        double startx = boundline1.at(i)->getStartpoint().x;
+        double starty = boundline1.at(i)->getStartpoint().y;
+        double endx = boundline1.at(i)->getEndpoint().x;
+        double endy = boundline1.at(i)->getEndpoint().y;
+        for(j = 0; j < NumEdg; ++j){
+            double x1 = meshnode[edgele[j].n[0]].x;
+            double y1 = meshnode[edgele[j].n[0]].y;
+            double x2 = meshnode[edgele[j].n[1]].x;
+            double y2 = meshnode[edgele[j].n[1]].y;
+            if(onSegment(startx, starty, endx, endy, x1, y1) &&
+               onSegment(startx, starty, endx, endy, x2, y2)){
+                bound2edgq.insert(j, boundary2[i]->q);
+            }
+        }
+    }
 
-//        /** 设置固定边界 **/
+    /** 找到所有位于第三类边界条件的线单元 **/
+    for(i = 0; i < boundline3.size(); ++i){
+        double startx = boundline1.at(i)->getStartpoint().x;
+        double starty = boundline1.at(i)->getStartpoint().y;
+        double endx = boundline1.at(i)->getEndpoint().x;
+        double endy = boundline1.at(i)->getEndpoint().y;
+        for(j = 0; j < NumEdg; ++j){
+            double x1 = meshnode[edgele[j].n[0]].x;
+            double y1 = meshnode[edgele[j].n[0]].y;
+            double x2 = meshnode[edgele[j].n[1]].x;
+            double y2 = meshnode[edgele[j].n[1]].y;
+            if(onSegment(startx, starty, endx, endy, x1, y1) &&
+               onSegment(startx, starty, endx, endy, x2, y2)){
+                bound3edgparam.insert(j, boundary3[i]);
+            }
+        }
+    }
 
-//        /** 求解 **/
-//        for (j = 0; j < NumNodes; j++)
-//            V_old[j] = L->V[j];
+    /** 非线性迭代 **/
+    double *Temp_old;
+    int Iter = 0;
+    bool LinearFlag = true;
+    Temp_old = static_cast<double *>(calloc(NumNodes, sizeof(double)));
+    do{
+        if(Iter > 0) L->Wipe();
+        if(Iter > 0) L1->Wipe();
+        /** 三角形单元计算 **/
+        for(i = 0; i < NumTri; i++) {
+            CElement *TriEl = &triele[i];
+            /** 初始化单元矩阵 **/
+            for(j = 0; j < 3; j++){
+                for(k = 0; k < 3; k++){
+                    Me[j][k] = 0.;/** 合成矩阵 **/
+                    Mx[j][k] = 0.;/** x方向矩阵 **/
+                    My[j][k] = 0.;/** y方向矩阵 **/
+                    Mn[j][k] = 0.;/** 牛顿迭代矩阵 **/
+                }
+                be[j] = 0;
+            }
+            /** 计算形函数 **/
+            for (k = 0; k < 3; k++)
+                n[k] = TriEl->n[k];
+            p[0] = meshnode[n[1]].y - meshnode[n[2]].y;
+            p[1] = meshnode[n[2]].y - meshnode[n[0]].y;
+            p[2] = meshnode[n[0]].y - meshnode[n[1]].y;
+            q[0] = meshnode[n[2]].x - meshnode[n[1]].x;
+            q[1] = meshnode[n[0]].x - meshnode[n[2]].x;
+            q[2] = meshnode[n[1]].x - meshnode[n[0]].x;
+            /** 计算单元棱长 **/
+            for (j = 0, k = 1; j < 3; k++, j++) {
+                if (k == 3) k = 0;
+                l[j] = sqrt(pow(meshnode[n[k]].x - meshnode[n[j]].x, 2.) +
+                        pow(meshnode[n[k]].y - meshnode[n[j]].y, 2.));
+            }
+            /** 单元面积 **/
+            a = (p[0] * q[1] - p[1] * q[0]) / 2.;
+            /** 平均半径 **/
+            r = (meshnode[n[0]].x + meshnode[n[1]].x + meshnode[n[2]].x) / 3.;
 
-//        if (L->PCGSolve(Iter) == false) return false;
+            /** x方向的贡献 **/
+            K = (1.*r / (4.*a));
+            for (j = 0; j < 3; j++){
+                for (k = j; k < 3; k++) {
+                    Mx[j][k] += K*p[j] * p[k];
+                    /** 下三角 **/
+                    if (j != k)
+                        Mx[k][j] += K*p[j] * p[k];
+                }
+            }
+            /** y方向的贡献 **/
+            K = (1.*r/ (4.*a));
+            for (j = 0; j < 3; j++){
+                for (k = j; k < 3; k++) {
+                    My[j][k] += K*q[j] * q[k];
+                    /** 下三角 **/
+                    if (j != k)
+                        My[k][j] += K*q[j] * q[k];
+                }
+            }
+            /** 材料 **/
+            CMaterialProp *material = m_domains.value(TriEl->geometry_tag);
+            if(!material){
+                PoofeeSay << "Error: Exist surface without material.";
+                return false;
+            }
+            /** 内热源强度 **/
+            for(j = 0; j < 3; j++){
+                source = (material->h_source);
+                K = PI*a*(3*r+meshnode[n[j]].x)/6;
+                be[j] += source*K;
+            }
+            /** 提取线性单元参数 **/
+            if(material->h_condlinear){
+                TriEl->h_condx = material->h_lambdax;
+                TriEl->h_condy = material->h_lambday;
+            }
+            /** 更新非线性单元 **/
+            else{
+                LinearFlag = false;
+                if(Iter == 0){
+                    TriEl->h_condx = 0.1;
+                    TriEl->h_condy = 0.1;
+                }else{
+                    double Tavg = 0, cond, dconddT;
+                    for(j = 0; j < 3; ++j){
+                        Tavg += L->V[n[j]]/3;
+                    }
+                    cond = material->getCond(Tavg);
+                    dconddT = material->getdConddT(Tavg);
+                    TriEl->h_condx = cond;
+                    TriEl->h_condy = cond;
+                    for(j = 0; j < 3; ++j){
+                        for(k = 0; k < 3; ++k){
+                            Mn[j][k] += dconddT*(Mx[j][0]*L->V[n[0]]+Mx[j][1]*L->V[n[1]]+Mx[j][2]*L->V[n[2]]);
+                        }
+                    }
+                }
+            }
+            /** 装配大矩阵 **/
+            for(j = 0; j < 3; j++){
+                for(k = 0; k < 3; k++){
+                    Me[j][k] = Mx[j][k]*TriEl->h_condx + My[j][k]*TriEl->h_condy + Mn[j][k];
+                    be[j] += Mn[j][k]*L->V[n[k]];
+                }
+            }
+            for(j = 0; j < 3; j++){
+                for(k = 0; k < 3; k++){
+                    L->Put(L->Get(n[j], n[k]) + Me[j][k], n[j], n[k]);
+                }
+                L->b[n[j]] += be[j];
+            }
+        }//end Elements iteration
 
-//        if (LinearFlag == false) {
-//            for (j = 0, x = 0, y = 0; j < NumNodes; j++) {
-//                x += (L->V[j] - V_old[j])*(L->V[j] - V_old[j]);
-//                y += (L->V[j] * L->V[j]);
-//            }
+        /** 设置第二类边界条件 **/
+        QMapIterator<int, double> iter2(bound2edgq);
+        while(iter2.hasNext()){
+            iter2.next();
+            CElement el = edgele[iter2.key()];
+            n1 = el.n[0];
+            n2 = el.n[1];
+            double x1 = meshnode[n1].x;
+            double y1 = meshnode[n1].y;
+            double x2 = meshnode[n2].x;
+            double y2 = meshnode[n2].y;
+            double d = sqrt(pow(y2-y1, 2) + pow(x2-x1, 2));
+            double rl = (x2+x1)/2;
+            double pl = PI*iter2.value()*d;
+            L->b[n1] += pl/(2*rl+2*x1);
+            L->b[n2] += pl/(2*rl+2*x2);
+        }
 
-//            if (y == 0) LinearFlag = true;
-//            else {
-//                lastres = res;
-//                res = sqrt(x / y);
-//            }
-//            // relaxation if we need it
-//            double Relax = 1;
-//            if (Iter > 5) {
-//                if ((res > lastres) && (Relax > 0.125))
-//                    Relax /= 2.;
-//                else
-//                    Relax += 0.1 * (1. - Relax);
+        /** 设置第三类边界条件 **/
+        double Ml[2][2];
+        QMapIterator<int, CHBoundaryProp*> iter3(bound3edgparam);
+        while(iter3.hasNext()){
+            CElement el = edgele[iter3.key()];
+            iter3.next();
+            int node[2];
+            double x[2], y[2];
+            double h = iter3.value()->h;
+            double T0 = iter3.value()->T0;
+            for(i = 0; i < 2; ++i){
+                node[i] = el.n[i];
+                x[i] = meshnode[node[i]].x;
+                y[i] = meshnode[node[i]].y;
+            }
+            double dl = sqrt(pow(y[1]-y[0], 2) + pow(x[1] - x[0], 2));
+            double rl = (x[0] + x[1])/2;
+            for(i = 0; i < 2; ++i){
+                for(j = 0; j < 2; ++j){
+                    Ml[i][j] = PI*h*dl*(2*rl+rl*x[i])/6;
+                    L->Put(L->Get(node[i], node[j]) + Ml[i][j], node[i], node[j]);
+                }
+                L->b[node[i]] += PI*h*T0*dl*(2*rl+x[i])/3;
+            }
 
-//                for (j = 0; j < NumNodes; j++)
-//                    L->V[j] = Relax*L->V[j] + (1.0 - Relax)*V_old[j];
-//            }
-//            PoofeeSay<<tr("Newton Iteration(%i) Relax=%.4g").arg(Iter).arg(Relax);
-//        }
-//        if ((res < 100.*Precision) && (Iter>0)) LinearFlag = true;
-//        Iter++;
-//    } while (LinearFlag == false);
+        }
 
-//    for (i = 0; i < NumNodes; i++)
-//        L->b[i] = L->V[i] * c; // convert answer to Amps
-//    free(V_old);
+        /** 设置第一类边界条件 **/
+        QMapIterator<int, double> iter1(bound1nodeTg);
+        QVector<int> nid;
+        L1->Create(NumNodes-bound1nodeTg.size(), NumNodes-bound1nodeTg.size());
+        double *V = static_cast<double*>(calloc(NumNodes, sizeof(double)));
+        while(iter1.hasNext()){
+            iter1.next();
+            V[iter1.key()] = iter1.value();
+            nid.push_back(iter1.key());
+        }
+        /** 新方程组的右侧列向量 **/
+        for(j = 0; j < NumNodes; ++j){
+            for(k = 0; k < NumNodes; ++k){
+                L->b[j] -= L->Get(j, k)*V[k];
+            }
+        }
+        /** 新方程组装配 **/
+        int cj = 0, ck = 0;
+        for(j = 0; j < NumNodes; ++j){
+            if(!nid.contains(j)){
+                L1->b[j-cj] = L->b[j];
+                for(k = 0; k < NumNodes; ++k){
+                    if(!nid.contains(k)){
+                        L1->Put(L->Get(j, k), j-cj, k-ck);
+                    }else{
+                        ++ck;
+                    }
+                }
+            }else{
+                ++cj;
+            }
+        }
 
+        /** 求解 **/
+        for(j = 0; j < NumNodes; j++){
+            Temp_old[j] = L->V[j];
+        }
+
+        if(bound1flag == false){
+            if(L->PCGSolve(Iter) == false) return false;
+        }else{
+            if(L1->PCGSolve(Iter) == false) return false;
+            else{
+                cj = 0;
+                for(j = 0; j < NumNodes; ++j){
+                    if(!nid.contains(j)){
+                        L->V[j] = L1->V[j-cj];
+                    }else{
+                        L->V[j] = V[j];
+                        ++cj;
+                    }
+                }
+            }
+        }
+
+
+        if(LinearFlag == false){
+            double x = 0, y = 0;
+            for(j = 0; j < NumNodes; j++){
+                x += (L->V[j] - Temp_old[j]) * (L->V[j] - Temp_old[j]);
+                y += (L->V[j] * L->V[j]);
+            }
+
+            if(y == 0) LinearFlag = true;
+            else{
+                lastres = res;
+                res = sqrt(x / y);
+            }
+            double Relax = 1;
+            if(Iter >5){
+                if((res > lastres) && (Relax > 0/125))
+                    Relax /= 2.;
+                else
+                    Relax += 0.1*(1-Relax);
+
+                for(j = 0; j < NumNodes; j++)
+                    L->V[j] = Relax*L->V[j] + (1.0 - Relax)*Temp_old[j];
+            }
+            PoofeeSay<<tr("Newton Iteration(%i) Relax=%.4g").arg(Iter).arg(Relax);
+        }
+        if((res < 100*Precision) && (Iter>0)) LinearFlag = true;
+        Iter++;
+    } while (LinearFlag == false);
+
+    free(Temp_old);
+    free(triele);
+    free(edgele);
     return true;
 }
 
@@ -1364,9 +1559,20 @@ void PF_Heat2DSProject::CleanUp()
     //    if (pbclist!=nullptr)		 free(pbclist);
 }
 
+bool PF_Heat2DSProject::onSegment(double x1, double y1, double x2, double y2, double x, double y)
+{
+    if(abs((x-x1)*(y2-y1) - (x2-x1)*(y-y1)) < 1E-8
+       && std::min(x1, x2) <= x && x <= std::max(x1, x2)
+       && std::min(y1, y2) <= y && y <= std::max(y1, y2)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 void PF_Heat2DSProject::entitySelected(bool selected, Node *node)
 {
-    qDebug() << Q_FUNC_INFO;
+//    qDebug() << Q_FUNC_INFO;
     PF_CommonFEMProject::entitySelected(selected, node);
     emit nodeSelected(node);
 }

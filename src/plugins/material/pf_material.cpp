@@ -804,3 +804,39 @@ void CMaterialProp::GetBHProps(double B, double &v, double &dv)
 
 }
 
+double CMaterialProp::getCond(double T)
+{
+    double dCond;
+    double dT;
+    double k;
+    for(int i = 0; i < h_nonlpoints - 1; ++i){
+        if(T > h_nonldata[i].Im()){
+            dCond = h_nonldata[i+1].Re() - h_nonldata[i].Re();
+            dT = h_nonldata[i+1].Im() - h_nonldata[i].Im();
+            k = dCond/dT;
+            return h_nonldata[i].Re() + k*(T - h_nonldata[i].Im());
+        }
+    }
+    dCond = h_nonldata[h_nonlpoints - 1].Re() - h_nonldata[h_nonlpoints - 2].Re();
+    dT = h_nonldata[h_nonlpoints - 1].Im() - h_nonldata[h_nonlpoints - 2].Im();
+    k = dCond/dT;
+    return h_nonldata[h_nonlpoints - 1].Re() + k*(T - h_nonldata[h_nonlpoints - 1].Im());
+}
+
+double CMaterialProp::getdConddT(double T)
+{
+    /** 分段线性插值 **/
+    double dCond;
+    double dT;
+    for(int i = 0; i < h_nonlpoints - 1; ++i){
+        if(T > h_nonldata[i].Im()){
+            dCond = h_nonldata[i+1].Re() - h_nonldata[i].Re();
+            dT = h_nonldata[i+1].Im() - h_nonldata[i].Im();
+            return dCond/dT;
+        }
+    }
+    dCond = h_nonldata[h_nonlpoints - 1].Re() - h_nonldata[h_nonlpoints - 2].Re();
+    dT = h_nonldata[h_nonlpoints - 1].Im() - h_nonldata[h_nonlpoints - 2].Im();
+    return dCond/dT;
+}
+
