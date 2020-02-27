@@ -29,7 +29,7 @@ class COMMONFEMPLUGINSHARED_EXPORT PF_CommonFEMProject : public ProjectExplorer:
     Q_OBJECT
 public:
     PF_CommonFEMProject(const QString &mimeType, const Utils::FileName &feemFile);
-    ~PF_CommonFEMProject();
+    ~PF_CommonFEMProject() override;
 
     Core::IGeometry* CAD() const override;
     void editMaterial(ProjectExplorer::Node* node) override;
@@ -45,6 +45,12 @@ public:
     PF_Document* m_document;
     CMesh* m_mesh;
     double  Precision;
+
+signals:
+    /** 通过定义有限元的一些信号，来通知插件完成任务 **/
+    void clearedSolution();
+    void meshed();
+    void solved();
 private:
     Geometry2D* cad2d;
 };

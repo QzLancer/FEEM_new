@@ -27,6 +27,7 @@ CommonFEMPlugin::~CommonFEMPlugin()
 
 bool CommonFEMPlugin::initialize(const QStringList &arguments, QString *errorString)
 {
+    qDebug()<<Q_FUNC_INFO;
     return true;
 }
 

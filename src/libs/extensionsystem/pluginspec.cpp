@@ -910,6 +910,7 @@ bool PluginSpecPrivate::resolveDependencies(const QList<PluginSpec *> &specs)
                     errorString.append(QLatin1Char('\n'));
                 errorString.append(QCoreApplication::translate("PluginSpec", "Could not resolve dependency '%1(%2)'")
                     .arg(dependency.name).arg(dependency.version));
+                qDebug()<<errorString;
             }
             continue;
         }

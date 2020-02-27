@@ -8,9 +8,9 @@ FEEM_PLUGIN_DEPENDS += \
     CAD \
     output \
     project \
-    commonfem \
     material \
     mesh \
     postoperation \
     solver \
+    commonfem \
 

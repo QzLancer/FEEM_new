@@ -36,7 +36,7 @@ public:
         WaveLight
     };
 
-    Plot( QWidget * = NULL );
+    Plot( QWidget * = nullptr );
 
 public Q_SLOTS:
     void showContour( bool on );

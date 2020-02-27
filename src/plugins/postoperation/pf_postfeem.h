@@ -18,6 +18,10 @@ class FEEM_POSTOPERATION_EXPORT PF_PostFEEM : public QObject
     Q_OBJECT
 public:
     PF_PostFEEM();
+    ~PF_PostFEEM();
+
+private:
+
 };
 }//namespace Postoperation
 

@@ -10,7 +10,6 @@ HEADERS += \
     pf_mag2dsproject.h \
     pf_magfemnode.h \
     pf_magfemfile.h \
-    sparsefemm.h \
     magfemplugin.h \
     magfemplugin_global.h \
     magfempluginconstants.h
@@ -23,7 +22,6 @@ SOURCES += \
     pf_mag2dsproject.cpp \
     pf_magfemnode.cpp \
     pf_magfemfile.cpp \
-    sparsefemm.cpp \
     magfemplugin.cpp
 
 RESOURCES += \

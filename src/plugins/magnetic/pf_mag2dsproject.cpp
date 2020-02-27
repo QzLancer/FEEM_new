@@ -3,7 +3,7 @@
 //#include "pf_facesettingdialog.h"
 #include "magfempluginconstants.h"
 
-#include "sparsefemm.h"
+#include <solver/sparsefemm.h>
 
 #include <math.h>
 #include <stdio.h>

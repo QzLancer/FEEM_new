@@ -8,13 +8,14 @@ SUBDIRS   = \
     material \
     mesh \
     solver \
-    postoperation \
     project \
     output \
     bounce \
     welcome \
     optimize \
-    magfemprojectmanagerplugin \
+    commonfem \
+    postoperation \
+    magnetic \
     heatplugin \
 
 for(p, SUBDIRS) {

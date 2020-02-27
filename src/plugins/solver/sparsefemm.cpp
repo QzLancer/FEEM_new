@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+namespace Solver {
 CEntry::CEntry()
     :x(0)
     ,c(0)
@@ -410,3 +411,4 @@ void CBigLinProb::ComputeBandwidth()
 
     //    MsgBox("Assumed Bandwidth = %i\nActual Bandwidth = %i",bdw,maxbw);
 }
+}//namespace Solver

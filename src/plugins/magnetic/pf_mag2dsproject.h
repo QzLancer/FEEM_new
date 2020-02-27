@@ -1,7 +1,7 @@
 #ifndef PF_MAG2DSPROJECT_H
 #define PF_MAG2DSPROJECT_H
 
-#include "sparsefemm.h"
+#include <solver/sparsefemm.h>
 
 #include <commonfem/pf_commonfemproject.h>
 
@@ -11,6 +11,7 @@
 #define DEG 0.01745329251994329576923690768
 #define SmallNo 1.e-14
 
+using namespace Solver;
 namespace MagneticFEM {
 class PF_MagFEMNode;
 class PF_Mag2DSProject : public CommonFEM::PF_CommonFEMProject

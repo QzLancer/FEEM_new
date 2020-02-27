@@ -1,7 +1,10 @@
 #ifndef SPARSEFEMM_H
 #define SPARSEFEMM_H
 
-class CEntry
+#include "solver_global.h"
+
+namespace Solver {
+class FEEM_SOLVER_EXPORT CEntry
 {
 public:
 
@@ -15,7 +18,7 @@ private:
 
 #define LAMBDA 1.5
 
-class  CBigLinProb
+class FEEM_SOLVER_EXPORT CBigLinProb
 {
 public:
     // member functions
@@ -48,6 +51,6 @@ public:
     int bdw;				/** Optional matrix bandwidth parameter; **/
     double Precision;		/** error tolerance for solution **/
 };
-
+}//namespace Solver
 
 #endif // SPARSEFEMM_H
