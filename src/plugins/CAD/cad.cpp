@@ -65,7 +65,7 @@ bool CADPlugin::initialize(const QStringList &arguments, QString *errorMessage)
     ads::CDockWidget* DockWidget = new ads::CDockWidget(tr("Geometry builder"));
     DockWidget->setWidget(cad);
     // Add the dock widget to the top dock widget area
-    Core::WorkPage::DockManager()->addDockWidget(ads::TopDockWidgetArea, DockWidget);
+    Core::WorkPage::DockManager()->addDockWidget(ads::RightDockWidgetArea, DockWidget);
     qDebug()<<Q_FUNC_INFO;
     return true;
 }

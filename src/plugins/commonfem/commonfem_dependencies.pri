@@ -1,12 +1,14 @@
-FEEM_PLUGIN_NAME = Postoperation
+FEEM_PLUGIN_NAME = CommonFEM
 FEEM_LIB_DEPENDS += \
     extensionsystem \
     utils \
-    qtribbon \
-    qwt \
 
 FEEM_PLUGIN_DEPENDS += \
     coreplugin \
+    CAD \
     output \
     project \
-    commonfem \
+    material \
+    mesh \
+    solver \
+

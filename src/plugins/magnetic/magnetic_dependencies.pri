@@ -1,12 +1,16 @@
-FEEM_PLUGIN_NAME = Postoperation
+FEEM_PLUGIN_NAME = Magnetic
 FEEM_LIB_DEPENDS += \
     extensionsystem \
     utils \
-    qtribbon \
-    qwt \
 
 FEEM_PLUGIN_DEPENDS += \
     coreplugin \
+    CAD \
     output \
     project \
+    material \
+    mesh \
+    postoperation \
+    solver \
     commonfem \
+

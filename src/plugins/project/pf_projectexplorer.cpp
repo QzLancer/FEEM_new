@@ -440,16 +440,16 @@ bool PF_ProjectExplorerPlugin::initialize(const QStringList &arguments, QString 
     mprojectContextMenu->addSeparator(Constants::G_HELP);
     mprojectContextMenu->addAction(cmd,Constants::G_HELP);
 
-    QWidget * widgetProjectTree = new PF_ModelWidget();
-    ads::CDockWidget* DockWidget = new ads::CDockWidget(tr("Model tree"));
-    DockWidget->setWidget(widgetProjectTree);
-    Core::WorkPage::DockManager()->addDockWidget(ads::LeftDockWidgetArea, DockWidget);
+
     return true;
 }
 
 void PF_ProjectExplorerPlugin::extensionsInitialized()
 {
-
+    QWidget * widgetProjectTree = new PF_ModelWidget();
+    ads::CDockWidget* DockWidget = new ads::CDockWidget(tr("Model tree"));
+    DockWidget->setWidget(widgetProjectTree);
+    Core::WorkPage::DockManager()->addDockWidget(ads::LeftDockWidgetArea, DockWidget);
 }
 
 bool PF_ProjectExplorerPlugin::delayedInitialize()

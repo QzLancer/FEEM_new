@@ -8,11 +8,13 @@ HEADERS += \
     solver_global.h \
     solverconstants.h \
     solverplugin.h \
-    pf_solvernode.h
+    pf_solvernode.h \
+    sparsefemm.h
 
 SOURCES += \
     solverplugin.cpp \
-    pf_solvernode.cpp
+    pf_solvernode.cpp \
+    sparsefemm.cpp
 
 RESOURCES += \
     res.qrc

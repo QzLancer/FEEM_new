@@ -146,7 +146,7 @@ void SolverPlugin::registerDefaultActions()
 
 void SolverPlugin::updateContextActions()
 {
-    /** 判断是不是分网节点 **/
+    /** 判断是不是求解节点 **/
     const Node *node = PF_ProjectTree::findCurrentNode();
     const bool isSolverNode = dynamic_cast<const PF_SolverNode *>(node);
 

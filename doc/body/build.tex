@@ -178,6 +178,12 @@ enum ExtensionSystem::IPlugin::ShutdownFlag __cdecl CAD::CADPlugin::aboutToShutd
 __cdecl CAD::CADPlugin::~CADPlugin(void)
 __cdecl Core::CorePlugin::~CorePlugin(void)
 \end{lstlisting}
+
+由于插件系统跟qtcreator的插件系统是一样的，所以，也可以再qtcreator当中新建插件项目，并修改相关的代码，从而减少自己创建插件的工作量。
+
+插件的调试一般采用设置断点的方法，在一些错误判断的地方设置断点，或者对errstring之类的变量进行输出提示，这样会便于错误的定位。
+
+一个插件能否被正确载入取决于几个因素：一、该插件设置的metadata是否与插件系统当中要求的一致；二、插件的依赖关系是否设置的合理，如果出现了两个相互之间进行依赖的插件，那么可能依赖关系无法被正确处理，从而无法实现插件的正确导入。如果插件的依赖关系发生了巨大的变动，那么有必要对所有的插件进行重新编译，此时单独地编译插件可能还是无法正确载入。
 \subsection{库文件的创建}
 链接库的创建步骤与插件类似，只是放置在libs文件夹下。库文件也没有什么固定的写法，只需要设置好导出宏，最后就可以生成dll文件。在pro文件当中需要添加宏定义，这样编译的时候才会生成dll。
 \begin{lstlisting}

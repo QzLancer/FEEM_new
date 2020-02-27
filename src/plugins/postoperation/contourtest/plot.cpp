@@ -259,6 +259,7 @@ void Plot::setColorMap( int type )
     {
         d_spectrogram->setColorMap( new LinearColorMapRGB() );
         axis->setColorMap( zInterval, new LinearColorMapRGB() );
+        break;
     }
     case Plot::AuroraAustralis:
     {

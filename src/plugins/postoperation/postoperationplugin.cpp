@@ -62,8 +62,8 @@ bool PostoperationPlugin::initialize(const QStringList &arguments, QString *erro
 
 void PostoperationPlugin::extensionsInitialized()
 {
-//    ContourTestWidget* w = new ContourTestWidget;
-//    w->show();
+    ContourTestWidget* w = new ContourTestWidget;
+    w->show();
 }
 
 bool PostoperationPlugin::delayedInitialize()
@@ -118,7 +118,7 @@ void PostoperationPlugin::registerDefaultActions()
 
 void PostoperationPlugin::updateContextActions()
 {
-    /** 判断是不是分网节点 **/
+    /** 判断是不是结果节点 **/
     const Node *node = PF_ProjectTree::findCurrentNode();
     const bool isSolverNode = dynamic_cast<const PF_ResultNode *>(node);
 
